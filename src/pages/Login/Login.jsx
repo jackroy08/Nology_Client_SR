@@ -8,7 +8,8 @@ const Login = () => {
             <h1 className={Styles.title}>Hi welcome to Login Page</h1>
             <input />
             <button>Login</button>
-            <Link path='/maintenance'>Maintenance Link</Link>
+            <Link to='../maintenance'>Maintenance Link</Link>
+            <Link to='../supervisor'>Supervisor Link</Link>
         </div>
     )
 }

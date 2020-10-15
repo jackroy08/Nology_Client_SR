@@ -4,13 +4,20 @@ import Login from './pages/Login';
 import Maintenance from './pages/Maintenance';
 import { Supervisor } from './pages/Supervisor/Supervisor';
 
+//DUMMY DATA
+const data = [
+  'truck broke down',
+  'man down',
+  'TMM no T'
+]
+
 const App = () => {
   return (
     <div className="App">
       <Router>
-        <Login path="/" />
+        <Login path='/login' />
         <Maintenance path="/maintenance" />
-        <Supervisor path="/supervisor"/>
+        <Supervisor path="/supervisor" data={data}/>
       </Router>
     </div>
   );
