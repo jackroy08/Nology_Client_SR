@@ -13,7 +13,7 @@ const ClassCChecks = () => {
         <section>
             <h1>Class C Checks</h1>
             <form id="class-c-checks"> 
-                {checks.map(getCheckList)}
+                {checkboxArr.map(getCheckList)}
             </form>
             <textarea name="class-b-comment" id="class-c-checks"></textarea>
             <section className={styles.navigation}>
