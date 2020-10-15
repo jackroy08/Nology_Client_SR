@@ -13,11 +13,12 @@ const Operator = () => {
             <button onClick={() => (setIsShiftStart(!isShiftStart))}>
                 {changeStart}
             </button>
-                <Link to="classachecks">
-                    <button>Accept Vehicle</button>
-                </Link>
-            
-            <button>Report a Problem</button>
+            <Link to="/classa">
+                <button>Accept Vehicle</button>
+            </Link>
+            <Link to="/classa">
+                <button>Report a Problem</button>
+            </Link>
             <button>Submit Load</button>
         </section>
     </>

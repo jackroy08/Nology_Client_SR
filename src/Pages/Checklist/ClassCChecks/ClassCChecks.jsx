@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from '@reach/router';
 
 const ClassCChecks = () => {
     return (
         <section>
             <article>
+                <h1>Class C Checks</h1>
                 <ul>
                     <li>check 1</li>
                     <li>check 2</li>
@@ -16,8 +18,12 @@ const ClassCChecks = () => {
                 </p>
             </article>
             <article>
-                <button>Back</button>   
-                <button>Next</button>   
+                <Link to="/classb">
+                    <button>Back</button> 
+                </Link>
+                <Link to="">
+                    <button>Next</button>
+                </Link> 
             </article>
         </section>
     )

@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from '@reach/router';
+
 
 const ClassBChecks = () => {
     return (
         <section>
             <article>
+                <h1>Class B Checks</h1>
                 <ul>
                     <li>check 1</li>
                     <li>check 2</li>
@@ -16,8 +19,12 @@ const ClassBChecks = () => {
                 </p>
             </article>
             <article>
-                <button>Back</button>   
-                <button>Next</button>   
+                <Link to="/classa">
+                    <button>Back</button> 
+                </Link>
+                <Link to="/classc">
+                    <button>Next</button>
+                </Link> 
             </article>
         </section>
     )

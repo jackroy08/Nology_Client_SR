@@ -11,8 +11,9 @@ const App = () => {
     <div className="App">
       <Router>
         <Operator path="/" />
-        <ClassAChecks path="classachecks" />
-        <ClassBChecks path="classbchecks" />
+        <ClassAChecks path="/classa" />
+        <ClassBChecks path="/classb" />
+        <ClassCChecks path="/classc" />
       </Router>
     </div>
   );
