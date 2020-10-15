@@ -1,31 +1,29 @@
 import React from 'react';
 import { Link } from '@reach/router';
-
+import styles from "../Checklist.module.scss";
 
 const ClassBChecks = () => {
+    const checks = ["STOP BLOCKS", "FIRE EXTINGUISHER", "OPERATOR LICENCE", "SEAT BELTS (IN USE)", "HEAD LIGHTS"];
+    const getCheckList = item => (
+        <label key={item} htmlFor={item}>{item}
+            <input type="checkbox" id={item} name={item} value={item}/>
+        </label>
+    );
     return (
         <section>
-            <article>
-                <h1>Class B Checks</h1>
-                <ul>
-                    <li>check 1</li>
-                    <li>check 2</li>
-                    <li>etc.</li>
-                </ul>
-            </article>
-            <article>
-                <p>
-                    Text box for additional info
-                </p>
-            </article>
-            <article>
+            <h1>Class B Checks</h1>
+            <form id="class-b-checks"> 
+                {checks.map(getCheckList)}
+            </form>
+            <textarea name="class-b-comment" id="class-b-checks"></textarea>
+            <section className={styles.navigation}>
                 <Link to="/classa">
-                    <button>Back</button> 
+                    <button className={styles.navButtons}>Back</button> 
                 </Link>
                 <Link to="/classc">
-                    <button>Next</button>
-                </Link> 
-            </article>
+                    <button className={styles.navButtons}>Next</button>
+                </Link>
+            </section>
         </section>
     )
 }

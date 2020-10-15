@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { Link } from '@reach/router';
 import styles from "./Operator.module.scss";
-import ClassAChecks from "../Checklist/ClassAChecks";
 
 const Operator = () => {
 
@@ -9,7 +8,7 @@ const Operator = () => {
     const changeStart = isShiftStart ? "End shift" : "Start shift";
     return (
     <>
-        <section>
+        <section className={styles.fullPageWrapper}>
             <button onClick={() => (setIsShiftStart(!isShiftStart))}>
                 {changeStart}
             </button>
