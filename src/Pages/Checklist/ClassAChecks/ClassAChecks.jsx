@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "@reach/router";
 import styles from "../Checklist.module.scss";
+import checklistData from "../../../data/data";
 
-const ClassAChecks = () => {
-    const checkboxArr = ["STOP BLOCKS", "FIRE EXTINGUISHER", "OPERATOR LICENCE", "SEAT BELTS (IN USE)", "HEAD LIGHTS"];
+const ClassAChecks = (props) => {
+    const checkboxArr = props.checklistData;
     const getCheckList = item => (
         <label key={item} htmlFor={item}>{item}
             <input type="checkbox" id={item} name={item} value={item}/>
@@ -13,7 +14,7 @@ const ClassAChecks = () => {
         <section>
             <h1>Class A Checks</h1>
             <form id="class-a-checks"> 
-                {checkboxArr.map(getCheckList)}
+                {checklistData.map(getCheckList)}
             </form>
             <textarea name="class-a-comment" id="class-a-checks"></textarea>
             <section className={styles.navigation}>

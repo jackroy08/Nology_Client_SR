@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "@reach/router";
 import styles from "../Checklist.module.scss";
 
-const ClassCChecks = () => {
-    const checkboxArr = ["STOP BLOCKS", "FIRE EXTINGUISHER", "OPERATOR LICENCE", "SEAT BELTS (IN USE)", "HEAD LIGHTS"];
+const ClassCChecks = (props) => {
+    const checklistData = props.checklistData;
     const getCheckList = item => (
         <label key={item} htmlFor={item}>{item}
             <input type="checkbox" id={item} name={item} value={item}/>
@@ -13,9 +13,9 @@ const ClassCChecks = () => {
         <section>
             <h1>Class C Checks</h1>
             <form id="class-c-checks"> 
-                {checkboxArr.map(getCheckList)}
+                {checklistData.map(getCheckList)}
             </form>
-            <textarea name="class-b-comment" id="class-c-checks"></textarea>
+            <textarea name="class-c-comment" id="class-c-checks"></textarea>
             <section className={styles.navigation}>
                 <Link to="/classb">
                     <button className={styles.navButtons}>Back</button> 
