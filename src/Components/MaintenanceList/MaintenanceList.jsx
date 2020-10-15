@@ -1,17 +1,22 @@
-import React from 'react';
-
+import React from "react";
+import MaintenanceDropdown from "../MaintenanceDropdown/MaintenanceDropdown";
+import MaintenanceListItem from "../MaintenanceListItem/MaintenanceListItem";
+import Styles from "./MaintenanceList.module.scss";
 
 const MaintenanceList = () => {
+
+    const fixList = [1,2,3,4,5];
+
     return (
         <>
-        <nav>NavBar</nav>
-        <section>
-            <p>Vehicle ID Problem Hazard Class Problem Status</p>
-            <p>Vehicle ID Problem Hazard Class Problem Status</p>
-            <p>Vehicle ID Problem Hazard Class Problem Status</p>
-            <p>Vehicle ID Problem Hazard Class Problem Status</p>
-            <p>Vehicle ID Problem Hazard Class Problem Status</p>
-        </section>
+        {fixList.map((item) => {
+            return (
+                <>
+                    <MaintenanceListItem />
+                    <MaintenanceDropdown />
+                </>
+            )
+        })}
         </>
     )
 }
