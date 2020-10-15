@@ -1,11 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Operator from './Pages/Operator'
+import React from "react";
+import {Router} from "@reach/router"
+import "./App.css";
+import Operator from "./Pages/Operator";
+import ClassAChecks from "./Pages/Checklist/ClassAChecks";
+import ClassBChecks from "./Pages/Checklist/ClassBChecks";
+import ClassCChecks from "./Pages/Checklist/ClassCChecks";
 
 const App = () => {
   return (
-    <Operator />
+    <div className="App">
+      <Router>
+        <Operator path="/" />
+        <ClassAChecks path="classachecks" />
+        <ClassBChecks path="classbchecks" />
+      </Router>
+    </div>
   );
 }
 
