@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 import styles from "../Checklist.module.scss";
 
 const ClassCChecks = () => {
-    const checks = ["STOP BLOCKS", "FIRE EXTINGUISHER", "OPERATOR LICENCE", "SEAT BELTS (IN USE)", "HEAD LIGHTS"];
+    const checkboxArr = ["STOP BLOCKS", "FIRE EXTINGUISHER", "OPERATOR LICENCE", "SEAT BELTS (IN USE)", "HEAD LIGHTS"];
     const getCheckList = item => (
         <label key={item} htmlFor={item}>{item}
             <input type="checkbox" id={item} name={item} value={item}/>
