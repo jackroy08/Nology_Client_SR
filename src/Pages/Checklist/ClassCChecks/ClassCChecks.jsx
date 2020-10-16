@@ -17,10 +17,10 @@ const ClassCChecks = (props) => {
             </form>
             <textarea name="class-c-comment" id="class-c-checks"></textarea>
             <section className={styles.navigation}>
-                <Link to="/classb">
+                <Link to="/ClassC">
                     <button className={styles.navButtons}>Back</button> 
                 </Link>
-                <Link to="/confirmation">
+                <Link to="/Confirmation">
                     <button className={styles.navButtons}>Next</button>
                 </Link>
             </section>

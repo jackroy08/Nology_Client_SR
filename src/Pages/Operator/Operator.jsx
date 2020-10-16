@@ -12,10 +12,10 @@ const Operator = () => {
             <button onClick={() => (setIsShiftStart(!isShiftStart))}>
                 {changeStart}
             </button>
-            <Link to="/classa">
+            <Link to="/ClassA">
                 <button>Accept Vehicle</button>
             </Link>
-            <Link to="/classa">
+            <Link to="/ClassA">
                 <button>Report a Problem</button>
             </Link>
             <button>Submit Load</button>
