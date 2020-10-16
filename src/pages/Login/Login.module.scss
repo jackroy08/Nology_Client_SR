@@ -1,3 +1,49 @@
 .loginPage {
-    
+  display: flex;
+  margin-top: 50%;
+  width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+  background: #EBEBEB;
+  padding: 12px;
+  box-sizing: border-box;
+  display: block;
+  border-width: 3px;
+  border-radius: 5px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-size: 0.95em;
+  font-family: 'Open Sans', sans-serif;
 }
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0;
+  background: rgb(20, 34, 235);
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  border-radius: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.submit {
+  background:  rgb(20, 34, 235);
+border-color: transparent;
+color: #fff;
+border-radius: 5px;
+cursor: pointer;
+padding: 10px;
+width: 362px;
+margin: 16px auto;
+font-size: 16px;
+text-align: center;
+box-sizing: border-box;
+}
+// .idnumber {
+// }
+// .password {
+// }
