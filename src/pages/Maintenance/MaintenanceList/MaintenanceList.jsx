@@ -9,7 +9,7 @@ const MaintenanceList = () => {
 
     return (
         <>
-        {fixList.map((item) => {
+        {fixList.map(() => {
             return (
                 <>
                     <MaintenanceListItem />
