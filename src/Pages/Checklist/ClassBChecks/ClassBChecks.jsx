@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 import styles from "../Checklist.module.scss";
 
 const ClassBChecks = (props) => {
-    const checklistData = props.checklistData
+    const checkboxArr = props.checklistData
     const getCheckList = item => (
         <label key={item} htmlFor={item}>{item}
             <input type="checkbox" id={item} name={item} value={item}/>
@@ -13,7 +13,7 @@ const ClassBChecks = (props) => {
         <section>
             <h1>Class B Checks</h1>
             <form id="class-b-checks"> 
-                {checklistData.map(getCheckList)}
+                {checkboxArr.map(getCheckList)}
             </form>
             <textarea name="class-b-comment" id="class-b-checks"></textarea>
             <section className={styles.navigation}>
