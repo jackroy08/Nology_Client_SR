@@ -4,10 +4,12 @@ import MaintenanceAside from "../../Components/MaintenanceAside";
 
 const Maintenance = () => {
     return (
-        <>
-            <MaintenanceList />
+        <div>
+            <article>
+                <MaintenanceList />
+            </article>
             <MaintenanceAside />   
-        </>
+        </div>
     )
 }
 

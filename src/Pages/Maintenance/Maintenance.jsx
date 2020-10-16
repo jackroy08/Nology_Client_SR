@@ -1,15 +1,16 @@
-import React from 'react';
-import Styles from "./Maintenance.module.scss";
+import React from 'react'
 import MaintenanceList from "../../Components/MaintenanceList";
 import MaintenanceAside from "../../Components/MaintenanceAside";
 
 const Maintenance = () => {
     return (
-        <>
-            <MaintenanceList />
-            <MaintenanceAside />
-        </>
+        <div>
+            <article>
+                <MaintenanceList />
+            </article>
+            <MaintenanceAside />   
+        </div>
     )
 }
 
-export default Maintenance; //always exporting name of the function.
+export default Maintenance;
