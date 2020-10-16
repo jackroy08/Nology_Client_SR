@@ -6,6 +6,8 @@ import ClassAChecks from "./Pages/Checklist/ClassAChecks";
 import ClassBChecks from "./Pages/Checklist/ClassBChecks";
 import ClassCChecks from "./Pages/Checklist/ClassCChecks";
 import checklistData from "./data/data.js"
+import Login from "./pages/Login";
+import Maintenance from "./pages/Maintenance";
 
 const App = () => {
   return (
@@ -15,6 +17,7 @@ const App = () => {
         <ClassAChecks checklistData={checklistData} path="/classa" />
         <ClassBChecks checklistData={checklistData} path="/classb" />
         <ClassCChecks checklistData={checklistData} path="/classc" />
+        <Maintenance path="/Maintenance" />
       </Router>
     </div>
   );
