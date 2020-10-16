@@ -4,6 +4,7 @@ import styles from "./App.module.scss";
 // Pages for Router
 import Login from "./pages/Login";
 import Operator from "./pages/Operator";
+import Login from "./pages/Login";
 import Supervisor from "./pages/Supervisor";
 import Maintenance from "./pages/Maintenance";
 import Management from "./pages/Management";
@@ -18,7 +19,7 @@ import checklistData from "./data/data.js"
 
 const App = () => {
   return (
-    <div className="App">
+    <div className={Styles.App}>
       <Header />
       <Router>
         <Login path="/" />
