@@ -1,23 +1,30 @@
 import React from "react";
 import {Router} from "@reach/router"
 import "./App.css";
-import Operator from "./Pages/Operator";
-import ClassAChecks from "./Pages/Checklist/ClassAChecks";
-import ClassBChecks from "./Pages/Checklist/ClassBChecks";
-import ClassCChecks from "./Pages/Checklist/ClassCChecks";
+import Operator from "./pages/Operator";
+import ClassAChecks from "./pages/Checklist/ClassAChecks";
+import ClassBChecks from "./pages/Checklist/ClassBChecks";
+import ClassCChecks from "./pages/Checklist/ClassCChecks";
 import checklistData from "./data/data.js"
 import Login from "./pages/Login";
+import Supervisor from "./pages/Supervisor";
 import Maintenance from "./pages/Maintenance";
+import Management from "./pages/Management";
+import Admin from "./pages/Admin";
 
 const App = () => {
   return (
     <div className="App">
       <Router>
+        <Login path="/" />
         <Operator path="/operator" />
+        <Supervisor path="/Supervisor" />
+        <Maintenance path="/Maintenance" />
+        <Management path="/Management" />
+        <Admin path="/Admin" />
         <ClassAChecks checklistData={checklistData} path="/classa" />
         <ClassBChecks checklistData={checklistData} path="/classb" />
         <ClassCChecks checklistData={checklistData} path="/classc" />
-        <Maintenance path="/Maintenance" />
       </Router>
     </div>
   );
