@@ -5,11 +5,25 @@ import Maintenance from './pages/Maintenance';
 import { Supervisor } from './pages/Supervisor/Supervisor';
 
 //DUMMY DATA
-const data = [
+const dataArr = [
   'truck broke down',
   'man down',
   'TMM no T'
 ]
+
+const employeeArr  = [
+  'Prudence Maluleka',
+  'Thomas Mkhwanazi',
+  'Sylvia Janse van Rensburg',
+  'Sibongile Molepo'
+]
+
+const vehicleArr = [
+  'digger01',
+  'bakkie01',
+  'dumptruck01'
+]
+
 
 const App = () => {
   return (
@@ -17,7 +31,7 @@ const App = () => {
       <Router>
         <Login path='/login' />
         <Maintenance path="/maintenance" />
-        <Supervisor path="/supervisor" data={data}/>
+        <Supervisor path="/supervisor" dataArr={dataArr} employeeArr={employeeArr} vehicleArr={vehicleArr} />
       </Router>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
+import AssignDriver from './AssignDriver';
 
 
 
@@ -9,7 +10,7 @@ import Load from './Load';
 export const Supervisor = (props) => {
 
     const {dataArr,vehicleArr,employeeArr}=props
-    console.log(dataArr, vehicleArr, employeeArr)
+    console.log(props)
 
     const [isOverlayShown, setIsOverlayShown] = useState(false);
 
@@ -27,7 +28,7 @@ export const Supervisor = (props) => {
         </article>
         <section>
             <div><button onClick={()=>{setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />)}}>Add Load</button></div>
-            <div><button>Assign Drivers</button></div>
+            <div><button onClick={()=>{setIsOverlayShown(true); setOverlayContent(<AssignDriver setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} employeeArr={employeeArr} vehicleArr={vehicleArr}/>)}}>Assign Drivers</button></div>
             <div><button>Sign off Maintenance</button></div>
             <div><button>Check Out Vehicle</button></div>
         </section>
