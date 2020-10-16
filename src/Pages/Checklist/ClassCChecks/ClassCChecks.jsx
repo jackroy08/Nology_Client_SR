@@ -20,9 +20,9 @@ const ClassCChecks = (props) => {
                 <Link to="/classb">
                     <button className={styles.navButtons}>Back</button> 
                 </Link>
-                {/* <Link to="/confirmation"> */}
+                <Link to="/confirmation">
                     <button className={styles.navButtons}>Next</button>
-                {/* </Link> */}
+                </Link>
             </section>
         </section>
     )
