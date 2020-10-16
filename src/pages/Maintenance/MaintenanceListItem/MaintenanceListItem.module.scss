@@ -1,0 +1,10 @@
+div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px 20px;
+
+    p, input{
+        margin: 15px 20px;
+    }
+}

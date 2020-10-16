@@ -1,13 +1,15 @@
-import React from 'react'
-import MaintenanceList from "../../Components/MaintenanceList";
-import MaintenanceAside from "../../Components/MaintenanceAside";
+import React from "react";
+import MaintenanceList from "./MaintenanceList";
+import MaintenanceAside from "./MaintenanceAside";
 
 const Maintenance = () => {
     return (
-        <>
-            <MaintenanceList />
+        <div>
+            <section>
+                <MaintenanceList />
+            </section>
             <MaintenanceAside />   
-        </>
+        </div>
     )
 }
 
