@@ -2,9 +2,14 @@ import React, {useState} from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 
+
+
+
+
 export const Supervisor = (props) => {
 
-    let data = props.data;
+    const {dataArr,vehicleArr,employeeArr}=props
+    console.log(dataArr, vehicleArr, employeeArr)
 
     const [isOverlayShown, setIsOverlayShown] = useState(false);
 
@@ -17,7 +22,7 @@ export const Supervisor = (props) => {
         <article>
             <ul>
                 {/* math random probably isnt the best tool for this */}
-                {Array.isArray(data) ? data.map(issue => <li key={Math.random()}>{issue}</li>) : <p>Incorrect Data Format</p>}
+                {Array.isArray(dataArr) ? dataArr.map(issue => <li key={Math.random()}>{issue}</li>) : <p>Incorrect Data Format</p>}
             </ul>
         </article>
         <section>
