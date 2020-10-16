@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Styles from "./MaintenanceListItem.module.scss";
 
-const MaintenanceListItem = () => {
+const MaintenanceListItem = (props) => {
+
+const [isFixed, setIsFixed] = useState(false);
+// [variable you want to set, function that changes that variable] = set the starting value of the variable(value of the variable)
+
+const checkBox = isFixed ? "Fixed" : "Not fixed";
     return (
         <div>
-            <p>Vehicle ID</p>
-            <p>Problem</p>
-            <p>Hazard Class</p>
-            <input type="checkbox"/>
-            <p> Problem Status</p>
+            <p>{props.problem.vehicleName}</p>
+            <p>{props.problem.vehicleIssue}</p>
+            <p>{props.problem.issueClass}</p>
+            <input type="checkbox" onClick={() => setIsFixed(!isFixed)}/>
+            <p>{checkBox}</p>
         </div>
     )
 }
