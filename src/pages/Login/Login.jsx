@@ -1,12 +1,9 @@
 import React from 'react'
 import Styles from './Login.module.scss';
 import {Link} from '@reach/router';
-import Header from '../../components/header';
 
 const Login = () => {
     return (
-    <>
-        <Header />
         <main className={Styles.loginPage}>
             <h1 className={Styles.title}>Shift Reporter Portal</h1>
             <label className= {Styles.idnumber}>ID Number:</label><br></br>
@@ -17,7 +14,6 @@ const Login = () => {
             <br></br>
             <button className={Styles.submit} value="login">Login</button>
         </main>
-    </>
     )
 }
 
