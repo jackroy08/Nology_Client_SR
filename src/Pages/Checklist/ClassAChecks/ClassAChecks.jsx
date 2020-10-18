@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
-import styles from "../Checklist.module.scss";
+import Styles from "../Checklist.module.scss";
 
 const ClassAChecks = (props) => {
     const checkboxArr = props.checklistData;
@@ -16,12 +16,12 @@ const ClassAChecks = (props) => {
                 {checkboxArr.map(getCheckList)}
             </form>
             <textarea name="class-a-comment" id="class-a-checks"></textarea>
-            <section className={styles.navigation}>
+            <section className={Styles.navigation}>
                 <Link to="/Operator">
-                    <button className={styles.navButtons}>Back</button> 
+                    <button className={Styles.navButtons}>Back</button> 
                 </Link>
                 <Link to="/ClassB">
-                    <button className={styles.navButtons}>Next</button>
+                    <button className={Styles.navButtons}>Next</button>
                 </Link>
             </section>
         </section>
