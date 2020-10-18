@@ -31,12 +31,14 @@
 }
 
 .responseMessage {
-    font-size: 30px;
+    font-size: 1.5em;
 }
 
 .confirmationDiv {
     height: 50vh;
-    background-color: grey;
+    background-color: lightgrey;
+    border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+    border: 2px solid rgb(51, 51, 51);
     margin: 20px;
     padding: 20px;
     display: flex;

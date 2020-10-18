@@ -4,14 +4,14 @@ import Styles from "../Checklist.module.scss";
 
 const Confirmation = () => {
     return (
-        <section className={Styles.checklistSection}>
+        <main className={Styles.pageGrid}>
             <div className={Styles.confirmationDiv}>
                 <p className={Styles.responseMessage}>Your responses have been recorded and the relevant teams have been updated.</p>
             </div>
             <Link to="/Operator">
-                <button className={Styles.navButtons}>Return to Home</button> 
+                <button className={Styles.btn}>Return to Home</button> 
             </Link>
-        </section>
+        </main>
     )
 }
 
