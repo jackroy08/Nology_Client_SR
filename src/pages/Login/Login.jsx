@@ -6,13 +6,18 @@ const Login = () => {
     return (
         <main className={Styles.loginPage}>
             <h1 className={Styles.title}>Shift Reporter Portal</h1>
-            <label className= {Styles.idnumber}>ID Number:</label><br></br>
-            <input  placeholder="i.e 763489" required/>
-            <br></br>
-            <label className={Styles.password}>Password:</label><br></br>
-            <input placeholder="******" required/>
-            <br></br>
-            <button className={Styles.submit} value="login">Login</button>
+            <form className={Styles.loginForm}>
+                <label className= {Styles.idnumber}>ID Number:</label>
+                <input  placeholder="i.e 763489" required/>
+                <label className={Styles.password}>Password:</label>
+                <input type="password" placeholder="******" required/>
+                <button
+                    className={`${Styles.btn} ${Styles.btnPrimary}`}
+                    type="submit"
+                    value="login"
+                    >Login
+                </button>
+            </form>
         </main>
     )
 }

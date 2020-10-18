@@ -1,6 +1,5 @@
 import React from "react";
-import MaintenanceDropdown from "../MaintenanceDropdown/MaintenanceDropdown";
-import MaintenanceListItem from "../MaintenanceListItem/MaintenanceListItem";
+import MaintenanceListItem from "../MaintenanceListItem";
 import Styles from "./MaintenanceList.module.scss";
 
 const MaintenanceList = () => {
@@ -34,17 +33,12 @@ const MaintenanceList = () => {
     }];
 
     return (
-        <>
-        {/* Each Object is called whatever was put in the brackets (in this case, vechicleProblem) for the time it is being used */}
-        {fixList.map((vehicleProblem) => {
-            return (
-                <>
-                    <MaintenanceListItem problem={vehicleProblem}/>
-                    <MaintenanceDropdown />
-                </>
-            )
-        })}
-        </>
+        // Each Object is called whatever was put in the brackets (in this case, vechicleProblem) for the time it is being used
+        <section className={Styles.maintenanceList}>
+            {fixList.map((vehicleProblem) => {
+                return <MaintenanceListItem key={vehicleProblem.vehicleName} problem={vehicleProblem}/>
+                })}
+        </section>
     )
 }
 
