@@ -28,9 +28,9 @@ const App = () => {
         <Maintenance path="/Maintenance" />
         <Management path="/Management" />
         <Admin path="/Admin" />
-        <ClassAChecks checklistData={checklistData} path="/classa" />
-        <ClassBChecks checklistData={checklistData} path="/classb" />
-        <ClassCChecks checklistData={checklistData} path="/classc" />
+        <ClassAChecks checklistData={checklistData} path="/ClassA" />
+        <ClassBChecks checklistData={checklistData} path="/ClassB" />
+        <ClassCChecks checklistData={checklistData} path="/ClassC" />
       </Router>
     </>
   );
