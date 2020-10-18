@@ -4,7 +4,7 @@ import Styles from "../Checklist.module.scss";
 
 const Confirmation = () => {
     return (
-        <section>
+        <section className={Styles.checklistSection}>
             <div className={Styles.confirmationDiv}>
                 <p className={Styles.responseMessage}>Your responses have been recorded and the relevant teams have been updated.</p>
             </div>

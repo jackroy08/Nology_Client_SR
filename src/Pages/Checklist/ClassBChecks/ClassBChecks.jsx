@@ -10,7 +10,7 @@ const ClassBChecks = (props) => {
         </label>
     );
     return (
-        <section>
+        <section className={Styles.checklistSection}>
             <h1>Class B Checks</h1>
             <form id="class-b-checks"> 
                 {checkboxArr.map(getCheckList)}
