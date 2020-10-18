@@ -11,6 +11,7 @@ import Admin from "./pages/Admin";
 import ClassAChecks from "./pages/Checklist/ClassAChecks";
 import ClassBChecks from "./pages/Checklist/ClassBChecks";
 import ClassCChecks from "./pages/Checklist/ClassCChecks";
+import Confirmation from "./pages/Checklist/Confirmation";
 // Components
 import Header from './components/header';
 // Data
@@ -31,6 +32,7 @@ const App = () => {
         <ClassAChecks checklistData={checklistData} path="/ClassA" />
         <ClassBChecks checklistData={checklistData} path="/ClassB" />
         <ClassCChecks checklistData={checklistData} path="/ClassC" />
+        <Confirmation path="/Confirmation" />
       </Router>
     </>
   );
