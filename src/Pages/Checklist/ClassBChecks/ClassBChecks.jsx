@@ -5,12 +5,14 @@ import Styles from "../Checklist.module.scss";
 const ClassBChecks = (props) => {
     const checkboxArr = props.checklistData
     const getCheckList = item => (
-        <label key={item} htmlFor={item}>{item}
+        <>
+            <img src="" alt="IMG"/>
+            <label key={item} htmlFor={item}>{item}</label>
             <input type="checkbox" id={item} name={item} value={item}/>
-        </label>
+        </>
     );
     return (
-        <section className={Styles.checklistSection}>
+        <main className={Styles.pageGrid}>
             <h1>Class B Checks</h1>
             <form id="class-b-checks"> 
                 {checkboxArr.map(getCheckList)}
@@ -18,13 +20,13 @@ const ClassBChecks = (props) => {
             <textarea name="class-b-comment" id="class-b-checks"></textarea>
             <section className={Styles.navigation}>
                 <Link to="/classa">
-                    <button className={Styles.navButtons}>Back</button> 
+                    <button className={Styles.btn}>Back</button> 
                 </Link>
                 <Link to="/classc">
-                    <button className={Styles.navButtons}>Next</button>
+                    <button className={Styles.btn}>Next</button>
                 </Link>
             </section>
-        </section>
+        </main>
     )
 }
 
