@@ -3,14 +3,13 @@ import MaintenanceList from "./MaintenanceList";
 import MaintenanceAside from "./MaintenanceAside";
 import Styles from "./Maintenance.module.scss";
 
+
 const Maintenance = () => {
     return (
-        <div>
-            <section>
-                <MaintenanceList />
-            </section>
+        <main className={Styles.pageGrid}>
             <MaintenanceAside />   
-        </div>
+            <MaintenanceList />
+        </main>
     )
 }
 

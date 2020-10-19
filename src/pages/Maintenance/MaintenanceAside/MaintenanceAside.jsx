@@ -3,14 +3,14 @@ import Styles from "./MaintenanceAside.module.scss";
 
 const MaintenanceAside = () => {
     return (
-        <div className={Styles.asideDiv}>
+        <form className={Styles.maintenanceAside}>
             <input placeholder="input"></input>
             <input placeholder="input"></input>
             <input placeholder="input"></input>
             <input placeholder="input"></input>
             <textarea placeholder="Textbox"></textarea>
-            <button>Submit</button>
-        </div>
+            <button className={`${Styles.btn} ${Styles.btnPrimary}`} type="submit">Submit</button>
+        </form>
     )
 }
 
