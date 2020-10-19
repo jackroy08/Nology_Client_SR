@@ -5,7 +5,7 @@ import AssignDriver from './AssignDriver';
 import Issue from "./Issue"
 import { DailyReport } from './DailyReport/DailyReport';
 
-export const Supervisor = (props) => {
+export const Supervisor = () => {
 
     //get issues API i guess
     let issues = [
@@ -14,7 +14,16 @@ export const Supervisor = (props) => {
             {vehicle: 'bakkie08', issue: 'flat tyre'},
     ]
 
-    const {vehicleArr,employeeArr}=props
+    //get vehicles and employees from SPI - dummy data here
+    const vehicleArr = [];
+
+    const employeeArr = ["Ben Tennant", "Jack Roy","Steve Shackelton","Nick Truby","Matt Church"];
+
+    for(let i; i<20; i++){
+        vehicleArr.push(`TMM_${i}`);
+        vehicleArr.push(`Digger_${i}`);
+    };
+    /////// END OF DUMMY DATA
 
     const [isOverlayShown, setIsOverlayShown] = useState(false);
 
@@ -43,3 +52,5 @@ export const Supervisor = (props) => {
     </>
     )
 }
+
+export default Supervisor;

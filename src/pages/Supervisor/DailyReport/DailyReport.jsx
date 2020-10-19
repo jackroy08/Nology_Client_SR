@@ -50,13 +50,12 @@ export const DailyReport = (props) => {
                             <label htmlFor={input.id}>{input.label}</label>
                             {input.type==="textarea" ? <textarea id={input.id}></textarea> : <input type={input.type} id={input.id}/>}
                         </div>
-
-                        <div>
-                            <p>Signature Section - what is flow for this?</p>
-                        </div>
                         </>
                     )
                 })}
+                <div>
+                    <p>Signature Section - what is flow for this?</p>
+                </div>
                 <button>Submit</button>
             </form>
             <button onClick={()=>{setIsOverlayShown(false);  setOverlayContent(null)}}>Cancel</button>
