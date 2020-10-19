@@ -1,3 +1,30 @@
+@import '../../assets/styles/buttons';
+
+
 .loginPage {
-    
+  display: grid;
+  justify-items: center;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.loginForm {
+  display: grid;
+  gap: 0.5em;
+
+  input {
+    border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+    border: 2px solid rgb(51, 51, 51);
+  }
+
+  button {    
+    &[type="submit"] {
+      margin-top: 1em;
+    }
+  }
 }

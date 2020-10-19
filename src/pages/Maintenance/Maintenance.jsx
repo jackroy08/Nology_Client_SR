@@ -1,10 +1,15 @@
-import React from 'react'
+import React from "react";
+import MaintenanceList from "./MaintenanceList";
+import MaintenanceAside from "./MaintenanceAside";
+import Styles from "./Maintenance.module.scss";
+
 
 const Maintenance = () => {
     return (
-        <div>
-            <h1>I'm the maintenance page</h1>
-        </div>
+        <main className={Styles.pageGrid}>
+            <MaintenanceAside />   
+            <MaintenanceList />
+        </main>
     )
 }
 

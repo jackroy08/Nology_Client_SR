@@ -1,2 +1,2 @@
-import Supervisor from './Supervisor';
+import Supervisor from "./Supervisor";
 export default Supervisor;
