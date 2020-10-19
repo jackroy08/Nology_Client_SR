@@ -9,6 +9,8 @@ const MaintenanceDropdown = () => {
             <p>Time reported: 07:00, 19/10/20</p>
             <p>Fix by: 07:00, 20/10/20 </p>
             <p>Suggested fix: N/A</p>
+            <p>Driver ID: 0001</p>
+            <p>Supervisor ID: 000S1</p>
         </div>
         )
 }
