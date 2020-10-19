@@ -32,24 +32,25 @@ export const Supervisor = () => {
     let overlayStyle = isOverlayShown ? Styles.shown : "";
 
     return (
-    <>
+    <main className={Styles.pageGrid}>
+        
+        <section className={Styles.buttonGrid}>
+            <div><button className={Styles.btn} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />)}}>Add Load</button></div>
+            <div><button className={Styles.btn}  onClick={()=>{setIsOverlayShown(true); setOverlayContent(<AssignDriver setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} employeeArr={employeeArr} vehicleArr={vehicleArr}/>)}}>Assign Drivers</button></div>
+            <div><button className={Styles.btn} >Sign off Maintenance</button></div>
+            <div><button className={Styles.btn} >Check Out Vehicle</button></div>
+            <div><button className={Styles.btn}  onClick={()=>{setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent}/>)}}>Supervisor Reports</button></div>
+        </section>
         <article>
             <ul>
                 {/* math random probably isnt the best tool for this */}
                 {Array.isArray(issues) ? issues.map(issue => <li key={Math.random()}>{<Issue issue={issue}/>}</li>) : <p>Incorrect Data Format</p>}
             </ul>
         </article>
-        <section>
-            <div><button onClick={()=>{setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />)}}>Add Load</button></div>
-            <div><button onClick={()=>{setIsOverlayShown(true); setOverlayContent(<AssignDriver setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} employeeArr={employeeArr} vehicleArr={vehicleArr}/>)}}>Assign Drivers</button></div>
-            <div><button>Sign off Maintenance</button></div>
-            <div><button>Check Out Vehicle</button></div>
-            <div><button onClick={()=>{setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent}/>)}}>Supervisor Reports</button></div>
-        </section>
         <div className={`${Styles.overlay} ${overlayStyle}`}>
             {overlayContent}
         </div>
-    </>
+    </main>
     )
 }
 

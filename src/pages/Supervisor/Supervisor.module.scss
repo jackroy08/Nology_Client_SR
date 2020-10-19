@@ -1,3 +1,20 @@
+@import '../../assets/styles/buttons'; 
+
+.pageGrid {
+    width: 100%;
+    padding: 1em;
+    justify-items: center;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 2fr 1fr;
+}
+
+.buttonGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+
 .overlay {
     position: absolute;
     top: 50%;
