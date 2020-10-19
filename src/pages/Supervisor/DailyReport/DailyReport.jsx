@@ -1,6 +1,6 @@
 import React from "react"
 
-export const DailyReport = () => {
+export const DailyReport = (props) => {
     
 
     //should be back endddddd
@@ -36,6 +36,8 @@ export const DailyReport = () => {
     ]
     /////////////////
 
+    const {setIsOverlayShown, setOverlayContent} = props;  
+
     return (
         <div>
             <h1>Supervisor Daily Shift Report</h1>
@@ -55,7 +57,9 @@ export const DailyReport = () => {
                         </>
                     )
                 })}
+                <button>Submit</button>
             </form>
+            <button onClick={()=>{setIsOverlayShown(false);  setOverlayContent(null)}}>Cancel</button>
         </div>
     )
 }

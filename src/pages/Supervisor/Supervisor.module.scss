@@ -5,13 +5,15 @@
     height: 0%;
     width: 0%;
     transition: all 1s ease;
+    overflow-x: scroll;
 
     &.shown{
         position: absolute;
-        top: 5%;
-        left: 5%;
-        height: 90%;
-        width: 90%;
-        background-color: red;
+        top: 2%;
+        left: 2%;
+        height: 96%;
+        width: 96%;
+        background-color: grey;
+        border: 2px solid black;
     }
 }

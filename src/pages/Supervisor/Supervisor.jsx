@@ -2,15 +2,19 @@ import React, {useState} from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignDriver from './AssignDriver';
-
-
-
-
+import Issue from "./Issue"
+import { DailyReport } from './DailyReport/DailyReport';
 
 export const Supervisor = (props) => {
 
-    const {dataArr,vehicleArr,employeeArr}=props
-    console.log(props)
+    //get issues API i guess
+    let issues = [
+            {vehicle: 'digger1', issue: 'truck broke down'},
+            {vehicle: 'tmm5', issue: 'broken windscreen'},
+            {vehicle: 'bakkie08', issue: 'flat tyre'},
+    ]
+
+    const {vehicleArr,employeeArr}=props
 
     const [isOverlayShown, setIsOverlayShown] = useState(false);
 
@@ -23,7 +27,7 @@ export const Supervisor = (props) => {
         <article>
             <ul>
                 {/* math random probably isnt the best tool for this */}
-                {Array.isArray(dataArr) ? dataArr.map(issue => <li key={Math.random()}>{issue}</li>) : <p>Incorrect Data Format</p>}
+                {Array.isArray(issues) ? issues.map(issue => <li key={Math.random()}>{<Issue issue={issue}/>}</li>) : <p>Incorrect Data Format</p>}
             </ul>
         </article>
         <section>
@@ -31,6 +35,7 @@ export const Supervisor = (props) => {
             <div><button onClick={()=>{setIsOverlayShown(true); setOverlayContent(<AssignDriver setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} employeeArr={employeeArr} vehicleArr={vehicleArr}/>)}}>Assign Drivers</button></div>
             <div><button>Sign off Maintenance</button></div>
             <div><button>Check Out Vehicle</button></div>
+            <div><button onClick={()=>{setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent}/>)}}>Supervisor Reports</button></div>
         </section>
         <div className={`${Styles.overlay} ${overlayStyle}`}>
             {overlayContent}

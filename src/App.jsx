@@ -6,11 +6,6 @@ import { Supervisor } from './pages/Supervisor/Supervisor';
 import { DailyReport } from './pages/Supervisor/DailyReport/DailyReport';
 
 //DUMMY DATA
-const dataArr = [
-  'truck broke down',
-  'man down',
-  'TMM no T'
-]
 
 const employeeArr  = [
   'Prudence Maluleka',
@@ -32,7 +27,7 @@ const App = () => {
       <Router>
         <Login path='/login' />
         <Maintenance path="/maintenance" />
-        <Supervisor path="/supervisor" dataArr={dataArr} employeeArr={employeeArr} vehicleArr={vehicleArr} />
+        <Supervisor path="/supervisor" employeeArr={employeeArr} vehicleArr={vehicleArr} />
         <DailyReport path="/report"/>
       </Router>
     </div>
