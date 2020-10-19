@@ -6,7 +6,8 @@ import Styles from "./MaintenanceList.module.scss";
 const MaintenanceList = () => {
 
     // Fix list: array of unnamed objects to use in MaintenanceListItem.
-    const fixList = [{
+    const fixList = [
+    {
         // Each object has a property 'vehicleName'
         vehicleName: "Truck 001",
         vehicleIssue: "Broken Light",
@@ -34,8 +35,7 @@ const MaintenanceList = () => {
     }];
 
     return (
-        <>
-        {/* Each Object is called whatever was put in the brackets (in this case, vechicleProblem) for the time it is being used */}
+        <div>
         {fixList.map((vehicleProblem) => {
             return (
                 <>
@@ -44,7 +44,7 @@ const MaintenanceList = () => {
                 </>
             )
         })}
-        </>
+        </div>
     )
 }
 
