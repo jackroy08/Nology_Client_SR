@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 import Styles from "../Checklist.module.scss";
 
 const ClassCChecks = (props) => {
-    const checkboxArr = props.checklistData;
+    const checkboxArr = Object.keys(props.checklistData.adt.classC);
     const getCheckList = item => (
         <>
             <img src="" alt="IMG"/>

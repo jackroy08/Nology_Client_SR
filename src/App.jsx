@@ -15,7 +15,7 @@ import Confirmation from "./pages/Checklist/Confirmation";
 // Components
 import Header from './components/header';
 // Data
-import checklistData from "./data/data.js";
+import checklistData from "./data/checklistdata.js";
 import library from "./data/fa-library";
 
 const App = () => {

@@ -3,10 +3,9 @@ import { Link } from "@reach/router";
 import Styles from "../Checklist.module.scss";
 
 const ClassAChecks = (props) => {
-    const checkboxArr = props.checklistData;
+    const checkboxArr = Object.keys(props.checklistData.adt.classA);
     const getCheckList = item => (
         <>
-            <img src="" alt="IMG"/>
             <label key={item} htmlFor={item}>{item}</label>
             <input type="checkbox" id={item} name={item} value={item}/>
         </>
