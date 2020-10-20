@@ -10,6 +10,9 @@ const Management = () => {
         <button className={Styles.btn}>Reassign vehicle</button>
         <button className={Styles.btn}>Reassign supervisors</button>
         <button className={Styles.btn}>Add user</button>
+        <section className={Styles.dataFeed}>
+        <p>Insert live feed / data </p>
+        </section>
     </main>
     )
 }
