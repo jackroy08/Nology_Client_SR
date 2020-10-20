@@ -1,9 +1,15 @@
 @import '../../assets/styles/buttons';
-
+@import "./../../assets/styles/fonts";
 
 .loginPage {
   display: grid;
   justify-items: center;
+  align-content: flex-start;
+  height: 100vh;
+  width: 100%;
+  background-image: url("./../../assets/images/background-image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .title {
@@ -11,6 +17,7 @@
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
+  color: $light-text-color;
 }
 
 .loginForm {
@@ -25,6 +32,7 @@
   button {    
     &[type="submit"] {
       margin-top: 1em;
+      font-family: rubik;
     }
   }
 }

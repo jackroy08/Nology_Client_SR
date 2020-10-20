@@ -13,19 +13,22 @@
     ;
     
     input {
-        border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
         border: 2px solid rgb(51, 51, 51);
+        border-radius: 15px;
     }
+
     textarea {
-        border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
         border: 2px solid rgb(51, 51, 51);
         margin: auto;
         width: 100%;
         height: 100%;
         grid-area: text;
+        border-radius: 15px;
     }
     button {
         margin: auto;
+        border-radius: 15px;
+
         
         &[type="submit"] {
             grid-area: submit;

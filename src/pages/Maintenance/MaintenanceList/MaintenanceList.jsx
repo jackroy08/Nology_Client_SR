@@ -7,12 +7,12 @@ const MaintenanceList = () => {
     const fixList = [{
         vehicleName: "Truck 001",
         vehicleIssue: "Broken Light",
-        issueClass:"B"
+        issueClass:"A"
     },
     {
         vehicleName: "Truck 002",
         vehicleIssue: "Broken Light",
-        issueClass:"B"
+        issueClass:"A"
     },
     {
         vehicleName: "Truck 003",
@@ -22,12 +22,12 @@ const MaintenanceList = () => {
     {
         vehicleName: "Truck 004",
         vehicleIssue: "Broken Light",
-        issueClass:"B"
+        issueClass:"C"
     },
     {
         vehicleName: "Truck 005",
         vehicleIssue: "Broken Light",
-        issueClass:"B" 
+        issueClass:"C" 
     }];
 
     return (
