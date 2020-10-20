@@ -35,7 +35,7 @@ class Operator extends Supervisor {
 // ------ FUNCTIONS ----- //
 
 const createNewUser = (userType) => {
-
+    
 }
 
 // ------ JSX ----- //
@@ -75,6 +75,7 @@ const ManageUsers = () => {
             <input type="file" id="profileImage" name="profileImage" placeholder="enter user's full name"/>
             
             <button className={Styles.btn} type="submit">Create New User</button>
+            {console.log(Date())}
         </form>
     )
 }
