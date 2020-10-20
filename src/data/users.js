@@ -1,1 +1,3 @@
-var users = [];
+let users = [];
+
+export default users
