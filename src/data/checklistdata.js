@@ -648,10 +648,12 @@ const checklistData = {
         },
 
         "Other attachments": {
-            "Hook safety latch": "img",
-            "Outriggers": "img",
-            "Pins in position and locked": "img",
-            "Levers/joysticks": "img",
+            classA: {
+                "Hook safety latch": "img",
+                "Outriggers": "img",
+                "Pins in position and locked": "img",
+                "Levers/joysticks": "img"
+            }
         },
 
         "Red permit area": {
