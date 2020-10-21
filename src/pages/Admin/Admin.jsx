@@ -18,9 +18,9 @@ const Admin = () => {
         </nav>
         <Router>
             <ManageUsers path="ManageUsers"/>
-            <ManageUsers path="ManageVehicles"/>
-            <ManageUsers path="ManageTeams"/>
-            <ManageUsers path="ManageSites"/>
+            <ManageVehicles path="ManageVehicles"/>
+            <ManageTeams path="ManageTeams"/>
+            <ManageSites path="ManageSites"/>
         </Router>
         </>
     )
