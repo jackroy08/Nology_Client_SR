@@ -1,5 +1,5 @@
 import React from "react";
-import {Router} from "@reach/router"
+import { Router } from "@reach/router"
 import styles from "./App.module.scss";
 // Pages for Router
 import Login from "./pages/Login";

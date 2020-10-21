@@ -1,6 +1,9 @@
+@import "./../../../assets/styles/variables";
+
 .maintenanceList {
   grid-area: List;
   display: grid;
   gap: 0.5em;
   width: 100%;
+  border-radius: 25px;
 }

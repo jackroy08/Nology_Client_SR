@@ -1,12 +1,15 @@
+@import "./../../../assets/styles/variables";
+
 .listItem {
+    background-color: $background-color1;
     display: grid;
     grid-template-columns: 0.5fr repeat(5, 1fr);
     justify-items: center;
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
     border: 2px solid rgb(51, 51, 51);
+    border-radius: 25px;
 
     svg {
         font-size: 1.3em;
@@ -14,8 +17,47 @@
         transition: 0.2s ease;
     }
 
+    .arrowIcon {
+        background-color: $background-color2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+    }
+
+    .borderChange {
+        border-radius: 25px 25px 0 0;
+    }
+
+    .issueClass {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .issueAClass {
+        background-color: $class-a-color;
+    }
+
+    .issueBClass {
+        background-color: $class-b-color;
+    }
+
+    .issueCClass {
+        background-color: $class-c-color;
+    }
+
+    .error {
+        background-color: black;
+    } 
+
     .dropdownOpen {
-        transform: rotate(-180deg) 
+        transform: rotate(-180deg); 
+        // border-radius: 50px;
     }
 
     input {
