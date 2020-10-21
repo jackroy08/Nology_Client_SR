@@ -1,12 +1,1 @@
 @import '../../../assets/styles/buttons'; 
-
-.userForm {
-  margin-top: 1em;
-  display: grid;
-  gap:0.5em;
-  grid-template-columns: 1fr 1fr;
-
-  button[type="submit"] {
-    grid-column: 1/3;
-}
-}
