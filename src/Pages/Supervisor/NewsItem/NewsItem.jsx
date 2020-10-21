@@ -2,13 +2,12 @@ import React from "react";
 import styles from "./NewsItem.module.scss";
 
 const NewsItem = (props) => {
-  const {type,vehicleName, vehicleIssue, issueClass} = props.item;
+  const {time,title, message} = props.item;
   return (
     <li className={styles.newsItem}>
-      <p>{type}</p>
-      <p>{vehicleName}</p>
-      <p>{vehicleIssue}</p>
-      <p>{issueClass}</p>
+      <p>{time}</p>
+      <p>{title}</p>
+      <p>{message}</p>
     </li>
   );
 };

@@ -22,8 +22,11 @@
 
 .newsList{
         list-style: none;
+        padding-inline-start: 0px;
         width: 100%;
         background-color: $background-color1;
+        border: 2px solid black;
+        margin: 0px;
 }
 
 .overlay {

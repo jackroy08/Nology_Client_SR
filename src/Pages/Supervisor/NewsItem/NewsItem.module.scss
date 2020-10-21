@@ -1,5 +1,10 @@
+@import "../../../assets/styles/variables";
+
 .newsItem{
-    display: flex;
+    display: grid;
+    grid-template-columns: (1fr 1fr 4fr);
     justify-content: space-evenly;
-    width: 100%;
+    width: calc(100% - 20px);
+    background-color: $background-color1;
+    margin: 10px;
 }

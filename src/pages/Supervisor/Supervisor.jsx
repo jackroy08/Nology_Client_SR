@@ -9,34 +9,29 @@ export const Supervisor = () => {
 
     //get issues API i guess
     const newsItem = [{
-        type: "Maintenance",
-        vehicleName: "Truck 001",
-        vehicleIssue: "Broken Light",
-        issueClass:"B"
+        time: "18:34",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light reported"
     },
     {
-        type: "Maintenance",
-        vehicleName: "Truck 002",
-        vehicleIssue: "Broken Light",
-        issueClass:"B"
+        time: "18:37",
+        title: "Load",
+        message: "Truck 041 Loaded"
     },
     {
-        type: "Maintenance",
-        vehicleName: "Truck 003",
-        vehicleIssue: "Broken Light",
-        issueClass:"B"
+        time: "18:39",
+        title: "Load",
+        message: "Truck 068 Loaded"
     },
     {
-        type: "Maintenance",
-        vehicleName: "Truck 004",
-        vehicleIssue: "Broken Light",
-        issueClass:"B"
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 056 Flat Tyre reported"
     },
     {
-        type: "Maintenance",
-        vehicleName: "Truck 005",
-        vehicleIssue: "Broken Light",
-        issueClass:"B" 
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light marked repaired"
     }];
 
     //get vehicles and employees from SPI - dummy data here
