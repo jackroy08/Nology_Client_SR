@@ -3,6 +3,7 @@ import Styles from "./MaintenanceAside.module.scss";
 
 const MaintenanceAside = () => {
     return (
+        <>
         <form className={Styles.maintenanceAside}>
             <input placeholder="Vehicle Issue"></input>
             <input placeholder="Parts used"></input>
@@ -11,6 +12,7 @@ const MaintenanceAside = () => {
             <textarea placeholder="Vehicle Fix and other information"></textarea>
             <button className={`${Styles.btn} ${Styles.btnPrimary}`} type="submit">Submit</button>
         </form>
+        </>
     )
 }
 

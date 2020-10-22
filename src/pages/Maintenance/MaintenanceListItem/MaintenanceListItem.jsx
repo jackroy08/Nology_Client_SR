@@ -11,15 +11,21 @@ const MaintenanceListItem = (props) => {
 
     // useState for dropdown menu
     const [open, setOpen] = useState(false);
-    const openDropdown = open ? Styles.dropdownOpen : "";
+    // opens dropdown 
+    const openDropdown = open ? Styles.dropdownOpen : Styles.dropdownClosed;
+    // changes border effect using same state
+    const changeBorderEffect = open ? Styles.borderChange : "";
 
+    // sets color for issue class 
+    const issueClass = props.problem.issueClass;
+    let colorClass = issueClass === 'A' ? Styles.issueAClass : issueClass === 'B' ? Styles.issueBClass : issueClass === 'C' ? Styles.issueCClass : Styles.error;
 
     return (
         <div className={Styles.listItem}>
-            <FontAwesomeIcon className={openDropdown} onClick={() => setOpen(!open)} icon="arrow-down"/>
+            <div className={`${Styles.arrowIcon} ${changeBorderEffect}`}><FontAwesomeIcon className={openDropdown} onClick={() => setOpen(!open)} icon="arrow-down"/></div>
+            <p className={`${Styles.issueClass} ${colorClass}`}>{props.problem.issueClass}</p>
             <p>{props.problem.vehicleName}</p>
             <p>{props.problem.vehicleIssue}</p>
-            <p>{props.problem.issueClass}</p>
             <input type="checkbox" onClick={() => setIsFixed(!isFixed)}/>
             <p>{checkBox}</p>
             {open && <MaintenanceDropdown />}

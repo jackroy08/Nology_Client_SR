@@ -1,0 +1,43 @@
+@import '../../assets/styles/buttons';
+
+.managementMain {
+    margin: 50px 100px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    button {
+        margin: 0 1px;
+    }
+}
+
+.dataFeed {
+//   box-sizing: border-box;
+//   border: 2px solid rgb(51, 51, 51);
+//   height:  400px;
+//   width: 100%;
+//   display: flex;
+//   margin: 100px;
+//   border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+//   justify-content: space-around;
+//   display: flex;
+//   align-items: center;
+//   font-family: Neucha, -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+box-sizing:border-box;
+background-color:rgba(0, 0, 0, 0);
+color:rgb(51, 51, 51);
+border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+border: 2px solid rgb(51, 51, 51);
+cursor:pointer;
+font-family: Neucha, -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+font-size:16px;
+font-weight:400;
+height:400px;
+width: 100%;
+padding:6px 12px;
+transition: 0.15s ease-in-out;
+display: flex;
+justify-content: space-around;
+margin: 100px;
+align-items: center;
+}

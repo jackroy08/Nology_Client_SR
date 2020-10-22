@@ -12,11 +12,13 @@ import ClassAChecks from "./pages/Checklist/ClassAChecks";
 import ClassBChecks from "./pages/Checklist/ClassBChecks";
 import ClassCChecks from "./pages/Checklist/ClassCChecks";
 import Confirmation from "./pages/Checklist/Confirmation";
+import Checklist from "./pages/Checklist/Checklist";
 // Components
 import Header from './components/header';
 // Data
-import checklistData from "./data/data.js";
+import checklistData from "./data/checklistdata.js";
 import library from "./data/fa-library";
+
 
 const App = () => {
   return (
