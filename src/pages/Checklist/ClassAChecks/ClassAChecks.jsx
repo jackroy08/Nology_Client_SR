@@ -10,9 +10,12 @@ const ClassAChecks = (props) => {
     const additionalFieldsArr = Object.keys(checklistData.ldv)
         .filter(key => !key.match("class"));
 
+    console.log(props);
+    
+
     const getChecklist = item => (
         <React.Fragment key={item}>
-            <label htmlFor={item}>{item}
+            <label htmlFor={item}>{item} 
                 <input type="checkbox" id={item} name={item} value={item}/>
             </label>
         </React.Fragment>
@@ -42,15 +45,15 @@ const ClassAChecks = (props) => {
                         </section>
                     </>:
                     null}
-                <textarea name="class-a-comment" id="class-a-checks"></textarea>
+                <textarea name="class-a-comment" id="class-a-checks" placeholder="Enter any additional info here..."></textarea>
             </form>
             
             <section className={Styles.navigation}>
                 <Link to="/Operator">
-                    <button className={Styles.btn}>Back</button> 
+                    <button className={`${Styles.btn} ${Styles.btnPrimary}`}>Back</button> 
                 </Link>
                 <Link to="/ClassB">
-                    <button className={Styles.btn}>Next</button>
+                    <button className={`${Styles.btn} ${Styles.btnPrimary}`}>Next</button>
                 </Link>
             </section>
         </main>
