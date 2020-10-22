@@ -43,7 +43,7 @@ const CreateUserForm = () => {
     
     return (
         <form className={Styles.userForm} onSubmit={handleSubmit(createNewUser)}>
-            <label htmlFor="userID">Employee number :</label>
+            <label htmlFor="userID">Employee ID :</label>
             <input
                 type="text"
                 id="userID"
