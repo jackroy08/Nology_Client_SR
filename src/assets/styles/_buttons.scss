@@ -4,12 +4,12 @@
 // Put your GENERIC button styles in here
 .btn {
   box-sizing:border-box;
-  background-color:rgba(0, 0, 0, 0);
+  background-color:rgba(250, 250, 250, 0.4);
   color:rgb(51, 51, 51);
-  border: 2px solid rgb(51, 51, 51);
+  border: 1px solid rgb(51, 51, 51);
   cursor:pointer;
   font-family: $font;
-  font-size:16px;
+  font-size:14px;
   font-weight:400;
   height:40px;
   padding:6px 12px;

@@ -23,8 +23,8 @@ class Supervisor extends User {
     }
 }
 class Operator extends Supervisor {
-    constructor(userType, fullName, userID, dateOfBirth, password, profileImage, currentTeam) {
-        super(userType, fullName, userID, dateOfBirth, password, profileImage, currentTeam);
+    constructor(userType, fullName, userID, dateOfBirth, password, profileImage, currentTeam, isOnShift) {
+        super(userType, fullName, userID, dateOfBirth, password, profileImage, currentTeam, isOnShift);
         this.assignedVehicle = "";
     }
 }
