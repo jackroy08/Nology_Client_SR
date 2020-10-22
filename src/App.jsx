@@ -12,7 +12,7 @@ import ClassAChecks from "./pages/Checklist/ClassAChecks";
 import ClassBChecks from "./pages/Checklist/ClassBChecks";
 import ClassCChecks from "./pages/Checklist/ClassCChecks";
 import Confirmation from "./pages/Checklist/Confirmation";
-import Checklist from "./pages/Checklist/Checklist";
+import ChecklistModal from "./pages/Checklist/ChecklistModal";
 // Components
 import Header from './components/header';
 // Data
@@ -31,9 +31,10 @@ const App = () => {
         <Maintenance path="/Maintenance" />
         <Management path="/Management" />
         <Admin path="/Admin" />
-        <ClassAChecks checklistData={checklistData} path="/ClassA" />
-        <ClassBChecks checklistData={checklistData} path="/ClassB" />
-        <ClassCChecks checklistData={checklistData} path="/ClassC" />
+        <ClassAChecks path="/ClassA" />
+        <ClassBChecks path="/ClassB" />
+        <ClassCChecks path="/ClassC" />
+        <ChecklistModal path="/ChecklistModal" checklistData={checklistData} />
         <Confirmation path="/Confirmation" />
       </Router>
     </>
