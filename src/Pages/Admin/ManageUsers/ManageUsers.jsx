@@ -4,20 +4,17 @@ import {Link} from '@reach/router';
 import CreateUserForm from './CreateUserForm'
 import UserList from "./UserList"
 import usersArr from '../../../data/users';
+import EditUser  from './EditUser/EditUser';
 
 
 const ManageUsers = () => {
 
     return (
         <main className={Styles.pageGrid}>
-            <CreateUserForm/>   
+            <CreateUserForm/>  
+            <EditUser user={usersArr[0]}/>
             <UserList />    
         </main>
-        
-        /* <UserList userType="Operators" users={usersArr.filter((user) => user.userType === "operator")}/>
-        <UserList userType="Supervisors" users={usersArr.filter((user) => user.userType === "supervisor")}/>
-        <UserList userType="Maintenance" users={usersArr.filter((user) => user.userType === "maintenance")}/>
-        <UserList userType="Management" users={usersArr.filter((user) => user.userType === "management")}/> */
     )
 }
 
