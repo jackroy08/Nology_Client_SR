@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Link } from "@reach/router";
 import Styles from "./Operator.module.scss";
+import Checklist from "../Checklist/Checklist";
 
 const Operator = () => {
 

@@ -1,0 +1,8 @@
+@import '../../../../../assets/styles/buttons'; 
+
+.userItem {
+  display:grid;
+  grid-template-columns: 0.3fr repeat(6,1fr);
+  justify-items: start;
+  align-items: center;
+}

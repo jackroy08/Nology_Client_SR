@@ -1,11 +1,11 @@
-export const managementUsersArr = [
+const usersArr = [
   {
   userType : "management",
   userID : 5001,
   password : "ABC123",
   fullNameStr : "Albert Manager",
   profileImg : "http: an image",
-  dateOfBirth : 1146711721 //Unix timestamp
+  dateOfBirth : "1960-10-13"
   },
   {
   userType : "management",
@@ -13,18 +13,15 @@ export const managementUsersArr = [
   password : "ABC123",
   fullNameStr : "Brian Manager",
   profileImg : "http: an image",
-  dateOfBirth : 1146711721 //Unix timestamp
-  }
-]  
-
-export const maintenanceUsersArr = [
+  dateOfBirth : "1961-10-13",
+  },
   {
     userType : "maintenance",
     userID : 4001,
     password : "ABC123",
     fullNameStr : "Carlos Maintenance",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721 //Unix timestamp
+    dateOfBirth : "1962-10-13",
   },
   {
     userType : "maintenance",
@@ -32,18 +29,15 @@ export const maintenanceUsersArr = [
     password : "ABC123",
     fullNameStr : "David Maintenance",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721 //Unix timestamp
-  }
-]  
-
-export const supervisorUsersArr = [
+    dateOfBirth : "1963-10-13",
+  },
   {
     userType : "supervisor",
     userID : 3001,
     password : "ABC123",
     fullNameStr : "Edward Supervisor",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1964-10-13",
     isOnShift : false,
     currentTeam : "TeamA",
   },
@@ -53,20 +47,17 @@ export const supervisorUsersArr = [
     password : "ABC123",
     fullNameStr : "Frank Supervisor",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1965-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
-  }
-]  
-
-export const operatorUsersArr = [
+  },
   {
     userType : "operator",
     userID : 2001,
     password : "ABC123",
     fullNameStr : "George Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1966-10-13",
     isOnShift : false,
     currentTeam : "TeamA",
     assignedVehicle : ""
@@ -77,7 +68,7 @@ export const operatorUsersArr = [
     password : "ABC123",
     fullNameStr : "Harry Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1967-10-13",
     isOnShift : false,
     currentTeam : "TeamA",
     assignedVehicle : ""
@@ -88,7 +79,7 @@ export const operatorUsersArr = [
     password : "ABC123",
     fullNameStr : "Ivan Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1968-10-13",
     isOnShift : false,
     currentTeam : "TeamA",
     assignedVehicle : ""
@@ -99,7 +90,7 @@ export const operatorUsersArr = [
     password : "ABC123",
     fullNameStr : "James Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1969-10-13",
     isOnShift : false,
     currentTeam : "TeamA",
     assignedVehicle : ""
@@ -110,7 +101,7 @@ export const operatorUsersArr = [
     password : "ABC123",
     fullNameStr : "Luke Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1970-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
     assignedVehicle : ""
@@ -121,7 +112,7 @@ export const operatorUsersArr = [
     password : "ABC123",
     fullNameStr : "Mike Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1971-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
     assignedVehicle : ""
@@ -132,7 +123,7 @@ export const operatorUsersArr = [
     password : "ABC123",
     fullNameStr : "Norman Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1972-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
     assignedVehicle : ""
@@ -143,7 +134,7 @@ export const operatorUsersArr = [
     password : "ABC123",
     fullNameStr : "Oscar Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1972-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
     assignedVehicle : ""
@@ -154,10 +145,11 @@ export const operatorUsersArr = [
     password : "ABC123",
     fullNameStr : "Peter Operator",
     profileImg : "http: an image",
-    dateOfBirth : 1146711721, //Unix timestamp
+    dateOfBirth : "1973-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
     assignedVehicle : ""
   },
-]
+];
 
+export default usersArr;
