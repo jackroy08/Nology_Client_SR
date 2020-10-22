@@ -1,4 +1,4 @@
-const managementUsersArr = [
+export const managementUsersArr = [
   {
   userType : "management",
   userID : 5001,
@@ -17,7 +17,7 @@ const managementUsersArr = [
   }
 ]  
 
-const maintenanceUsersArr = [
+export const maintenanceUsersArr = [
   {
     userType : "maintenance",
     userID : 4001,
@@ -36,7 +36,7 @@ const maintenanceUsersArr = [
   }
 ]  
 
-const supervisorUsersArr = [
+export const supervisorUsersArr = [
   {
     userType : "supervisor",
     userID : 3001,
@@ -59,7 +59,7 @@ const supervisorUsersArr = [
   }
 ]  
 
-const OperatorUsersArr = [
+export const operatorUsersArr = [
   {
     userType : "operator",
     userID : 2001,
@@ -160,3 +160,4 @@ const OperatorUsersArr = [
     assignedVehicle : ""
   },
 ]
+
