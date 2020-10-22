@@ -4,11 +4,12 @@ import Vehicle from "../../../data/Vehicle";
 import vehicleData from "../../../data/plantequipment";
 import { useForm } from "react-hook-form";
 
-
 const AddVehicle = () => {
     const { register, handleSubmit, errors } = useForm();
     const createNewVehicle = (vehicle) => {
             vehicleData.push(new Vehicle(vehicle.plantID, vehicle.plantType, vehicle.goStatus));
+            console.log(vehicleData);
+    }
     return (
         <form className={Styles.userForm} onSubmit={handleSubmit(createNewVehicle)}>
             <label htmlFor="plantID">Enter the Vehicle's Plant ID  :</label>
@@ -24,10 +25,10 @@ const AddVehicle = () => {
             <select 
                 name="plantType" 
                 id="plantType"
+                ref={register({ required: true })}>
+                {errors.plantType && <p>vehicle type is required.</p>}
                 
-                
-                >
-                <option value="default">Please Select an option</option>
+                <option value="">Please Select an option</option>
                 <option value="articulatedWaterTruck">Articulated Water Truck</option>
                 <option value="bus">Bus</option>
                 <option value="dieselBowser">Diesel Bowser</option>
@@ -47,20 +48,20 @@ const AddVehicle = () => {
                 <option value="trackDozer">Track Dozer</option>
                 <option value="truckMountedCrane">Truck Mounted Crane</option>
             </select>
-            <label htmlFor="canUSe">Vehicle Available for use:</label>
+            <label htmlFor="goStatus">Vehicle Available for use:</label>
             <select 
-                name="canUse" 
-                id="canUse"
+                name="goStatus" 
+                id="goStatus"
+                ref={register({ required: true })}>
+                {errors.goStatus && <p>please indicate if the vehicle is ready for use.</p>}
                 
-                
-                >
-                <option value="default">Please select an option</option>
+                <option value="">Please select an option</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
             <button className={Styles.btn} type="submit">Submit</button>
         </form>
     )
-}}
+}
 
 export default AddVehicle;
