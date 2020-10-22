@@ -1,5 +1,5 @@
 class Vehicle {
-    constructor(plantID, plantType, currentTeam = null, currentUser  = null, goStatus = "go",
+    constructor(plantID, plantType, currentTeam = null, currentUser  = null, goStatus,
         checkItems = null, lastChecked = [], checkedLog = []) {
         this.plantID = plantID;
         this.plantType = plantType;
