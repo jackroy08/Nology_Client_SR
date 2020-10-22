@@ -2,7 +2,7 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 export const AssignVehicles = (props) => {
 
-    const { setIsOverlayShown, setOverlayContent, operatorUsersArr, vehicleData } = props;
+    const { setIsOverlayShown, setOverlayContent, usersArr, vehicleData } = props;
 
     const { register, handleSubmit} = useForm();
 
@@ -29,7 +29,7 @@ export const AssignVehicles = (props) => {
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                     
                     <select name="driver" ref={register({required: true})}>
-                        {operatorUsersArr.map(employee => <option key={employee.userID} value={`${employee.userID}`}>{`${employee.userID}-${employee.fullNameStr}`}</option>)}
+                        {usersArr.filter((user) => user.userType == "operator").map(employee => <option key={employee.userID} value={`${employee.userID}`}>{`${employee.userID}-${employee.fullNameStr}`}</option>)}
                     </select>
 
                     <h2>Vehicle</h2>
