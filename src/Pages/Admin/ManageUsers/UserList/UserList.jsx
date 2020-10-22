@@ -8,7 +8,6 @@ import usersArr from '../../../../data/users';
 const UserList = (props) => {
     const { userType, users} = props
     const [isOpen, setOpen] = useState("false");
-    const [userDropdown, setUserDropdown] = useState("operator")
 
     const [filteredUsersArr, setFilteredUsersArr] = useState(usersArr);
 
@@ -16,15 +15,20 @@ const UserList = (props) => {
         return <UserItem key={user.userID} user={user} />
     };
 
-    const getFilteredUsersArr = (event) => {
-        console.log(event.target.value)
-        return usersArr.filter(event.target.value)
+    const filterUsers = (userType) => {
+        if (userType) {
+        setFilteredUsersArr(usersArr.filter((user) => user.userType === userType))
+        } else {
+        setFilteredUsersArr(usersArr)
+        }
     };
+
 
     return (
         <section className={Styles.userListSection}>
             <header>
-                <select onChange={(event) => setUserDropdown(event.target.value)}>
+                <select onChange={(event) => filterUsers(event.target.value)}>
+                    <option value="">All Users</option>
                     <option value="operator">Operator</option>
                     <option value="supervisor">Supervisor</option>
                     <option value="maintenance">Maintenance</option>
@@ -42,7 +46,7 @@ const UserList = (props) => {
                     <p>Team</p>
                     <p>Action</p>
                 </li>
-                {usersArr.map(getUserItemJsx)}
+                {filteredUsersArr.map(getUserItemJsx)}
                 
         
                 </ul>
