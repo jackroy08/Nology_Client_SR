@@ -21,7 +21,7 @@
     color:rgb(255, 255, 255);
   }
 }
-
+ 
 .btnSM {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -60,4 +60,13 @@
   color: $light-text-color;
   background-color: $btn-danger-color;
   border-color: $btn-danger-color;
+}
+
+.btnDisabled {
+  opacity: 0.65;
+
+  &:active, &:hover {
+    background-color:rgb(146, 38, 38);
+    color:rgb(255, 255, 255);
+  }
 }

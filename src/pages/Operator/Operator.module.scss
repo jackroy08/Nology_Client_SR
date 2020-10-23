@@ -1,17 +1,26 @@
 @import '../../assets/styles/buttons';
 
-.pageGrid {
-    display: grid;
-    gap: 1em;
+.pageFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 100%;
-    justify-items: center;
-
+    height: 90vh;
+    align-items: center;
     button {
-        .start {
+        height: 15vh;
+        width: 30vw;
+        &.start {
             background-color: green;
         }
-        .end {
+        &.end {
             background-color: red;
         }
+    }
+    .hidden {
+        display: none;
+    }
+    .shown {
+        display: inline-block;
     }
 }

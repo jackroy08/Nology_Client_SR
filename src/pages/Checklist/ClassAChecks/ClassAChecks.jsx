@@ -16,9 +16,12 @@ const ClassAChecks = (props) => {
     const additionalFieldsArr = Object.keys(checklistData[vehicleType])
         .filter(key => !key.match("class"));
 
+    console.log(props);
+    
+
     const getChecklist = item => (
         <React.Fragment key={item}>
-            <label htmlFor={item}>{item}
+            <label htmlFor={item}>{item} 
                 <input type="checkbox" id={item} name={item} value={item}/>
             </label>
         </React.Fragment>
@@ -34,36 +37,34 @@ const ClassAChecks = (props) => {
                         {checkboxArr.map(getChecklist)}
                     </div>
 
-                    
-                    {additionalFieldsArr ? 
-                        <>
-                            <h2>Additional checks</h2>
-                            <section className={Styles.optionsFlex}>
-                                {additionalFieldsArr.map(item => 
-                                <RenderAdditionalOptions 
-                                    getChecklist={getChecklist} 
-                                    classVal="classA" 
-                                    checklistData={checklistData}
-                                    vehicleType={vehicleType} 
-                                    item={item}
-                                    key={item} 
-                                />)}
-                            </section>
-                        </>:
-                        null}
-                    <textarea name="class-a-comment" id="class-a-checks"></textarea>
-
-                    <section className={Styles.navigation}>
-                        <Link to="/Operator">
-                            <button className={Styles.btn}>Back</button> 
-                        </Link>
-                        
-                        <button type="button" onClick={clickHandler} className={Styles.btn}>Next</button>
-                    </section>
-                </form>
-            </main>
-            }
-        </>
+                
+                {additionalFieldsArr ? 
+                    <>
+                        <h2>Additional checks</h2>
+                        <section className={Styles.optionsFlex}>
+                            {additionalFieldsArr.map(item => 
+                            <RenderAdditionalOptions 
+                                getChecklist={getChecklist} 
+                                classVal="classA" 
+                                checklistData={checklistData} 
+                                item={item}
+                                key={item} 
+                            />)}
+                        </section>
+                    </>:
+                    null}
+                <textarea name="class-a-comment" id="class-a-checks" placeholder="Enter any additional info here..."></textarea>
+            </form>
+            
+            <section className={Styles.navigation}>
+                <Link to="/Operator">
+                    <button className={`${Styles.btn} ${Styles.btnPrimary}`}>Back</button> 
+                </Link>
+                <Link to="/ClassB">
+                    <button className={`${Styles.btn} ${Styles.btnPrimary}`}>Next</button>
+                </Link>
+            </section>
+        </main>
     )
 }
 
