@@ -8,27 +8,21 @@ const EditUser = (props) => {
         userID, 
         password,
         fullNameStr,
-        profileImg, 
         dateOfBirth, 
-        isOnShift, 
         currentTeam, 
-        assignedVehicle
-    } = props
+    } = props.user
 
     const { register, handleSubmit, errors } = useForm();
 
     const editUser = (data) => {
         console.log(data.userType)
-        
-
-        
     }
     
     return (
         <form className={Styles.userForm} onSubmit={handleSubmit(editUser)}>
             <label htmlFor="userID">Employee number :</label>
             <input
-                value={`${userID}`}
+                value={userID}
                 type="text"
                 id="userID"
                 name="userID"
@@ -37,7 +31,7 @@ const EditUser = (props) => {
             
             <label htmlFor="password">Password :</label>
             <input
-                value={`${password}`}
+                value={password}
                 type="text"
                 id="password"
                 name="password"
@@ -47,6 +41,7 @@ const EditUser = (props) => {
             
             <label htmlFor="userType">Select User Type :</label>
             <select
+                value={userType}
                 name="userType"
                 id="userType"
                 ref={register({ /*required: true*/ })}>
@@ -60,6 +55,7 @@ const EditUser = (props) => {
 
             <label htmlFor="currentTeam">Select Team :</label>
             <select
+                value={currentTeam}
                 name="currentTeam"
                 id="currentTeam" 
                 ref={register({ /*required: true */})}>
@@ -72,6 +68,7 @@ const EditUser = (props) => {
             
             <label htmlFor="fullName">Full Name :</label>
             <input
+                value={fullNameStr}                
                 type="text"
                 id="fullName"
                 name="fullName"
@@ -81,21 +78,13 @@ const EditUser = (props) => {
             
             <label htmlFor="dateOfBirth">Date of Birth :</label>
             <input
+                value={dateOfBirth}
                 type="date"
                 id="dateOfBirth"
                 name="dateOfBirth"
                 placeholder="enter user's Date of Birth"
                 ref={register} />
                 {errors.dateOfBirth && <p>Date of birth is required.</p>}
-            
-            
-            <label htmlFor="profileImage">Profile Image :</label>
-            <input
-                type="file"
-                id="profileImage"
-                name="profileImage"
-                placeholder="enter user's full name"
-                ref={register}/>
             
             <button className={Styles.btn} type="submit">Edit User</button>
         </form>

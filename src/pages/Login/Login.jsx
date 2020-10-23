@@ -1,6 +1,5 @@
 import React from 'react'
 import Styles from './Login.module.scss';
-import { Link } from '@reach/router';
 
 const Login = () => {
     return (

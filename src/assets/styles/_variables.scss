@@ -6,15 +6,20 @@ $background: #5C636A;
 //table background color accents
 $background-color1: rgba(255, 255, 255, 0.2);
 $background-color2: rgba(255, 255, 255, 0.4);
+$background-color3: rgba(255, 255, 255, 0.6);
+$background-color4: rgba(255, 255, 255, 0.8);
 
+//colour variables
+$primary-color: #FFAA00;
+$secondary-color: rgb(50, 50, 50);
+$success-color: rgb(16, 212, 13);
+$success-color-lighten: rgb(4, 253, 0);
+$info-color: #17a2b8;
+$warning-color: #ffc107;
+$danger-color: #dc3545;
+$danger-color-lighten: #ff0019;
 
-
-//button variables
-$btn-primary-color: #FFAA00;
-$btn-success-color: rgba(16, 212, 13, 0.8);
-$btn-info-color: #17a2b8;
-$btn-warning-color: #ffc107;
-$btn-danger-color: #dc3545;
+//text colour variables
 $dark-text-color: #000000;
 $light-text-color: #FFFFFF;
 
