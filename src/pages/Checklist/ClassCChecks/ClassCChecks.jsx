@@ -5,11 +5,11 @@ import RenderAdditionalOptions from "../RenderAdditionalOptions";
 import Confirmation from "../Confirmation";
 
 const ClassCChecks = (props) => {
-    const {checklistData} = props;
-    const checkboxArr = checklistData.ldv.hasOwnProperty("classC") ?
-        Object.keys(checklistData.ldv.classC):
+    const {checklistData, vehicleType} = props;
+    const checkboxArr = checklistData[vehicleType].hasOwnProperty("classC") ?
+        Object.keys(checklistData[vehicleType].classC):
         [];
-    const additionalFieldsArr = Object.keys(checklistData.ldv)
+    const additionalFieldsArr = Object.keys(checklistData[vehicleType])
         .filter(key => !key.match("class"));
 
     const getChecklist = item => (
@@ -23,8 +23,7 @@ const ClassCChecks = (props) => {
 
     return (
         <>
-            {console.log(checkboxArr)}
-            {checkboxArr === true ? (
+            {checkboxArr.length > 0 ? 
                 <main className={Styles.pageGrid}>
                     <h1>Class C Checks</h1>
                     <form id="class-c-checks">
@@ -42,6 +41,7 @@ const ClassCChecks = (props) => {
                                         getChecklist={getChecklist} 
                                         classVal="classC" 
                                         checklistData={checklistData} 
+                                        vehicleType={vehicleType}
                                         item={item}
                                         key={item} 
                                     />)}
@@ -49,18 +49,18 @@ const ClassCChecks = (props) => {
                             </>:
                             null}
                         <textarea name="class-b-comment" id="class-b-checks"></textarea>
+                    
+                        <section className={Styles.navigation}>
+                            <Link to="/ClassC">
+                                <button className={Styles.btn}>Back</button> 
+                            </Link>
+                            <Link to="/Confirmation">
+                                <button className={Styles.btn}>Next</button>
+                            </Link>
+                        </section>
                     </form>
-                    <section className={Styles.navigation}>
-                        <Link to="/ClassC">
-                            <button className={Styles.btn}>Back</button> 
-                        </Link>
-                        <Link to="/Confirmation">
-                            <button className={Styles.btn}>Next</button>
-                        </Link>
-                    </section>
                 </main>
-            ):
-            <Confirmation />}
+            : <Confirmation />}
         </>
     )
 }

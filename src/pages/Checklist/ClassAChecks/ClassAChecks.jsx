@@ -2,12 +2,18 @@ import React from "react";
 import { Link } from "@reach/router";
 import Styles from "../Checklist.module.scss";
 import RenderAdditionalOptions from "../RenderAdditionalOptions";
+import ClassBChecks from "../ClassBChecks";
+import { useState } from "react";
 
 const ClassAChecks = (props) => {
+    const {checklistData, vehicleType} = props;
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const clickHandler = () => {
+        setIsSubmitted(true);
+    }
 
-    const {checklistData} = props;
-    const checkboxArr = Object.keys(checklistData.ldv.classA);
-    const additionalFieldsArr = Object.keys(checklistData.ldv)
+    const checkboxArr = Object.keys(checklistData[vehicleType].classA);
+    const additionalFieldsArr = Object.keys(checklistData[vehicleType])
         .filter(key => !key.match("class"));
 
     console.log(props);
@@ -22,12 +28,14 @@ const ClassAChecks = (props) => {
     );
 
     return (
-        <main className={Styles.pageGrid}>
-            <h1>Class A Checks</h1>
-            <form id="class-a-checks">
-                <div className={Styles.responses}>
-                    {checkboxArr.map(getChecklist)}
-                </div>
+        <>
+            {isSubmitted ? <ClassBChecks checklistData={checklistData} vehicleType={vehicleType} /> :
+                <main className={Styles.pageGrid}>
+                <h1>Class A Checks</h1>
+                <form id="class-a-checks">
+                    <div className={Styles.responses}>
+                        {checkboxArr.map(getChecklist)}
+                    </div>
 
                 
                 {additionalFieldsArr ? 
