@@ -31,40 +31,42 @@ const ClassAChecks = (props) => {
         <>
             {isSubmitted ? <ClassBChecks checklistData={checklistData} vehicleType={vehicleType} /> :
                 <main className={Styles.pageGrid}>
-                <h1>Class A Checks</h1>
-                <form id="class-a-checks">
-                    <div className={Styles.responses}>
-                        {checkboxArr.map(getChecklist)}
-                    </div>
+                    <h1>Class A Checks</h1>
+                    <form id="class-a-checks">
+                            <div className={Styles.responses}>
+                                {checkboxArr.map(getChecklist)}
+                            </div>
 
+                        
+                        {additionalFieldsArr ? 
+                            <>
+                                <h2>Additional checks</h2>
+                                <section className={Styles.optionsFlex}>
+                                    {additionalFieldsArr.map(item => 
+                                    <RenderAdditionalOptions 
+                                        getChecklist={getChecklist} 
+                                        classVal="classA" 
+                                        checklistData={checklistData} 
+                                        item={item}
+                                        key={item} 
+                                    />)}
+                                </section>
+                            </>:
+                            null}
+                        <textarea name="class-a-comment" id="class-a-checks" placeholder="Enter any additional info here..."></textarea>
+                    </form>
                 
-                {additionalFieldsArr ? 
-                    <>
-                        <h2>Additional checks</h2>
-                        <section className={Styles.optionsFlex}>
-                            {additionalFieldsArr.map(item => 
-                            <RenderAdditionalOptions 
-                                getChecklist={getChecklist} 
-                                classVal="classA" 
-                                checklistData={checklistData} 
-                                item={item}
-                                key={item} 
-                            />)}
-                        </section>
-                    </>:
-                    null}
-                <textarea name="class-a-comment" id="class-a-checks" placeholder="Enter any additional info here..."></textarea>
-            </form>
-            
-            <section className={Styles.navigation}>
-                <Link to="/Operator">
-                    <button className={`${Styles.btn} ${Styles.btnPrimary}`}>Back</button> 
-                </Link>
-                <Link to="/ClassB">
-                    <button className={`${Styles.btn} ${Styles.btnPrimary}`}>Next</button>
-                </Link>
-            </section>
-        </main>
+                    <section className={Styles.navigation}>
+                        <Link to="/Operator">
+                            <button className={`${Styles.btn} ${Styles.btnPrimary}`}>Back</button> 
+                        </Link>
+                        <Link to="/ClassB">
+                            <button className={`${Styles.btn} ${Styles.btnPrimary}`}>Next</button>
+                        </Link>
+                    </section>
+                </main>
+            }
+        </>
     )
 }
 
