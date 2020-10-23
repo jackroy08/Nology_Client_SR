@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Styles from './ManageSites.module.scss';
 
 const ManageSites = () => {
     
     return (
-        <p> I am the ManageSites component</p>
+        <p className={Styles.title}> I am the ManageSites component</p>
     )
 }
 

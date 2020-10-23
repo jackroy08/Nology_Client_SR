@@ -9,7 +9,7 @@ const Header = () => {
 
   
   return (
-    <header>
+    <header className={Styles.appHeader}>
       <button 
         onClick={ () => window.history.back()} 
         className={Styles.btn}>

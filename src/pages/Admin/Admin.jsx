@@ -11,6 +11,7 @@ const Admin = () => {
     return (
         <>
         <nav className={Styles.adminNav}>
+        <h2>Admin</h2>
             <Link to="ManageUsers"><button className={Styles.btn}>Manage Users</button></Link>
             <Link to="AddVehicle"><button className={Styles.btn}>Add Vehicle</button></Link>
             <Link to="ManageTeams"><button className={Styles.btn}>Manage Teams</button></Link>
