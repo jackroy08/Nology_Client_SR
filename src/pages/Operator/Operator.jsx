@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { Link } from "@reach/router";
 import Styles from "./Operator.module.scss";
-import Checklist from "../Checklist/Checklist";
 
 const Operator = () => {
 
@@ -14,10 +13,10 @@ const Operator = () => {
                 onClick={() => (setIsShiftStart(!isShiftStart))}>
                 {changeStart}
             </button>
-            <Link to="/ClassA">
+            <Link to="/ChecklistModal">
                 <button className={`${Styles.btn} ${Styles.btnLG}`}>Accept Vehicle</button>
             </Link>
-            <Link to="/ClassA">
+            <Link to="/ChecklistModal">
                 <button className={`${Styles.btn} ${Styles.btnLG}`}>Report a Problem</button>
             </Link>
             <button className={`${Styles.btn} ${Styles.btnLG}`}>Submit Load</button>
