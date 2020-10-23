@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Styles from './ManageTeams.module.scss';
 
 const ManageTeams = () => {
     return (
-        <p> I am the ManageTeams component</p>
+        <p className={Styles.title}> I am the ManageTeams component</p>
     )
 }
 

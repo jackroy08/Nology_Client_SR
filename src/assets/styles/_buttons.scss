@@ -2,26 +2,24 @@
 @import "./fonts";
 
 // Put your GENERIC button styles in here
-.btn {
+button {
   box-sizing:border-box;
-  background-color:rgba(0, 0, 0, 0);
+  background-color: $background-color2;
   color:rgb(51, 51, 51);
-  border: 2px solid rgb(51, 51, 51);
+  border: 1px solid rgb(51, 51, 51);
   cursor:pointer;
   font-family: $font;
-  font-size:16px;
+  font-size:14px;
   font-weight:400;
-  height:40px;
-  padding:6px 12px;
-  margin: 6px;
+  padding: 8px;
+  margin: 0 6px;
   transition: 0.15s ease-in-out;
 
   &:active, &:hover {
-    background-color:rgb(51, 51, 51);
-    color:rgb(255, 255, 255);
+    background-color: $background-color4;
   }
 }
-
+ 
 .btnSM {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -34,30 +32,58 @@
 
 .btnPrimary {
   color: $dark-text-color;
-  background-color: $btn-primary-color;
+  background-color: $primary-color;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.432);
+  &:active, &:hover {
+    background-color: $background-color4;
+  }
+}
+.btnSecondary {
+  color: $light-text-color;
+  background-color: $dark-text-color;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.432);
+  &:active, &:hover {
+    background-color: $background-color4;
+  }
 }
 
 .btnSuccess {
-  color: $light-text-color;
-  background-color: $btn-success-color;
-  border-color: $btn-success-color;
+  color: $dark-text-color;
+  background-color: $success-color;
+  &:active, &:hover {
+    background-color: $success-color-lighten;
+  }
 }
 
 .btnInfo {
-  color:$light-text-color;
-  background-color: $btn-info-color;
-  border-color: $btn-info-color;
+  color:$dark-text-color;
+  background-color: $info-color;
+  &:active, &:hover {
+    background-color: $background-color4;
+  }
 }
 
 .btnWarning {
-  color: $light-text-color;
-  background-color: $btn-warning-color;
-  border-color: $btn-warning-color;
+  color: $dark-text-color;
+  background-color: $warning-color;
+  &:active, &:hover {
+    background-color: $background-color4;
+  }
 }
 
 .btnDanger {
-  color: $light-text-color;
-  background-color: $btn-danger-color;
-  border-color: $btn-danger-color;
+  color: $dark-text-color;
+  background-color: $danger-color;
+  &:active, &:hover {
+    background-color: $danger-color-lighten;
+  }
+}
+
+.btnDisabled {
+  opacity: 0.65;
+
+  &:active, &:hover {
+    background-color:rgb(146, 38, 38);
+    color:rgb(255, 255, 255);
+  }
 }

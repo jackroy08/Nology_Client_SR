@@ -1,2 +1,2 @@
 import EditUser from './EditUser'
-export default Edituser;
+export default EditUser;
