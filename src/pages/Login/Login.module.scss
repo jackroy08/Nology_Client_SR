@@ -7,9 +7,25 @@
   align-content: flex-start;
   height: 100vh;
   width: 100%;
-  background-image: url("./../../assets/images/background-image.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+
+.password, .idnumber {
+  color: lightgray;
+  font-weight: 500;
+}
+
+.loginContainer {
+  margin-top:150px;
+}
+
+.backgroundImage {
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.2;
+  max-width: 100%;
 }
 
 .title {

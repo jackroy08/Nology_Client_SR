@@ -17,11 +17,11 @@ const Header = () => {
       </button>
       
       <nav>
-        <Link to="/Operator"><button className={Styles.btn}>Operator</button></Link>
-        <Link to="/Supervisor"><button className={Styles.btn}>Supervisor</button></Link>
-        <Link to="/Maintenance"><button className={Styles.btn}>Maintenance</button></Link>
-        <Link to="/Management"><button className={Styles.btn}>Management</button></Link>
-        <Link to="/Admin"><button className={Styles.btn}>Admin</button></Link>
+        <Link to="/Operator" className={Styles.link}>Operator</Link>
+        <Link to="/Supervisor" className={Styles.link}>Supervisor</Link>
+        <Link to="/Maintenance" className={Styles.link}>Maintenance</Link>
+        <Link to="/Management" className={Styles.link}>Management</Link>
+        <Link to="/Admin" className={Styles.link}>Admin</Link>
       </nav>
       
       <nav>

@@ -14,7 +14,7 @@ select, input {
   font-weight:400;
   padding: 8px;
   transition: 0.15s ease-in-out;
-
+  background: white;
   &:active, &:hover {
     background-color: $background-color4;
   }
