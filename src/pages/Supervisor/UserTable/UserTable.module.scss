@@ -33,17 +33,14 @@
     }
 
     .userList {
-        transform: scaleY(0);  
-        transform-origin: top;      
+        height: 0px;    
+        overflow: hidden;
         width: 100%;
         background-color: $background-color1;
         margin: 0;
         padding: 0 $base-padding $base-padding $base-padding;
         transition: all 0.3s ease;
 
-        &.shown{
-            transform: scaleY(1); 
-        }
     }
 
     .userItem, .columnTitles {

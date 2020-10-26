@@ -30,13 +30,20 @@ const VehicleTable = () => {
     )
   }
 
-  const supervisorVehicles = vehicleData.filter(v => (v.currentTeam === supervisorTeam));
+  const supervisorVehicles = vehicleData.filter(v => (v.currentTeam === supervisorTeam))
+  .sort((a,b) => a.plantID - b.plantID);
 
-  const [isVehicleDataOpen, setIsVehicleDataOpen] = useState(false)
+  const [listHeight, setListHeight] = useState(0)
+
+  let list;
+
+  const headerOnClick = () => {
+    listHeight ? setListHeight(0) : setListHeight(list.scrollHeight)
+  }
 
   return (
     <section className={Styles.vehicleListSection}>
-      <header onClick={() => {setIsVehicleDataOpen(!isVehicleDataOpen)}}>
+      <header onClick={headerOnClick}>
         <h3>Team Vehicle Stats</h3>
         <div className={Styles.vehicleSummary}>
           <p>Total Vehicles: {supervisorVehicles.length}</p>
@@ -45,7 +52,7 @@ const VehicleTable = () => {
         </div>
       </header>
 
-      <ul className={`${Styles.vehicleList} ${isVehicleDataOpen ? Styles.shown : null}`}>
+      <ul className={Styles.vehicleList} ref={el => {list=el}} style={{height : listHeight}}>
         <li className={Styles.columnTitles}>
           <h4>Plant ID</h4>
           <h4>Plant Type</h4>

@@ -10,6 +10,7 @@ let supervisorTeam = "TeamA";
 //// End of bullshit data
 
 
+
 const UserTable = () => {
 
   const getUserJsx = (user) => {
@@ -25,31 +26,36 @@ const UserTable = () => {
     )
   }
 
-  const supervisorUsers = userData.filter(user => (user.currentTeam === supervisorTeam && user.userType === "operator"));
+  const supervisorUsers = userData.filter(user => (user.currentTeam === supervisorTeam && user.userType === "operator"))
+  .sort((a,b) => a.userID - b.userID)
 
-  const [isUserDataOpen, setIsUserDataOpen] = useState(false)
+  const [listHeight, setListHeight] = useState(0)
+
+  let list;
+
+  const headerOnClick = () => {
+    listHeight ? setListHeight(0) : setListHeight(list.scrollHeight)
+  }
 
   return (
     <section className={Styles.userListSection}>
-      <header onClick={() => {setIsUserDataOpen(!isUserDataOpen)}}>
-        <h3>Team user Stats</h3>
+      <header onClick={headerOnClick}>
+        <h3>Team Member Info</h3>
         <div className={Styles.userSummary}>
-          <p>Total users: {supervisorUsers.length}</p>
-          <p>Working users: {supervisorUsers.filter(v => v.goStatus).length}</p>
-          <p>Broken users: {supervisorUsers.filter(v => !v.goStatus).length}</p>
+          <p>Total Operators: {supervisorUsers.length}</p>
+          <p>Operators on Shift: {supervisorUsers.filter(v => v.goStatus).length}</p>
+          <p>Operators Away: {supervisorUsers.filter(v => !v.goStatus).length}</p>
         </div>
       </header>
 
-      <ul className={`${Styles.userList} ${isUserDataOpen ? Styles.shown : null}`}>
+      <ul className={Styles.userList} ref={el => {list=el}} style={{height : listHeight}}>
         <li className={Styles.columnTitles}>
-          <h4>Plant ID</h4>
-          <h4>Plant Type</h4>
-          <h4>Go Status</h4>
+          <h4>Full Name</h4>
+          <h4>Assigned Vehicle</h4>
+          <h4>User Type</h4>
+          <h4>User ID</h4>
+          <h4>Status</h4>
           <h4>Current Team</h4>
-          <h4>Current User</h4>
-          <h4>Check Items</h4>
-          <h4>Last Checked</h4>
-          <h4>Checked Log</h4>
         </li>
         {supervisorUsers.map(getUserJsx)}
       </ul>
