@@ -1,14 +1,14 @@
 import React from "react";
-import Styles from "./AddVehicle.module.scss";
-import Vehicle from "../../../data/Vehicle";
-import vehicleData from "../../../data/plantequipment";
+import Styles from "./CreateVehicleForm.module.scss";
+import Vehicle from "../../../../data/Vehicle";
+import vehiclesArr from "../../../../data/vehicles";
 import { useForm } from "react-hook-form";
 
-const AddVehicle = () => {
+const CreateVehicleForm = () => {
     const { register, handleSubmit, errors } = useForm();
     const createNewVehicle = (vehicle) => {
-            vehicleData.push(new Vehicle(vehicle.plantID, vehicle.plantType, vehicle.goStatus));
-            console.log(vehicleData);
+        vehiclesArr.push(new Vehicle(vehicle.plantID, vehicle.plantType, vehicle.goStatus));
+        console.log(vehiclesArr);
     }
     return (
         <form className={Styles.userForm} onSubmit={handleSubmit(createNewVehicle)}>
@@ -64,4 +64,4 @@ const AddVehicle = () => {
     )
 }
 
-export default AddVehicle;
+export default CreateVehicleForm;

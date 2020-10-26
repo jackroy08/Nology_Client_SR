@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { useForm } from "react-hook-form";
 import Styles from './CreateUserForm.module.scss';
 import usersArr from '../../../../data/users';

@@ -4,6 +4,7 @@ import UserList from "./UserList"
 import usersArr from '../../../data/users';
 import EditUser  from './EditUser/EditUser';
 import CreateUserForm from './CreateUserForm'
+import useModal from '../../../components/Modal/useModal';
 
 const ManageUsers = () => {
 
