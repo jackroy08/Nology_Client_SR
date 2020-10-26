@@ -7,6 +7,7 @@ import { DailyReport } from './DailyReport/DailyReport';
 import vehicleData from "../../data/plantequipment";
 import usersArr from "../../data/users";
 import VehicleTable from "./VehicleTable";
+import UserTable from "./UserTable";
 
 export const Supervisor = () => {
 
@@ -60,6 +61,9 @@ export const Supervisor = () => {
                 </ul>
                 <section className={Styles.vehicleTable}>
                     <VehicleTable />
+                </section>
+                <section className={Styles.vehicleTable}>
+                    <UserTable />
                 </section>
 
             </main>
