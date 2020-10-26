@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
@@ -6,6 +6,7 @@ import NewsItem from "./NewsItem";
 import { DailyReport } from './DailyReport/DailyReport';
 import vehicleData from "../../data/plantequipment";
 import usersArr from "../../data/users";
+import VehicleTable from "./VehicleTable";
 
 export const Supervisor = () => {
 
@@ -43,23 +44,30 @@ export const Supervisor = () => {
     let overlayStyle = isOverlayShown ? Styles.shown : "";
 
     return (
-    <main className={Styles.pageGrid}>
-        
-        <section className={Styles.buttonGrid}>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />)}}>Add Load</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehicleData={vehicleData}/>)}}>Reassign Vehicles</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent}/>)}}>Supervisor Reports</button></div>
-        </section>
-            <ul className={Styles.newsList}>
-                {/* math random probably isnt the best tool for this */}
-                {Array.isArray(newsItem) ? newsItem.map(item => <NewsItem key={Math.random()} item={item}/>) : <p>Incorrect Data Format</p>}
-            </ul>
-        <div className={`${Styles.overlay} ${overlayStyle}`}>
-            {overlayContent}
-        </div>
-    </main>
+        <>
+            <main className={Styles.pageGrid}>
+
+                <section className={Styles.buttonGrid}>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Add Load</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehicleData={vehicleData} />) }}>Reassign Vehicles</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Supervisor Reports</button></div>
+                </section>
+                <ul className={Styles.newsList}>
+                    {/* math random probably isnt the best tool for this */}
+                    {Array.isArray(newsItem) ? newsItem.map(item => <NewsItem key={Math.random()} item={item} />) : <p>Incorrect Data Format</p>}
+                </ul>
+                <section className={Styles.vehicleTable}>
+                    <VehicleTable />
+                </section>
+
+            </main>
+
+            <div className={`${Styles.overlay} ${overlayStyle}`}>
+                {overlayContent}
+            </div>
+        </>
     )
 }
 

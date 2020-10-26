@@ -1,0 +1,76 @@
+@import '../../../assets/styles/buttons'; 
+@import "../../../assets/styles/variables";
+
+
+.vehicleListSection {
+    width: 100%;
+    padding: 0 $base-padding*2 $base-padding*2 $base-padding*2;
+
+    header {
+        background-color: $primary-color;
+        display: flex;
+        align-items: center;
+        padding: $base-padding $base-padding*2;
+
+        .vehicleSummary {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                font-weight: 700;
+            }
+        }
+
+        h3{
+        flex-grow: 1;
+        margin-right: auto;
+        }
+    }
+
+    .columnTitles{
+        padding: $base-padding;
+    }
+
+    .vehicleList {
+        transform: scaleY(0);  
+        transform-origin: top;      
+        width: 100%;
+        background-color: $background-color1;
+        margin: 0;
+        padding: 0 $base-padding $base-padding $base-padding;
+        transition: all 0.3s ease;
+
+        &.shown{
+            transform: scaleY(1); 
+        }
+    }
+
+    .vehicleItem, .columnTitles {
+        display:grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: 3em;
+        justify-items: start;
+        align-items: center;
+    }
+    
+
+
+    .vehicleItem {
+        background-color: $background-color1;
+        margin-bottom: $base-padding;
+        padding: 0 $base-padding;
+
+        &:hover {
+        background-color: $background-color2;
+        }
+
+        &.unavailable {
+            background-color: $danger-color;
+
+            &:hover {
+                background-color: $danger-color-lighten;
+            }
+        }
+    }
+}
