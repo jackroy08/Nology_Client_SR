@@ -33,7 +33,7 @@
     }
 
     .vehicleList {
-        height: 0px;
+        transform: scaleY(0);  
         overflow: hidden;
         transform-origin: top;      
         width: 100%;
@@ -41,6 +41,10 @@
         margin: 0;
         padding: 0 $base-padding $base-padding $base-padding;
         transition: all 0.3s ease;
+
+        &.shown{
+            transform: scaleY(1); 
+        }
     }
 
     .vehicleItem, .columnTitles {
