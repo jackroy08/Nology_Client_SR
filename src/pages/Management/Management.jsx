@@ -1,18 +1,23 @@
 import React from 'react'
 import Styles from './Management.module.scss';
+import {Router} from "@reach/router";
+import { Link } from "@reach/router";
+import ManagementReports from "./ManagementReports";
+import LiveFeed from "./LiveFeed";
 
 const Management = () => {
+
     return (
-    <main className={Styles.managementMain}>
-        <button className={Styles.btn}>View Reports</button>
-        <button className={Styles.btn}>Add vehicle</button>
-        <button className={Styles.btn}>Reassign vehicle</button>
-        <button className={Styles.btn}>Reassign user</button>
-        <button className={Styles.btn}>Add user</button>
-        <section className={Styles.dataFeed}>
-        <p>Insert live feed / data </p>
-        </section>
-    </main>
+        <>
+            <main className={Styles.managementMain}>
+                <Link to="./ManagementReports"><button className={Styles.btn}>View Reports</button></Link>
+                <Link to="../Admin"><button className={Styles.btn}>Go to admin page</button></Link>
+            </main>
+            <Router>
+                <LiveFeed path="/"/>
+                <ManagementReports path="ManagementReports"/>
+            </Router>
+        </>
     )
 }
 
