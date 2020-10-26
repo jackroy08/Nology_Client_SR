@@ -8,11 +8,8 @@ import Supervisor from "./pages/Supervisor";
 import Maintenance from "./pages/Maintenance";
 import Management from "./pages/Management";
 import Admin from "./pages/Admin";
-import ChecklistModal from "./pages/Checklist/ChecklistModal";
-import ClassAChecks from "./pages/Checklist/ClassAChecks";
-import ClassBChecks from "./pages/Checklist/ClassBChecks";
-import ClassCChecks from "./pages/Checklist/ClassCChecks";
-import Confirmation from "./pages/Checklist/Confirmation";
+import ChecklistContainer from "./pages/Checklist/ChecklistContainer";
+
 // Components
 import Header from './components/header';
 // Data
@@ -31,11 +28,7 @@ const App = () => {
         <Maintenance path="/Maintenance" />
         <Management path="/Management" />
         <Admin path="/Admin/*" />
-        <ChecklistModal path="/ChecklistModal" checklistData={checklistData} />
-        <ClassAChecks path="/ClassA" />
-        <ClassBChecks path="/ClassB" />
-        <ClassCChecks path="/ClassC" />
-        <Confirmation path="/Confirmation" />
+        <ChecklistContainer path="/Checklist" checklistData={checklistData} />
       </Router>
     </>
   );

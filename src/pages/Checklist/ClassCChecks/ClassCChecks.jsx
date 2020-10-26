@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "@reach/router";
 import Styles from "../Checklist.module.scss";
 import RenderAdditionalOptions from "../RenderAdditionalOptions";
 import Confirmation from "../Confirmation";
 
 const ClassCChecks = (props) => {
-    const {checklistData, vehicleType} = props;
+    const {setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props;
+    const classType = "classC";
     const checkboxArr = checklistData[vehicleType].hasOwnProperty("classC") ?
         Object.keys(checklistData[vehicleType].classC):
         [];
@@ -51,12 +51,8 @@ const ClassCChecks = (props) => {
                         <textarea name="class-b-comment" id="class-b-checks"></textarea>
                     
                         <section className={Styles.navigation}>
-                            <Link to="/ClassC">
-                                <button className={Styles.btn}>Back</button> 
-                            </Link>
-                            <Link to="/Confirmation">
-                                <button className={Styles.btn}>Next</button>
-                            </Link>
+                            <button onClick={backHandler} className={Styles.btn}>Back</button> 
+                            <button type="button" onClick={() => {nextHandler(); setFailedElements(failObject(vehicleType, classType))}} className={Styles.btn}>Next</button>
                         </section>
                     </form>
                 </main>
