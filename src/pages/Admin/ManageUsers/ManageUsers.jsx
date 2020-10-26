@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import Styles from './ManageUsers.module.scss';
 import usersArr from '../../../data/users';
-import EditUser  from './EditUser/EditUser';
-import CreateUserForm from './CreateUserForm'
+import EditUserForm  from './EditUserForm';
+import CreateUserForm from './CreateUserForm';
+import Modal from '../../../components/Modal';
 import useModal from '../../../components/Modal/useModal';
 
 const ManageUsers = () => {
     const {isShowing, toggle} = useModal();
+    
+    //filter the users by the dropdown box
     const [filteredUsersArr, setFilteredUsersArr] = useState(usersArr);
-
-    const getUserItemJsx = (user) => {
+    
+    const getUserItemJsx = (user) => {        
+                
         return (
             <li key={user.userID} className={Styles.userItem}>
                 <p>{user.fullNameStr}</p>
@@ -17,7 +21,8 @@ const ManageUsers = () => {
                 <p>{user.userID}</p>
                 <p>{user.isOnShift ? "Yes" : "No"}</p>
                 <p>{user.currentTeam ? user.currentTeam : "No team"}</p>
-                <button>Edit...</button>
+                <button onClick={toggle}>Edit...</button>
+                {/* <Modal innerComponent={<EditUserForm user={user} hide={toggle}/>} isShowing={isShowing} hide={toggle} /> */}
             </li>
         )
     };
@@ -32,13 +37,12 @@ const ManageUsers = () => {
 
     return (
         <main className={Styles.pageGrid}>
-            <CreateUserForm/>  
             {/* <EditUser user={usersArr[0]}/> */}
             <section className={Styles.userListSection}>
                 <header>
                     <h3>Users</h3>
                     <button onClick={toggle}>Create New User</button>
-                    <CreateUserForm isShowing={isShowing} hide={toggle} />
+                    <Modal innerComponent={<CreateUserForm hide={toggle}/>} isShowing={isShowing} hide={toggle} />
                     <select onChange={(event) => filterUsers(event.target.value)}>
                         <option value="">All Users</option>
                         <option value="operator">Operator</option>

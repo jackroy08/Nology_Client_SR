@@ -1,8 +1,8 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-import Styles from './EditUser.module.scss';
+import Styles from './EditUserForm.module.scss';
 
-const EditUser = (props) => {
+const EditUserForm = (props) => {
     const {
         userType, 
         userID, 
@@ -91,4 +91,4 @@ const EditUser = (props) => {
     )
 }
 
-export default EditUser;
+export default EditUserForm;
