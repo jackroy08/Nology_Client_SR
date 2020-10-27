@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Styles from './ManageUsers.module.scss';
 import usersArr from '../../../data/users';
-import EditUserForm  from './EditUserForm';
+import UserItem  from './UserItem';
 import CreateUserForm from './CreateUserForm';
 import Modal from '../../../components/Modal';
 import useModal from '../../../components/Modal/useModal';
@@ -11,22 +11,6 @@ const ManageUsers = () => {
     
     //filter the users by the dropdown box
     const [filteredUsersArr, setFilteredUsersArr] = useState(usersArr);
-    
-    const getUserItemJsx = (user) => {        
-                
-        return (
-            <li key={user.userID} className={Styles.userItem}>
-                <p>{user.fullNameStr}</p>
-                <p>{user.dateOfBirth}</p>
-                <p>{user.userID}</p>
-                <p>{user.isOnShift ? "Yes" : "No"}</p>
-                <p>{user.currentTeam ? user.currentTeam : "No team"}</p>
-                <button onClick={toggle}>Edit...</button>
-                {/* <Modal innerComponent={<EditUserForm user={user} hide={toggle}/>} isShowing={isShowing} hide={toggle} /> */}
-            </li>
-        )
-    };
-
     const filterUsers = (userType) => {
         if (userType) {
         setFilteredUsersArr(usersArr.filter((user) => user.userType === userType))
@@ -60,7 +44,7 @@ const ManageUsers = () => {
                         <h4>Team</h4>
                         <h4>Action</h4>
                     </li>
-                    {filteredUsersArr.map(getUserItemJsx)}
+                    {filteredUsersArr.map((user) => <UserItem user={user} />)}
                 </ul>
             </section>    
         </main>
