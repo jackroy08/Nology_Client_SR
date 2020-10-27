@@ -4,19 +4,11 @@ import RenderAdditionalOptions from "../RenderAdditionalOptions"
 
 const ClassBChecks = (props) => {
     
-    const {setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props;
+    const {getChecklist, setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
     const classType = "classB";
-    const checkboxArr = Object.keys(checklistData[vehicleType].classB);
+    const checkboxArr = Object.keys(checklistData[vehicleType][classType]);
     const additionalFieldsArr = Object.keys(checklistData[vehicleType])
         .filter(key => !key.match("class"));
-
-    const getChecklist = item => (
-        <React.Fragment key={item}>
-            <label htmlFor={item}>{item}
-                <input type="checkbox" id={item} name={item} value={item}/>
-            </label>
-        </React.Fragment>
-    );
 
     return (
         <>
