@@ -2,41 +2,89 @@ import React, { useState } from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
-import NewsItem from "./NewsItem";
 import { DailyReport } from './DailyReport/DailyReport';
 import vehicleData from "../../data/plantequipment";
 import usersArr from "../../data/users";
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
+import NewsTicker from "./NewsTicker";
 
 export const Supervisor = () => {
 
     //get issues API i guess
-    const newsItem = [{
+    const newsItems = [{
         time: "18:34",
         title: "Maintenance",
-        message: "Truck 005 Broken Light reported"
+        message: "Truck 005 Broken Light reported",
+        important: false
     },
     {
         time: "18:37",
         title: "Load",
-        message: "Truck 041 Loaded"
+        message: "Truck 041 Loaded",
+        important: false
     },
     {
         time: "18:39",
         title: "Load",
-        message: "Truck 068 Loaded"
+        message: "Truck 068 Loaded",
+        important: false
     },
     {
         time: "18:42",
         title: "Maintenance",
-        message: "Truck 056 Flat Tyre reported"
+        message: "Truck 056 Flat Tyre reported",
+        important: true
     },
     {
         time: "18:42",
         title: "Maintenance",
-        message: "Truck 005 Broken Light marked repaired"
+        message: "Truck 005 Broken Light marked repaired",
+        important: false
+    },
+    {
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light marked repaired",
+        important: false
+    },
+    {
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light marked repaired",
+        important: false
+    },
+    {
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light marked repaired",
+        important: false
+    },
+    {
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light marked repaired",
+        important: false
+    },
+    {
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light marked repaired",
+        important: false
+    },
+    {
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light marked repaired",
+        important: false
+    },
+    {
+        time: "18:42",
+        title: "Maintenance",
+        message: "Truck 005 Broken Light marked repaired",
+        important: false
     }];
+    //end of dummy data
 
     const [isOverlayShown, setIsOverlayShown] = useState(false);
 
@@ -55,10 +103,12 @@ export const Supervisor = () => {
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Supervisor Reports</button></div>
                 </section>
-                <ul className={Styles.newsList}>
-                    {/* math random probably isnt the best tool for this */}
-                    {Array.isArray(newsItem) ? newsItem.map(item => <NewsItem key={Math.random()} item={item} />) : <p>Incorrect Data Format</p>}
-                </ul>
+                {/* <ul className={Styles.newsList}>
+                    {Array.isArray(newsItems) ? newsItem.map(item => <NewsItem key={Math.random()} item={item} />) : <p>Incorrect Data Format</p>}
+                </ul>  */}
+                <section className={Styles.newsTicker}>
+                    <NewsTicker newsItems={newsItems} />
+                </section>
                 <section className={Styles.vehicleTable}>
                     <VehicleTable />
                 </section>
@@ -72,6 +122,7 @@ export const Supervisor = () => {
                 {overlayContent}
             </div>
         </>
+        
     )
 }
 
