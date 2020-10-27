@@ -29,7 +29,7 @@ const App = () => {
         <Operator path="/Operator" />
         <Supervisor path="/Supervisor" />
         <Maintenance path="/Maintenance" />
-        <Management path="/Management/*" />
+        <Management path="/Management" />
         <Admin path="/Admin/*" />
         <ChecklistModal path="/ChecklistModal" checklistData={checklistData} />
         <ClassAChecks path="/ClassA" />

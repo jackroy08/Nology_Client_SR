@@ -1,11 +1,21 @@
 import React from "react";
 import Styles from "./LiveFeed.module.scss";
+import LiveFeedItem from "./LiveFeedItem";
 
-const LiveFeed = () => {
+const LiveFeed = (props) => {
+
+    const testArr = [1,2,3,4,5,6,7,8,9,10];
+
     return (
-        <section className={Styles.dataFeed}>
-            <p>Insert live feed / data </p>
-        </section>
+            <article className={Styles.dataFeed}>
+                <h1 className={Styles.feedTitle}>Live feed for {props.feedType}</h1>
+                <button>Report</button>
+                <section className={Styles.feedList}>
+                    {testArr.map((feedItem) => {
+                        return <LiveFeedItem item={feedItem}/>
+                    })}
+                </section>
+            </article>
     )
 }
 

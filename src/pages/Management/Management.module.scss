@@ -1,12 +1,29 @@
 @import '../../assets/styles/buttons';
+@import "../../assets/styles/variables";
 
 .managementMain {
-    margin: 50px 100px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    width: 95%;
+    margin: 0 auto;
 
-    button {
-        margin: 0 1px;
+    .managementTitle {
+        font-size: 90px;
+        color: $light-text-color;
+        font-family: rubik;
+        font-style: normal;
+        font-weight: 700;
+    }
+    .buttonContainer {
+        display: flex;
+        justify-content: center;
+
+        button {
+            margin: 50px 0;
+        }
+    }
+    .liveFeedContainer {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
     }
 }

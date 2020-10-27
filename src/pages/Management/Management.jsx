@@ -1,8 +1,6 @@
 import React from 'react'
 import Styles from './Management.module.scss';
-import {Router} from "@reach/router";
 import { Link } from "@reach/router";
-import ManagementReports from "./ManagementReports";
 import LiveFeed from "./LiveFeed";
 
 const Management = () => {
@@ -10,13 +8,15 @@ const Management = () => {
     return (
         <>
             <main className={Styles.managementMain}>
-                <Link to="./ManagementReports"><button className={Styles.btn}>View Reports</button></Link>
-                <Link to="../Admin"><button className={Styles.btn}>Go to admin page</button></Link>
+                <h1 className={Styles.managementTitle}>Management</h1>
+                <section className={Styles.buttonContainer}>
+                    <Link to="../Admin"><button className={Styles.btn}>Go to admin page</button></Link>
+                </section>
+                <section className={Styles.liveFeedContainer}>
+                    <LiveFeed feedType={"Vehicles"}/>
+                    <LiveFeed feedType={"Teams"}/>
+                </section>
             </main>
-            <Router>
-                <LiveFeed path="/"/>
-                <ManagementReports path="ManagementReports"/>
-            </Router>
         </>
     )
 }
