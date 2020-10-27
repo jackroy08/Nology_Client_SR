@@ -1,13 +1,17 @@
 import React from "react";
 import Styles from "./LiveFeedItem.module.scss";
 
-const LiveFeedItem = () => {
+const LiveFeedItem = (props) => {
+
+    const feedItem = props.item;
+    console.log(feedItem);
+
     return (
         <section className={Styles.listItem}>
-            <p>Subject</p>
-            <p>Time Reported</p>
-            <p>Urgency Level</p>
-            <p>Description</p>
+            <p>{feedItem[0]}</p>
+            <p>{feedItem[1]}</p>
+            <p>{feedItem[2]}</p>
+            <p>{feedItem[3]}</p>
         </section>
     )
 }

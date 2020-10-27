@@ -4,14 +4,15 @@ import LiveFeedItem from "./LiveFeedItem";
 
 const LiveFeed = (props) => {
 
-    const testArr = [1,2,3,4,5,6,7,8,9,10];
+    const feedType = props.feedType.feedType;
+    const feedInfo = props.feedType.feedArr;
 
     return (
             <article className={Styles.dataFeed}>
-                <h1 className={Styles.feedTitle}>Live feed for {props.feedType}</h1>
+                <h1 className={Styles.feedTitle}>Live feed for {feedType}</h1>
                 <button>Report</button>
                 <section className={Styles.feedList}>
-                    {testArr.map((feedItem) => {
+                    {feedInfo.map((feedItem) => {
                         return <LiveFeedItem item={feedItem}/>
                     })}
                 </section>
