@@ -3,16 +3,20 @@ import Styles from "./Confirmation.module.scss";
 
 const Confirmation = (props) => {
     const {backHandler, failedElements} = props;
-    const getFailedElementJsx = (element) => {
-        return (
-            <li key={element.issue} className= {Styles.userItem}>
-                <p>{element.classType}</p>
-                <p>{element.issue}</p>
-                <p>{element.vehicleID}</p>
-                <p>{element.supervisor}</p>
-                <p>Operator name</p>
-            </li>
-        )
+    const getFailedElementJsx = (classType) => {
+        return Object.keys(failedElements[classType]).map(elem => {
+            if (failedElements[classType][elem].issue) {
+                return (
+                    <li key={failedElements[classType][elem].issue} className= {Styles.userItem}>
+                        <p>{failedElements[classType][elem].classType}</p>
+                        <p>{failedElements[classType][elem].issue}</p>
+                        <p>{failedElements[classType][elem].vehicleID}</p>
+                        <p>{failedElements[classType][elem].supervisor}</p>
+                        <p>Operator name</p>
+                    </li>
+                )
+            }
+        });
     };
     return (
         <section className={Styles.userListSection}>
@@ -24,7 +28,7 @@ const Confirmation = (props) => {
                     <h4>Supervisor</h4>
                     <h4>Operator</h4>
                 </li>
-                {failedElements.map(getFailedElementJsx)}
+                {Object.keys(failedElements).map(getFailedElementJsx)}
             </ul>
             <section className={Styles.navigation}>
                 <button onClick={backHandler} className={Styles.btn}>Back</button>

@@ -11,21 +11,22 @@ const ChecklistContainer = (props) => {
     console.log(user);
     const [step, setStep] = useState(1);
     const [vehicleType, setVehicleType] = useState("adt");
-    const [failedElements, setFailedElements] = useState([]);
+    const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
     const vehicleKeys = Object.keys(checklistData);
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[vehicleType][classType]).reduce((acc, val) => {
                 if (!document.getElementById(val).checked) {
-                    acc.push({"classType": classType, "issue": val ,
+                    acc[classType][val] = {"classType": classType, "issue": val ,
                             "vehicleID": vehicleType,
                             "operator": user,
-                            "supervisor": "supervisor1"});
-                    }
+                            "supervisor": "supervisor1"};
+                    } else acc[classType][val] = {};
                 return acc;
         }, failedElements);
     }
     //NEED TO CREATE A FUNCTION TO CHECK IF ELEMENTS ALREADY EXIST IN ARRAY
+
     const nextHandler = ()  => {
         setStep(step + 1);
     }
