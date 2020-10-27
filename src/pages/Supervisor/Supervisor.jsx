@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
@@ -84,7 +84,8 @@ export const Supervisor = () => {
         message: "Truck 005 Broken Light marked repaired",
         important: false
     }];
-    //end of dummy data
+
+    const maintenanceIssues = [{status: true},{status: true},{status: false},{status: true},{status: true},{status: false},{status: false},{status: false}]
 
     const [isOverlayShown, setIsOverlayShown] = useState(false);
 
@@ -99,7 +100,11 @@ export const Supervisor = () => {
                 <section className={Styles.buttonGrid}>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Add Load</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehicleData={vehicleData} />) }}>Reassign Vehicles</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance
+                    <div className={Styles.notification}>
+                        <p>{maintenanceIssues.filter(i=> i.status).length}</p>
+                    </div>
+                    </button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Supervisor Reports</button></div>
                 </section>
@@ -107,7 +112,7 @@ export const Supervisor = () => {
                     {Array.isArray(newsItems) ? newsItem.map(item => <NewsItem key={Math.random()} item={item} />) : <p>Incorrect Data Format</p>}
                 </ul>  */}
                 <section className={Styles.newsTicker}>
-                    <NewsTicker newsItems={newsItems} />
+                    {<NewsTicker newsItems={newsItems}/>}
                 </section>
                 <section className={Styles.vehicleTable}>
                     <VehicleTable />
