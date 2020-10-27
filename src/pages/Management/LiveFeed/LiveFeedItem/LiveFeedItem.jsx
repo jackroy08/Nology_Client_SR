@@ -7,6 +7,7 @@ const LiveFeedItem = () => {
             <p>Subject</p>
             <p>Time Reported</p>
             <p>Urgency Level</p>
+            <p>Description</p>
         </section>
     )
 }
