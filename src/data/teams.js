@@ -1,64 +1,64 @@
 const teamsArr = [
   {
-  teamName : "Team A",
-  rotationGroup : "Green",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team A",
+    subTeam: "Morning"
   },
   {
-  teamName : "Team B",
-  rotationGroup : "Green",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team A",
+    subTeam: "Afternoon"
   },
   {
-  teamName : "Team C",
-  rotationGroup : "Green",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team A",
+    subTeam: "Night"
   },
   {
-  teamName : "Team D",
-  rotationGroup : "Blue",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team B",
+    subTeam: "Morning"
   },
   {
-  teamName : "Team E",
-  rotationGroup : "Blue",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team B",
+    subTeam: "Afternoon",
   },
   {
-  teamName : "Team F",
-  rotationGroup : "Blue",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team B",
+    subTeam: "Night"
   },
   {
-  teamName : "Team G",
-  rotationGroup : "Red",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team C",
+    subTeam: "Morning"
   },
   {
-  teamName : "Team H",
-  rotationGroup : "Red",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team C",
+    subTeam: "Afternoon"
   },
   {
-  teamName : "Team I",
-  rotationGroup : "Red",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team C",
+    subTeam: "Night"
   },
   {
-  teamName : "Team J",
-  rotationGroup : "Yellow",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team D",
+    subTeam: "Morning"
   },
   {
-  teamName : "Team K",
-  rotationGroup : "Yellow",
-  currentSite : "Belfast"
+    site: "Belfast",
+    team: "Team D",
+    subTeam: "Afternoon"
   },
   {
-  teamName : "Team L",
-  rotationGroup : "Yellow",
-  currentSite : "Belfast"
-  },
+    site: "Belfast",
+    team: "Team D",
+    subTeam: "Night"
+  }
 ]
 
 export default teamsArr;

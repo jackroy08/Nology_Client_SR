@@ -8,10 +8,10 @@ import CreateTeamForm from './CreateTeamForm';
 
 const getTeamItemJsx = (team) => {
     return (
-        <li key={team.teamName} className={Styles.teamItem}>
-            <p>{team.teamName}</p>
-            <p>{team.rotationGroup}</p>
-            <p>{team.currentSite}</p>
+        <li key={team.team} className={Styles.teamItem}>
+            <p>{team.site}</p>
+            <p>{team.team}</p>
+            <p>{team.subTeam}</p>
             <button>Edit...</button>
         </li>
     )
@@ -30,9 +30,9 @@ const ManageTeams = () => {
             </header>                    
             <ul className={Styles.teamsList}>
                 <li className={Styles.columnTitles}>
-                    <h4>Team Name</h4>
-                    <h4>Rotation Group</h4>
                     <h4>Current Site</h4>
+                    <h4>Team</h4>
+                    <h4>Sub Team</h4>
                 </li>
                 {filteredTeamsArr.map(getTeamItemJsx)}
                 </ul>
