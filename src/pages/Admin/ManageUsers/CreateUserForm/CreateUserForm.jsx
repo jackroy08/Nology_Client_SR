@@ -16,15 +16,16 @@ class User {
     }
 }
 class Supervisor extends User {
-    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam) {
+    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam) {
     super(userType, fullName, userID, dateOfBirth, password);
     this.currentTeam = currentTeam;
+    this.currentSubTeam = currentSubTeam;
     this.isOnShift = false;
     }
 }
 class Operator extends Supervisor {
-    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, isOnShift) {
-        super(userType, fullName, userID, dateOfBirth, password, currentTeam, isOnShift);
+    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam, isOnShift) {
+        super(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam, isOnShift);
         this.assignedVehicle = "";
     }
 }
@@ -37,10 +38,9 @@ const CreateUserForm = (props) => {
         switch (data.userType) {
             case "management" : usersArr.push(new User(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password)); break;
             case "maintenance" : usersArr.push(new User(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password)); break;
-            case "supervisor" : usersArr.push(new Supervisor(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam)); break;
-            case "operator" : usersArr.push(new Operator(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam)); break;
+            case "supervisor" : usersArr.push(new Supervisor(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentSubTeam)); break;
+            case "operator" : usersArr.push(new Operator(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentSubTeam)); break;
         }
-    console.log(usersArr);
     }
     
     return ( 
@@ -86,6 +86,18 @@ const CreateUserForm = (props) => {
                 <option value="TeamB">Team B</option>
                 <option value="TeamC">Team C</option>
                 <option value="TeamD">Team D</option>
+            </select>
+            
+            
+            <label htmlFor="currentSubTeam">Select Sub Team :</label>
+            <select
+                name="currentSubTeam"
+                id="currentSubTeam" 
+                ref={register({ required: true })}>
+                <option value="">Select Sub Team</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Night">Night</option>
             </select>
             
             <label htmlFor="fullName">Full Name :</label>

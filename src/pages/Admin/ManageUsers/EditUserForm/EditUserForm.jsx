@@ -66,6 +66,18 @@ const EditUserForm = (props) => {
                 <option value="teamD">Team D</option>
             </select>
             
+            <label htmlFor="currentSubTeam">Select Sub Team :</label>
+            <select
+                name="currentSubTeam"
+                id="currentSubTeam" 
+                ref={register({ required: true })}>
+                <option value="">Select Sub Team</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Night">Night</option>
+            </select>
+            
+
             <label htmlFor="fullName">Full Name :</label>
             <input
                 value={fullNameStr}                
