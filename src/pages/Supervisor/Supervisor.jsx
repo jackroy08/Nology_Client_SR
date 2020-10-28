@@ -3,7 +3,7 @@ import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
 import { DailyReport } from './DailyReport/DailyReport';
-import vehicleData from "../../data/plantequipment";
+import vehiclesArr from "../../data/vehicles";
 import usersArr from "../../data/users";
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
@@ -128,6 +128,24 @@ export const Supervisor = () => {
             </div>
         </>
         
+<<<<<<< HEAD
+=======
+        <section className={Styles.buttonGrid}>
+            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />)}}>Add Load</button></div>
+            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehiclesArr={vehiclesArr}/>)}}>Reassign Vehicles</button></div>
+            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance</button></div>
+            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
+            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent}/>)}}>Supervisor Reports</button></div>
+        </section>
+            <ul className={Styles.newsList}>
+                {/* math random probably isnt the best tool for this */}
+                {Array.isArray(newsItem) ? newsItem.map(item => <NewsItem key={Math.random()} item={item}/>) : <p>Incorrect Data Format</p>}
+            </ul>
+        <div className={`${Styles.overlay} ${overlayStyle}`}>
+            {overlayContent}
+        </div>
+    </main>
+>>>>>>> 31bba1b1cbbb4265a94f5af4fea8b80d3f4553ed
     )
 }
 

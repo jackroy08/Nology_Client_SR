@@ -1,17 +1,43 @@
-import React from "react";
 import { Link } from "@reach/router";
-import Styles from "../Checklist.module.scss";
+import React from "react";
+import Styles from "./Confirmation.module.scss";
 
-const Confirmation = () => {
+const Confirmation = (props) => {
+    const {backHandler, failedElements} = props;
+    const getFailedElementJsx = (classType) => {
+        return Object.keys(failedElements[classType]).map(elem => {
+            if (failedElements[classType][elem].issue) {
+                return (
+                    <li key={failedElements[classType][elem].issue} className= {Styles.userItem}>
+                        <p>{failedElements[classType][elem].classType}</p>
+                        <p>{failedElements[classType][elem].issue}</p>
+                        <p>{failedElements[classType][elem].vehicleID}</p>
+                        <p>{failedElements[classType][elem].supervisor}</p>
+                        <p>Operator name</p>
+                    </li>
+                )
+            }
+        });
+    };
     return (
-        <main className={Styles.pageGrid}>
-            <div className={Styles.confirmationDiv}>
-                <p className={Styles.responseMessage}>Your responses have been recorded and the relevant teams have been updated. If you have any class A's checked please contact your supervisor for further assistance.</p>
-            </div>
-            <Link to="/Operator">
-                <button className={Styles.btn}>Return to Home</button> 
-            </Link>
-        </main>
+        <section className={Styles.userListSection}>
+            <ul className= {Styles.userList}>
+                <li className= {Styles.columnTitles}>
+                    <h4>Class of issue</h4>
+                    <h4>Issue</h4>
+                    <h4>Vehicle id</h4>
+                    <h4>Supervisor</h4>
+                    <h4>Operator</h4>
+                </li>
+                {Object.keys(failedElements).map(getFailedElementJsx)}
+            </ul>
+            <section className={Styles.navigation}>
+                <button onClick={backHandler} className={Styles.btn}>Back</button>
+                <Link to="/Operator">
+                    <button className={Styles.btn}>Confirm checklist</button>
+                </Link>
+            </section>
+        </section>
     )
 }
 
