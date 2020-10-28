@@ -1,7 +1,7 @@
-import vehicleData from "../data/plantequipment"
+import vehiclesArr from "../data/vehicles"
 
 const getVehicles  = () => {
-    return vehicleData;
+    return vehiclesArr;
 }
 
 const createVehicle  = () => {
