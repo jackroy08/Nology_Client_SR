@@ -1,30 +1,33 @@
-import React, {useState, useEffect} from "react";
-import { Link } from "@reach/router";
+import React, {useState} from "react";
+import { navigate } from "@reach/router";
 import Styles from "./Operator.module.scss";
-import usersArr from "../../data/users";
 import { getUsers, updateUser } from "../../services/UsersService"
 
 
 const Operator = () => {
     
     const [isShiftStart, setIsShiftStart] = useState(false);
-
     const operatorsArr = getUsers().filter(user => user.userType === "operator");
-    const [user, setUser] = useState(operatorsArr[0].userID)
-    
+    const [user, setUser] = useState(operatorsArr[0])
     const changeStart = isShiftStart ? "End shift" : "Start shift";
 
     const updateShiftProperty = () => {
         setIsShiftStart(!isShiftStart);
-        updateUser()
+        updateUser();
     }
 
     const getUserKeys = thisUser => {
-        return <option value={thisUser.userID}>{thisUser.userID}</option> 
+        return <option key={thisUser.userID} value={thisUser.userID}>{thisUser.userID}</option> 
     };
 
     const changeHandler = e => {
-        setUser(e.target.value);
+        setUser(operatorsArr.filter(operator => operator.userID == [e.target.value])[0])
+    }
+
+    const updateButtonFunctionality = () => {
+        if (user.isOnShift) {
+            navigate("/Checklist")
+        } 
     }
 
     return (
@@ -37,13 +40,11 @@ const Operator = () => {
                 onClick={() => updateShiftProperty()}>
                 {changeStart}
             </button>
-            <Link to="/Checklist" >
-                <button className={`${Styles.btn} ${Styles.btnLG}`}>Accept Vehicle</button>
-            </Link>
-            <Link to="/Checklist" >
-                <button className={`${Styles.btn} ${Styles.btnLG}`}>Report a Problem</button>
-            </Link>
-            <button className={`${Styles.btn} ${Styles.btnLG}`}>Submit Load</button>
+            
+            <button onClick={() => updateButtonFunctionality()} user={user} className={`${Styles.btn} ${Styles.btnLG}`}>Accept Vehicle</button>
+            <button onClick={() => updateButtonFunctionality()} className={`${Styles.btn} ${Styles.btnLG}`}>Report a Problem</button>
+            {/* need similar functionality for submit load when screen developed */}
+            <button user={user} className={`${Styles.btn} ${Styles.btnLG}`}>Submit Load</button>
         </main>
     )
 }
