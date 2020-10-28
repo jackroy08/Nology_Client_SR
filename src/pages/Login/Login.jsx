@@ -21,7 +21,7 @@ const Login = () => {
                     </button>
                 </form>
             </div>            
-            <img className={`${Styles.backgroundImage}`} src={backgroundImage} />
+            <img className={`${Styles.backgroundImage}`} src={backgroundImage} alt="2 Large Mining Trucks"/>
         </main>
     )
 }

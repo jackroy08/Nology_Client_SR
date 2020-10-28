@@ -1,6 +1,6 @@
 @import '../../../assets/styles/buttons'; 
 
-.sitesListSection {
+.vehiclesListSection {
   width: 100%;
   padding: 0 $base-padding*2 $base-padding*2 $base-padding*2;
 
@@ -27,21 +27,21 @@
     padding: $base-padding;
   }
 
-  .sitesList {
+  .vehiclesList {
     width: 100%;
     background-color: $background-color1;
     margin: 0;
     padding: 0 $base-padding $base-padding $base-padding;
   }
 
-  .siteItem, .columnTitles {
+  .vehicleItem, .columnTitles {
     display:grid;
-    grid-template-columns: 1fr 50px;
+    grid-template-columns: 0.5fr 1.5fr 1fr 1fr 1fr 1fr 50px;
     justify-items: start;
     align-items: center;
   }
   
-  .siteItem {
+  .vehicleItem {
     background-color: $background-color1;
     margin-bottom: $base-padding;
     padding: 0 $base-padding;

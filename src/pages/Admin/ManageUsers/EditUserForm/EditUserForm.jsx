@@ -1,8 +1,8 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-import Styles from './EditUser.module.scss';
+import Styles from './EditUserForm.module.scss';
 
-const EditUser = (props) => {
+const EditUserForm = (props) => {
     const {
         userType, 
         userID, 
@@ -10,6 +10,7 @@ const EditUser = (props) => {
         fullNameStr,
         dateOfBirth, 
         currentTeam, 
+        currentSubTeam,
     } = props.user
 
     const { register, handleSubmit, errors } = useForm();
@@ -22,7 +23,7 @@ const EditUser = (props) => {
         <form className={Styles.userForm} onSubmit={handleSubmit(editUser)}>
             <label htmlFor="userID">Employee number :</label>
             <input
-                value={userID}
+                defaultValue={userID}
                 type="text"
                 id="userID"
                 name="userID"
@@ -31,7 +32,7 @@ const EditUser = (props) => {
             
             <label htmlFor="password">Password :</label>
             <input
-                value={password}
+                defaultValue={password}
                 type="text"
                 id="password"
                 name="password"
@@ -41,7 +42,7 @@ const EditUser = (props) => {
             
             <label htmlFor="userType">Select User Type :</label>
             <select
-                value={userType}
+                defaultValue={userType}
                 name="userType"
                 id="userType"
                 ref={register({ /*required: true*/ })}>
@@ -55,7 +56,7 @@ const EditUser = (props) => {
 
             <label htmlFor="currentTeam">Select Team :</label>
             <select
-                value={currentTeam}
+                defaultValue={currentTeam}
                 name="currentTeam"
                 id="currentTeam" 
                 ref={register({ /*required: true */})}>
@@ -66,9 +67,22 @@ const EditUser = (props) => {
                 <option value="teamD">Team D</option>
             </select>
             
+            <label htmlFor="currentSubTeam">Select Sub Team :</label>
+            <select
+                defaultValue={currentSubTeam}
+                name="currentSubTeam"
+                id="currentSubTeam" 
+                ref={register({ required: true })}>
+                <option value="">Select Sub Team</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Night">Night</option>
+            </select>
+            
+
             <label htmlFor="fullName">Full Name :</label>
             <input
-                value={fullNameStr}                
+                defaultValue={fullNameStr}                
                 type="text"
                 id="fullName"
                 name="fullName"
@@ -78,7 +92,7 @@ const EditUser = (props) => {
             
             <label htmlFor="dateOfBirth">Date of Birth :</label>
             <input
-                value={dateOfBirth}
+                defaultValue={dateOfBirth}
                 type="date"
                 id="dateOfBirth"
                 name="dateOfBirth"
@@ -91,4 +105,4 @@ const EditUser = (props) => {
     )
 }
 
-export default EditUser;
+export default EditUserForm;

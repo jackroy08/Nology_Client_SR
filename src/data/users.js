@@ -35,6 +35,7 @@ const usersArr = [
     dateOfBirth : "1964-10-13",
     isOnShift : false,
     currentTeam : "TeamA",
+    currentSubTeam : "Morning"
   },
   {
     userType : "supervisor",
@@ -44,6 +45,27 @@ const usersArr = [
     dateOfBirth : "1965-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
+    currentSubTeam : "Morning"
+  },
+  {
+    userType : "supervisor",
+    userID : 3003,
+    password : "ABC123",
+    fullNameStr : "Zack Supervisor",
+    dateOfBirth : "1965-10-13",
+    isOnShift : false,
+    currentTeam : "TeamC",
+    currentSubTeam : "Morning"
+  },
+  {
+    userType : "supervisor",
+    userID : 3004,
+    password : "ABC123",
+    fullNameStr : "William Supervisor",
+    dateOfBirth : "1965-10-13",
+    isOnShift : false,
+    currentTeam : "TeamD",
+    currentSubTeam : "Morning"
   },
   {
     userType : "operator",
@@ -51,8 +73,9 @@ const usersArr = [
     password : "ABC123",
     fullNameStr : "George Operator",
     dateOfBirth : "1966-10-13",
-    isOnShift : false,
+    isOnShift : true,
     currentTeam : "TeamA",
+    currentSubTeam: "Morning",
     assignedVehicle : ""
   },
   {
@@ -61,8 +84,9 @@ const usersArr = [
     password : "ABC123",
     fullNameStr : "Harry Operator",
     dateOfBirth : "1967-10-13",
-    isOnShift : false,
+    isOnShift : true,
     currentTeam : "TeamA",
+    currentSubTeam: "Afternoon",
     assignedVehicle : ""
   },
   {
@@ -71,8 +95,9 @@ const usersArr = [
     password : "ABC123",
     fullNameStr : "Ivan Operator",
     dateOfBirth : "1968-10-13",
-    isOnShift : false,
+    isOnShift : true,
     currentTeam : "TeamA",
+    currentSubTeam: "Night",
     assignedVehicle : ""
   },
   {
@@ -81,8 +106,9 @@ const usersArr = [
     password : "ABC123",
     fullNameStr : "James Operator",
     dateOfBirth : "1969-10-13",
-    isOnShift : false,
-    currentTeam : "TeamA",
+    isOnShift : true,
+    currentTeam : "TeamB",
+    currentSubTeam: "Morning",
     assignedVehicle : ""
   },
   {
@@ -93,6 +119,7 @@ const usersArr = [
     dateOfBirth : "1970-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
+    currentSubTeam: "Afternoon",
     assignedVehicle : ""
   },
   {
@@ -103,6 +130,7 @@ const usersArr = [
     dateOfBirth : "1971-10-13",
     isOnShift : false,
     currentTeam : "TeamB",
+    currentSubTeam: "Night",
     assignedVehicle : ""
   },
   {
@@ -112,7 +140,8 @@ const usersArr = [
     fullNameStr : "Norman Operator",
     dateOfBirth : "1972-10-13",
     isOnShift : false,
-    currentTeam : "TeamB",
+    currentTeam : "TeamC",
+    currentSubTeam: "Morning",
     assignedVehicle : ""
   },
   {
@@ -122,7 +151,8 @@ const usersArr = [
     fullNameStr : "Oscar Operator",
     dateOfBirth : "1972-10-13",
     isOnShift : false,
-    currentTeam : "TeamB",
+    currentTeam : "TeamC",
+    currentSubTeam: "Afternoon",
     assignedVehicle : ""
   },
   {
@@ -132,9 +162,43 @@ const usersArr = [
     fullNameStr : "Peter Operator",
     dateOfBirth : "1973-10-13",
     isOnShift : false,
-    currentTeam : "TeamB",
+    currentTeam : "TeamC",
+    currentSubTeam: "Night",
     assignedVehicle : ""
   },
+  {
+    userType : "operator",
+    userID : 2010,
+    password : "ABC123",
+    fullNameStr : "Oscar Operator",
+    dateOfBirth : "1972-10-13",
+    isOnShift : false,
+    currentTeam : "TeamD",
+    currentSubTeam: "Morning",
+    assignedVehicle : ""
+  },
+  {
+    userType : "operator",
+    userID : 2011,
+    password : "ABC123",
+    fullNameStr : "Peter Operator",
+    dateOfBirth : "1973-10-13",
+    isOnShift : false,
+    currentTeam : "TeamD",
+    currentSubTeam: "Afternoon",
+    assignedVehicle : ""
+  },
+  {
+    userType : "operator",
+    userID : 2012,
+    password : "ABC123",
+    fullNameStr : "Oscar Operator",
+    dateOfBirth : "1972-10-13",
+    isOnShift : false,
+    currentTeam : "TeamD",
+    currentSubTeam: "Night",
+    assignedVehicle : ""
+  }
 ];
 
 export default usersArr;

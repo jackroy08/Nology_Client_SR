@@ -3,7 +3,7 @@ import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
 import { DailyReport } from './DailyReport/DailyReport';
-import vehicleData from "../../data/plantequipment";
+import vehiclesArr from "../../data/vehicles";
 import usersArr from "../../data/users";
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
@@ -108,9 +108,6 @@ export const Supervisor = () => {
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Supervisor Reports</button></div>
                 </section>
-                {/* <ul className={Styles.newsList}>
-                    {Array.isArray(newsItems) ? newsItem.map(item => <NewsItem key={Math.random()} item={item} />) : <p>Incorrect Data Format</p>}
-                </ul>  */}
                 <section className={Styles.newsTicker}>
                     {<NewsTicker newsItems={newsItems}/>}
                 </section>
@@ -127,7 +124,6 @@ export const Supervisor = () => {
                 {overlayContent}
             </div>
         </>
-        
     )
 }
 
