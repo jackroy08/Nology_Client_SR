@@ -3,6 +3,7 @@ import Styles from "../Checklist.module.scss";
 import RenderAdditionalOptions from "../RenderAdditionalOptions";
 
 const ClassAChecks = (props) => {
+
     const {getChecklist, setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
     const classType = "classA";
     const checkboxArr = Object.keys(checklistData[vehicleType][classType]);

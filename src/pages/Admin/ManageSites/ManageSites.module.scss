@@ -1,0 +1,58 @@
+@import '../../../assets/styles/buttons'; 
+
+.sitesListSection {
+  width: 100%;
+  padding: 0 $base-padding*2 $base-padding*2 $base-padding*2;
+
+  header {
+    background-color: $primary-color;
+    display: flex;
+    justify-items: flex-end;
+    align-items: center;
+    padding: $base-padding $base-padding*2;
+
+    h3{
+      margin-right: auto;
+    }
+    button, select {
+      background-color: $primary-color;
+      color: $dark-text-color;
+      &:hover {
+        background-color: $background-color3;
+      }
+    }
+  }
+
+  .columnTitles{
+    padding: $base-padding;
+  }
+
+  .sitesList {
+    width: 100%;
+    background-color: $background-color1;
+    margin: 0;
+    padding: 0 $base-padding $base-padding $base-padding;
+  }
+
+  .siteItem, .columnTitles {
+    display:grid;
+    grid-template-columns: 1fr 50px;
+    justify-items: start;
+    align-items: center;
+  }
+  
+  .siteItem {
+    background-color: $background-color1;
+    margin-bottom: $base-padding;
+    padding: 0 $base-padding;
+
+    &:hover {
+      background-color: $background-color2;
+    }
+
+    button {
+      height: fit-content;
+      width: 100%;
+    }
+  }
+}
