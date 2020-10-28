@@ -44,7 +44,7 @@ const Operator = () => {
             <button onClick={() => updateButtonFunctionality()} user={user} className={`${Styles.btn} ${Styles.btnLG}`}>Accept Vehicle</button>
             <button onClick={() => updateButtonFunctionality()} className={`${Styles.btn} ${Styles.btnLG}`}>Report a Problem</button>
             {/* need similar functionality for submit load when screen developed */}
-            <button user={user} className={`${Styles.btn} ${Styles.btnLG}`}>Submit Load</button>
+            <button user={user} className={`${Styles.btn} ${Styles.btnLG}`} onClick= {()=> navigate("/SubmitLoad")}>Submit Load</button>
         </main>
     )
 }

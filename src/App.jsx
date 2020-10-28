@@ -9,7 +9,7 @@ import Maintenance from "./pages/Maintenance";
 import Management from "./pages/Management";
 import Admin from "./pages/Admin";
 import ChecklistContainer from "./pages/Checklist/ChecklistContainer";
-
+import SubmitLoad from "./pages/Operator/SubmitLoad";
 // Components
 import Header from './components/header';
 // Data
@@ -29,6 +29,7 @@ const App = () => {
         <Management path="/Management" />
         <Admin path="/Admin/*" />
         <ChecklistContainer path="/Checklist" checklistData={checklistData} />
+        <SubmitLoad path="/SubmitLoad" />
       </Router>
     </>
   );
