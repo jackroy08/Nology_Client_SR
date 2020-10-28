@@ -1,12 +1,14 @@
 import React from "react";
 import Styles from "./TeamFeed.module.scss";
 import usersArr from "../../../data/users";
-import vehicleData from "../../../data/plantequipment";
-import LiveFeedItem from "../LiveFeedItem";
+import vehicleData from "../../../data/vehicles";
+import Modal from "../../../components/Modal";
+import useModal from "../../../components/Modal/useModal";
+import Report from "../Report";
 
 const TeamFeed = () => {
-
-    const teamArr = ["TeamA", "TeamB", "TeamC"];
+    const {isShowing, toggle} = useModal();
+    const teamArr = ["TeamA", "TeamB", "TeamC, TeamD"];
 
     const teamUpdates = [
         ["Team Name","Time Reported","User ID","Shift Start/End"],
@@ -47,7 +49,9 @@ const TeamFeed = () => {
                 <p>There are {userTeamArr.length} team members</p>
                 <p>There are currently {userActiveTeamArr.length} team members on shift</p>
                 {/* Loads submitted on current shift */}
+                <p>There have been ??? loads submitted during this shift.</p>
                 {/* Number of class A vehicle issues */}
+                <p>There have been ??? class A vehicle issues.</p>
             </>
         )
     }
@@ -55,11 +59,9 @@ const TeamFeed = () => {
     return (
         <article className={Styles.dataFeed}>
             <h1 className={Styles.feedTitle}>Live feed for teams</h1>
-            <button className={Styles.btn}>Report</button>
+            <button className={Styles.btn} onClick={toggle}>Report</button>
+            <Modal innerComponent={<Report item={teamUpdates} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
             <section className={Styles.feedList}>
-                {/* {teamUpdates.map((feedItem) => {
-                    return <LiveFeedItem item={feedItem}/>
-                })} */}
                 <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamArr.length}</span> teams on this site.</h2>
                 {teamArr.map(getTeamJsx)}
             </section>

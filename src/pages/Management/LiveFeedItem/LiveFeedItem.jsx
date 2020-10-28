@@ -2,9 +2,7 @@ import React from "react";
 import Styles from "./LiveFeedItem.module.scss";
 
 const LiveFeedItem = (props) => {
-
     const feedItem = props.item;
-    console.log(feedItem);
 
     return (
         <section className={Styles.listItem}>
