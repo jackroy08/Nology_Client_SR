@@ -1,3 +1,4 @@
+import { Link } from "@reach/router";
 import React from "react";
 import Styles from "./Confirmation.module.scss";
 
@@ -32,7 +33,9 @@ const Confirmation = (props) => {
             </ul>
             <section className={Styles.navigation}>
                 <button onClick={backHandler} className={Styles.btn}>Back</button>
-                <button className={Styles.btn}>Confirm checklist</button>
+                <Link to="/Operator">
+                    <button className={Styles.btn}>Confirm checklist</button>
+                </Link>
             </section>
         </section>
     )

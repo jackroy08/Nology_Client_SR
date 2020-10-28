@@ -8,7 +8,6 @@ import Confirmation from '../Confirmation';
 const ChecklistContainer = (props) => {
     
     const {checklistData, user} = props;
-    console.log(user);
     const [step, setStep] = useState(1);
     const [vehicleType, setVehicleType] = useState("adt");
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
@@ -25,7 +24,6 @@ const ChecklistContainer = (props) => {
                 return acc;
         }, failedElements);
     }
-    //NEED TO CREATE A FUNCTION TO CHECK IF ELEMENTS ALREADY EXIST IN ARRAY
 
     const nextHandler = ()  => {
         setStep(step + 1);
