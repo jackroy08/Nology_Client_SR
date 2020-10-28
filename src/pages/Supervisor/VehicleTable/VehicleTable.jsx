@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Styles from "./VehicleTable.module.scss";
-import vehicleData from "../../../data/plantequipment";
+import vehicleData from "../../../data/vehicles";
 
 //adding made up go status and Team - remove once data is from backend
 vehicleData.forEach(v => {

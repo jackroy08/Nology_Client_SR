@@ -8,6 +8,8 @@ import usersArr from "../../data/users";
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
 import NewsTicker from "./NewsTicker";
+import Modal from "./../../components/Modal";
+import useModal from "./../../components/Modal/useModal";
 
 export const Supervisor = () => {
 
@@ -85,11 +87,13 @@ export const Supervisor = () => {
         important: false
     }];
 
-    const maintenanceIssues = [{status: true},{status: true},{status: false},{status: true},{status: true},{status: false},{status: false},{status: false}]
+    const maintenanceIssues = [{status: false},{status: false},{status: false},{status: false},{status: false},{status: false},{status: false},{status: false}]
 
     const [isOverlayShown, setIsOverlayShown] = useState(false);
 
     const [overlayContent, setOverlayContent] = useState(null);
+
+    const { isShowing, toggle } = useModal();
 
     let overlayStyle = isOverlayShown ? Styles.shown : "";
 
@@ -98,8 +102,8 @@ export const Supervisor = () => {
             <main className={Styles.pageGrid}>
 
                 <section className={Styles.buttonGrid}>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Add Load</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehicleData={vehicleData} />) }}>Reassign Vehicles</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setOverlayContent(<Load toggle={toggle} isShowing={isShowing}/>) }}>Add Load</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehicleData={vehiclesArr} />) }}>Reassign Vehicles</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance
                     <div className={Styles.notification}>
                         <p>{maintenanceIssues.filter(i=> i.status).length}</p>
@@ -117,6 +121,10 @@ export const Supervisor = () => {
                 <section className={Styles.vehicleTable}>
                     <UserTable />
                 </section>
+
+                <Modal innerComponent={overlayContent} isShowing={isShowing} hide={toggle}/>
+                <button onClick={toggle}>click me</button>
+
 
             </main>
 
