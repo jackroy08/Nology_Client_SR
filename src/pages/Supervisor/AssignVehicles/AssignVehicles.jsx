@@ -2,22 +2,22 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 export const AssignVehicles = (props) => {
 
-    const { setIsOverlayShown, setOverlayContent, usersArr, vehicleData } = props;
+    const { setIsOverlayShown, setOverlayContent, usersArr, vehiclesArr } = props;
 
     const { register, handleSubmit} = useForm();
 
-    // console.log(vehicleData);
+    // console.log(vehiclesArr);
 
     const onSubmit = (data) => {
 
         //go to database
-        vehicleData.forEach(vehicle =>{
+        vehiclesArr.forEach(vehicle =>{
             if(vehicle.plantID === data.vehicle){
                 vehicle.currentUser = data.driver;
             }
         });
 
-        console.log(vehicleData);
+        console.log(vehiclesArr);
     
     }
 
@@ -35,7 +35,7 @@ export const AssignVehicles = (props) => {
                     <h2>Vehicle</h2>
 
                     <select name="vehicle" ref={register({required: true})}>
-                        {vehicleData.map(vehicle => <option key={vehicle.plantID} value={vehicle.plantID}>{`${vehicle.plantType}-${vehicle.plantID}`}</option>)}
+                        {vehiclesArr.map(vehicle => <option key={vehicle.plantID} value={vehicle.plantID}>{`${vehicle.plantType}-${vehicle.plantID}`}</option>)}
                     </select>
                     
                     <input type="submit"/>
