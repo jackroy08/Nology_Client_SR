@@ -8,6 +8,8 @@ import usersArr from "../../data/users";
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
 import NewsTicker from "./NewsTicker";
+import Modal from "./../../components/Modal";
+import useModal from "./../../components/Modal/useModal";
 
 export const Supervisor = () => {
 
@@ -85,11 +87,13 @@ export const Supervisor = () => {
         important: false
     }];
 
-    const maintenanceIssues = [{status: true},{status: true},{status: false},{status: true},{status: true},{status: false},{status: false},{status: false}]
+    const maintenanceIssues = [{status: false},{status: false},{status: false},{status: false},{status: false},{status: false},{status: false},{status: false}]
 
     const [isOverlayShown, setIsOverlayShown] = useState(false);
 
     const [overlayContent, setOverlayContent] = useState(null);
+
+    const { isShowing, toggle } = useModal();
 
     let overlayStyle = isOverlayShown ? Styles.shown : "";
 
@@ -98,8 +102,8 @@ export const Supervisor = () => {
             <main className={Styles.pageGrid}>
 
                 <section className={Styles.buttonGrid}>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Add Load</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehicleData={vehicleData} />) }}>Reassign Vehicles</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setOverlayContent(<Load toggle={toggle} isShowing={isShowing}/>) }}>Add Load</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehicleData={vehiclesArr} />) }}>Reassign Vehicles</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance
                     <div className={Styles.notification}>
                         <p>{maintenanceIssues.filter(i=> i.status).length}</p>
@@ -108,9 +112,6 @@ export const Supervisor = () => {
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />) }}>Supervisor Reports</button></div>
                 </section>
-                {/* <ul className={Styles.newsList}>
-                    {Array.isArray(newsItems) ? newsItem.map(item => <NewsItem key={Math.random()} item={item} />) : <p>Incorrect Data Format</p>}
-                </ul>  */}
                 <section className={Styles.newsTicker}>
                     {<NewsTicker newsItems={newsItems}/>}
                 </section>
@@ -121,31 +122,16 @@ export const Supervisor = () => {
                     <UserTable />
                 </section>
 
+                <Modal innerComponent={overlayContent} isShowing={isShowing} hide={toggle}/>
+                <button onClick={toggle}>click me</button>
+
+
             </main>
 
             <div className={`${Styles.overlay} ${overlayStyle}`}>
                 {overlayContent}
             </div>
         </>
-        
-<<<<<<< HEAD
-=======
-        <section className={Styles.buttonGrid}>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />)}}>Add Load</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehiclesArr={vehiclesArr}/>)}}>Reassign Vehicles</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent}/>)}}>Supervisor Reports</button></div>
-        </section>
-            <ul className={Styles.newsList}>
-                {/* math random probably isnt the best tool for this */}
-                {Array.isArray(newsItem) ? newsItem.map(item => <NewsItem key={Math.random()} item={item}/>) : <p>Incorrect Data Format</p>}
-            </ul>
-        <div className={`${Styles.overlay} ${overlayStyle}`}>
-            {overlayContent}
-        </div>
-    </main>
->>>>>>> 31bba1b1cbbb4265a94f5af4fea8b80d3f4553ed
     )
 }
 

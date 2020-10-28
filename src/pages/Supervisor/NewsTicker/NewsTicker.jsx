@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "./NewsTicker.module.scss";
 import NewsItem from "./NewsItem";
 
-const NewsTicker = (props) => {
+const NewsTicker = (props) => { 
   
   const importantNewsItems = props.newsItems.filter(i => i.important);
   const regularNewsItems = props.newsItems.filter(i => !i.important);
