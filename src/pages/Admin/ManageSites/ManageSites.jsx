@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Styles from './ManageSites.module.scss';
 import sitesArr from '../../../data/sites';
 import useModal from '../../../components/Modal/useModal';

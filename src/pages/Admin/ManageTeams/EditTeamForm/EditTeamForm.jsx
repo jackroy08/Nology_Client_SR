@@ -1,39 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
 import { useForm } from "react-hook-form";
-import Styles from './CreateTeamForm.module.scss';
-import teamsArr from '../../../../data/teams';
+import Styles from './EditTeamForm.module.scss';
 import sitesArr from '../../../../data/sites';
-import Modal from '../../../../components/Modal';
-import useModal from '../../../../components/Modal/useModal';
 
+const EditTeamForm = (props) => {
+    const {
+        site, 
+        team, 
+        subTeam
+    } = props.team
 
-// ------ CLASSES ----- //
-
-class Team {
-    constructor( site, team, subTeam) {
-    this.site = site;
-    this.team = team;
-    this.subTeam = subTeam;
-    }
-    get teamID () {
-        return `${this.team} ${this.subTeam}`
-    }
-}
-
-// ------ JSX ----- //
-
-const CreateTeamForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
+
+    const editTeam = (data) => {
+        console.log(data.team)
+    }
     
-    const createNewTeam = (data) => {
-        teamsArr.push(new Team(data.site, data.team, data.subTeam)); 
-        }
-    
-    return ( 
-        <form className={Styles.teamForm} onSubmit={handleSubmit(createNewTeam)}>
+    return (
+        <form className={Styles.teamForm} onSubmit={handleSubmit(editTeam)}>
             <label htmlFor="site">Select Site :</label>
             <select
+                defaultValue={site}
                 name="site"
                 id="site"
                 ref={register({ required: true })}>
@@ -44,6 +31,7 @@ const CreateTeamForm = (props) => {
 
             <label htmlFor="team">Team :</label>
             <input
+                defaultValue={team}
                 type="text"
                 id="team"
                 name="team"
@@ -53,6 +41,7 @@ const CreateTeamForm = (props) => {
             
             <label htmlFor="subTeam">Sub Team :</label>
             <input
+                defaultValue={subTeam}
                 type="text"
                 id="subTeam"
                 name="subTeam"
@@ -60,11 +49,10 @@ const CreateTeamForm = (props) => {
                 ref={register({ required: true })} />
                 {errors.subTeam && <p>Sub team is required.</p>}
             
-                
             <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
             <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Create</button>
         </form>
-    );
+    )
 }
 
-export default CreateTeamForm;
+export default EditTeamForm;

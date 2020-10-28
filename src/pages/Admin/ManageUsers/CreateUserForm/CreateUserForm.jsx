@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { useForm } from "react-hook-form";
 import Styles from './CreateUserForm.module.scss';
 import usersArr from '../../../../data/users';
@@ -16,15 +15,16 @@ class User {
     }
 }
 class Supervisor extends User {
-    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam) {
+    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam) {
     super(userType, fullName, userID, dateOfBirth, password);
     this.currentTeam = currentTeam;
+    this.currentSubTeam = currentSubTeam;
     this.isOnShift = false;
     }
 }
 class Operator extends Supervisor {
-    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, isOnShift) {
-        super(userType, fullName, userID, dateOfBirth, password, currentTeam, isOnShift);
+    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam, isOnShift) {
+        super(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam, isOnShift);
         this.assignedVehicle = "";
     }
 }
@@ -33,14 +33,15 @@ class Operator extends Supervisor {
 
 const CreateUserForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
+    
     const createNewUser = (data) => {
         switch (data.userType) {
             case "management" : usersArr.push(new User(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password)); break;
             case "maintenance" : usersArr.push(new User(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password)); break;
-            case "supervisor" : usersArr.push(new Supervisor(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam)); break;
-            case "operator" : usersArr.push(new Operator(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam)); break;
+            case "supervisor" : usersArr.push(new Supervisor(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentSubTeam)); break;
+            case "operator" : usersArr.push(new Operator(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentSubTeam)); break;
+            default: /* do nothing; */; break;
         }
-    console.log(usersArr);
     }
     
     return ( 
@@ -88,6 +89,18 @@ const CreateUserForm = (props) => {
                 <option value="TeamD">Team D</option>
             </select>
             
+            
+            <label htmlFor="currentSubTeam">Select Sub Team :</label>
+            <select
+                name="currentSubTeam"
+                id="currentSubTeam" 
+                ref={register({ required: true })}>
+                <option value="">Select Sub Team</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Night">Night</option>
+            </select>
+            
             <label htmlFor="fullName">Full Name :</label>
             <input
                 type="text"
@@ -113,28 +126,3 @@ const CreateUserForm = (props) => {
 }
 
 export default CreateUserForm;
-
-
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-
-// const Modal = ({ isShowing, hide }) => isShowing ? ReactDOM.createPortal(
-//   <React.Fragment>
-//     <div className="modal-overlay"/>
-//     <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
-//       <div className="modal">
-//         <div className="modal-header">
-//           <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-//             <span aria-hidden="true">&times;</span>
-//           </button>
-//         </div>
-//         <p>
-//           Hello, I'm a modal.
-//         </p>
-//       </div>
-//     </div>
-//   </React.Fragment>, document.body
-// ) : null;
-
-// export default Modal;

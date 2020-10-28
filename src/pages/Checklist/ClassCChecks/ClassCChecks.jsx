@@ -5,6 +5,7 @@ import Confirmation from "../Confirmation";
 import { updateVehicle } from "../../../services/VehiclesService";
 
 const ClassCChecks = (props) => {
+  
     const {getChecklist, setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
     const classType = "classC";
     const checkboxArr = Object.keys(checklistData[vehicleType][classType]);
@@ -21,7 +22,6 @@ const ClassCChecks = (props) => {
                         {checkboxArr.map(getChecklist)}
                     </div>
 
-                    
                     {additionalFieldsArr ? 
                         <>
                             <h2>Additional checks</h2>

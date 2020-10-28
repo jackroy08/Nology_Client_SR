@@ -1,3 +1,3 @@
-import UserItem from './UserItem'
+import UserItem from './Usertem'
 
 export default UserItem;
