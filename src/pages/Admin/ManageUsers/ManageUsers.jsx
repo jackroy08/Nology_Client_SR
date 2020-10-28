@@ -45,7 +45,7 @@ const ManageUsers = () => {
                         <h4>Sub Team</h4>
                         <h4>Action</h4>
                     </li>
-                    {filteredUsersArr.map((user) => <UserItem user={user} />)}
+                    {filteredUsersArr.map((user) => <UserItem key={user.userID} user={user} />)}
                 </ul>
             </section>    
         </main>

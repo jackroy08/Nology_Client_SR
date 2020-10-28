@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Styles from './UserItem.module.scss';
 import EditUserForm  from '../EditUserForm';
 import Modal from '../../../../components/Modal';
