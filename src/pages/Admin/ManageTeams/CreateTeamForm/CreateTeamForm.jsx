@@ -67,45 +67,4 @@ const CreateTeamForm = (props) => {
     );
 }
 
-    // const { register, handleSubmit, errors } = useForm();
-        
-    // return (
-    //     isShowing ? ReactDOM.createPortal(
-            
-    //         <form className={Styles.teamForm} onSubmit={handleSubmit}>
-    //             <label htmlFor="team">Team :</label>
-    //             <input
-    //                 type="text"
-    //                 id="teamName"
-    //                 name="teamName"
-    //                 placeholder="enter the team name"
-    //                 ref={register({ required: true })} />
-    //                 {errors.teamName && <p>Team name is required. Minimum length of 2 characters.</p>}
-                
-    //             <label htmlFor="rotationGroup">Rotation Group :</label>
-    //             <input
-    //                 type="text"
-    //                 id="rotationGroup"
-    //                 name="rotationGroup"
-    //                 placeholder="enter the rotation group"
-    //                 ref={register({ required: true })} />
-    //                 {errors.rotationGroup && <p>Rotation group is required. Minimum length of 2 characters.</p>}
-                
-    //             <label htmlFor="currentSite">Select site :</label>
-    //             <select
-    //                 name="currentSite"
-    //                 id="currentSite"
-    //                 ref={register({ required: true })}>
-    //                 <option value="">Select site :</option>
-    //                 {sitesArr.map((site) => <option key={site}>{site}</option>)}
-    //             </select>
-    //                 {errors.currentSite && <p>User Type is required.</p>}
-    //             <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={hide}>Cancel</button>
-    //             <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Create</button>
-    //         </form>
-    //     </div>
-     
-    // );
-
-
 export default CreateTeamForm;
