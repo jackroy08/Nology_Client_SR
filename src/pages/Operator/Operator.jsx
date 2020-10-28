@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import { navigate } from "@reach/router";
 import Styles from "./Operator.module.scss";
-import { getUsers, updateUser } from "../../services/UsersService"
+import { getUsers, updateUser } from "../../services/UsersService";
+import useModal from "../../components/Modal/useModal";
+import SubmitLoad from "./SubmitLoad";
 
 
 const Operator = () => {
-    
+    const {isShowing, toggle} = useModal();
     const [isShiftStart, setIsShiftStart] = useState(false);
     const operatorsArr = getUsers().filter(user => user.userType === "operator");
     const [user, setUser] = useState(operatorsArr[0])
@@ -44,7 +46,8 @@ const Operator = () => {
             <button onClick={() => updateButtonFunctionality()} user={user} className={`${Styles.btn} ${Styles.btnLG}`}>Accept Vehicle</button>
             <button onClick={() => updateButtonFunctionality()} className={`${Styles.btn} ${Styles.btnLG}`}>Report a Problem</button>
             {/* need similar functionality for submit load when screen developed */}
-            <button user={user} className={`${Styles.btn} ${Styles.btnLG}`} onClick= {()=> navigate("/SubmitLoad")}>Submit Load</button>
+            <button user={user} className={`${Styles.btn} ${Styles.btnLG}`} onClick= {toggle}>Submit Load</button>
+            <SubmitLoad isShowing={isShowing} hide={toggle} />
         </main>
     )
 }
