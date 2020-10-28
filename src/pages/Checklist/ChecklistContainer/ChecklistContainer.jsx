@@ -6,17 +6,25 @@ import ClassCChecks from '../ClassCChecks';
 import Confirmation from '../Confirmation';
 
 const ChecklistContainer = (props) => {
-    const {checklistData} = props;
+    
+    const {checklistData, user} = props;
     const [step, setStep] = useState(1);
     const [vehicleType, setVehicleType] = useState("adt");
-    const [failedElements, setFailedElements] = useState({});
+    const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
+    const vehicleKeys = Object.keys(checklistData);
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[vehicleType][classType]).reduce((acc, val) => {
-            acc[classType][val] = false;
-            return acc;
-        }, {classA: {}, classB: {}, classC:{}});
+                if (!document.getElementById(val).checked) {
+                    acc[classType][val] = {"classType": classType, "issue": val ,
+                            "vehicleID": vehicleType,
+                            "operator": user,
+                            "supervisor": "supervisor1"};
+                    } else acc[classType][val] = {};
+                return acc;
+        }, failedElements);
     }
+
     const nextHandler = ()  => {
         setStep(step + 1);
     }
@@ -30,9 +38,25 @@ const ChecklistContainer = (props) => {
     }
 
     const getVehicleTypes = thisVehicle => {
-        return <option value={thisVehicle}>{thisVehicle}</option> 
+        return <option key={thisVehicle} value={thisVehicle}>{thisVehicle}</option> 
     };
-    const vehicleKeys = Object.keys(checklistData);
+
+    const getChecklist = item => (
+        <React.Fragment key={item}>
+            <label htmlFor={item}>{item}
+                <input type="checkbox" id={item} name={item} value={item}/>
+            </label>
+        </React.Fragment>
+    );
+
+    const propsMethods = {  getChecklist: getChecklist, 
+                            setFailedElements: setFailedElements, 
+                            failObject: failObject, 
+                            checklistData: checklistData, 
+                            vehicleType: vehicleType, 
+                            nextHandler: nextHandler, 
+                            backHandler: backHandler
+                        }
 
     let navigation = () => {
         switch (step) {
@@ -47,17 +71,16 @@ const ChecklistContainer = (props) => {
                         </Link>
                     </section>
                     )
-                case 2: return <ClassAChecks setFailedElements={setFailedElements} failObject={failObject} nextHandler={nextHandler} backHandler={backHandler} checklistData={checklistData} vehicleType={vehicleType} />
-                case 3: return <ClassBChecks setFailedElements={setFailedElements} failObject={failObject} nextHandler={nextHandler} backHandler={backHandler} checklistData={checklistData} vehicleType={vehicleType} />
-                case 4: return <ClassCChecks setFailedElements={setFailedElements} failObject={failObject} nextHandler={nextHandler} backHandler={backHandler} checklistData={checklistData} vehicleType={vehicleType} />
-                case 5: return <Confirmation setFailedElements={setFailedElements} failObject={failObject} nextHandler={nextHandler} backHandler={backHandler} checklistData={checklistData} vehicleType={vehicleType} />
+                case 2: return <ClassAChecks propsMethods={propsMethods} />
+                case 3: return <ClassBChecks propsMethods={propsMethods} />
+                case 4: return <ClassCChecks propsMethods={propsMethods} />
+                case 5: return <Confirmation backHandler={backHandler} failedElements={failedElements} />
                 default: return "error page"
             }
         }
 
     return (
         <div>
-            {console.log(failedElements)}
             {navigation()}
         </div>
     )

@@ -73,7 +73,7 @@ const usersArr = [
     password : "ABC123",
     fullNameStr : "George Operator",
     dateOfBirth : "1966-10-13",
-    isOnShift : false,
+    isOnShift : true,
     currentTeam : "TeamA",
     currentSubTeam: "Morning",
     assignedVehicle : ""
@@ -84,7 +84,7 @@ const usersArr = [
     password : "ABC123",
     fullNameStr : "Harry Operator",
     dateOfBirth : "1967-10-13",
-    isOnShift : false,
+    isOnShift : true,
     currentTeam : "TeamA",
     currentSubTeam: "Afternoon",
     assignedVehicle : ""
@@ -95,7 +95,7 @@ const usersArr = [
     password : "ABC123",
     fullNameStr : "Ivan Operator",
     dateOfBirth : "1968-10-13",
-    isOnShift : false,
+    isOnShift : true,
     currentTeam : "TeamA",
     currentSubTeam: "Night",
     assignedVehicle : ""
@@ -106,7 +106,7 @@ const usersArr = [
     password : "ABC123",
     fullNameStr : "James Operator",
     dateOfBirth : "1969-10-13",
-    isOnShift : false,
+    isOnShift : true,
     currentTeam : "TeamB",
     currentSubTeam: "Morning",
     assignedVehicle : ""
