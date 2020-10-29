@@ -9,7 +9,7 @@ const createUser  = () => {
     console.log("create users here")
 }
 
-const updateUser  = () => {
+const updateUser  = (user) => {
     console.log("update users here")
 }
 

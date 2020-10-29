@@ -7,6 +7,8 @@ import Modal from '../../../components/Modal';
 import useModal from '../../../components/Modal/useModal';
 import { firestore } from '../../../firebase';
 
+
+
 const ManageUsers = () => {
     const {isShowing, toggle} = useModal();
     
@@ -20,13 +22,6 @@ const ManageUsers = () => {
         }
     };
 
-    // const uploadUsers = (users) => {
-    //     users.map((user) => firestore.collection("users").doc(user.userID).set(user));
-    // }
-
-    // useEffect(() => {
-    //     uploadUsers(usersArr);
-    // }, [])
 
 
 
