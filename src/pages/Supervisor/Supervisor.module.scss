@@ -22,7 +22,7 @@
 }
 
 .notification {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     height: 20px;
@@ -37,6 +37,10 @@
         color: white;
     }
 }
+
+.showNotification {
+    display: flex;
+} 
 
 .newsTicker{
     position: relative;
@@ -72,6 +76,4 @@
         border: 2px solid black;
     }
 }
-
-
 

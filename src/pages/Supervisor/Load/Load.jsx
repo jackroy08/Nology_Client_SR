@@ -1,8 +1,6 @@
 import React from 'react'
 
-export const Load = (props) => {
-
-    const toggle = props.toggle;
+export const Load = () => {
 
     return (
         <section>
@@ -15,7 +13,6 @@ export const Load = (props) => {
                 <h2>Location</h2>
                 <input type="text"/>
                 <button>Submit</button>
-                <button onClick={toggle}>Cancel</button>
             </div>
         </section>
     )
