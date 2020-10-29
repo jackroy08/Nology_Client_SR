@@ -11,15 +11,15 @@ const TeamFeed = () => {
     const teamArr = ["TeamA", "TeamB", "TeamC", "TeamD"];
 
     const teamUpdates = [
-        ["Team Name","Time Reported","User ID","Shift Start/End"],
-        ["Team Name","Time Reported","Load Weight","Load Type"],
-        ["Team Name","Time created","# of Vehicles Assigned","# of Team Members"],
-        ["Team Name","Time Reported","User ID","Shift Start/End"],
-        ["Team Name","Time Reported","Load Weight","Load Type"],
-        ["Team Name","Time created","# of Vehicles Assigned","# of Team Members"],
-        ["Team Name","Time Reported","User ID","Shift Start/End"],
-        ["Team Name","Time Reported","Load Weight","Load Type"],
-        ["Team Name","Time created","# of Vehicles Assigned","# of Team Members"]
+        ["Team A","Shift Update","User 3001","Shift Start"],
+        ["Team B","Load added","User 3123","Load Type"],
+        ["Team C","New Team","4 vehicles","8 Team Members"],
+        ["Team D","Shift Update","User 0002","Shift End"],
+        ["Team A","Load added","User 3123","Load Type"],
+        ["Team B","New Team","5 vehicles","10 Team Members"],
+        ["Team C","Shift Update","User 0001","Shift End"],
+        ["Team D","Load added","User 3123","Load Type"],
+        ["Team A","New Team","10 vehicles","15 Team Members"]
     ];
 
     const getTeamJsx = (team) => {
@@ -49,9 +49,9 @@ const TeamFeed = () => {
                 <p>There are {userTeamArr.length} team members</p>
                 <p>There are currently {userActiveTeamArr.length} team members on shift</p>
                 {/* Loads submitted on current shift */}
-                <p>There have been ??? loads submitted during this shift.</p>
+                <p>There have been X loads during this shift.</p>
                 {/* Number of class A vehicle issues */}
-                <p>There have been ??? class A vehicle issues.</p>
+                <p>There have been X class A vehicle issues.</p>
             </article>
         )
     }

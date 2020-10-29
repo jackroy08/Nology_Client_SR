@@ -9,16 +9,16 @@ const VehicleFeed = () => {
     const {isShowing, toggle} = useModal();
     const vehicleCountArr = [];
     const vehicleUpdates = [
-        ["Vehicle number", "Time reported", "Urgency level", "Problem"],
-        ["Vehicle number", "Time fixed", "Urgency level", "Problem"],
-        ["Vehicle number", "Time added", "Vehicle type", "Team assigned to"],
-        ["Vehicle number", "Time reported", "Urgency level", "Problem"],
-        ["Vehicle number", "Time fixed", "Urgency level", "Problem"],
-        ["Vehicle number", "Time added", "Vehicle type", "Team assigned to"],
-        ["Vehicle number", "Time reported", "Urgency level", "Problem"],
-        ["Vehicle number", "Time fixed", "Urgency level", "Problem"],
-        ["Vehicle number", "Time added", "Vehicle type", "Team assigned to"],
-        ["Vehicle number", "Time added", "Vehicle type", "Team assigned to"],
+        ["Truck 001", "Problem reported", "A", "Broken Light"],
+        ["Truck 002", "Problem fixed", "B", "Broken Light"],
+        ["Truck 003", "Vehicle added", "Truck", "Team A"],
+        ["Truck 004", "Problem reported", "C", "Broken Light"],
+        ["Truck 005", "Problem fixed", "A", "Broken Light"],
+        ["Truck 006", "Vehicle added", "B", "Team A"],
+        ["Truck 007", "Problem reported", "C", "Broken Light"],
+        ["Truck 008", "Problem fixed", "B", "Broken Light"],
+        ["Truck 009", "Vehicle added", "A", "Team A"],
+        ["Truck 010", "Vehicle added", "B", "Team A"],
     ];
 
     vehicleData.map(vehicle => {
@@ -37,11 +37,11 @@ const VehicleFeed = () => {
                     {/* Number of vehicles with class A Hazards */}
                     {/* Number of vehicles with class B Hazards */}
                     {/* Number of vehicles with class C Hazards */}
-                    <li>There have been ??? class A, ??? class B and ??? class C hazards on the current shift.</li>
+                    <li>There have been X class A, Y class B and Z class C hazards on the current shift.</li>
                     {/* Number of vehicles needing to be fixed today */}
-                    <li>??? vehicles still need to be fixed during this shift.</li>
+                    <li>X vehicles still need to be fixed during this shift.</li>
                     {/* Number of loads submitted today */}
-                    <li>There have been ??? loads submitted this shift.</li>
+                    <li>There have been X loads submitted this shift.</li>
                 </ul>
             </section>
         </article>
