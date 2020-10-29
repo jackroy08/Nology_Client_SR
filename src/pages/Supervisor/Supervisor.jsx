@@ -49,7 +49,7 @@ export const Supervisor = () => {
             <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<Load setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} />)}}>Add Load</button></div>
             <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<AssignVehicles setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent} usersArr={usersArr} vehiclesArr={vehiclesArr}/>)}}>Reassign Vehicles</button></div>
             <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance</button></div>
-            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
+            <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out my horse</button></div>
             <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={()=>{setIsOverlayShown(true); setOverlayContent(<DailyReport setIsOverlayShown={setIsOverlayShown} setOverlayContent={setOverlayContent}/>)}}>Supervisor Reports</button></div>
         </section>
             <ul className={Styles.newsList}>
