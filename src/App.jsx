@@ -26,7 +26,7 @@ const App = () => {
         <Operator path="/Operator" />
         <Supervisor path="/Supervisor" />
         <Maintenance path="/Maintenance" />
-        <Management path="/Management" />
+        <Management path="/Management/*" />
         <Admin path="/Admin/*" />
         <ChecklistContainer path="/Checklist" checklistData={checklistData} />
       </Router>

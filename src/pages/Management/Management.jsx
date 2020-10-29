@@ -1,14 +1,17 @@
 import React from 'react'
+import {Router} from "@reach/router"
 import Styles from './Management.module.scss';
 import { Link } from "@reach/router";
 import VehicleFeed from "./VehicleFeed";
 import TeamFeed from "./TeamFeed";
+import VehicleFeedReports from './VehicleFeed/VehicleFeedReports';
 
 const Management = () => {
 
     return (
         <>
-            <main className={Styles.managementMain}>
+        <Router>
+            <main path="./" className={Styles.managementMain}>
                 <section className={Styles.headingContainer}>
                     <h1 className={Styles.managementTitle}>Management</h1>
                     <Link to="../Admin"><button className={Styles.btn}>Go to admin page</button></Link>
@@ -20,6 +23,9 @@ const Management = () => {
                     <TeamFeed />
                 </section>
             </main>
+            
+                <VehicleFeedReports path="VehicleFeedReports" />
+            </Router>
         </>
     )
 }
