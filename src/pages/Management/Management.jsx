@@ -6,13 +6,11 @@ import TeamFeed from "./TeamFeed";
 
 const Management = () => {
 
-    const [safetySignal, setSafetySignal] = useState();
     const [redSignal, setRedSignal] = useState();
     const [amberSignal, setAmberSignal] = useState();
     const [greenSignal, setGreenSignal] = useState();
 
     const safetySignalStatus = (status) => {
-        setSafetySignal(status);
         if(status == "go") {
             setGreenSignal(Styles.greenSignal)
             setAmberSignal()
@@ -31,7 +29,7 @@ const Management = () => {
     }
 
     useEffect(() => {
-        safetySignalStatus("goBut");
+        safetySignalStatus("go");
     })
 
     return (   
@@ -41,7 +39,6 @@ const Management = () => {
                     <h1 className={Styles.managementTitle}>Management</h1>
                     <Link to="../Admin"><button className={Styles.btn}>Go to admin page</button></Link>
                 </section>
-                {/* Green/red circle to signify site running/any errors */}
                 <div className={Styles.trafficLightSignal}>
                     <div className={`${Styles.defaultSignal} ${redSignal}`}></div>
                     <div className={`${Styles.defaultSignal} ${amberSignal}`}></div>
