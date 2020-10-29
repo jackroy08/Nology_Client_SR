@@ -5,9 +5,6 @@ import UserItem  from './UserItem';
 import CreateUserForm from './CreateUserForm';
 import Modal from '../../../components/Modal';
 import useModal from '../../../components/Modal/useModal';
-import { firestore } from '../../../firebase';
-
-
 
 const ManageUsers = () => {
     const {isShowing, toggle} = useModal();
@@ -21,9 +18,6 @@ const ManageUsers = () => {
         setFilteredUsersArr(usersArr)
         }
     };
-
-
-
 
     return (
         <main className={Styles.pageGrid}>

@@ -1,8 +1,8 @@
-import teamsArr from "../data/teams"
+import React, { useState } from 'react';
+import { firestore } from '../firebase';
 
-const getTeams  = () => {
-    console.log("get teams here")
-}
+
+const getTeams = () => firestore.collection("teams").get().then((response) => response.docs.map((doc) => doc.data()))
 
 const createTeam  = () => {
     console.log("create teams here")
@@ -16,4 +16,4 @@ const deleteTeam  = () => {
     console.log("delete teams here")
 }
 
-export { getTeams, createTeam, updateTeam, deleteTeam };
+export {getTeams, createTeam, updateTeam, deleteTeam };
