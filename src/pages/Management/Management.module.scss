@@ -21,13 +21,33 @@
         }
     }
     .trafficLightSignal {
-        width: 100px;
+        width: 250px;
         height: 100px;
         border: 2px solid black;
-        border-radius: 50%;
-        background-color: green;
-        margin: auto;
+        background-color: $background-color1;
+        margin-left: auto;
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: 10px;
+
+        .defaultSignal {
+            width: 75px;
+            height: 75px;
+            border: 2px solid black;
+            border-radius: 50%;
+            background-color: $background-color1;
+        }
+        .redSignal {
+            background-color: red;
+        }
+        .amberSignal {
+            background-color: orange;
+        }
+        .greenSignal {
+            background-color: green;
+        }
     }
     .liveFeedContainer {
 
