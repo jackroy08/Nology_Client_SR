@@ -26,24 +26,37 @@
         right: 20px;
         top: 15px;
     }
-    .feedList {
-        // overflow-y: scroll;
-        margin-top: 5px;
-        height: 360px;
+    .subHeading {
+        font-size: 30px;
+        text-align: center;
+        color: black;
 
-        .subHeading {
+        .data {
             font-size: 30px;
             text-align: center;
             color: black;
+            font-family: rubik;
+            font-style: normal;
+            font-weight: 850;
+        }
+    }
+    .feedList {
+        overflow-y: scroll;
+        margin-top: 5px;
+        height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
 
-            .data {
-                font-size: 30px;
-                text-align: center;
-                color: black;
-                font-family: rubik;
-                font-style: normal;
-                font-weight: 850;
-            }
+        .teamReport {
+            box-sizing:border-box;
+            background-color: $background-color1;
+            gap: 0.5em;
+            width: 48%;
+            border-radius: 25px;
+            margin: 10px 0;
+            padding: 15px;
+            border: 2px solid black;
         }
     }
 }

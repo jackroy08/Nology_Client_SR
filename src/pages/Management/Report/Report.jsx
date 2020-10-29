@@ -7,11 +7,11 @@ const Report = (props) => {
     const arr = props.item;
 
     return (
-        <>
+        <section className={Styles.reportMain}>
             {arr.map((feedItem) => {
                 return <LiveFeedItem item={feedItem}/>
             })}
-        </>
+        </section>
     )
 }
 

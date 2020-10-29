@@ -30,17 +30,19 @@ const VehicleFeed = () => {
             <h1 className={Styles.feedTitle}>Live feed for vehicles</h1>
             <button className={Styles.btn} onClick={toggle}>Report</button>
             <Modal innerComponent={<Report item={vehicleUpdates} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
+            <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{vehicleData.length}</span> vehicles on this site.</h2>
             <section className={Styles.feedList}>
-                <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{vehicleData.length}</span> vehicles on this site.</h2>
-                <p>{vehicleCountArr.length} of which have been assigned to operators.</p>
-                {/* Number of vehicles with class A Hazards */}
-                {/* Number of vehicles with class B Hazards */}
-                {/* Number of vehicles with class C Hazards */}
-                <p>There have been ??? class A, ??? class B and ??? class C hazards on the current shift.</p>
-                {/* Number of vehicles needing to be fixed today */}
-                <p>??? still need to be fixed during this shift.</p>
-                {/* Number of loads submitted today */}
-                <p>There have been ??? loads submitted this shift.</p>
+                <ul>
+                    <li>{vehicleCountArr.length} of which have been assigned to operators.</li>
+                    {/* Number of vehicles with class A Hazards */}
+                    {/* Number of vehicles with class B Hazards */}
+                    {/* Number of vehicles with class C Hazards */}
+                    <li>There have been ??? class A, ??? class B and ??? class C hazards on the current shift.</li>
+                    {/* Number of vehicles needing to be fixed today */}
+                    <li>??? vehicles still need to be fixed during this shift.</li>
+                    {/* Number of loads submitted today */}
+                    <li>There have been ??? loads submitted this shift.</li>
+                </ul>
             </section>
         </article>
     )

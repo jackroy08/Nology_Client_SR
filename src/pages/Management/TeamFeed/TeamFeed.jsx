@@ -8,7 +8,7 @@ import Report from "../Report";
 
 const TeamFeed = () => {
     const {isShowing, toggle} = useModal();
-    const teamArr = ["TeamA", "TeamB", "TeamC, TeamD"];
+    const teamArr = ["TeamA", "TeamB", "TeamC", "TeamD"];
 
     const teamUpdates = [
         ["Team Name","Time Reported","User ID","Shift Start/End"],
@@ -42,8 +42,8 @@ const TeamFeed = () => {
         });
 
         return (
-            <>
-                <h3>Team {team}:</h3>
+            <article className={Styles.teamReport}>
+                <h3>{team}:</h3>
                 <p>There are {teamVehicleCountArr.length} vehicles in the team.</p>
                 <p>There are {teamActiveVehicleCountArr.length} active vehicles in the team</p>
                 <p>There are {userTeamArr.length} team members</p>
@@ -52,7 +52,7 @@ const TeamFeed = () => {
                 <p>There have been ??? loads submitted during this shift.</p>
                 {/* Number of class A vehicle issues */}
                 <p>There have been ??? class A vehicle issues.</p>
-            </>
+            </article>
         )
     }
 
@@ -61,8 +61,8 @@ const TeamFeed = () => {
             <h1 className={Styles.feedTitle}>Live feed for teams</h1>
             <button className={Styles.btn} onClick={toggle}>Report</button>
             <Modal innerComponent={<Report item={teamUpdates} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
+            <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamArr.length}</span> teams on this site.</h2>
             <section className={Styles.feedList}>
-                <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamArr.length}</span> teams on this site.</h2>
                 {teamArr.map(getTeamJsx)}
             </section>
         </article>

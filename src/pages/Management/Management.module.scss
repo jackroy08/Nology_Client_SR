@@ -5,20 +5,29 @@
     width: 95%;
     margin: 0 auto;
 
-    .managementTitle {
-        font-size: 90px;
-        color: $light-text-color;
-        font-family: rubik;
-        font-style: normal;
-        font-weight: 700;
-    }
-    .buttonContainer {
+    .headingContainer {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
 
-        button {
-            margin: 50px 0;
+        .managementTitle {
+            font-size: 90px;
+            color: $light-text-color;
+            font-family: rubik;
+            font-style: normal;
+            font-weight: 700;
         }
+        button {
+            margin: 40px 0;
+        }
+    }
+    .trafficLightSignal {
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        border-radius: 50%;
+        background-color: green;
+        margin: auto;
+        margin-bottom: 20px;
     }
     .liveFeedContainer {
 

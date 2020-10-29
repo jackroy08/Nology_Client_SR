@@ -9,11 +9,12 @@ const Management = () => {
     return (
         <>
             <main className={Styles.managementMain}>
-                <h1 className={Styles.managementTitle}>Management</h1>
-                <section className={Styles.buttonContainer}>
+                <section className={Styles.headingContainer}>
+                    <h1 className={Styles.managementTitle}>Management</h1>
                     <Link to="../Admin"><button className={Styles.btn}>Go to admin page</button></Link>
                 </section>
                 {/* Green/red circle to signify site running/any errors */}
+                <div className={Styles.trafficLightSignal}></div>
                 <section className={Styles.liveFeedContainer}>
                     <VehicleFeed />
                     <TeamFeed />
