@@ -1,4 +1,4 @@
-// import Teams from "../data/users"
+import teamsArr from "../data/teams"
 
 const getTeams  = () => {
     console.log("get teams here")

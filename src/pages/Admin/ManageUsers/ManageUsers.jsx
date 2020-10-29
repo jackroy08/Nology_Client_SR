@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Styles from './ManageUsers.module.scss';
 import usersArr from '../../../data/users';
 import UserItem  from './UserItem';
 import CreateUserForm from './CreateUserForm';
 import Modal from '../../../components/Modal';
 import useModal from '../../../components/Modal/useModal';
+import { firestore } from '../../../firebase';
 
 const ManageUsers = () => {
     const {isShowing, toggle} = useModal();
@@ -18,6 +19,16 @@ const ManageUsers = () => {
         setFilteredUsersArr(usersArr)
         }
     };
+
+    // const uploadUsers = (users) => {
+    //     users.map((user) => firestore.collection("users").doc(user.userID).set(user));
+    // }
+
+    // useEffect(() => {
+    //     uploadUsers(usersArr);
+    // }, [])
+
+
 
     return (
         <main className={Styles.pageGrid}>

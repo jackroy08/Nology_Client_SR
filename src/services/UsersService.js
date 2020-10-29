@@ -1,6 +1,7 @@
 import usersArr from "../data/users"
 
 const getUsers  = () => {
+    
     return usersArr
 }
 

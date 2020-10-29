@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styles from './ManageTeams.module.scss';
 import teamsArr from '../../../data/teams';
 import useModal from '../../../components/Modal/useModal';
 import Modal from '../../../components/Modal';
 import CreateTeamForm from './CreateTeamForm';
 import TeamItem from './TeamItem';
+import { firestore } from '../../../firebase'
 
 const ManageTeams = () => {
     const {isShowing, toggle} = useModal();
     
     const [filteredTeamsArr, setFilteredTeamsArr] = useState(teamsArr);
-    
+
     return (
         <section className={Styles.teamsListSection}>
             <header>
