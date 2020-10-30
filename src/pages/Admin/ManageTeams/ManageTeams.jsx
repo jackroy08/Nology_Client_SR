@@ -10,19 +10,29 @@ import { getTeams } from '../../../services/TeamsService';
 const ManageTeams = () => {
     const {isShowing, toggle} = useModal();
     const [teamsArr, setTeamsArr] = useState([]);
+    const [teamNamesArr, setTeamNamesArr] = useState([null]);
     const [filteredTeamsArr, setFilteredTeamsArr] = useState([]);
-    
+        
     useEffect(() => {
-        getTeams().then(response => {setFilteredTeamsArr(response); setTeamsArr(response)})
+        getTeams().then(response => {
+            setFilteredTeamsArr(response);
+            setTeamsArr(response);
+            setTeamNamesArr([...new Set(response.map(team => team.teamName))]);
+        });
     }, [])
 
-    const filterTeams = (team) => {
-        if (team) {
-        setFilteredTeamsArr(teamsArr.filter((each) => each.team === team))
+    const filterTeams = (teamName) => {
+        if (teamName) {
+        setFilteredTeamsArr(teamsArr.filter((each) => each.teamName === teamName))
         } else {
         setFilteredTeamsArr(teamsArr)
         }
     };
+
+    const getTeamsList = (teamsArr) => {
+        ;
+        
+    }
 
     return (
         <section className={Styles.teamsListSection}>
@@ -32,16 +42,14 @@ const ManageTeams = () => {
                 <Modal innerComponent={<CreateTeamForm hide={toggle}/>} isShowing={isShowing} hide={toggle} />
                 <select onChange={(event) => filterTeams(event.target.value)}>
                         <option value="">All Teams</option>
-                        <option value="Team A">Team A</option>
-                        <option value="Team B">Team B</option>
-                        <option value="Team C">Team C</option>
+                        {teamNamesArr ? teamNamesArr.map((team) => <option value={team}>{team}</option>) : null}
                     </select>
             </header>                    
             <ul className={Styles.teamsList}>
                 <li className={Styles.columnTitles}>
                     <h4>Site</h4>
-                    <h4>Team</h4>
-                    <h4>Sub Team</h4>
+                    <h4>Team Name</h4>
+                    <h4>Sub Team Name</h4>
                 </li>
                 {filteredTeamsArr.map((team) => <TeamItem key={team.teamID} team={team} />)}
                 </ul>

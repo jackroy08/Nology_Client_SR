@@ -13,10 +13,10 @@ const TeamItem = (props) => {
 
     return (
         
-        <li key={team.team} className={Styles.teamItem}>
+        <li key={team.teamID} className={Styles.teamItem}>
             <p>{team.site}</p>
-            <p>{team.team}</p>
-            <p>{team.subTeam}</p>
+            <p>{team.teamName}</p>
+            <p>{team.subTeamName}</p>
             <button onClick={toggle}><FontAwesomeIcon icon="pencil-alt"/></button>
             <button onClick={toggle}><FontAwesomeIcon icon="trash-alt"/></button>
             <Modal innerComponent={<EditTeamForm team={team} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
