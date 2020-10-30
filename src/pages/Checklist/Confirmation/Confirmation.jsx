@@ -18,7 +18,12 @@ const Confirmation = (props) => {
                 )
             }
         });
-    };
+    }
+
+        const submitHandler = () => {
+            console.log(failedElements);
+        }
+
     return (
         <section className={Styles.userListSection}>
             <ul className= {Styles.userList}>
@@ -34,7 +39,7 @@ const Confirmation = (props) => {
             <section className={Styles.navigation}>
                 <button onClick={backHandler} className={Styles.btn}>Back</button>
                 <Link to="/Operator">
-                    <button className={Styles.btn}>Confirm checklist</button>
+                    <button onClick={submitHandler} className={Styles.btn}>Confirm checklist</button>
                 </Link>
             </section>
         </section>
