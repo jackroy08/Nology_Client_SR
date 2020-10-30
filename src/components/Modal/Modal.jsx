@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Styles from './Modal.module.scss';
 
 const Modal = (props) => {
-  const isShowing = props.isShowing;
+  const isShowing = props.isShowing; 
   const hide = props.hide;
 
   return (

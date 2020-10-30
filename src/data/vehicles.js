@@ -23,4 +23,4 @@ const vehiclesArr = [
     articulatedWaterTruck01, dieselBowser01, drills01, excavator01, fel01, forklift01, grader01, ldv01, srvWaterBowser01, 
     trackDozer01, rdt01, truckMountedCrane01, tlb01, lightingPlant01, hydraulicRigOperator01, loader01, haulTruck01, bus01
 ];
-export default vehiclesArr;
+export default vehiclesArr; 

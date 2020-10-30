@@ -1,0 +1,73 @@
+@import '../../../assets/styles/buttons'; 
+@import "../../../assets/styles/variables";
+
+
+.userListSection {
+    width: 100%;
+    padding: 0 $base-padding*2 $base-padding*2 $base-padding*2;
+
+    header {
+        background-color: $primary-color;
+        display: flex;
+        align-items: center;
+        padding: $base-padding $base-padding*2;
+
+        .userSummary {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                font-weight: 700;
+            }
+        }
+
+        h3{
+        flex-grow: 1;
+        margin-right: auto;
+        }
+    }
+
+    .columnTitles{
+        padding: $base-padding;
+    }
+
+    .userList {
+        height: 0px;    
+        overflow: hidden;
+        width: 100%;
+        background-color: $background-color1;
+        margin: 0;
+        padding: 0 $base-padding $base-padding $base-padding;
+        transition: all 0.3s ease;
+
+    }
+
+    .userItem, .columnTitles {
+        display:grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: 3em;
+        justify-items: start;
+        align-items: center;
+    }
+    
+
+
+    .userItem {
+        background-color: $background-color1;
+        margin-bottom: $base-padding;
+        padding: 0 $base-padding;
+
+        &:hover {
+        background-color: $background-color2;
+        }
+
+        &.unavailable {
+            background-color: $danger-color;
+
+            &:hover {
+                background-color: $danger-color-lighten;
+            }
+        }
+    }
+}

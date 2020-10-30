@@ -1,0 +1,23 @@
+@import "../../../assets/styles/variables";
+
+li {
+    padding: $base-padding;
+}
+
+.regularNews{
+    height: 250px;
+    overflow-y: auto;
+}
+
+.importantNews {
+    width: 100%;
+    background-color: $warning-color;
+    margin-top: -$base-padding;
+    margin-bottom: -$base-padding;
+    
+    li{
+        background-color: rgba(0, 0, 0, 0);
+        font-weight: bold;
+        padding: 15px 5px;
+    }
+}
