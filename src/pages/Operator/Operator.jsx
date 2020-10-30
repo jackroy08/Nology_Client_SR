@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import { navigate } from "@reach/router";
+import React, {useState, useEffect} from "react";
+import { Link, navigate } from "@reach/router";
 import Styles from "./Operator.module.scss";
-import { getUsers, updateUser } from "../../services/UsersService";
+import { getOperators, getUsers, updateUser } from "../../services/UsersService";
 import useModal from "../../components/Modal/useModal";
 import SubmitLoad from "./SubmitLoad";
 
@@ -9,13 +9,13 @@ import SubmitLoad from "./SubmitLoad";
 const Operator = () => {
     const {isShowing, toggle} = useModal();
     const [isShiftStart, setIsShiftStart] = useState(false);
-    const operatorsArr = getUsers().filter(user => user.userType === "operator");
+    const operatorsArr = getUsers();
     const [user, setUser] = useState(operatorsArr[0])
     const changeStart = isShiftStart ? "End shift" : "Start shift";
 
     const updateShiftProperty = () => {
         setIsShiftStart(!isShiftStart);
-        updateUser();
+        updateUser()
     }
 
     const getUserKeys = thisUser => {
@@ -32,6 +32,11 @@ const Operator = () => {
         } 
     }
 
+    // useEffect(() => {
+    //     getUsers();
+    // }, [])
+  
+
     return (
         <main className={Styles.pageGrid}>
             <select onChange={changeHandler} name="user" id="user"> 
@@ -44,8 +49,12 @@ const Operator = () => {
             </button>
             
             <button onClick={() => updateButtonFunctionality()} user={user} className={`${Styles.btn} ${Styles.btnLG}`}>Accept Vehicle</button>
-            <button onClick={() => updateButtonFunctionality()} className={`${Styles.btn} ${Styles.btnLG}`}>Report a Problem</button>
+            <Link to="/ReportAProblem">
+                <button user={user} className={`${Styles.btn} ${Styles.btnLG}`}>Report a problem</button>
+            </Link>
+            {/* <ReportAProblem problemShowing={problemShowing} problemHide={problemToggle} /> */}
             {/* need similar functionality for submit load when screen developed */}
+            
             <button user={user} className={`${Styles.btn} ${Styles.btnLG}`} onClick= {toggle}>Submit Load</button>
             <SubmitLoad isShowing={isShowing} hide={toggle} />
         </main>

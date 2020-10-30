@@ -6,12 +6,12 @@ import Styles from "../../../components/Modal/Modal.module.scss"
 const SubmitLoad = ({ isShowing, hide }) => {
     const SubmitHandler = () => {
         const load= {
-            "driver": "operator" ,
-            "time": new Date().toUTCString(),
-            "supervisor": "supervisor" ,
-            "team": "teamname" ,
-            "site": "siteid" ,
-            "is signed off": false
+            driver: "operator",
+            time: new Date().toUTCString(),
+            supervisor: "supervisor",
+            team: "teamname",
+            site: "siteid",
+            isSignedOff: false
         }; 
         console.log(load); // Firebase collections, data to be sent/saved
         hide();
