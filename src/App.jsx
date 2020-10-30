@@ -9,12 +9,14 @@ import Maintenance from "./pages/Maintenance";
 import Management from "./pages/Management";
 import Admin from "./pages/Admin";
 import ChecklistContainer from "./pages/Checklist/ChecklistContainer";
-
+import SubmitLoad from "./pages/Operator/SubmitLoad";
+import ReportAProblem from "./pages/Operator/ReportAProblem/ReportAProblem";
 // Components
 import Header from './components/header';
 // Data
 import checklistData from "./data/checklistdata.js";
 import library from "./data/fa-library";
+
 
 
 const App = () => {
@@ -26,9 +28,11 @@ const App = () => {
         <Operator path="/Operator" />
         <Supervisor path="/Supervisor" />
         <Maintenance path="/Maintenance" />
-        <Management path="/Management" />
+        <Management path="/Management/*" />
         <Admin path="/Admin/*" />
         <ChecklistContainer path="/Checklist" checklistData={checklistData} />
+        <SubmitLoad path="/SubmitLoad" />
+        <ReportAProblem path="/ReportAProblem" />
       </Router>
     </>
   );

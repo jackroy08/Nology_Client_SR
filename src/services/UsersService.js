@@ -1,20 +1,39 @@
-import usersArr from "../data/users"
+import usersArr from "../data/users";
+import { firestore } from "../firebase";
 
-const getUsers  = () => {
-    
+function getUsers() {
+    // return firestore.collection("users")
+    //     .get()
+    //     .then(querySnapshot => {
+    //     const data = querySnapshot.docs.map(doc => doc.data());
+    //     return data;
+    // });
     return usersArr
+}
+
+function getOperators() {
+    const operatorsSnapshot = firestore.collection("users")
+        .where('userType', '==', "operator")
+        .get()
+        .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            operatorsSnapshot.push(doc.id, " => ", doc.data());
+        });
+    });
+    return operatorsSnapshot;
 }
 
 const createUser  = () => {
     console.log("create users here")
 }
 
-const updateUser  = (user) => {
-    console.log("update users here")
+const updateUser = () => {
+    console.log("user updated ")
+        
 }
 
 const deleteUser  = () => {
     console.log("delete users here")
 }
 
-export { getUsers, createUser, updateUser, deleteUser };
+export { getUsers, getOperators, createUser, updateUser, deleteUser };
