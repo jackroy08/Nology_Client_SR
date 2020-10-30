@@ -6,6 +6,7 @@ import teamsArr from '../../../../data/teams';
 import sitesArr from '../../../../data/sites';
 import Modal from '../../../../components/Modal';
 import useModal from '../../../../components/Modal/useModal';
+import { createTeam } from '../../../../services/TeamsService'
 
 
 // ------ CLASSES ----- //
@@ -15,9 +16,7 @@ class Team {
     this.site = site;
     this.team = team;
     this.subTeam = subTeam;
-    }
-    get teamID () {
-        return `${this.team} ${this.subTeam}`
+    this.teamID = `${this.team} ${this.subTeam}`;
     }
 }
 
@@ -26,9 +25,7 @@ class Team {
 const CreateTeamForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
     
-    const createNewTeam = (data) => {
-        teamsArr.push(new Team(data.site, data.team, data.subTeam)); 
-        }
+    const createNewTeam = (data) => createTeam(new Team(data.site, data.team, data.subTeam));
     
     return ( 
         <form className={Styles.teamForm} onSubmit={handleSubmit(createNewTeam)}>
