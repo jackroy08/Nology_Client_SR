@@ -16,7 +16,7 @@ class Team {
     this.site = site;
     this.teamName = teamName;
     this.subTeamName = subTeamName;
-    this.teamID = `${this.team} ${this.subTeamName}`;
+    this.teamID = `${this.teamName} ${this.subTeamName}`;
     }
 }
 

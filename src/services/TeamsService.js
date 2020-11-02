@@ -6,6 +6,11 @@ const getTeams = () => firestore.collection("teams").get().then((response) => {
     return response.docs.map((doc) => doc.data())
 });
 
+//watches teams collection and updates the state whenever the db changes
+const subscribeToTeams = (setState) => {
+    firestore.collection("teams").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
+}
+
 const createTeam  = (newTeam) => {
     console.log(newTeam)
     firestore.collection("teams").doc(newTeam.teamID).set({...newTeam});
@@ -28,4 +33,4 @@ const deleteTeam  = (team) => {
 
 
 
-export {getTeams, createTeam, updateTeam, deleteTeam };
+export {getTeams, subscribeToTeams, createTeam, updateTeam, deleteTeam };

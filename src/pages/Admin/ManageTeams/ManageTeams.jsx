@@ -5,7 +5,7 @@ import Modal from '../../../components/Modal';
 import CreateTeamForm from './CreateTeamForm';
 import TeamItem from './TeamItem';
 import { firestore } from '../../../firebase'
-import { getTeams } from '../../../services/TeamsService';
+import { getTeams, subscribeToTeams } from '../../../services/TeamsService';
 
 const ManageTeams = () => {
     const {isShowing, toggle} = useModal();
@@ -19,6 +19,7 @@ const ManageTeams = () => {
             setTeamsArr(response);
             setTeamNamesArr([...new Set(response.map(team => team.teamName))]);
         });
+        subscribeToTeams(setTeamsArr);
     }, [])
 
     const filterTeams = (teamName) => {
@@ -28,11 +29,6 @@ const ManageTeams = () => {
         setFilteredTeamsArr(teamsArr)
         }
     };
-
-    const getTeamsList = (teamsArr) => {
-        ;
-        
-    }
 
     return (
         <section className={Styles.teamsListSection}>
@@ -50,6 +46,7 @@ const ManageTeams = () => {
                     <h4>Site</h4>
                     <h4>Team Name</h4>
                     <h4>Sub Team Name</h4>
+                    <h4>Action</h4>
                 </li>
                 {filteredTeamsArr.map((team) => <TeamItem key={team.teamID} team={team} />)}
                 </ul>

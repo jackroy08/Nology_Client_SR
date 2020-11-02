@@ -4,7 +4,7 @@ import EditTeamForm  from '../EditTeamForm';
 import Modal from '../../../../components/Modal';
 import useModal from '../../../../components/Modal/useModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { deleteTeam } from '../../../../services/TeamsService';
 
 
 const TeamItem = (props) => {
@@ -17,8 +17,8 @@ const TeamItem = (props) => {
             <p>{team.site}</p>
             <p>{team.teamName}</p>
             <p>{team.subTeamName}</p>
-            <button onClick={toggle}><FontAwesomeIcon icon="pencil-alt"/></button>
-            <button onClick={toggle}><FontAwesomeIcon icon="trash-alt"/></button>
+            <span className={Styles.faIcon} onClick={toggle}><FontAwesomeIcon  icon="pencil-alt"/></span>
+            <span className={Styles.faIcon} onClick={() => deleteTeam(team)}><FontAwesomeIcon  icon="trash-alt"/></span>
             <Modal innerComponent={<EditTeamForm team={team} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
         </li>
 
