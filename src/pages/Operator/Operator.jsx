@@ -7,21 +7,18 @@ import SubmitLoad from "./SubmitLoad";
 
 
 const Operator = () => {
-    const {isShowing, toggle} = useModal();
-    const [isShiftStart, setIsShiftStart] = useState(false);
-    const operatorsArr = getUsers().then(response => {
-            setUser(response[0]);
-    });
-    console.log(operatorsArr);
-    // const operatorsArr = await getUsers();
-    // console.log(operatorsArr);
+    const [operatorsArr, setOperatorsArr] = useState([]);
     const [user, setUser] = useState({});
+    const {isShowing, toggle} = useModal();
+    const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
     const changeStart = isShiftStart ? "End shift" : "Start shift";
 
 
     const updateShiftProperty = () => {
-        setIsShiftStart(!isShiftStart);
-        updateUser()
+        setIsShiftStart(!user.isOnShift);
+        user.isOnShift = !user.isOnShift;
+        updateUser(user);
+        getOperators();
     }
 
     const getUserKeys = thisUser => {
@@ -29,7 +26,10 @@ const Operator = () => {
     };
 
     const changeHandler = e => {
-        setUser(operatorsArr.filter(operator => operator.userID == [e.target.value])[0])
+        let target = e.target.value;
+        getOperators().then(response => {
+            setUser(response.filter(item => item.userID === target)[0])
+        })
     }
 
     const updateButtonFunctionality = () => {
@@ -39,8 +39,10 @@ const Operator = () => {
     }
 
     useEffect(() => {
-        getUsers().then(response => {
+        /// THIS IS THE OWRKING VERSION BELOW :)
+        getOperators().then(response => {
             setUser(response[0]);
+            setOperatorsArr(response.map(getUserKeys))
             // You might want to also keep track of all the users????
         })
     }, [])
@@ -48,7 +50,7 @@ const Operator = () => {
     return (
         <main className={Styles.pageGrid}>
             <select onChange={changeHandler} name="user" id="user"> 
-                    {operatorsArr.map(getUserKeys)}
+                    {operatorsArr}
             </select> 
             <button
                 className={`${Styles.btn} ${Styles.btnLG}`}

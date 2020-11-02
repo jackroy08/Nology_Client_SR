@@ -1,8 +1,8 @@
 import usersArr from "../data/users";
 import { firestore } from "../firebase";
 
-const getUsers = async () => {
-    return await firestore.collection("users")
+const getUsers = () => {
+    return firestore.collection("users")
         .get()
         .then(querySnapshot => {
             const data = querySnapshot.docs.map(doc => doc.data());
@@ -16,7 +16,8 @@ function getOperators() {
         .where('userType', '==', "operator")
         .get()
         .then(querySnapshot => {
-            querySnapshot.docs.map(doc => doc.data())
+            const data = querySnapshot.docs.map(doc => doc.data())
+            return data;
         });
 }
 
@@ -24,9 +25,12 @@ const createUser  = () => {
     console.log("create users here")
 }
 
-const updateUser = () => {
-    console.log("user updated ")
-        
+const updateUser = (user) => {
+    firestore
+        .collection("users")
+        .doc(user.userID)
+        .update({...user})
+        .then(console.log("user updated"));
 }
 
 const deleteUser  = () => {
