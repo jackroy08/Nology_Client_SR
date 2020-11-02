@@ -1,26 +1,23 @@
 import usersArr from "../data/users";
 import { firestore } from "../firebase";
 
-function getUsers() {
-    // return firestore.collection("users")
-    //     .get()
-    //     .then(querySnapshot => {
-    //     const data = querySnapshot.docs.map(doc => doc.data());
-    //     return data;
-    // });
-    return usersArr
+const getUsers = async () => {
+    return await firestore.collection("users")
+        .get()
+        .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data());
+            return data;
+        });
 }
 
 function getOperators() {
-    const operatorsSnapshot = firestore.collection("users")
+    return firestore
+        .collection("users")
         .where('userType', '==', "operator")
         .get()
-        .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            operatorsSnapshot.push(doc.id, " => ", doc.data());
+        .then(querySnapshot => {
+            querySnapshot.docs.map(doc => doc.data())
         });
-    });
-    return operatorsSnapshot;
 }
 
 const createUser  = () => {

@@ -9,17 +9,21 @@ const ChecklistContainer = (props) => {
     
     const {checklistData, user} = props;
     const [step, setStep] = useState(1);
-    const [vehicleType, setVehicleType] = useState("adt");
-    const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
+    const [vehicleType, setVehicleType] = useState("ADT");
+    const [failedElements, setFailedElements] = useState({"Class A": {}, "Class B": {}, "Class C": {}});
     const vehicleKeys = Object.keys(checklistData);
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[vehicleType][classType]).reduce((acc, val) => {
                 if (!document.getElementById(val).checked) {
-                    acc[classType][val] = {"classType": classType, "issue": val ,
-                            "vehicleID": vehicleType,
-                            "operator": user,
-                            "supervisor": "supervisor1"};
+                    console.log(acc);
+                    acc[classType][val] = {
+                        "classType": classType, 
+                        "issue": val ,
+                        "vehicleID": vehicleType,
+                        "operator": user,
+                        "supervisor": "supervisor1"
+                    };
                     } else acc[classType][val] = {};
                 return acc;
         }, failedElements);
@@ -41,15 +45,18 @@ const ChecklistContainer = (props) => {
         return <option key={thisVehicle} value={thisVehicle}>{thisVehicle}</option> 
     };
 
-    const getChecklist = item => (
-        <React.Fragment key={item}>
-            <label htmlFor={item}>{item}
-                <input type="checkbox" id={item} name={item} value={item}/>
-            </label>
-        </React.Fragment>
-    );
+    // const getChecklist = item => (
+    //     <React.Fragment key={item}>
+    //         <label htmlFor={item}>{item}
+    //         {console.log(checklistData[item])}
+    //             <input type="checkbox" id={item} name={item} value={item}/>
+    //             <img src={checklistData[item]} alt=""/>
+    //         </label>
+            
+    //     </React.Fragment>
+    // );
 
-    const propsMethods = {  getChecklist: getChecklist, 
+    const propsMethods = {
                             setFailedElements: setFailedElements, 
                             failObject: failObject, 
                             checklistData: checklistData, 

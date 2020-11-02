@@ -4,11 +4,20 @@ import RenderAdditionalOptions from "../RenderAdditionalOptions";
 
 const ClassAChecks = (props) => {
 
-    const {getChecklist, setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
-    const classType = "classA";
+    const { setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
+    const classType = "Class A";
     const checkboxArr = Object.keys(checklistData[vehicleType][classType]);
     const additionalFieldsArr = Object.keys(checklistData[vehicleType])
-        .filter(key => !key.match("class"));
+        .filter(key => !key.match("lass"));
+
+    const getChecklist = item => (
+        <div key={item}>
+            <img src={checklistData[vehicleType][classType][item]} alt=""/>
+            <label htmlFor={item}>{item}   
+            </label>
+            <input type="checkbox" id={item} name={item} value={item}/> 
+        </div>
+    );
 
     return (
         <>
@@ -28,7 +37,7 @@ const ClassAChecks = (props) => {
                                 {additionalFieldsArr.map(item => 
                                 <RenderAdditionalOptions 
                                     getChecklist={getChecklist} 
-                                    classVal="classA" 
+                                    classVal={classType}
                                     checklistData={checklistData}
                                     vehicleType={vehicleType} 
                                     item={item}

@@ -9,9 +9,15 @@ import SubmitLoad from "./SubmitLoad";
 const Operator = () => {
     const {isShowing, toggle} = useModal();
     const [isShiftStart, setIsShiftStart] = useState(false);
-    const operatorsArr = getUsers();
-    const [user, setUser] = useState(operatorsArr[0])
+    const operatorsArr = getUsers().then(response => {
+            setUser(response[0]);
+    });
+    console.log(operatorsArr);
+    // const operatorsArr = await getUsers();
+    // console.log(operatorsArr);
+    const [user, setUser] = useState({});
     const changeStart = isShiftStart ? "End shift" : "Start shift";
+
 
     const updateShiftProperty = () => {
         setIsShiftStart(!isShiftStart);
@@ -32,10 +38,12 @@ const Operator = () => {
         } 
     }
 
-    // useEffect(() => {
-    //     getUsers();
-    // }, [])
-  
+    useEffect(() => {
+        getUsers().then(response => {
+            setUser(response[0]);
+            // You might want to also keep track of all the users????
+        })
+    }, [])
 
     return (
         <main className={Styles.pageGrid}>

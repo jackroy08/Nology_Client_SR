@@ -6,11 +6,19 @@ import { updateVehicle } from "../../../services/VehiclesService";
 
 const ClassCChecks = (props) => {
   
-    const {getChecklist, setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
-    const classType = "classC";
+    const { setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
+    const classType = "Class C";
     const checkboxArr = Object.keys(checklistData[vehicleType][classType]);
     const additionalFieldsArr = Object.keys(checklistData[vehicleType])
-        .filter(key => !key.match("class"));
+        .filter(key => !key.match("lass"));
+    const getChecklist = item => (
+        <div key={item}>
+            <img src={checklistData[vehicleType][classType][item]} alt=""/>
+            <label htmlFor={item}>{item}   
+            </label>
+            <input type="checkbox" id={item} name={item} value={item}/> 
+        </div>
+    );
 
     return (
         <>
