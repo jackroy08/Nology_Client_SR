@@ -18,15 +18,43 @@
 
 .btn{
     width: 100%;
+    position: relative;
 }
 
-.newsList{
-        list-style: none;
-        padding-inline-start: 0px;
-        width: 100%;
-        background-color: $background-color1;
-        border: 2px solid black;
-        margin: 0px;
+.notification {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    border-radius: 50%;
+    background: red;
+
+    p {
+        color: white;
+    }
+}
+
+.showNotification {
+    display: flex;
+} 
+
+.newsTicker{
+    position: relative;
+    list-style: none;
+    padding-inline-start: 0px;
+    width: 100%;
+    background-color: $background-color1;
+    border: 2px solid black;
+    margin: 0px;
+}
+
+.vehicleTable {
+    grid-column: 1 / 3;
+    width: 100%;
 }
 
 .overlay {
@@ -48,3 +76,4 @@
         border: 2px solid black;
     }
 }
+

@@ -1,4 +1,4 @@
-@import "../../../assets/styles/variables";
+@import "../../../../assets/styles/variables";
 
 .newsItem{
     display: grid;
@@ -6,5 +6,5 @@
     justify-content: space-evenly;
     width: calc(100% - 20px);
     background-color: $background-color1;
-    margin: 10px;
+    margin: $base-padding;
 }

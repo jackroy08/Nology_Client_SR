@@ -6,7 +6,6 @@ import Styles from "./Maintenance.module.scss";
 const Maintenance = () => {
 
     return (
-
         <main className={Styles.main}>
             <h1 className={Styles.title}>Maintenance</h1>
             <section className={Styles.pageGrid}>
@@ -16,5 +15,5 @@ const Maintenance = () => {
         </main>
     )
 }
- 
+
 export default Maintenance;

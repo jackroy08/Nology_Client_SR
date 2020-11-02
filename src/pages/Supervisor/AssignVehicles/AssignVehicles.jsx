@@ -2,7 +2,7 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 export const AssignVehicles = (props) => {
 
-    const { setIsOverlayShown, setOverlayContent, usersArr, vehiclesArr } = props;
+    const { usersArr, vehiclesArr } = props;
 
     const { register, handleSubmit} = useForm();
 
@@ -11,7 +11,7 @@ export const AssignVehicles = (props) => {
     const onSubmit = (data) => {
 
         //go to database
-        vehiclesArr.forEach(vehicle =>{
+        vehiclesArr.forEach(vehicle => {
             if(vehicle.plantID === data.vehicle){
                 vehicle.currentUser = data.driver;
             }
@@ -39,7 +39,6 @@ export const AssignVehicles = (props) => {
                     </select>
                     
                     <input type="submit"/>
-                    <button onClick={() => { setIsOverlayShown(false); setOverlayContent(null) }}>Cancel</button>
                 </form>
                 </div>
         </section>
