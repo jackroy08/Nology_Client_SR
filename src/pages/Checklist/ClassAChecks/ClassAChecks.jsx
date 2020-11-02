@@ -29,7 +29,6 @@ const ClassAChecks = (props) => {
                         {checkboxArr.map(getChecklist)}
                     </div>
 
-                    
                     {additionalFieldsArr ? 
                         <>
                             <h2>Additional checks</h2>

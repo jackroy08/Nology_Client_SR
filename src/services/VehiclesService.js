@@ -23,7 +23,9 @@ const setVehicleIssues = (vehicle, issues) => {
     firestore
         .collection("vehicles")
         .doc(vehicle)
-        .set({checkItems: [...issues]})
+        .set({
+            checkItems: [...issues]
+        }, {merge: true})
 }
 
 const updateVehicleIssues = (vehicle, issues) => {

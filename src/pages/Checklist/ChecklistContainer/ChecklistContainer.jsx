@@ -16,14 +16,14 @@ const ChecklistContainer = (props) => {
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[vehicleType][classType]).reduce((acc, val) => {
                 if (!document.getElementById(val).checked) {
-                    console.log(acc);
                     acc[classType][val] = {
                         "Class type": classType, 
                         "Issue": val ,
                         "Vehicle ID": vehicleType,
                         "Operator": "2002",
                         "Supervisor": "supervisor1",
-                        "Additional details": document.getElementById("additional-details").value
+                        "Additional details": document.getElementById("additional-details").value,
+                        "Date created": new Date().toUTCString()
                         //NEED TO CHANGE THESE VALUES BASED ON USER LOGGED IN
                     };
                     } else acc[classType][val] = {};
@@ -48,7 +48,8 @@ const ChecklistContainer = (props) => {
     };
 
     const propsMethods = {
-                            setFailedElements: setFailedElements, 
+                            setFailedElements: setFailedElements,
+                            failedElements: failedElements,
                             failObject: failObject, 
                             checklistData: checklistData, 
                             vehicleType: vehicleType, 
@@ -79,6 +80,7 @@ const ChecklistContainer = (props) => {
 
     return (
         <div>
+            {console.log(failedElements)}
             {navigation()}
         </div>
     )

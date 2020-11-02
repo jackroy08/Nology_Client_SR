@@ -15,7 +15,8 @@ const ReportAProblem = () => {
             "Operator": "operator",
             "Supervisor": "supervisor",
             "Vehicle ID": "vehicleId",
-            "Additional details": document.getElementById("additional-details").value
+            "Additional details": document.getElementById("additional-details").value,
+            "Date created": new Date().toUTCString()
         }
         updateVehicleIssues("001", error)
         navigate("/Operator");

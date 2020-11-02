@@ -36,8 +36,8 @@ const Confirmation = (props) => {
 
     return (
         <section className={Styles.userListSection}>
-            <ul className= {Styles.userList}>
-                <li className= {Styles.columnTitles}>
+            <ul className={Styles.userList}>
+                <li className={Styles.columnTitles}>
                     <h4>Class of issue</h4>
                     <h4>Issue</h4>
                     <h4>Vehicle id</h4>

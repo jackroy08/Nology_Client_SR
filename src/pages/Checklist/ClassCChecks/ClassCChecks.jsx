@@ -6,9 +6,11 @@ import { updateVehicle } from "../../../services/VehiclesService";
 
 const ClassCChecks = (props) => {
   
-    const { setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
+    const { setFailedElements, failedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
     const classType = "Class C";
-    const checkboxArr = Object.keys(checklistData[vehicleType][classType]);
+    const checkboxArr = checklistData[vehicleType][classType] ? 
+        Object.keys(checklistData[vehicleType][classType]):
+        [];
     const additionalFieldsArr = Object.keys(checklistData[vehicleType])
         .filter(key => !key.match("lass"));
     const getChecklist = item => (
@@ -54,7 +56,7 @@ const ClassCChecks = (props) => {
                     </section>
                 </form>
             </main>
-            : <Confirmation />}
+            : <Confirmation failedElements={failedElements} />}
         </>
     )
 }
