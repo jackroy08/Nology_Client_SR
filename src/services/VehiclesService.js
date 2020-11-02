@@ -1,4 +1,3 @@
-import vehiclesArr from "../data/vehicles";
 import { firestore } from "./../firebase";
 
 const getVehicles  = () => {
