@@ -6,9 +6,7 @@ const getVehicles  = () => {
 }
 
 //watches vehicles collection and updates the state whenever the db changes
-const subscribeToVehicles = (setState) => {
-    firestore.collection("vehicles").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
-}
+const subscribeToVehicles = (setState) => firestore.collection("vehicles").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())));
 
 const createVehicle  = (vehicle) => {
     firestore.collection("vehicles").doc(vehicle.plantID).set({...vehicle});
