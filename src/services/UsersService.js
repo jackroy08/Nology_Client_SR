@@ -30,7 +30,6 @@ const updateUser = (user) => {
         .collection("users")
         .doc(user.userID)
         .update({...user})
-        .then(console.log("user updated"));
 }
 
 const deleteUser  = () => {

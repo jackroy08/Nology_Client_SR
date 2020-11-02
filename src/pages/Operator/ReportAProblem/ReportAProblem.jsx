@@ -1,7 +1,8 @@
 import { navigate } from "@reach/router";
 import React from "react";
 import ReactDOM from 'react-dom';
-import Styles from "../../../components/Modal/Modal.module.scss"
+import Styles from "../../../components/Modal/Modal.module.scss";
+import { updateVehicleIssues } from "../../../services/VehiclesService";
 // import 'react-html5-camera-photo/build/css/index.css'; Camera import line, need function adding 
 // Could look at making new modal for Report a problem to fix issue of submit load page being rendered instead
 const ReportAProblem = () => {
@@ -9,15 +10,14 @@ const ReportAProblem = () => {
         console.log(e);
         e.preventDefault()
         let error =  {
-            issueType: document.getElementById("issue-type").value,
-            classType: document.getElementById("class-type").value,
-            vehicleId: "vehicleId",
-            vehicleType: "vehicleType",
-            supervisor: "supervisor",
-            operator: "operator",
-            additionalDetails: document.getElementById("additional-details").value,
+            "Class type": document.getElementById("class-type").value,
+            "Issue": document.getElementById("issue-type").value,
+            "Operator": "operator",
+            "Supervisor": "supervisor",
+            "Vehicle ID": "vehicleId",
+            "Additional details": document.getElementById("additional-details").value
         }
-        console.log(error);
+        updateVehicleIssues("001", error)
         navigate("/Operator");
     }
     return (

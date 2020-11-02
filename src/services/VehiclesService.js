@@ -1,5 +1,5 @@
 import vehiclesArr from "../data/vehicles";
-import { firestore } from "./../firebase";
+import firebase, { firestore } from "./../firebase";
 
 const getVehicles  = () => {
     return firestore.collection("vehicles").get().then(response => response.docs.map(document => document.data()));
@@ -19,8 +19,24 @@ const updateVehicle  = () => {
     console.log("update vehicles here") 
 }
 
+const setVehicleIssues = (vehicle, issues) => {
+    firestore
+        .collection("vehicles")
+        .doc(vehicle)
+        .set({checkItems: [...issues]})
+}
+
+const updateVehicleIssues = (vehicle, issues) => {
+    firestore
+        .collection("vehicles")
+        .doc(vehicle)
+        .update({
+            checkItems: firebase.firestore.FieldValue.arrayUnion({...issues})
+        })
+}
+
 const deleteVehicle  = () => {
     console.log("delete vehicles here")
 }
 
-export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, deleteVehicle };
+export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle };

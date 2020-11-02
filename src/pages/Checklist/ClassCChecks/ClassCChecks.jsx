@@ -46,7 +46,7 @@ const ClassCChecks = (props) => {
                             </section>
                         </>:
                         null}
-                    <textarea name="class-c-comment" id="class-c-checks"></textarea>
+                    <textarea name="class-c-comment" id="additional-details"></textarea>
                 
                     <section className={Styles.navigation}>
                         <button onClick={backHandler} className={Styles.btn}>Back</button> 

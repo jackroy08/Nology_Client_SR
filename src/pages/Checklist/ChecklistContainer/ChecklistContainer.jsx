@@ -18,11 +18,13 @@ const ChecklistContainer = (props) => {
                 if (!document.getElementById(val).checked) {
                     console.log(acc);
                     acc[classType][val] = {
-                        "classType": classType, 
-                        "issue": val ,
-                        "vehicleID": vehicleType,
-                        "operator": user,
-                        "supervisor": "supervisor1"
+                        "Class type": classType, 
+                        "Issue": val ,
+                        "Vehicle ID": vehicleType,
+                        "Operator": "2002",
+                        "Supervisor": "supervisor1",
+                        "Additional details": document.getElementById("additional-details").value
+                        //NEED TO CHANGE THESE VALUES BASED ON USER LOGGED IN
                     };
                     } else acc[classType][val] = {};
                 return acc;
@@ -44,17 +46,6 @@ const ChecklistContainer = (props) => {
     const getVehicleTypes = thisVehicle => {
         return <option key={thisVehicle} value={thisVehicle}>{thisVehicle}</option> 
     };
-
-    // const getChecklist = item => (
-    //     <React.Fragment key={item}>
-    //         <label htmlFor={item}>{item}
-    //         {console.log(checklistData[item])}
-    //             <input type="checkbox" id={item} name={item} value={item}/>
-    //             <img src={checklistData[item]} alt=""/>
-    //         </label>
-            
-    //     </React.Fragment>
-    // );
 
     const propsMethods = {
                             setFailedElements: setFailedElements, 
