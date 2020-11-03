@@ -4,13 +4,13 @@
 
 .userListSection {
     width: 100%;
-    padding: 0 $base-padding*2 $base-padding*2 $base-padding*2;
+    padding: 0 $base-spacing*2 $base-spacing*2 $base-spacing*2;
 
     header {
         background-color: $primary-color;
         display: flex;
         align-items: center;
-        padding: $base-padding $base-padding*2;
+        padding: $base-spacing $base-spacing*2;
 
         .userSummary {
             flex-grow: 1;
@@ -29,7 +29,7 @@
     }
 
     .columnTitles{
-        padding: $base-padding;
+        padding: $base-spacing;
     }
 
     .userList {
@@ -38,7 +38,7 @@
         width: 100%;
         background-color: $background-color1;
         margin: 0;
-        padding: 0 $base-padding $base-padding $base-padding;
+        padding: 0 $base-spacing $base-spacing $base-spacing;
         transition: all 0.3s ease;
 
     }
@@ -55,8 +55,8 @@
 
     .userItem {
         background-color: $background-color1;
-        margin-bottom: $base-padding;
-        padding: 0 $base-padding;
+        margin-bottom: $base-spacing;
+        padding: 0 $base-spacing;
 
         &:hover {
         background-color: $background-color2;
