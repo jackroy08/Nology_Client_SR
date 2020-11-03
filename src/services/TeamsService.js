@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { firestore } from '../firebase';
 
 
-const getTeams = () => firestore.collection("teams").get().then((response) => {
-    return response.docs.map((doc) => doc.data())
-});
+const getVehicles  = () => {
+    return firestore.collection("teams").get().then(response => response.docs.map(document => document.data()));
+}
 
 //watches teams collection and updates the state whenever the db changes
 const subscribeToTeams = (setState) => {
