@@ -10,7 +10,7 @@ const EditUserForm = (props) => {
         fullNameStr,
         dateOfBirth, 
         currentTeam, 
-        currentSubTeam,
+        currentsubTeamName,
     } = props.user
 
     const { register, handleSubmit, errors } = useForm();
@@ -67,11 +67,11 @@ const EditUserForm = (props) => {
                 <option value="teamD">Team D</option>
             </select>
             
-            <label htmlFor="currentSubTeam">Select Sub Team :</label>
+            <label htmlFor="currentsubTeamName">Select Sub Team :</label>
             <select
-                defaultValue={currentSubTeam}
-                name="currentSubTeam"
-                id="currentSubTeam" 
+                defaultValue={currentsubTeamName}
+                name="currentsubTeamName"
+                id="currentsubTeamName" 
                 ref={register({ required: true })}>
                 <option value="">Select Sub Team</option>
                 <option value="Morning">Morning</option>

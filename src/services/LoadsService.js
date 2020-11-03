@@ -1,11 +1,12 @@
 import firebase, { firestore } from "../firebase";
 
 const getLoads  = () => {
-    console.log("get loads here")
+    return firestore.collection("loads").get().then(response => response.docs.map(document => document.data()));
 }
 
-const createLoad  = () => {
-    console.log("create loads here")
+//watches loads collection and updates the state whenever the db changes
+const subscribeToLoads = (setState) => {
+    firestore.collection("laods").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
 }
 
 const updateLoad = (load) => {
@@ -15,10 +16,26 @@ const updateLoad = (load) => {
         .update({
             loadsArr: firebase.firestore.FieldValue.arrayUnion({...load})
         })
+    }
+    
+const createLoad  = (load) => {
+    firestore.collection("loads").doc("recentLoads").set({...load});
 }
 
-const deleteLoad  = () => {
-    console.log("delete loads here")
+const updateLoads = (load) => {
+    firestore.collection("loads").doc("recentLoads").update({...load});
 }
 
-export { getLoads, createLoad, updateLoad, deleteLoad };
+const deleteLoad  = (load) => {
+
+    let loadArr = [];
+    getLoads().then(response => loadArr=response);
+    const newLoadsArr = loadArr.filter((arrLoad) => {
+        return load !== arrLoad;
+    });
+    firestore.collection("loads").doc("recentLoads").delete();
+    
+    createLoad(newLoadsArr);
+}
+
+export { getLoads, subscribeToLoads, updateLoads, deleteLoad, updateLoad }

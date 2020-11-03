@@ -15,7 +15,7 @@ const UserItem = (props) => {
             <p>{user.userID}</p>
             <p>{user.isOnShift ? "Yes" : "No"}</p>
             <p>{user.currentTeam ? user.currentTeam : "-"}</p>
-            <p>{user.currentSubTeam ? user.currentSubTeam : "-"}</p>
+            <p>{user.currentsubTeamName ? user.currentsubTeamName : "-"}</p>
             <button onClick={toggle}>Edit...</button>
             <Modal innerComponent={<EditUserForm user={user} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
         </li>

@@ -1,19 +1,27 @@
-import { firestore } from "../firebase";
+import React, { useState } from 'react';
+import { firestore } from '../firebase';
+
 
 const getTeams  = () => {
-    console.log("get teams here")
+    return firestore.collection("teams").get().then(response => response.docs.map(document => document.data()));
 }
 
-const createTeam  = () => {
-    console.log("create teams here")
+//watches teams collection and updates the state whenever the db changes
+const subscribeToTeams = (setState) => {
+    firestore.collection("teams").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
 }
 
-const updateTeam  = () => {
-    console.log("update teams here")
+const createTeam  = (newTeam) => {
+    firestore.collection("teams").doc(newTeam.teamID).set({...newTeam});
 }
 
-const deleteTeam  = () => {
-    console.log("delete teams here")
+const updateTeam  = (teamID, updatedTeam) => {
+    firestore.collection("teams").doc(teamID).update({...updatedTeam});
+}
+
+
+const deleteTeam  = (team) => {
+    firestore.collection("teams").doc(team.teamID).delete();
 }
 
 const getTeamSiteName = (operatorTeam, operatorSubTeam) => {
@@ -29,4 +37,4 @@ const getTeamSiteName = (operatorTeam, operatorSubTeam) => {
         });
 }
 
-export { getTeams, createTeam, updateTeam, deleteTeam, getTeamSiteName };
+export { getTeams, createTeam, subscribeToTeams, updateTeam, deleteTeam, getTeamSiteName };

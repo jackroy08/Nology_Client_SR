@@ -2,14 +2,14 @@
 
 .vehiclesListSection {
   width: 100%;
-  padding: 0 $base-padding*2 $base-padding*2 $base-padding*2;
+  padding: 0 $base-spacing*2 $base-spacing*2 $base-spacing*2;
 
   header {
     background-color: $primary-color;
     display: flex;
     justify-items: flex-end;
     align-items: center;
-    padding: $base-padding $base-padding*2;
+    padding: $base-spacing $base-spacing*2;
 
     h3{
       margin-right: auto;
@@ -24,14 +24,14 @@
   }
 
   .columnTitles{
-    padding: $base-padding;
+    padding: $base-spacing;
   }
 
   .vehiclesList {
     width: 100%;
     background-color: $background-color1;
     margin: 0;
-    padding: 0 $base-padding $base-padding $base-padding;
+    padding: 0 $base-spacing $base-spacing $base-spacing;
   }
 
   .vehicleItem, .columnTitles {
@@ -43,8 +43,8 @@
   
   .vehicleItem {
     background-color: $background-color1;
-    margin-bottom: $base-padding;
-    padding: 0 $base-padding;
+    margin-bottom: $base-spacing;
+    padding: 0 $base-spacing;
 
     &:hover {
       background-color: $background-color2;

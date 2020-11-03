@@ -1,19 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Styles from "./VehicleTable.module.scss";
-import vehicleData from "../../../data/vehicles";
 
-//adding made up go status and Team - remove once data is from backend
-vehicleData.forEach(v => {
-  v.goStatus = Math.random() > 0.5 ? true : false;
-  v.currentTeam = Math.random() < 0.3 ? "Team 1" : Math.random() < 0.4 ? "Team 2" : Math.random() > 0.5 ? "Team 3" : "No Team";
-});
+const VehicleTable = (props) => {
 
-//where do we get current user??
-let supervisorTeam = "Team 1";
-//// End of bullshit data
+  const {filteredVehiclesArr, resizeVehicleTable} = props;
 
-
-const VehicleTable = () => {
+  useEffect(() => {
+    headerOnClick();
+  }, [resizeVehicleTable])
 
   const getVehicleJsx = (vehicle) => {
     return (
@@ -23,15 +17,12 @@ const VehicleTable = () => {
         <p>{vehicle.goStatus ? "Available" : "Not Available"}</p>
         <p>{vehicle.currentTeam ? vehicle.currentTeam : "No team"}</p>
         <p>{vehicle.currentUser}</p>
-        <p>{vehicle.checkItems}</p>
+        {/* <p>{vehicle.checkItems}</p> */}
         <p>{vehicle.lastChecked}</p>
         <p>{vehicle.checkedLog}</p>
       </li>
     )
   }
-
-  const supervisorVehicles = vehicleData.filter(v => (v.currentTeam === supervisorTeam))
-  .sort((a,b) => a.plantID - b.plantID);
 
   const [listHeight, setListHeight] = useState(0)
 
@@ -46,14 +37,14 @@ const VehicleTable = () => {
       <header onClick={headerOnClick}>
         <h3>Team Vehicle Stats</h3>
         <div className={Styles.vehicleSummary}>
-          <p>Total Vehicles: {supervisorVehicles.length}</p>
-          <p>Working Vehicles: {supervisorVehicles.filter(v => v.goStatus).length}</p>
-          <p>Broken Vehicles: {supervisorVehicles.filter(v => !v.goStatus).length}</p>
+          <p>Total Vehicles: {filteredVehiclesArr.length}</p>
+          <p>Working Vehicles: {filteredVehiclesArr.filter(v => v.goStatus).length}</p>
+          <p>Broken Vehicles: {filteredVehiclesArr.filter(v => !v.goStatus).length}</p>
         </div>
       </header>
 
-      <ul className={Styles.vehicleList} ref={el => {list=el}} style={{height : listHeight}}>
-        <li className={Styles.columnTitles}>
+      <ul className={Styles.vehicleList} ref={element => {list=element}} style={{height : listHeight}}>
+        <li key="titles" className={Styles.columnTitles}>
           <h4>Plant ID</h4>
           <h4>Plant Type</h4>
           <h4>Go Status</h4>
@@ -63,7 +54,7 @@ const VehicleTable = () => {
           <h4>Last Checked</h4>
           <h4>Checked Log</h4>
         </li>
-        {supervisorVehicles.map(getVehicleJsx)}
+        {filteredVehiclesArr.map(getVehicleJsx)}
       </ul>
     </section>
   );

@@ -2,22 +2,30 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import Styles from './EditTeamForm.module.scss';
 import sitesArr from '../../../../data/sites';
+import { updateTeam } from '../../../../services/TeamsService'
 
 const EditTeamForm = (props) => {
     const {
         site, 
-        team, 
-        subTeam
+        teamName, 
+        subTeamName
     } = props.team
 
     const { register, handleSubmit, errors } = useForm();
 
-    const editTeam = (data) => {
-        console.log(data.team)
+    const updateCurrentTeam = (data) => {
+        const updatedTeam = {
+            site : data.site,
+            teamName : data.teamName,
+            subTeamName : data.subTeamName,
+            teamID: `${data.teamName} ${data.subTeamName}`
+        }
+        {props.hide()}
+        return updateTeam(updatedTeam);
     }
     
     return (
-        <form className={Styles.teamForm} onSubmit={handleSubmit(editTeam)}>
+        <form className={Styles.teamForm} onSubmit={handleSubmit(updateCurrentTeam)}>
             <label htmlFor="site">Select Site :</label>
             <select
                 defaultValue={site}
@@ -29,28 +37,28 @@ const EditTeamForm = (props) => {
             </select>
             {errors.site && <p>Site is required.</p>}
 
-            <label htmlFor="team">Team :</label>
+            <label htmlFor="teamName">Team Name :</label>
             <input
-                defaultValue={team}
+                defaultValue={teamName}
                 type="text"
-                id="team"
-                name="team"
-                placeholder="enter the team"
+                id="teamName"
+                name="teamName"
+                placeholder="enter the teamName"
                 ref={register({ required: true })} />
-                {errors.teamName && <p>Team is required.</p>}
+                {errors.teamName && <p> Team Name is required.</p>}
             
-            <label htmlFor="subTeam">Sub Team :</label>
+            <label htmlFor="subTeamName">Sub Team Name:</label>
             <input
-                defaultValue={subTeam}
+                defaultValue={subTeamName}
                 type="text"
-                id="subTeam"
-                name="subTeam"
+                id="subTeamName"
+                name="subTeamName"
                 placeholder="enter the Sub Team"
                 ref={register({ required: true })} />
-                {errors.subTeam && <p>Sub team is required.</p>}
+                {errors.subTeamName && <p>Sub Team Name is required.</p>}
             
             <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Create</button>
+            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Update</button>
         </form>
     )
 }

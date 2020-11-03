@@ -5,7 +5,10 @@ import {
     faArrowRight,
     faArrowUp,
     faArrowDown,
-    faUserCircle
+    faUserCircle,
+    faTrashAlt,
+    faPencilAlt
+
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -14,5 +17,7 @@ export default library.add(
     faArrowRight,
     faArrowUp,
     faArrowDown,
-    faUserCircle
+    faUserCircle,
+    faTrashAlt,
+    faPencilAlt
 );

@@ -6,8 +6,8 @@
     justify-items: start;
     align-items: center;
     background-color: $background-color1;
-    margin-bottom: $base-padding;
-    padding: 0 $base-padding;
+    margin-bottom: $base-spacing;
+    padding: 0 $base-spacing;
 
     &:hover {
       background-color: $background-color2;

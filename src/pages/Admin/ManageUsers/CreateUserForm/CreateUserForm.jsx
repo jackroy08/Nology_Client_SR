@@ -15,16 +15,16 @@ class User {
     }
 }
 class Supervisor extends User {
-    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam) {
+    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentsubTeamName) {
     super(userType, fullName, userID, dateOfBirth, password);
     this.currentTeam = currentTeam;
-    this.currentSubTeam = currentSubTeam;
+    this.currentsubTeamName = currentsubTeamName;
     this.isOnShift = false;
     }
 }
 class Operator extends Supervisor {
-    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam, isOnShift) {
-        super(userType, fullName, userID, dateOfBirth, password, currentTeam, currentSubTeam, isOnShift);
+    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentsubTeamName, isOnShift) {
+        super(userType, fullName, userID, dateOfBirth, password, currentTeam, currentsubTeamName, isOnShift);
         this.assignedVehicle = "";
     }
 }
@@ -38,8 +38,8 @@ const CreateUserForm = (props) => {
         switch (data.userType) {
             case "management" : usersArr.push(new User(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password)); break;
             case "maintenance" : usersArr.push(new User(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password)); break;
-            case "supervisor" : usersArr.push(new Supervisor(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentSubTeam)); break;
-            case "operator" : usersArr.push(new Operator(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentSubTeam)); break;
+            case "supervisor" : usersArr.push(new Supervisor(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentsubTeamName)); break;
+            case "operator" : usersArr.push(new Operator(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentsubTeamName)); break;
             default: /* do nothing; */; break;
         }
     }
@@ -90,10 +90,10 @@ const CreateUserForm = (props) => {
             </select>
             
             
-            <label htmlFor="currentSubTeam">Select Sub Team :</label>
+            <label htmlFor="currentsubTeamName">Select Sub Team :</label>
             <select
-                name="currentSubTeam"
-                id="currentSubTeam" 
+                name="currentsubTeamName"
+                id="currentsubTeamName" 
                 ref={register({ required: true })}>
                 <option value="">Select Sub Team</option>
                 <option value="Morning">Morning</option>

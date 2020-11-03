@@ -2,9 +2,9 @@
 
 .newsItem{
     display: grid;
-    grid-template-columns: (1fr 1fr 4fr);
+    grid-template-columns: (1fr 1fr 4fr 1fr);
     justify-content: space-evenly;
     width: calc(100% - 20px);
     background-color: $background-color1;
-    margin: $base-padding;
+    margin: $base-spacing;
 }
