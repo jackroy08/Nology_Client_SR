@@ -9,15 +9,15 @@ const subscribeToSites = (setState) => {
 }
 
 const createSite  = (site) => {
-    firestore.collection("vehicles").doc(site.name).set({...site});
+    firestore.collection("sites").doc(site.name).set({...site});
 }
 
 const updateSite  = (site) => {
     firestore.collection("sites").doc(site.name).update({...site});
 }
 
-const deleteSite  = () => {
-    console.log("delete sites here")
+const deleteSite  = (site) => {
+    firestore.collection("sites").doc(site.name).delete();
 }
 
 export { getSites, subscribeToSites, createSite, updateSite, deleteSite };
