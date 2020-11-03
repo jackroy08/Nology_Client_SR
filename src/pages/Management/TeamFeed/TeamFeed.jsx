@@ -5,8 +5,10 @@ import useModal from "../../../components/Modal/useModal";
 import Report from "../Report";
 import { getUsers } from "../../../services/UsersService";
 import { getVehicles } from "../../../services/VehiclesService";
+import { getLoads } from "../../../services/LoadsService";
 
 const TeamFeed = () => {
+    const [loads, setLoads] = useState([]);
     const [teamsArr, setTeamsArr] = useState([]);
     const [usersArr, setUsersArr] = useState([]);
     const [vehiclesArr, setVehiclesArr] = useState([]);
@@ -72,10 +74,14 @@ const TeamFeed = () => {
             }
         });
     }
+    const fetchLoads = () => {
+        getLoads().then((response) => setLoads(response));
+    }
 
     useEffect(() => {
         fetchUsersArr();
         fetchVehiclesArr();
+        fetchLoads();
     }, []);
     fetchTeamsArr();
 

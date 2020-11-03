@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { firestore } from '../firebase';
 
 
-const getVehicles  = () => {
+const getTeams  = () => {
     return firestore.collection("teams").get().then(response => response.docs.map(document => document.data()));
 }
 
