@@ -6,8 +6,10 @@ import Report from "../Report";
 import Modal from "../../../components/Modal";
 
 import { getVehicles } from "../../../services/VehiclesService";
+import { getLoads } from "../../../services/LoadsService";
 
 const VehicleFeed = () => {
+    const [loadsArr, setLoadsArr] = useState([]);
     const [vehiclesArr, setVehiclesArr] = useState([]);
     const [vehicleIssues, setVehicleIssues] = useState([]);
     const [classAIssues, setClassAIssues] = useState([]);
@@ -32,10 +34,16 @@ const VehicleFeed = () => {
             setVehicleIssues(vehiclesArr.checkItems);
         }
     }
+    const fetchLoads = () => {
+        getLoads().then((response) => {
+            setLoadsArr(response);
+        })
+    }
 
     useEffect(() => {
         fetchVehiclesArr();
         getVehicleIssues();
+        fetchLoads();
     }, []);
 
     return (
@@ -48,8 +56,7 @@ const VehicleFeed = () => {
                 <ul>
                     <li>{vehicleCountArr.length} of which have been assigned to operators.</li>
                     <li>There have been {classAIssues.length} class A, {classBIssues.length} class B and {classCIssues.length} class C hazards on the current shift.</li>
-                    {/* Number of loads submitted today */}
-                    <li>There have been X loads submitted this shift.</li>
+                    <li>There have been {loadsArr.length} loads submitted this shift.</li>
                 </ul>
             </section>
         </article>

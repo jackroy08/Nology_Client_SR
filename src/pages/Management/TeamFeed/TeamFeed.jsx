@@ -67,7 +67,7 @@ const TeamFeed = () => {
     }
     const fetchTeamsArr = () => {
         usersArr.forEach((user) => {
-            if(!teamsArr.includes(user.currentTeam)) {
+            if(!teamsArr.includes(user.currentTeam) && user.currentTeam !== undefined ) {
                 teamsArr.push(user.currentTeam);
             }
         });

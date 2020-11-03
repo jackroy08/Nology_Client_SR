@@ -1,7 +1,7 @@
-// import loads from "../data/users"
+import { firestore } from "./../firebase";
 
 const getLoads  = () => {
-    console.log("get loads here")
+    return firestore.collection("loads").get().then(response => response.docs.map(document => document.data()));
 }
 
 const createLoad  = () => {
