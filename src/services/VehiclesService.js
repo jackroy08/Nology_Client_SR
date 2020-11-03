@@ -1,4 +1,3 @@
-import vehiclesArr from "../data/vehicles";
 import { firestore } from "./../firebase";
 
 const getVehicles  = () => {
@@ -14,13 +13,12 @@ const createVehicle  = (vehicle) => {
     firestore.collection("vehicles").doc(vehicle.plantID).set({...vehicle});
 }
 
-//what should this fucntion do
-const updateVehicle  = () => {
-    console.log("update vehicles here") 
+const updateVehicle  = (vehicle) => {
+    firestore.collection("vehicles").doc(vehicle.plantID).update({...vehicle});
 }
 
-const deleteVehicle  = () => {
-    console.log("delete vehicles here")
+const deleteVehicle  = (vehicle) => {
+    firestore.collection("vehicles").doc(vehicle.plantID).delete();
 }
 
 export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, deleteVehicle };
