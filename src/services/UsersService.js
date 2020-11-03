@@ -10,7 +10,7 @@ const getUsers = () => {
         });
 }
 
-function getOperators() {
+const getOperators = () => {
     return firestore
         .collection("users")
         .where('userType', '==', "operator")
@@ -20,6 +20,19 @@ function getOperators() {
             return data;
         });
 }
+
+const getTeamSupervisor = (operatorTeam, operatorSubTeam) => {
+    return firestore
+        .collection("users")
+        .where('userType', '==', "supervisor")
+        .where("currentTeam", "==", `${operatorTeam}`)
+        .where("currentSubTeam", "==", `${operatorSubTeam}`)
+        .get()
+        .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data())
+            return data;
+        });
+    }
 
 const createUser  = () => {
     console.log("create users here")
@@ -36,4 +49,4 @@ const deleteUser  = () => {
     console.log("delete users here")
 }
 
-export { getUsers, getOperators, createUser, updateUser, deleteUser };
+export { getUsers, getOperators, getTeamSupervisor, createUser, updateUser, deleteUser };

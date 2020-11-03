@@ -5,6 +5,8 @@ import { setVehicleIssues } from "../../../services/VehiclesService";
 
 const Confirmation = (props) => {
     const {backHandler, failedElements} = props;
+    // const [goStatus, setGoStatus] = useState("Go");
+
     const getFailedElementJsx = (classType) => {
         return Object.keys(failedElements[classType]).map(elem => {
             if (failedElements[classType][elem]["Issue"]) {
@@ -31,7 +33,21 @@ const Confirmation = (props) => {
                 }
             });
         });
-        setVehicleIssues("001", issuesArr);
+        console.log(issuesArr);
+        console.log(setGoStatusHandler(issuesArr));
+        // setVehicleIssues("001", issuesArr);
+    }
+
+    const setGoStatusHandler = (arr) => {
+        let goStatus = "Go";
+        if (arr.some(item => item["Class type"] == "Class A")) {
+            goStatus="No go";
+        } else if (arr.some(item => item["Class type"] == "Class B")) {
+            goStatus="Go, but";
+        } else if (arr.some(item => item["Class type"] == "Class C")) {
+            goStatus="Go";
+        }
+        return goStatus;
     }
 
     return (
