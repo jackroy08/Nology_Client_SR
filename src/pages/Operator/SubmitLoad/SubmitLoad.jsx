@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import Styles from "../../../components/Modal/Modal.module.scss"
-// import { navigate } from "@reach/router";
 
 const SubmitLoad = ({ isShowing, hide }) => {
     const SubmitHandler = () => {
