@@ -21,6 +21,8 @@ const deleteLoad  = (load) => {
         return load==! arrLoad;
     });
     firestore.collection("loads").doc("recentLoads").delete();
+    
+    updateLoads(load);
 }
 
 export { getLoads, subscribeToLoads, createLoad, deleteLoad };
