@@ -22,6 +22,13 @@ const ManageTeams = () => {
         subscribeToTeams(setTeamsArr);
     }, [])
 
+    useEffect(() => {
+        if (teamsArr) {
+            setFilteredTeamsArr(teamsArr);
+            setTeamNamesArr([...new Set(teamsArr.map(team => team.teamName))])
+        }
+    }, [teamsArr])
+
     const filterTeams = (teamName) => {
         if (teamName) {
         setFilteredTeamsArr(teamsArr.filter((each) => each.teamName === teamName))
@@ -38,7 +45,7 @@ const ManageTeams = () => {
                 <Modal innerComponent={<CreateTeamForm hide={toggle}/>} isShowing={isShowing} hide={toggle} />
                 <select onChange={(event) => filterTeams(event.target.value)}>
                         <option value="">All Teams</option>
-                        {teamNamesArr ? teamNamesArr.map((team) => <option value={team}>{team}</option>) : null}
+                        {teamNamesArr ? teamNamesArr.map((team) => <option key={team} value={team}>{team}</option>) : null}
                     </select>
             </header>                    
             <ul className={Styles.teamsList}>

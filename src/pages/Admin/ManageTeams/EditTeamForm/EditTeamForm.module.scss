@@ -7,7 +7,7 @@
   gap:0.5em;
   grid-template-columns: 1fr 1fr;
   background-color: $background-color1;
-  padding: $base-padding * 2;
+  padding: $base-spacing * 2;
 
   p {
     color: red;
