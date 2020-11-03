@@ -1,9 +1,12 @@
-// import checklists from "../data/users"
+import { firestore } from "./../firebase";
 
 const getChecklists  = () => {
     console.log("get Checklists here")
 }
 
+const subscribeToChecklist = () => {
+    console.log("subscibe to checklists here")
+}
 const createChecklist  = () => {
     console.log("create Checklists here")
 }
@@ -16,4 +19,4 @@ const deleteChecklist  = () => {
     console.log("delete Checklists here")
 }
 
-export { getChecklists, createChecklist, updateChecklist, deleteChecklist };
+export { getChecklists, subscribeToChecklist, createChecklist, updateChecklist, deleteChecklist };
