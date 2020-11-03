@@ -8,7 +8,8 @@ const EditTeamForm = (props) => {
     const {
         site, 
         teamName, 
-        subTeamName
+        subTeamName,
+        teamID
     } = props.team
 
     const { register, handleSubmit, errors } = useForm();
@@ -18,7 +19,7 @@ const EditTeamForm = (props) => {
             site : data.site,
             teamName : data.teamName,
             subTeamName : data.subTeamName,
-            teamID: `${data.teamName} ${data.subTeamName}`
+            teamID: teamID
         }
         {props.hide()}
         return updateTeam(updatedTeam);

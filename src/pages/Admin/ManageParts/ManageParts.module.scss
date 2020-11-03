@@ -1,6 +1,6 @@
 @import '../../../assets/styles/buttons'; 
 
-.sitesListSection {
+.partsListSection {
   width: 100%;
   padding: 0 $base-spacing*2 $base-spacing*2 $base-spacing*2;
 
@@ -27,21 +27,21 @@
     padding: $base-spacing;
   }
 
-  .sitesList {
+  .partsList {
     width: 100%;
     background-color: $background-color1;
     margin: 0;
     padding: 0 $base-spacing $base-spacing $base-spacing;
   }
 
-  .siteItem, .columnTitles {
+  .partItem, .columnTitles {
     display:grid;
-    grid-template-columns: 1fr 1fr 50px;
+    grid-template-columns: auto 64px;
     justify-items: start;
     align-items: center;
   }
   
-  .siteItem {
+  .partItem {
     background-color: $background-color1;
     margin-bottom: $base-spacing;
     padding: 0 $base-spacing;

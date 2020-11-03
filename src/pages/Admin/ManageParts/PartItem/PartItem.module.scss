@@ -1,0 +1,41 @@
+@import '../../../../assets/styles/buttons'; 
+@import '../../../../assets/styles/variables'; 
+
+  .partItem {
+    display:grid;
+    grid-template-columns: auto 32px 32px;
+    justify-items: start;
+    align-items: center;
+    background-color: $background-color1;
+    margin-bottom: $base-spacing;
+    padding: 0 $base-spacing;
+    position: relative;
+
+    &:hover {
+      background-color: $background-color2;
+    }
+
+    button {
+      height: fit-content;
+      width: 100%;
+    }
+
+    .confirmDelete {
+      display: none;
+      position: absolute;
+      right: 0;
+      grid-template-columns: auto auto;
+      gap: $base-spacing;
+    }
+
+    .confirmOpen {
+      display: grid;
+    }
+  }
+
+  .faIcon {
+    cursor: pointer;
+    font-size: 1.2em;
+    margin: 0.5em;
+    color: $dark-text-color;
+  }
