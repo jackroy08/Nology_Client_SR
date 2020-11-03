@@ -1,9 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Styles from "./VehicleTable.module.scss";
 
 const VehicleTable = (props) => {
 
-  const {filteredVehiclesArr} = props;
+  const {filteredVehiclesArr, resizeVehicleTable} = props;
+
+  useEffect(() => {
+    headerOnClick();
+  }, [resizeVehicleTable])
 
   const getVehicleJsx = (vehicle) => {
     return (
@@ -39,7 +43,7 @@ const VehicleTable = (props) => {
         </div>
       </header>
 
-      <ul className={Styles.vehicleList} ref={el => {list=el}} style={{height : listHeight}}>
+      <ul className={Styles.vehicleList} ref={element => {list=element}} style={{height : listHeight}}>
         <li key="titles" className={Styles.columnTitles}>
           <h4>Plant ID</h4>
           <h4>Plant Type</h4>

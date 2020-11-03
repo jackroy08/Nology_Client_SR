@@ -14,7 +14,6 @@ const subscribeToNewsItems = (setState,team) => {
     }else{
         return firestore.collection("newsItems").where("team","==",team).onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
     }
-    
 }
 
 const createNewsItem  = (newsItem) => {

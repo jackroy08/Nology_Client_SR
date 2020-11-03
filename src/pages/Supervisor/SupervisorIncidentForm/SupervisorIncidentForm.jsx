@@ -13,7 +13,7 @@ const SupervisorIncidentForm = (props) => {
     type:"Supervisor Report",
     isImportant: true,
     seenBy: [],
-    info: {}
+    info: {info:"i am info"}
   });
 
   const updateForm = (e) => {
@@ -22,8 +22,10 @@ const SupervisorIncidentForm = (props) => {
     setFormData(newObject);
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     createNewsItem(formData);
+
   }
 
 
