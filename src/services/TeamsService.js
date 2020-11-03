@@ -12,20 +12,13 @@ const subscribeToTeams = (setState) => {
 }
 
 const createTeam  = (newTeam) => {
-    console.log(newTeam)
     firestore.collection("teams").doc(newTeam.teamID).set({...newTeam});
 }
 
-const updateTeam  = (team) => {
-    firestore.collection("teams").doc(team.teamID).update({
-        teamName : team.teamName,
-        subTeamName : team.subTeamName,
-        teamID : `${team.teamName} ${team.subTeamName}`,
-        site : team.site,
-        })
-        .then(function() {
-        console.log("Document successfully updated!");
-        });}
+const updateTeam  = (teamID, updatedTeam) => {
+    firestore.collection("teams").doc(teamID).update({...updatedTeam});
+}
+
 
 const deleteTeam  = (team) => {
     firestore.collection("teams").doc(team.teamID).delete();
