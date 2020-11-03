@@ -31,6 +31,4 @@ const deleteTeam  = (team) => {
     firestore.collection("teams").doc(team.teamID).delete();
 }
 
-
-
 export {getTeams, subscribeToTeams, createTeam, updateTeam, deleteTeam };

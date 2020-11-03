@@ -25,7 +25,10 @@ class Team {
 const CreateTeamForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
     
-    const createNewTeam = (data) => createTeam(new Team(data.site, data.teamName, data.subTeamName));
+    const createNewTeam = (data) => {
+        {props.hide()}
+        return createTeam(new Team(data.site, data.teamName, data.subTeamName));
+    }
     
     return ( 
         <form className={Styles.teamForm} onSubmit={handleSubmit(createNewTeam)}>
@@ -58,8 +61,17 @@ const CreateTeamForm = (props) => {
                 {errors.subTeamName && <p>Sub Team Name is required.</p>}
             
                 
-            <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Create</button>
+            <button
+                className={`${Styles.btn} ${Styles.btnDanger}`}
+                data-dismiss="modal"
+                aria-label="Close"
+                onClick={props.hide}
+                >Cancel
+                </button>
+            <button 
+                className={`${Styles.btn} ${Styles.btnSuccess}`}
+                type="submit"
+                >Create</button>
         </form>
     );
 }
