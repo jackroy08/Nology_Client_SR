@@ -1,23 +1,22 @@
-import { Link } from "@reach/router";
-import React from "react";
+import { Link, navigate } from "@reach/router";
+import React, { useState, useEffect } from "react";
 import Styles from "./Confirmation.module.scss";
 import { setVehicleIssues } from "../../../services/VehiclesService";
 
 const Confirmation = (props) => {
     const {backHandler, failedElements} = props;
-    // const [goStatus, setGoStatus] = useState("Go");
+    const [issuesArr, setIssuesArr] = useState([]);
 
     const getFailedElementJsx = (classType) => {
         return Object.keys(failedElements[classType]).map(elem => {
-            if (failedElements[classType][elem]["Issue"]) {
-
+            if (failedElements[classType][elem].issue) {
                 return (
-                    <li key={failedElements[classType][elem]["Issue"]} className= {Styles.userItem}>
-                        <p>{failedElements[classType][elem]["Class type"]}</p>
-                        <p>{failedElements[classType][elem]["Issue"]}</p>
-                        <p>{failedElements[classType][elem]["Vehicle ID"]}</p>
-                        <p>{failedElements[classType][elem]["Supervisor"]}</p>
-                        <p>{failedElements[classType][elem]["Operator"]}</p>
+                    <li key={failedElements[classType][elem].issue} className= {Styles.userItem}>
+                        <p>{failedElements[classType][elem].classType}</p>
+                        <p>{failedElements[classType][elem].issue}</p>
+                        <p>{failedElements[classType][elem].vehicleID}</p>
+                        <p>{failedElements[classType][elem].supervisor}</p>
+                        <p>{failedElements[classType][elem].operator}</p>
                     </li>
                 )
             }
@@ -25,30 +24,33 @@ const Confirmation = (props) => {
     }
 
     const submitHandler = () => {
-        const issuesArr = [];
-        Object.keys(failedElements).forEach(classType => {
-            Object.keys(failedElements[classType]).forEach(elem => {
-                if (failedElements[classType][elem]["Issue"]) {
-                    issuesArr.push(failedElements[classType][elem])
-                }
-            });
-        });
-        console.log(issuesArr);
-        console.log(setGoStatusHandler(issuesArr));
-        // setVehicleIssues("001", issuesArr);
+        setVehicleIssues("001", issuesArr, setGoStatusHandler(issuesArr));
+        navigate("/Operator")
     }
 
     const setGoStatusHandler = (arr) => {
         let goStatus = "Go";
-        if (arr.some(item => item["Class type"] == "Class A")) {
+        if (arr.some(item => item.classType == "classA")) {
             goStatus="No go";
-        } else if (arr.some(item => item["Class type"] == "Class B")) {
+        } else if (arr.some(item => item.classType == "classB")) {
             goStatus="Go, but";
-        } else if (arr.some(item => item["Class type"] == "Class C")) {
+        } else if (arr.some(item => item.classType == "classC")) {
             goStatus="Go";
         }
         return goStatus;
     }
+
+    useEffect(() => {
+        const issues = [];
+        Object.keys(failedElements).map(classType => {
+            Object.keys(failedElements[classType]).map(elem => {
+                if (failedElements[classType][elem]["Issue"]) {
+                    issues.push(failedElements[classType][elem]);
+                }
+            });
+        });
+        setIssuesArr(issues);
+    }, [])
 
     return (
         <section className={Styles.userListSection}>

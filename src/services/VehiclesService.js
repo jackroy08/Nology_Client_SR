@@ -19,12 +19,13 @@ const updateVehicle  = () => {
     console.log("update vehicles here") 
 }
 
-const setVehicleIssues = (vehicle, issues) => {
+const setVehicleIssues = (vehicle, issues, goStatus) => {
     firestore
         .collection("vehicles")
         .doc(vehicle)
         .set({
-            checkItems: [...issues]
+            checkItems: [...issues],
+            goStatus: goStatus
         }, {merge: true})
 }
 

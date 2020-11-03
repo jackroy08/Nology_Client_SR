@@ -22,11 +22,6 @@ const SubmitLoad = (props) => {
         hide();
     }
 
-    useEffect(() => {
-        
-    }, []);
-
-
     return (
         user.isOnShift ? (
             isShowing ? ReactDOM.createPortal(

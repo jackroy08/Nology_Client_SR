@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link, navigate } from "@reach/router";
 import Styles from "./Operator.module.scss";
-import { getOperators, updateUser } from "../../services/UsersService";
-import { getTeamSupervisor } from "../../services/UsersService";
+import { getOperators, updateUser, getTeamSupervisor } from "../../services/UsersService";
 import useModal from "../../components/Modal/useModal";
 import SubmitLoad from "./SubmitLoad";
 import { getTeamSiteName } from "../../services/TeamsService";

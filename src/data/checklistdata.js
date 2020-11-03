@@ -1,6 +1,6 @@
 const checklistData = {
     "ADT": {
-        "Class A": {
+        classA: {
             "Head lights": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FHeadlights.png?alt=media&token=059c6317-bcac-4128-9c90-84e6937087f1" ,
             "Indicator/rear/brake lights": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FRear%20lights.png?alt=media&token=11bbfab6-2e31-4f46-b6be-524addc05a90" ,
             "Hooter": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FHooter.png?alt=media&token=017f6674-c65b-4f36-a6bd-c42239866d88" , 
@@ -32,7 +32,7 @@ const checklistData = {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Door latches": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FDoor%20latches.png?alt=media&token=8b7d8bcf-15f7-4aaf-bd31-3d61c0d86c9e"
         },
-        "Class B": {
+        classB: {
             "Cab clean": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FCab%20clean.png?alt=media&token=f3dfba64-d8ff-4769-81c1-0b8ac0f64487",
             "Rear/side windows": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FRear%3Aside%20windows.png?alt=media&token=54724ea8-a728-4831-9429-ee0078a30a40" , 
             "ID number": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FID%20number.png?alt=media&token=abe0388d-b63f-4e2b-b8a0-4b81d328c5fb",
@@ -42,7 +42,7 @@ const checklistData = {
     }, 
     
     "AWT":{
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Pins in position and locked": "img" ,
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
@@ -63,7 +63,7 @@ const checklistData = {
             "Air conditioner": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FAir%20conditioner.png?alt=media&token=b2c68ea5-5bb5-4b66-b44a-311617723521" , 
             "Oil level": "img" ,
         },
-        "Class B": {
+        classB: {
             "Dashboard instruments": "img" ,
             "Oil/fuel leaks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOil%20leak.png?alt=media&token=2d443594-f759-413a-956a-2aec978595b4",
             "Windows": "img" ,
@@ -78,24 +78,24 @@ const checklistData = {
             "Fuel level": "img" ,
             "Fuel level" : "img" ,
         },
-        "Class C": {
+        classC: {
             "New bump marks": "img" 
         },
         
         "Red permit area": {
-            "Class A": {
+            classA: {
                 "Brake test ramp when entering pit": "img" ,
                 "Flag": "img" ,
                 "Radio two way": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTwo%20way%20radio.png?alt=media&token=7c661eb5-01a8-44bb-a513-1b2a2b98ba2b" , 
             },
-            "Class B": {
+            classB: {
                 "Reflective tape condition": "img",
             }
         }
     },
 
     "DB": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Wheel nuts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FWheel%20nuts.png?alt=media&token=6276be15-c7bc-4795-84a9-7c80dbd6d3b0" , 
             "Pins in position and locked": "img" ,
@@ -119,7 +119,7 @@ const checklistData = {
             "Air conditioner": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FAir%20conditioner.png?alt=media&token=b2c68ea5-5bb5-4b66-b44a-311617723521" , 
             "Radio two way": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTwo%20way%20radio.png?alt=media&token=7c661eb5-01a8-44bb-a513-1b2a2b98ba2b" , 
         },
-        "Class B": {
+        classB: {
             "Oil/fuel leaks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOil%20leak.png?alt=media&token=2d443594-f759-413a-956a-2aec978595b4",
             "Mirrors": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FMirrors.png?alt=media&token=02ed44ff-a292-41e0-af24-5e188766919a" ,
             "Windows": "img" ,
@@ -134,12 +134,12 @@ const checklistData = {
             "Radiator not clogged": "img" ,
             "Pto": "img"
         },
-        "Class C": {
+        classC: {
             "New bump marks": "img" 
         },
 
         "Other attachments": {
-            "Class A": {
+            classA: {
                 "Pumps": "img" ,
                 "Safety guards": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FEquipment%20safety%20guards.png?alt=media&token=ac8e4d00-680c-4444-a1a2-37be71096bba",
                 "Hose connectors": "img" ,
@@ -152,7 +152,7 @@ const checklistData = {
     },
     
     "Drills": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
             "Front and rear lights": "img" ,
@@ -177,7 +177,7 @@ const checklistData = {
             "Doors and handles": "img" ,
             "Dust collection": "img" ,
         },
-        "Class B": {
+        classB: {
             "Mirrors": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FMirrors.png?alt=media&token=02ed44ff-a292-41e0-af24-5e188766919a" ,
             "Oil/fuel leaks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOil%20leak.png?alt=media&token=2d443594-f759-413a-956a-2aec978595b4",
             "Seat": "img" ,
@@ -189,14 +189,14 @@ const checklistData = {
             "Tow bar and pin": "img" ,
             "Carousel": "img" 
         },
-        "Class C": {
+        classC: {
         "New bump marks": "img",
         "Fuel level": "img"
         }
     }, 
 
     "Excavator": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
             "Seat belts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FSeat%20belts.png?alt=media&token=3b624fd8-c12d-4a45-8441-a2250ef74dc0" , 
@@ -217,7 +217,7 @@ const checklistData = {
             "Air conditioner": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FAir%20conditioner.png?alt=media&token=b2c68ea5-5bb5-4b66-b44a-311617723521" , 
             "Doors and handles": "img"  
         },
-        "Class B": {
+        classB: {
             "Steps": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FSteps.png?alt=media&token=8091d69c-4539-4d25-be1a-bfac93eeb7af" , 
             "Hand grips": "img" ,
             "Windows": "img" ,
@@ -228,13 +228,13 @@ const checklistData = {
             "Bucket": "img" ,
             "Rollers": "img"
         }, 
-        "Class C": {
+        classC: {
             "New bump marks": "img" 
         },
     },
 
     "FEL": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Stop blocks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FStop%20blocks.png?alt=media&token=23f443fa-7624-4795-8220-8edb35705b35" , 
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
@@ -261,7 +261,7 @@ const checklistData = {
             "Doors and handles": "img" 
         },
         
-        "Class B": {
+        classB: {
             "Hand grips": "img" ,
             "Hand rails": "img" ,
             "Screen wipers": "img" ,
@@ -275,14 +275,14 @@ const checklistData = {
             "Bucket": "img"
         },
         
-        "Class C": {
+        classC: {
             "Towbar and pin": "img" ,
             "New bump marks": "img"
         }
     },
     
     "Forklift": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Stop blocks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FStop%20blocks.png?alt=media&token=23f443fa-7624-4795-8220-8edb35705b35" , 
             "Wheel nuts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FWheel%20nuts.png?alt=media&token=6276be15-c7bc-4795-84a9-7c80dbd6d3b0" , 
@@ -302,7 +302,7 @@ const checklistData = {
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
         },
         
-        "Class B": {
+        classB: {
             "Tyre condition": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTyres.png?alt=media&token=e86b0300-1409-40a5-b6a5-5f51d95819d3" ,
             "Dashboard indicators": "img",
             "Mirrors": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FMirrors.png?alt=media&token=02ed44ff-a292-41e0-af24-5e188766919a" ,
@@ -314,13 +314,13 @@ const checklistData = {
             "Radiator not clogged": "img",
         },
 
-        "Class C": {
+        classC: {
             "New bump marks": "img"
         }
     },
     
     "Grader": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Seat belts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FSeat%20belts.png?alt=media&token=3b624fd8-c12d-4a45-8441-a2250ef74dc0" , 
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
@@ -343,7 +343,7 @@ const checklistData = {
             "Doors & handles": "img",    
         },
         
-        "Class B": {
+        classB: {
             "Tyre condition": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTyres.png?alt=media&token=e86b0300-1409-40a5-b6a5-5f51d95819d3" ,
             "Hand grips": "img",
             "Screen wiper": "img",
@@ -357,14 +357,14 @@ const checklistData = {
             "Blade & ripper": "img"  
         },
 
-        "Class C": {
+        classC: {
             "Hour meter": "img",
             "New bump marks": "img"
         }
     },
     
     "LDV": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Wheel nuts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FWheel%20nuts.png?alt=media&token=6276be15-c7bc-4795-84a9-7c80dbd6d3b0" , 
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
@@ -379,7 +379,7 @@ const checklistData = {
             "Brake test (emergency brake)": "img",
         },
         
-        "Class B": {
+        classB: {
             "Oil/fuel leaks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOil%20leak.png?alt=media&token=2d443594-f759-413a-956a-2aec978595b4",
             "Tyre condition": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTyres.png?alt=media&token=e86b0300-1409-40a5-b6a5-5f51d95819d3" ,
             "Dashboard indicators": "img",
@@ -390,20 +390,20 @@ const checklistData = {
         },
 
         "Red permit area": {
-            "Class A": {
+            classA: {
                 "Brake test ramp when entering pit": "img",
                 "Radio two way": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTwo%20way%20radio.png?alt=media&token=7c661eb5-01a8-44bb-a513-1b2a2b98ba2b" , 
                 "Flag": "img",
                 "Strobe light": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FStrobe%20light.png?alt=media&token=800346f1-2b02-4765-8a4e-a6f98ec0755b" , 
             },
 
-            "Class B": {
+            classB: {
                 "Reflective tape condition": "img"
             }
         },
 
         "Towing a trailer": {
-            "Class A": {
+            classA: {
                 "Wheel nuts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FWheel%20nuts.png?alt=media&token=6276be15-c7bc-4795-84a9-7c80dbd6d3b0" , 
                 "Stop blocks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FStop%20blocks.png?alt=media&token=23f443fa-7624-4795-8220-8edb35705b35" , 
                 "Safety chain/pin": "img",
@@ -411,7 +411,7 @@ const checklistData = {
                 "Indicator/rear/brake lights": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FRear%20lights.png?alt=media&token=11bbfab6-2e31-4f46-b6be-524addc05a90" ,
             },
             
-            "Class B": {
+            classB: {
                 "Tyre condition": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTyres.png?alt=media&token=e86b0300-1409-40a5-b6a5-5f51d95819d3" ,
                 "Reflective tape condition": "img"
             }
@@ -419,7 +419,7 @@ const checklistData = {
         },
 
         "Weekly inspection": {
-            "Class B": {
+            classB: {
                 "Oil level":  "img",
                 "Coolant level": "img",
                 "Fluid level": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFluid%20images.png?alt=media&token=75a339f6-e178-4eff-8d02-5fffaa51b739",
@@ -430,7 +430,7 @@ const checklistData = {
     },
     
     "SRV Water Bowser": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Wheel nuts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FWheel%20nuts.png?alt=media&token=6276be15-c7bc-4795-84a9-7c80dbd6d3b0" , 
             "Pins in position and locked": "img",
@@ -449,7 +449,7 @@ const checklistData = {
             "Doors & handles": "img",
             "Air conditioner": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FAir%20conditioner.png?alt=media&token=b2c68ea5-5bb5-4b66-b44a-311617723521" , 
         },
-        "Class B": {
+        classB: {
             "Oil level": "img",
             "Oil/fuel leaks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOil%20leak.png?alt=media&token=2d443594-f759-413a-956a-2aec978595b4",
             "Mirrors": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FMirrors.png?alt=media&token=02ed44ff-a292-41e0-af24-5e188766919a" ,
@@ -465,7 +465,7 @@ const checklistData = {
             "Radiator not clogged": "img",    
         },
 
-        "Class C": {
+        classC: {
             "New bump marks": "img"
         },
 
@@ -477,19 +477,19 @@ const checklistData = {
         },
 
         "Red permit area": {
-            "Class A": {
+            classA: {
                 "Brake test ramp when entering pit": "img",
                 "Radio two way": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTwo%20way%20radio.png?alt=media&token=7c661eb5-01a8-44bb-a513-1b2a2b98ba2b" , 
                 "Flag": "img"
             },
-            "Class B": {
+            classB: {
                 "Reflective tape": "img"
             }
         }
     },
     
     "Track Dozer": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Seat belts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FSeat%20belts.png?alt=media&token=3b624fd8-c12d-4a45-8441-a2250ef74dc0" , 
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
@@ -513,7 +513,7 @@ const checklistData = {
             "Radio two way": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTwo%20way%20radio.png?alt=media&token=7c661eb5-01a8-44bb-a513-1b2a2b98ba2b" , 
         },
         
-        "Class B": {
+        classB: {
             "Screen wiper": "img",
             "Fuel level": "img",
             "All pipes": "img",
@@ -527,13 +527,13 @@ const checklistData = {
             "Blade ripper": "img"   
         },
 
-        "Class C": {
+        classC: {
             "New bump marks": "img"
         }
     },
 
     "RDT": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Stop blocks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FStop%20blocks.png?alt=media&token=23f443fa-7624-4795-8220-8edb35705b35" , 
             "Fire extinguisher": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FFire%20extinguisher.png?alt=media&token=9c364d87-a260-4f7d-bf5b-38a6cf60857a" , 
@@ -558,7 +558,7 @@ const checklistData = {
             "Doors & handles": "img"
         },
         
-        "Class B": {
+        classB: {
             "Hand rails & kick plates": "img",
             "Access light": "img",
             "Screen wiper": "img",
@@ -570,14 +570,14 @@ const checklistData = {
             "Steps": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FSteps.png?alt=media&token=8091d69c-4539-4d25-be1a-bfac93eeb7af" , 
         },
 
-        "Class C": {
+        classC: {
             "Hour meter": "img",
             "New bump marks": "img"
         }
     },
 
     "Truck Mounted Crane": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Wheel nuts": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FWheel%20nuts.png?alt=media&token=6276be15-c7bc-4795-84a9-7c80dbd6d3b0" , 
             "Pins in position and locked": "img",
@@ -597,7 +597,7 @@ const checklistData = {
             "Doors & handles": "img",
             
         },
-        "Class B": {
+        classB: {
             "Tyre condition": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTyres.png?alt=media&token=e86b0300-1409-40a5-b6a5-5f51d95819d3" ,
             "Dashboard indicators": "img",
             "Oil/fuel leaks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOil%20leak.png?alt=media&token=2d443594-f759-413a-956a-2aec978595b4",
@@ -615,13 +615,13 @@ const checklistData = {
             "Hydraulic oil": "img",
         },
 
-        "Class C": {
+        classC: {
             "Steps": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FSteps.png?alt=media&token=8091d69c-4539-4d25-be1a-bfac93eeb7af" , 
             "Recent body damage": "img"
         },
 
         "Other attachments": {
-            "Class A": {
+            classA: {
                 "Hook safety latch": "img",
                 "Outriggers": "img",
                 "Pins in position and locked": "img",
@@ -630,19 +630,19 @@ const checklistData = {
         },
 
         "Red permit area": {
-            "Class A": {
+            classA: {
                 "Brake test ramp when entering pit": "img",
                 "Radio two way": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTwo%20way%20radio.png?alt=media&token=7c661eb5-01a8-44bb-a513-1b2a2b98ba2b" , 
                 "Flag": "img"
             },
-            "Class B": {
+            classB: {
                 "Reflective tape": "img"
             }
         }
     },
 
     hro: {
-        "Class A":{
+        classA:{
             "Safety glasses": "img" ,
             "Gloves": "img" ,
             "Hard hat": "img" ,
@@ -661,7 +661,7 @@ const checklistData = {
             "Rod changer-secure":"img" ,
             "Rod changer- bolts secure":"img" ,
         },  
-        "Class B": {
+        classB: {
             "Hooter": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FHooter.png?alt=media&token=017f6674-c65b-4f36-a6bd-c42239866d88" ,
             "Reverse alarm": "img" ,
             "Seat check": "img" ,
@@ -698,7 +698,7 @@ const checklistData = {
             "Mast-cracks": "img" ,
             "Rod changer-worn pins and bushes": "img"
         }, 
-        "Class C": {
+        classC: {
             "Mast-drifter slids": "img" ,
             "Mast-jawliners": "img" ,
             "Mast-dust hood": "img" ,
@@ -708,7 +708,7 @@ const checklistData = {
     },
     
     bus: {
-        "Class A":{
+        classA:{
             "Licence disk and public permit": "img" , 
             "Number plate and lights": "img" ,
             "Windscreen and wipers": "img" ,
@@ -741,11 +741,11 @@ const checklistData = {
             "Oil/fuel leaks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOil%20leak.png?alt=media&token=2d443594-f759-413a-956a-2aec978595b4"
         }, 
         "At night": {
-            "Class A": {
+            classA: {
                 "Reflector tape that's visible": "img" ,
             } 
     }, 
-    "Class B": {
+    classB: {
         "Rear window and side windows": "img" ,
         "Gauges": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FGauges.png?alt=media&token=efba8ff9-7321-42d4-87d4-a3c57b234a86",
         "Adjust cabin rear view and other mirror": "img" ,
@@ -762,7 +762,7 @@ const checklistData = {
 },
 
     "TLB": {
-        "Class A": {
+        classA: {
             "Operator licence": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOperator%20license.png?alt=media&token=75b2b887-8384-487b-946a-2d251e586089", 
             "Stop blocks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FStop%20blocks.png?alt=media&token=23f443fa-7624-4795-8220-8edb35705b35" , 
             "Indicator/rear/brake lights": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FRear%20lights.png?alt=media&token=11bbfab6-2e31-4f46-b6be-524addc05a90" ,
@@ -784,7 +784,7 @@ const checklistData = {
             "Air conditioner": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FAir%20conditioner.png?alt=media&token=b2c68ea5-5bb5-4b66-b44a-311617723521" , 
             "Radio two way": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FTwo%20way%20radio.png?alt=media&token=7c661eb5-01a8-44bb-a513-1b2a2b98ba2b" , 
         },
-        "Class B": {
+        classB: {
             "Digging boom assembly": "img",
             "Bucket and cutting edges": "img",
             "Oil/fuel leaks": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FOil%20leak.png?alt=media&token=2d443594-f759-413a-956a-2aec978595b4",
@@ -801,7 +801,7 @@ const checklistData = {
             "Steps": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FSteps.png?alt=media&token=8091d69c-4539-4d25-be1a-bfac93eeb7af" , 
             "Rear lights": "img",
         },
-        "Class C": {
+        classC: {
             "Steps": "https://firebasestorage.googleapis.com/v0/b/shiftreporter-3420e.appspot.com/o/images%2FSteps.png?alt=media&token=8091d69c-4539-4d25-be1a-bfac93eeb7af" , 
             "Recent body damage": "img"
         }

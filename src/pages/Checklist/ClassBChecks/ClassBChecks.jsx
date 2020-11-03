@@ -5,13 +5,13 @@ import RenderAdditionalOptions from "../RenderAdditionalOptions"
 const ClassBChecks = (props) => {
     
     const { setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
-    const classType = "Class B";
-    const checkboxArr = Object.keys(checklistData[vehicleType][classType]);
+    // const classType = classB;
+    const checkboxArr = Object.keys(checklistData[vehicleType].classB);
     const additionalFieldsArr = Object.keys(checklistData[vehicleType])
         .filter(key => !key.match("lass"));
     const getChecklist = item => (
         <div key={item}>
-            <img src={checklistData[vehicleType][classType][item]} alt=""/>
+            <img src={checklistData[vehicleType].classB[item]} alt=""/>
             <label htmlFor={item}>{item}   
             </label>
             <input type="checkbox" id={item} name={item} value={item}/> 
@@ -35,7 +35,7 @@ const ClassBChecks = (props) => {
                                 {additionalFieldsArr.map(item => 
                                 <RenderAdditionalOptions 
                                     getChecklist={getChecklist} 
-                                    classVal={classType} 
+                                    classVal={"classB"} 
                                     checklistData={checklistData}
                                     vehicleType={vehicleType} 
                                     item={item}
@@ -48,7 +48,7 @@ const ClassBChecks = (props) => {
                 
                     <section className={Styles.navigation}>
                         <button onClick={backHandler} className={Styles.btn}>Back</button> 
-                        <button type="button" onClick={() => {nextHandler(); setFailedElements(failObject(vehicleType, classType))}} className={Styles.btn}>Next</button>
+                        <button type="button" onClick={() => {nextHandler(); setFailedElements(failObject(vehicleType, "classB"))}} className={Styles.btn}>Next</button>
                     </section>
                 </form>
             </main>
