@@ -1,19 +1,23 @@
-// import Sites from "../data/users"
+import { firestore } from '../firebase';
 
 const getSites  = () => {
-    console.log("get sites here")
+    return firestore.collection("sites").get().then(response => response.docs.map(document => document.data()));
 }
 
-const createSite  = () => {
-    console.log("create sites here")
+const subscribeToSites = (setState) => {
+    firestore.collection("sites").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
 }
 
-const updateSite  = () => {
-    console.log("update sites here")
+const createSite  = (site) => {
+    firestore.collection("sites").doc(site.name).set({...site});
 }
 
-const deleteSite  = () => {
-    console.log("delete sites here")
+const updateSite  = (site) => {
+    firestore.collection("sites").doc(site.name).update({...site});
 }
 
-export { getSites, createSite, updateSite, deleteSite };
+const deleteSite  = (site) => {
+    firestore.collection("sites").doc(site.name).delete();
+}
+
+export { getSites, subscribeToSites, createSite, updateSite, deleteSite };

@@ -9,7 +9,7 @@ const Maintenance = () => {
         <main className={Styles.main}>
             <h1 className={Styles.title}>Maintenance</h1>
             <section className={Styles.pageGrid}>
-                <MaintenanceAside />   
+                {/* <MaintenanceAside />    */}
                 <MaintenanceList />
             </section>
         </main>

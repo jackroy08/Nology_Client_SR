@@ -6,18 +6,17 @@ import teamsArr from '../../../../data/teams';
 import sitesArr from '../../../../data/sites';
 import Modal from '../../../../components/Modal';
 import useModal from '../../../../components/Modal/useModal';
+import { createTeam } from '../../../../services/TeamsService'
 
 
 // ------ CLASSES ----- //
 
 class Team {
-    constructor( site, team, subTeam) {
+    constructor( site, teamName, subTeamName) {
     this.site = site;
-    this.team = team;
-    this.subTeam = subTeam;
-    }
-    get teamID () {
-        return `${this.team} ${this.subTeam}`
+    this.teamName = teamName;
+    this.subTeamName = subTeamName;
+    this.teamID = `${this.teamName} ${this.subTeamName}`;
     }
 }
 
@@ -27,8 +26,9 @@ const CreateTeamForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
     
     const createNewTeam = (data) => {
-        teamsArr.push(new Team(data.site, data.team, data.subTeam)); 
-        }
+        {props.hide()}
+        return createTeam(new Team(data.site, data.teamName, data.subTeamName));
+    }
     
     return ( 
         <form className={Styles.teamForm} onSubmit={handleSubmit(createNewTeam)}>
@@ -42,27 +42,36 @@ const CreateTeamForm = (props) => {
             </select>
             {errors.site && <p>Site is required.</p>}
 
-            <label htmlFor="team">Team :</label>
+            <label htmlFor="teamName">Team Name:</label>
             <input
                 type="text"
-                id="team"
-                name="team"
-                placeholder="enter the team"
+                id="teamName"
+                name="teamName"
+                placeholder="enter the team name"
                 ref={register({ required: true })} />
-                {errors.teamName && <p>Team is required.</p>}
+                {errors.teamName && <p>Team Name is required.</p>}
             
-            <label htmlFor="subTeam">Sub Team :</label>
+            <label htmlFor="subTeamName">Sub Team Name :</label>
             <input
                 type="text"
-                id="subTeam"
-                name="subTeam"
-                placeholder="enter the Sub Team"
+                id="subTeamName"
+                name="subTeamName"
+                placeholder="enter the Sub Team Name"
                 ref={register({ required: true })} />
-                {errors.subTeam && <p>Sub team is required.</p>}
+                {errors.subTeamName && <p>Sub Team Name is required.</p>}
             
                 
-            <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Create</button>
+            <button
+                className={`${Styles.btn} ${Styles.btnDanger}`}
+                data-dismiss="modal"
+                aria-label="Close"
+                onClick={props.hide}
+                >Cancel
+                </button>
+            <button 
+                className={`${Styles.btn} ${Styles.btnSuccess}`}
+                type="submit"
+                >Create</button>
         </form>
     );
 }

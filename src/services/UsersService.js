@@ -2,13 +2,7 @@ import usersArr from "../data/users";
 import { firestore } from "../firebase";
 
 function getUsers() {
-    // return firestore.collection("users")
-    //     .get()
-    //     .then(querySnapshot => {
-    //     const data = querySnapshot.docs.map(doc => doc.data());
-    //     return data;
-    // });
-    return usersArr
+    return firestore.collection("users").get().then(response => response.docs.map(document => document.data()));
 }
 
 function getOperators() {
