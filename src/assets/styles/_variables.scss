@@ -20,8 +20,8 @@ $danger-color: #dc3545;
 $danger-color-lighten: #ff0019;
 
 //text colour variables
-$dark-text-color: #000000;
-$light-text-color: #FFFFFF;
+$dark-text-color: rgba(0,0,0,0.8);
+$light-text-color: rgba(250,250,250,0.8);
 
 //fault classes colors
 $class-a-color: #D40D0D;
@@ -29,7 +29,7 @@ $class-b-color: #F4F900;
 $class-c-color: #1E9419;
 
 //spacings
-$base-padding: 8px;
+$base-spacing: 8px;
 
 
 

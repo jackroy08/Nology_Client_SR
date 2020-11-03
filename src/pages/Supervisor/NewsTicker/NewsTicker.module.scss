@@ -1,7 +1,7 @@
 @import "../../../assets/styles/variables";
 
 li {
-    padding: $base-padding;
+    padding: $base-spacing;
 }
 
 .regularNews{
@@ -12,8 +12,8 @@ li {
 .importantNews {
     width: 100%;
     background-color: $warning-color;
-    margin-top: -$base-padding;
-    margin-bottom: -$base-padding;
+    margin-top: -$base-spacing;
+    margin-bottom: -$base-spacing;
     
     li{
         background-color: rgba(0, 0, 0, 0);

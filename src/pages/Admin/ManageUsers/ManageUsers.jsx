@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Styles from './ManageUsers.module.scss';
 import usersArr from '../../../data/users';
 import UserItem  from './UserItem';
