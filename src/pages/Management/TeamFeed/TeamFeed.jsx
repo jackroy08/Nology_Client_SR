@@ -57,33 +57,20 @@ const TeamFeed = () => {
         )
     }
 
-    const fetchUsersArr = () => {
+    useEffect(() => {
         getUsers().then((response) => {
             setUsersArr(response);
-        })
-    }
-    const fetchVehiclesArr = () => {
+        });
         getVehicles().then((response) => {
             setVehiclesArr(response);
-        })
-    }
-    const fetchTeamsArr = () => {
+        });
         usersArr.forEach((user) => {
             if(!teamsArr.includes(user.currentTeam) && user.currentTeam !== undefined ) {
                 teamsArr.push(user.currentTeam);
             }
         });
-    }
-    const fetchLoads = () => {
         getLoads().then((response) => setLoads(response));
-    }
-
-    useEffect(() => {
-        fetchUsersArr();
-        fetchVehiclesArr();
-        fetchLoads();
     }, []);
-    fetchTeamsArr();
 
     return (
         <article className={Styles.dataFeed}>

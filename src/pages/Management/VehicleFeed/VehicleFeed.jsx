@@ -21,29 +21,20 @@ const VehicleFeed = () => {
     vehiclesArr.map(vehicle => {
         if(vehicle.currentUser !== null) vehicleCountArr.push(vehicle);
     });
-    const fetchVehiclesArr = () => {
-            getVehicles().then((response) => {
+
+    useEffect(() => {
+        getVehicles().then((response) => {
             setVehiclesArr(response);
         });
-    };
-    const getVehicleIssues = () => {
+        getLoads().then((response) => {
+            setLoadsArr(response);
+        });
         if(vehiclesArr.checkItems !== undefined) {
             setClassAIssues(vehiclesArr.checkItems.classA);
             setClassBIssues(vehiclesArr.checkItems.classB);
             setClassCIssues(vehiclesArr.checkItems.classC);
             setVehicleIssues(vehiclesArr.checkItems);
         }
-    }
-    const fetchLoads = () => {
-        getLoads().then((response) => {
-            setLoadsArr(response);
-        })
-    }
-
-    useEffect(() => {
-        fetchVehiclesArr();
-        getVehicleIssues();
-        fetchLoads();
     }, []);
 
     return (
