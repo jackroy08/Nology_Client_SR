@@ -1,33 +1,52 @@
 import usersArr from "../data/users";
 import { firestore } from "../firebase";
 
-function getUsers() {
-    return firestore.collection("users").get().then(response => response.docs.map(document => document.data()));
+const getUsers = () => {
+    return firestore.collection("users")
+        .get()
+        .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data());
+            return data;
+        });
 }
 
-function getOperators() {
-    const operatorsSnapshot = firestore.collection("users")
+const getOperators = () => {
+    return firestore
+        .collection("users")
         .where('userType', '==', "operator")
         .get()
-        .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            operatorsSnapshot.push(doc.id, " => ", doc.data());
+        .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data())
+            return data;
         });
-    });
-    return operatorsSnapshot;
 }
+
+const getTeamSupervisor = (operatorTeam, operatorSubTeam) => {
+    return firestore
+        .collection("users")
+        .where('userType', '==', "supervisor")
+        .where("currentTeam", "==", `${operatorTeam}`)
+        .where("currentSubTeam", "==", `${operatorSubTeam}`)
+        .get()
+        .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data())
+            return data;
+        });
+    }
 
 const createUser  = () => {
     console.log("create users here")
 }
 
-const updateUser = () => {
-    console.log("user updated ")
-        
+const updateUser = (user) => {
+    firestore
+        .collection("users")
+        .doc(user.userID)
+        .update({...user})
 }
 
 const deleteUser  = () => {
     console.log("delete users here")
 }
 
-export { getUsers, getOperators, createUser, updateUser, deleteUser };
+export { getUsers, getOperators, getTeamSupervisor, createUser, updateUser, deleteUser };
