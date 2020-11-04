@@ -6,6 +6,7 @@ import { updatePart } from '../../../../services/PartsService'
 
 const EditPartForm = (props) => {
     const {
+        partID,
         partName 
     } = props.part
 
@@ -16,7 +17,7 @@ const EditPartForm = (props) => {
             partName: data.partName,
         }
         {props.hide()}
-        return updatePart(partName, updatedPart);
+        return updatePart(partID, updatedPart);
     }
     
     return (
@@ -30,8 +31,6 @@ const EditPartForm = (props) => {
                 placeholder="enter the part name"
                 ref={register({ required: true })} />
                 {errors.partName && <p> Part Name is required.</p>}
-            
-  
             
             <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
             <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Update</button>

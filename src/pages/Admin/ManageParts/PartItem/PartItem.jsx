@@ -18,6 +18,7 @@ const PartItem = (props) => {
     return (
         
         <li key={part.partID} className={Styles.partItem}>
+            <p>{part.partID}</p>
             <p>{part.partName}</p>
             <span className={Styles.faIcon} onClick={toggle}><FontAwesomeIcon  icon="pencil-alt"/></span>
             <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="trash-alt"/></span>

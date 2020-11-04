@@ -50,6 +50,7 @@ const ManageParts = () => {
             </header>                    
             <ul className={Styles.partsList}>
                 <li className={Styles.columnTitles}>
+                    <h4>Part ID</h4>
                     <h4>Part Name</h4>
                     <h4>Action</h4>
                 </li>

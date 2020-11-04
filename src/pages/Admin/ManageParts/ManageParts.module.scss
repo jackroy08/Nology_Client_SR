@@ -36,7 +36,7 @@
 
   .partItem, .columnTitles {
     display:grid;
-    grid-template-columns: auto 64px;
+    grid-template-columns: 75px 1fr  64px;
     justify-items: start;
     align-items: center;
   }

@@ -13,7 +13,7 @@ const subscribeToParts = (setState) => {
 }
 
 const createPart  = (newPart) => {
-    firestore.collection("parts").doc(newPart.partName).set({...newPart});
+    firestore.collection("parts").doc(newPart.partID).set({...newPart});
 }
 
 const updatePart  = (partID, updatedPart) => {
@@ -22,7 +22,7 @@ const updatePart  = (partID, updatedPart) => {
 
 
 const deletePart = (part) => {
-    firestore.collection("teams").doc(part.partID).delete();
+    firestore.collection("parts").doc(part.partID).delete();
 }
 
 export {getParts, subscribeToParts, createPart, updatePart, deletePart };
