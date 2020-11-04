@@ -18,6 +18,7 @@ const TeamItem = (props) => {
     return (
         
         <li key={team.teamID} className={Styles.teamItem}>
+            <p>{team.teamID}</p>
             <p>{team.site}</p>
             <p>{team.teamName}</p>
             <p>{team.subTeamName}</p>

@@ -9,11 +9,11 @@ import { getSites, subscribeToSites } from '../../../../services/SitesService'
 // ------ CLASSES ----- //
 
 class Team {
-    constructor( site, teamName, subTeamName) {
+    constructor( teamID, site, teamName, subTeamName) {
+        this.teamID = teamID;
     this.site = site;
     this.teamName = teamName;
     this.subTeamName = subTeamName;
-    this.teamID = `${this.teamName} ${this.subTeamName}`;
     }
 }
 
@@ -25,12 +25,12 @@ const CreateTeamForm = (props) => {
     
     const createNewTeam = (data) => {
         {props.hide()}
-        return createTeam(new Team(data.site, data.teamName, data.subTeamName));
+        return createTeam(new Team(data.teamID, data.site, data.teamName, data.subTeamName));
     }
     
     useEffect(() => {
         getSites().then(response => {
-            setSitesArr(response);
+            setSitesArr(response.map(site => site.siteName));
         });
     }, [])
     

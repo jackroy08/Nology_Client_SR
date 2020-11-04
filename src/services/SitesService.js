@@ -19,7 +19,6 @@ const updateSite  = (updatedSite) => {
     firestore.collection("sites").doc(updatedSite.siteID).update({...updatedSite});
 }
 
-
 const deleteSite  = (site) => {
     firestore.collection("sites").doc(site.siteID).delete();
 }
