@@ -9,17 +9,23 @@ const ChecklistContainer = (props) => {
     
     const {checklistData, user} = props;
     const [step, setStep] = useState(1);
-    const [vehicleType, setVehicleType] = useState("adt");
+    const [vehicleType, setVehicleType] = useState("ADT");
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
     const vehicleKeys = Object.keys(checklistData);
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[vehicleType][classType]).reduce((acc, val) => {
                 if (!document.getElementById(val).checked) {
-                    acc[classType][val] = {"classType": classType, "issue": val ,
-                            "vehicleID": vehicleType,
-                            "operator": user,
-                            "supervisor": "supervisor1"};
+                    acc[classType][val] = {
+                        classType: classType, 
+                        issue: val,
+                        vehicleID: vehicleType,
+                        operator: "2002",
+                        supervisor: "supervisor1",
+                        additionalDetails: document.getElementById("additional-details").value,
+                        dateCreated: new Date().toUTCString()
+                        //NEED TO CHANGE THESE VALUES BASED ON USER LOGGED IN
+                    };
                     } else acc[classType][val] = {};
                 return acc;
         }, failedElements);
@@ -41,16 +47,9 @@ const ChecklistContainer = (props) => {
         return <option key={thisVehicle} value={thisVehicle}>{thisVehicle}</option> 
     };
 
-    const getChecklist = item => (
-        <React.Fragment key={item}>
-            <label htmlFor={item}>{item}
-                <input type="checkbox" id={item} name={item} value={item}/>
-            </label>
-        </React.Fragment>
-    );
-
-    const propsMethods = {  getChecklist: getChecklist, 
-                            setFailedElements: setFailedElements, 
+    const propsMethods = {
+                            setFailedElements: setFailedElements,
+                            failedElements: failedElements,
                             failObject: failObject, 
                             checklistData: checklistData, 
                             vehicleType: vehicleType, 
@@ -81,6 +80,7 @@ const ChecklistContainer = (props) => {
 
     return (
         <div>
+            {console.log(failedElements)}
             {navigation()}
         </div>
     )

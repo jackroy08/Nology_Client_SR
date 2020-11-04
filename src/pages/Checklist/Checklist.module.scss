@@ -1,6 +1,8 @@
 @import '../../assets/styles/buttons';
 @import "../../assets/styles/variables";
-
+img {
+    height: 40px;
+}
 .pageGrid {
     display: grid;
     justify-items: center;
@@ -14,11 +16,15 @@
 
     form {
         color: $dark-text-color;
-
-        label {
-            display: flex;
-            justify-content: flex-end;
+        background-color: white;
+        div {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1fr;
+            align-items: center;
             
+            > *  {
+                margin-right: 5px;
+            }
         }
         div.responses {
             display: grid;
