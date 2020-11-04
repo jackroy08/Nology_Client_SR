@@ -34,9 +34,8 @@ const ManageVehicles = () => {
         
     useEffect(() => {
         getVehicles().then(response => {
-            console.log(response)
-            // setFilteredVehiclesArr(response);
-            // setVehiclesArr(response);
+            setFilteredVehiclesArr(response);
+            setVehiclesArr(response);
             // setVehicleTypesArr([...new Set(response.map(vehicle => vehicle.vehicleType))]);
         });
         subscribeToVehicles(setVehiclesArr);
