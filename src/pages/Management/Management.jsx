@@ -3,14 +3,20 @@ import Styles from './Management.module.scss';
 import { Link } from "@reach/router";
 import VehicleFeed from "./VehicleFeed";
 import TeamFeed from "./TeamFeed";
+import { getVehicles } from "../../services/VehiclesService";
 
 const Management = () => {
 
+    const [vehiclesArr, setVehiclesArr] = useState([]);
     const [redSignal, setRedSignal] = useState();
     const [amberSignal, setAmberSignal] = useState();
     const [greenSignal, setGreenSignal] = useState();
 
     const safetySignalStatus = (status) => {
+        
+        fetchVehicles.map((vehicle) => )
+
+
         if(status == "go") {
             setGreenSignal(Styles.greenSignal)
             setAmberSignal()
@@ -28,7 +34,12 @@ const Management = () => {
         }
     }
 
+    const fetchVehicles = () => {
+        getVehicles().then((response) => setVehiclesArr(response));
+    }
+
     useEffect(() => {
+        fetchVehicles();
         safetySignalStatus("go");
     })
 
