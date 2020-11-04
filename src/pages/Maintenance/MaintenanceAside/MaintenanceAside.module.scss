@@ -1,7 +1,16 @@
 @import '../../../assets/styles/buttons';
 
+.asideHeader {
+    font-size: 50px;
+    padding: 50px;
+    text-align: center;
+}
+
+
 .maintenanceAside {
     grid-area: Aside;
+    width: 80%;
+    margin: auto;
     max-height: 300px;
     display: grid;
     gap: 2em;
