@@ -1,62 +1,74 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-import Styles from './EditTeamForm.module.scss';
+import Styles from './EditVehicleForm.module.scss';
 import sitesArr from '../../../../data/sites';
-import { updateTeam } from '../../../../services/TeamsService'
+import { updateVehicle } from '../../../../services/VehiclesService'
 
-const EditTeamForm = (props) => {
+const vehicleTypesArr = [
+    "Articulated Water Truck",
+    "Diesel Bowser",
+    "Drills",
+    "Excavator",
+    "Fel",
+    "Forklift",
+    "Grader",
+    "Ldv",
+    "Srv Water Bowser",
+    "Track Dozer",
+    "Rdt",
+    "Truck Mounted Crane",
+    "Tlb",
+    "Lighting Vehicle",
+    "Hydraulic Rig Operator",
+    "Loader",
+    "Haul Truck",
+    "Bus"
+];
+
+const EditVehicleForm = (props) => {
     const {
-        site, 
-        teamName, 
-        subTeamName,
-        teamID
-    } = props.team
+        vehicleID,
+        vehicleType,
+        goStatus,
+    } = props.vehicle
 
     const { register, handleSubmit, errors } = useForm();
 
-    const updateCurrentTeam = (data) => {
-        const updatedTeam = {
-            site : data.site,
-            teamName : data.teamName,
-            subTeamName : data.subTeamName,
-            teamID: teamID
+    const updateCurrentVehicle = (data) => {
+        const updatedVehicle = {
+            vehicleType : data.vehicleType,
+            goStatus : data.goStatus,
+            vehicleID : vehicleID
         }
         {props.hide()}
-        return updateTeam(updatedTeam);
+        return updateVehicle(updatedVehicle);
     }
     
     return (
-        <form className={Styles.teamForm} onSubmit={handleSubmit(updateCurrentTeam)}>
-            <label htmlFor="site">Select Site :</label>
+        <form className={Styles.vehicleForm} onSubmit={handleSubmit(updateCurrentVehicle)}>
+            <label htmlFor="vehicleType">Select Vehicle Type :</label>
             <select
-                defaultValue={site}
-                name="site"
-                id="site"
+                defaultValue={vehicleType}
+                name="vehicleType"
+                id="vehicleType"
                 ref={register({ required: true })}>
-                <option value="">Select site :</option>
-                {sitesArr.map((site) => <option key={site}>{site}</option>)}
+                <option value="">Select Vehicle Type :</option>
+                {vehicleTypesArr.map((vehicle) => <option key={vehicle}>{vehicle}</option>)}
             </select>
-            {errors.site && <p>Site is required.</p>}
+            {errors.vehicleType && <p>Vehicle Type is required.</p>}
 
-            <label htmlFor="teamName">Team Name :</label>
-            <input
-                defaultValue={teamName}
-                type="text"
-                id="teamName"
-                name="teamName"
-                placeholder="enter the teamName"
-                ref={register({ required: true })} />
-                {errors.teamName && <p> Team Name is required.</p>}
-            
-            <label htmlFor="subTeamName">Sub Team Name:</label>
-            <input
-                defaultValue={subTeamName}
-                type="text"
-                id="subTeamName"
-                name="subTeamName"
-                placeholder="enter the Sub Team"
-                ref={register({ required: true })} />
-                {errors.subTeamName && <p>Sub Team Name is required.</p>}
+            <label htmlFor="goStatus">Select Go Status :</label>
+            <select
+                defaultValue={goStatus}
+                name="goStatus" 
+                id="goStatus"
+                ref={register({ required: true })}>
+                {errors.goStatus && <p>please indicate if the vehicle's current status.</p>}
+                
+                <option value="go">Go</option>
+                <option value="noGo">Go But</option>
+                <option value="goBut">No Go</option>
+            </select>
             
             <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
             <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Update</button>
@@ -64,4 +76,4 @@ const EditTeamForm = (props) => {
     )
 }
 
-export default EditTeamForm;
+export default EditVehicleForm;

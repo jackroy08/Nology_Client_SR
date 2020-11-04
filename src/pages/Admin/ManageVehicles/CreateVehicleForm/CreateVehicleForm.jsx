@@ -16,7 +16,7 @@ class Vehicle {
         this.currentTeam = null;
         this.currentUser = null;
         this.checkItems = null;
-        this.lastChecked = new Date();
+        this.lastChecked = new Date().toUTCString();
         this.checkedLog = null;
     }
 }
@@ -25,27 +25,45 @@ class Vehicle {
 
 const CreateVehicleForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
-    const [vehicleTypesArr, setVehicleTypesArr] = useState([]);
+    const [vehicleTypesArr, setVehicleTypesArr] = useState([
+        "Articulated Water Truck",
+        "Diesel Bowser",
+        "Drills",
+        "Excavator",
+        "Fel",
+        "Forklift",
+        "Grader",
+        "Ldv",
+        "Srv Water Bowser",
+        "TrackD ozer",
+        "Rdt",
+        "Truck Mounted Crane",
+        "Tlb",
+        "Lighting Vehicle",
+        "Hydraulic Rig Operator",
+        "Loader",
+        "Haul Truck",
+        "Bus"]);
     
     const createNewVehicle = (data) => {
         {props.hide()}
         return createVehicle(new Vehicle(data.vehicleID, data.vehicleType, data.goStatus));
     }
     
-    useEffect(() => {
-        getVehicles().then(response => {
-            setVehicleTypesArr(response.map(vehicle => vehicle.vehicleType));
-        });
-    }, [])
+    // useEffect(() => {
+    //     getVehicles().then(response => {
+    //         setVehicleTypesArr(response.map(vehicle => vehicle.vehicleType));
+    //     });
+    // }, [])
     
     return (
-        <form className={Styles.userForm} onSubmit={handleSubmit(createNewVehicle)}>
+        <form className={Styles.vehicleForm} onSubmit={handleSubmit(createNewVehicle)}>
             <label htmlFor="vehicleID">Enter the Vehicle's Vehicle ID  :</label>
             <input 
                 type="text"
                 id="vehicleID"
                 name="vehicleID"
-                placeholder="eg: MINE123456"
+                placeholder="eg: 001"
                 ref={register({ required: true })} />
                 {errors.vehicleID && <p>vehicleID is required.</p>}
     
@@ -57,24 +75,7 @@ const CreateVehicleForm = (props) => {
                 {errors.vehicleType && <p>vehicle type is required.</p>}
                 
                 <option value="">Please Select an option</option>
-                <option value="articulatedWaterTruck">Articulated Water Truck</option>
-                <option value="bus">Bus</option>
-                <option value="dieselBowser">Diesel Bowser</option>
-                <option value="drills">Drills</option>
-                <option value="excavator">Excavator</option>
-                <option value="fel">FEL</option>
-                <option value="forklift">Forklift</option>
-                <option value="grader">Grader</option>
-                <option value="haulTruck">Haul Truck</option>
-                <option value="hydraulicRigOperator">Hydraulic Rig Operator</option>
-                <option value="ldv">LDV</option>
-                <option value="lightingVehicle">Lighting Vehicle</option>
-                <option value="loader">Loader</option>
-                <option value="rdt">RDT</option>
-                <option value="srvWaterBowser">SRV Water Bowser</option>
-                <option value="tlb">TLB</option>
-                <option value="trackDozer">Track Dozer</option>
-                <option value="truckMountedCrane">Truck Mounted Crane</option>
+                {vehicleTypesArr.map((vehicle) => <option key={vehicle}>{vehicle}</option>)}
             </select>
             
             <label htmlFor="goStatus">Vehicle's current Status:</label>
@@ -83,6 +84,7 @@ const CreateVehicleForm = (props) => {
                 id="goStatus"
                 ref={register({ required: true })}>
                 {errors.goStatus && <p>please indicate if the vehicle's current status.</p>}
+
                 <option value="go">Go</option>
                 <option value="noGo">Go But</option>
                 <option value="goBut">No Go</option>

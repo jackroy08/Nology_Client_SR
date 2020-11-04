@@ -1,3 +1,3 @@
-import TeamItem from './TeamItem'
+import VehicleItem from './VehicleItem'
 
-export default TeamItem;
+export default VehicleItem;
