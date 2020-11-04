@@ -1,7 +1,14 @@
-import React from "react"
+import React from "react";
+import { useForm } from "react-hook-form";
+import { createNewsItem } from "../../../services/newsItemsService";
 
 export const DailyReport = () => {
+
+    const user = {
+        currentTeam: "teamA"
+    }
     
+    const { register, handleSubmit } = useForm();
 
     //should be back endddddd
     const toLowerCaseHyphen = (str) => {
@@ -10,6 +17,7 @@ export const DailyReport = () => {
         }).join("-")
     };
 
+    /////////////
     class Input {
         constructor(type,label){
             this.type = type;
@@ -36,25 +44,40 @@ export const DailyReport = () => {
     ]
     /////////////////
 
+    const submitForm = (data) => {
+        console.log(data);
+        let newsItemToSubmit = {
+            title: "Supervisor Report",
+            message: "new supervisor report",
+            team: user.currentTeam,
+            type: "supervisorReport",
+            isImportant: true,
+            SeenBy: [],
+            info: data,
+            dateCreated: new Date().toString()
+        }
+        createNewsItem(newsItemToSubmit);
+        alert('form submitted');
+    }
+
     return (
         <div>
             <h1>Supervisor Daily Shift Report</h1>
-            <form>
-
-                {inputs.map(input => {
-                    return (
-                        <>
-                        <div key = {Math.random()}>
-                            <label htmlFor={input.id}>{input.label}</label>
-                            {input.type==="textarea" ? <textarea id={input.id}></textarea> : <input type={input.type} id={input.id}/>}
-                        </div>
-                        </>
-                    )
-                })}
-                <div>
-                    <p>Signature Section - what is flow for this?</p>
-                </div>
-                <button>Submit</button>
+            <form onSubmit={handleSubmit(submitForm)}>
+                {inputs.map(input => (
+                    <>
+                        <label htmlFor={input.label}>
+                        {input.label}
+                        <input 
+                            type={input.type} 
+                            name={input.id} 
+                            ref={register}
+                            id={input.label}
+                        />
+                        </label>
+                    </>
+                ))}
+                <input type="submit"/>
             </form>
         </div>
     )

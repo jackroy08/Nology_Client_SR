@@ -24,4 +24,17 @@ const deleteTeam  = (team) => {
     firestore.collection("teams").doc(team.teamID).delete();
 }
 
-export {getTeams, subscribeToTeams, createTeam, updateTeam, deleteTeam };
+const getTeamSiteName = (operatorTeam, operatorSubTeam) => {
+    console.log(operatorTeam);
+    return firestore
+        .collection("teams")
+        .where("teamName", "==", `${operatorTeam}`)
+        .where("subTeamName", "==", `${operatorSubTeam}`)
+        .get()
+        .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data())
+            return data;
+        });
+}
+
+export { getTeams, createTeam, subscribeToTeams, updateTeam, deleteTeam, getTeamSiteName };

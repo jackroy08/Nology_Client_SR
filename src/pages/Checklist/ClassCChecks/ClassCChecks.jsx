@@ -6,11 +6,21 @@ import { updateVehicle } from "../../../services/VehiclesService";
 
 const ClassCChecks = (props) => {
   
-    const {getChecklist, setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
-    const classType = "classC";
-    const checkboxArr = Object.keys(checklistData[vehicleType][classType]);
+    const { setFailedElements, failedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
+    // const classType = "Class C";
+    const checkboxArr = checklistData[vehicleType].classC ? 
+        Object.keys(checklistData[vehicleType].classC):
+        [];
     const additionalFieldsArr = Object.keys(checklistData[vehicleType])
-        .filter(key => !key.match("class"));
+        .filter(key => !key.match("lass"));
+    const getChecklist = item => (
+        <div key={item}>
+            <img src={checklistData[vehicleType].classC[item]} alt=""/>
+            <label htmlFor={item}>{item}   
+            </label>
+            <input type="checkbox" id={item} name={item} value={item}/> 
+        </div>
+    );
 
     return (
         <>
@@ -29,7 +39,7 @@ const ClassCChecks = (props) => {
                                 {additionalFieldsArr.map(item => 
                                 <RenderAdditionalOptions 
                                     getChecklist={getChecklist} 
-                                    classVal={classType}
+                                    classVal={"classC"}
                                     checklistData={checklistData}
                                     vehicleType={vehicleType} 
                                     item={item}
@@ -38,15 +48,15 @@ const ClassCChecks = (props) => {
                             </section>
                         </>:
                         null}
-                    <textarea name="class-c-comment" id="class-c-checks"></textarea>
+                    <textarea name="class-c-comment" id="additional-details"></textarea>
                 
                     <section className={Styles.navigation}>
                         <button onClick={backHandler} className={Styles.btn}>Back</button> 
-                        <button type="button" onClick={() => {nextHandler(); setFailedElements(failObject(vehicleType, classType))}} className={Styles.btn}>Next</button>
+                        <button type="button" onClick={() => {nextHandler(); setFailedElements(failObject(vehicleType, "classC"))}} className={Styles.btn}>Next</button>
                     </section>
                 </form>
             </main>
-            : <Confirmation />}
+            : <Confirmation failedElements={failedElements} />}
         </>
     )
 }
