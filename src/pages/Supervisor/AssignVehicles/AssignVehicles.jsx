@@ -6,8 +6,6 @@ export const AssignVehicles = (props) => {
 
     const { register, handleSubmit} = useForm();
 
-    // console.log(vehiclesArr);
-
     const onSubmit = (data) => {
 
         //go to database

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Styles from "./UserTable.module.scss";
-import userData from "../../../data/users";
+
 
 //adding made up go status and Team - remove once data is from backend
 
@@ -11,7 +11,9 @@ let supervisorTeam = "TeamA";
 
 
 
-const UserTable = () => {
+const UserTable = (props) => {
+
+  const userData = props.filteredUsersArr;
 
   const getUserJsx = (user) => {
     return (
@@ -26,9 +28,6 @@ const UserTable = () => {
     )
   }
 
-  const supervisorUsers = userData.filter(user => (user.currentTeam === supervisorTeam && user.userType === "operator"))
-  .sort((a,b) => a.userID - b.userID)
-
   const [listHeight, setListHeight] = useState(0)
 
   let list;
@@ -42,9 +41,9 @@ const UserTable = () => {
       <header onClick={headerOnClick}>
         <h3>Team Member Info</h3>
         <div className={Styles.userSummary}>
-          <p>Total Operators: {supervisorUsers.length}</p>
-          <p>Operators on Shift: {supervisorUsers.filter(v => v.goStatus).length}</p>
-          <p>Operators Away: {supervisorUsers.filter(v => !v.goStatus).length}</p>
+          <p>Total Operators: {userData.length}</p>
+          <p>Operators on Shift: {userData.filter(v => v.goStatus).length}</p>
+          <p>Operators Away: {userData.filter(v => !v.goStatus).length}</p>
         </div>
       </header>
 
@@ -57,7 +56,7 @@ const UserTable = () => {
           <h4>Status</h4>
           <h4>Current Team</h4>
         </li>
-        {supervisorUsers.map(getUserJsx)}
+        {userData.map(getUserJsx)}
       </ul>
     </section>
   );

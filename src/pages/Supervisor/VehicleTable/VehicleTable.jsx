@@ -3,11 +3,8 @@ import Styles from "./VehicleTable.module.scss";
 
 const VehicleTable = (props) => {
 
-  const {filteredVehiclesArr, resizeVehicleTable} = props;
+  const {filteredVehiclesArr} = props;
 
-  useEffect(() => {
-    headerOnClick();
-  }, [resizeVehicleTable])
 
   const getVehicleJsx = (vehicle) => {
     return (

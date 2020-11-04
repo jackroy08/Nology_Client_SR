@@ -8,7 +8,6 @@ export const DailyReport = () => {
         currentTeam: "teamA"
     }
     
-
     const { register, handleSubmit } = useForm();
 
     //should be back endddddd
@@ -54,7 +53,8 @@ export const DailyReport = () => {
             type: "supervisorReport",
             isImportant: true,
             SeenBy: [],
-            info: data
+            info: data,
+            dateCreated: new Date().toString()
         }
         createNewsItem(newsItemToSubmit);
         alert('form submitted');

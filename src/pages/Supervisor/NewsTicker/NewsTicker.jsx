@@ -4,8 +4,8 @@ import NewsItem from "./NewsItem";
 
 const NewsTicker = (props) => { 
   
-  const importantNewsItems = props.newsItems.filter(i => i.important);
-  const regularNewsItems = props.newsItems.filter(i => !i.important);
+  const importantNewsItems = props.newsItems.filter(i => i.isImportant);
+  const regularNewsItems = props.newsItems.filter(i => !i.isImportant);
   const {setModalContent, toggle} = props;
 
   
