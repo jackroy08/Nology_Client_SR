@@ -12,7 +12,7 @@ export const AssignVehicles = (props) => {
 
         //go to database
         vehiclesArr.forEach(vehicle => {
-            if(vehicle.plantID === data.vehicle){
+            if(vehicle.vehicleID === data.vehicle){
                 vehicle.currentUser = data.driver;
             }
         });
@@ -35,7 +35,7 @@ export const AssignVehicles = (props) => {
                     <h2>Vehicle</h2>
 
                     <select name="vehicle" ref={register({required: true})}>
-                        {vehiclesArr.map(vehicle => <option key={vehicle.plantID} value={vehicle.plantID}>{`${vehicle.plantType}-${vehicle.plantID}`}</option>)}
+                        {vehiclesArr.map(vehicle => <option key={vehicle.vehicleID} value={vehicle.vehicleID}>{`${vehicle.vehicleType}-${vehicle.vehicleID}`}</option>)}
                     </select>
                     
                     <input type="submit"/>

@@ -1,0 +1,19 @@
+@import '../../../../assets/styles/buttons'; 
+
+.teamForm {
+  margin-top: 1em;
+  display: grid;
+  align-items: center;
+  gap:0.5em;
+  grid-template-columns: 1fr 1fr;
+  background-color: $background-color1;
+  padding: $base-spacing * 2;
+
+  p {
+    color: red;
+    font-style: italic;
+    font-size: 0.8em;
+    margin: 0;
+    grid-column: 2/3;
+  };
+}

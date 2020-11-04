@@ -10,15 +10,15 @@ const subscribeToVehicles = (setState) => {
 }
 
 const createVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.plantID).set({...vehicle});
+    firestore.collection("vehicles").doc(vehicle.vehicleID).set({...vehicle});
 }
 
 const updateVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.plantID).update({...vehicle});
+    firestore.collection("vehicles").doc(vehicle.vehicleID).update({...vehicle});
 }
 
 const deleteVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.plantID).delete();
+    firestore.collection("vehicles").doc(vehicle.vehicleID).delete();
 }
 
 export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, deleteVehicle };

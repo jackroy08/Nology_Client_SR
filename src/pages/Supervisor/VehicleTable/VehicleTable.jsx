@@ -17,9 +17,9 @@ const VehicleTable = () => {
 
   const getVehicleJsx = (vehicle) => {
     return (
-      <li key={vehicle.plantID} className={`${Styles.vehicleItem} ${vehicle.goStatus ? "" : Styles.unavailable}`}>
-        <p>{vehicle.plantID}</p>
-        <p>{vehicle.plantType}</p>
+      <li key={vehicle.vehicleID} className={`${Styles.vehicleItem} ${vehicle.goStatus ? "" : Styles.unavailable}`}>
+        <p>{vehicle.vehicleID}</p>
+        <p>{vehicle.vehicleType}</p>
         <p>{vehicle.goStatus ? "Available" : "Not Available"}</p>
         <p>{vehicle.currentTeam ? vehicle.currentTeam : "No team"}</p>
         <p>{vehicle.currentUser}</p>
@@ -31,7 +31,7 @@ const VehicleTable = () => {
   }
 
   const supervisorVehicles = vehicleData.filter(v => (v.currentTeam === supervisorTeam))
-  .sort((a,b) => a.plantID - b.plantID);
+  .sort((a,b) => a.vehicleID - b.vehicleID);
 
   const [listHeight, setListHeight] = useState(0)
 
@@ -54,8 +54,8 @@ const VehicleTable = () => {
 
       <ul className={Styles.vehicleList} ref={el => {list=el}} style={{height : listHeight}}>
         <li className={Styles.columnTitles}>
-          <h4>Plant ID</h4>
-          <h4>Plant Type</h4>
+          <h4>Vehicle ID</h4>
+          <h4>Vehicle Type</h4>
           <h4>Go Status</h4>
           <h4>Current Team</h4>
           <h4>Current User</h4>
