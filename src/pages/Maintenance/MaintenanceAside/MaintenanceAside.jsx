@@ -4,6 +4,7 @@ import Styles from "./MaintenanceAside.module.scss";
 const MaintenanceAside = () => {
     return (
         <>
+        <h1 className={Styles.asideHeader}>Maintenance Solution Audit</h1>
         <form className={Styles.maintenanceAside}>
             <input placeholder="Vehicle Issue"></input>
             <input placeholder="Parts used"></input>

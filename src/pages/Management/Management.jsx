@@ -14,19 +14,14 @@ const Management = () => {
 
     const safetySignalStatus = (status) => {
         
-        fetchVehicles.map((vehicle) => )
-
-
         if(status == "go") {
             setGreenSignal(Styles.greenSignal)
             setAmberSignal()
             setRedSignal()
-
         }  else if(status == "goBut") {
             setRedSignal()
             setAmberSignal(Styles.amberSignal)
             setGreenSignal()
-
         } else if (status == "noGo") {
             setRedSignal(Styles.redSignal)
             setAmberSignal()
