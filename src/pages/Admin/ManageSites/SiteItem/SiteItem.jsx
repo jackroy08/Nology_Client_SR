@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import Styles from './TeamItem.module.scss';
-import EditTeamForm  from '../EditTeamForm';
+import Styles from './SiteItem.module.scss';
+import EditSiteForm  from '../EditSiteForm';
 import Modal from '../../../../components/Modal';
 import useModal from '../../../../components/Modal/useModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { deleteTeam } from '../../../../services/TeamsService';
+import { deleteSite } from '../../../../services/SitesService';
 
 
-const TeamItem = (props) => {
+const SiteItem = (props) => {
     const {isShowing, toggle} = useModal();
-    const team = props.team;
+    const site = props.site;
 
     const [isOpen, setIsOpen] = useState(false);
     const toggleStyles = isOpen ? Styles.confirmOpen : "";
@@ -17,11 +17,9 @@ const TeamItem = (props) => {
 
     return (
         
-        <li key={team.teamID} className={Styles.teamItem}>
-            <p>{team.teamID}</p>
-            <p>{team.site}</p>
-            <p>{team.teamName}</p>
-            <p>{team.subTeamName}</p>
+        <li key={site.siteID} className={Styles.siteItem}>
+            <p>{site.siteID}</p>
+            <p>{site.siteName}</p>
             <span className={Styles.faIcon} onClick={toggle}><FontAwesomeIcon  icon="pencil-alt"/></span>
             <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="trash-alt"/></span>
             <div className={`${Styles.confirmDelete} ${toggleStyles}`}>
@@ -33,16 +31,16 @@ const TeamItem = (props) => {
                         <button
                             className={Styles.btnDanger}
                             onClick={() => {
-                                deleteTeam(team);
+                                deleteSite(site);
                                 setIsOpen(!isOpen);
                             }}
                         >Confirm
                         </button>
             </div>
-            <Modal innerComponent={<EditTeamForm team={team} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
+            <Modal innerComponent={<EditSiteForm site={site} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
         </li>
 
     )
 }
 
-export default TeamItem;
+export default SiteItem;

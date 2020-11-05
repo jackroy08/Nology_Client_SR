@@ -15,8 +15,8 @@ const createTeam  = (newTeam) => {
     firestore.collection("teams").doc(newTeam.teamID).set({...newTeam});
 }
 
-const updateTeam  = (teamID, updatedTeam) => {
-    firestore.collection("teams").doc(teamID).update({...updatedTeam});
+const updateTeam  = (updatedTeam) => {
+    firestore.collection("teams").doc(updatedTeam.teamID).update({...updatedTeam});
 }
 
 
