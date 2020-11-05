@@ -5,7 +5,6 @@ const VehicleTable = (props) => {
 
   const {filteredVehiclesArr} = props;
 
-
   const getVehicleJsx = (vehicle) => {
     return (
       <li key={vehicle.vehicleID} className={`${Styles.vehicleItem} ${vehicle.goStatus ? "" : Styles.unavailable}`}>
@@ -15,7 +14,7 @@ const VehicleTable = (props) => {
         <p>{vehicle.currentTeam ? vehicle.currentTeam : "No team"}</p>
         <p>{vehicle.currentUser}</p>
         {/* <p>{vehicle.checkItems}</p> */}
-        <p>{vehicle.lastChecked}</p>
+        {/* <p>{vehicle.lastChecked}</p> */}
         <p>{vehicle.checkedLog}</p>
       </li>
     )

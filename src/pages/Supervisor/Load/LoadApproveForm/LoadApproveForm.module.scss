@@ -1,10 +1,9 @@
-@import "./../../../assets/styles/variables";
+@import "./../../../../assets/styles/variables";
 
-.addLoad {
+.approveLoadForm {
     display: flex;
     flex-direction: row;
     width: 95%;
     margin: 0 auto;
     background-color: $background-color2;
 }
-
