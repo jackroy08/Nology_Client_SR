@@ -1,22 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useForm } from "react-hook-form";
 import Styles from './CreateTeamForm.module.scss';
-import teamsArr from '../../../../data/teams';
-import sitesArr from '../../../../data/sites';
-import Modal from '../../../../components/Modal';
-import useModal from '../../../../components/Modal/useModal';
 import { createTeam } from '../../../../services/TeamsService'
+import { getSites, subscribeToSites } from '../../../../services/SitesService'
 
 
 // ------ CLASSES ----- //
 
 class Team {
-    constructor( site, teamName, subTeamName) {
+    constructor( teamID, site, teamName, subTeamName) {
+        this.teamID = teamID;
     this.site = site;
     this.teamName = teamName;
     this.subTeamName = subTeamName;
-    this.teamID = `${this.teamName} ${this.subTeamName}`;
     }
 }
 
@@ -24,11 +21,18 @@ class Team {
 
 const CreateTeamForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
+    const [sitesArr, setSitesArr] = useState([]);
     
     const createNewTeam = (data) => {
         {props.hide()}
-        return createTeam(new Team(data.site, data.teamName, data.subTeamName));
+        return createTeam(new Team(data.teamID, data.site, data.teamName, data.subTeamName));
     }
+    
+    useEffect(() => {
+        getSites().then(response => {
+            setSitesArr(response.map(site => site.siteName));
+        });
+    }, [])
     
     return ( 
         <form className={Styles.teamForm} onSubmit={handleSubmit(createNewTeam)}>
@@ -41,6 +45,15 @@ const CreateTeamForm = (props) => {
                 {sitesArr.map((site) => <option key={site}>{site}</option>)}
             </select>
             {errors.site && <p>Site is required.</p>}
+
+            <label htmlFor="teamID">Team ID:</label>
+            <input
+                type="text"
+                id="teamID"
+                name="teamID"
+                placeholder="enter Team ID"
+                ref={register({ required: true })} />
+                {errors.teamID && <p>Numeric Team ID required </p>}
 
             <label htmlFor="teamName">Team Name:</label>
             <input
@@ -59,7 +72,6 @@ const CreateTeamForm = (props) => {
                 placeholder="enter the Sub Team Name"
                 ref={register({ required: true })} />
                 {errors.subTeamName && <p>Sub Team Name is required.</p>}
-            
                 
             <button
                 className={`${Styles.btn} ${Styles.btnDanger}`}

@@ -2,17 +2,17 @@ import { firestore } from "./../firebase";
 
 const getNewsItems  = (team) => {
     if(team === "All"){
-        return firestore.collection("newsItems").get().then(response => response.docs.map(document => document.data()));
+        return firestore.collection("newsItems").orderBy("dateCreated").limit(20).get().then(response => response.docs.map(document => document.data()));
     }else{
-        return firestore.collection("newsItems").where("team","==",team).get().then(response => response.docs.map(document => document.data()));
+        return firestore.collection("newsItems").orderBy("dateCreated").limit(20).where("team","==",team).get().then(response => response.docs.map(document => document.data()));
     }  
 }
 
 const subscribeToNewsItems = (setState,team) => {
     if(team === "All"){
-        return firestore.collection("newsItems").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))        
+        return firestore.collection("newsItems").orderBy("dateCreated").limit(20).onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))        
     }else{
-        return firestore.collection("newsItems").where("team","==",team).onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
+        return firestore.collection("newsItems").orderBy("dateCreated").limit(20).where("team","==",team).onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
     }
 }
 
