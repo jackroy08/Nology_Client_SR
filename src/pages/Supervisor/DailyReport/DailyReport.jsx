@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { createNewsItem } from "../../../services/newsItemsService";
 
-export const DailyReport = () => {
+export const DailyReport = () => { 
 
     const user = {
         currentTeam: "teamA"
@@ -62,7 +62,7 @@ export const DailyReport = () => {
 
     return (
         <div>
-            <h1>Supervisor Daily Shift Report</h1>
+            <h1>Supervisor Handover Notes</h1>
             <form onSubmit={handleSubmit(submitForm)}>
                 {inputs.map(input => (
                     <>

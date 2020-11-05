@@ -64,7 +64,7 @@ export const Supervisor = () => {
         setFilteredVehiclesArr(vehiclesArr.filter(teamToView==="All" ? () => true : vehicle => vehicle.currentTeam===teamToView));
 
         setFilteredUsersArr(usersArr.filter(teamToView==="All" ? () => true : user => user.currentTeam===teamToView));
-       
+
 
         // subscribe to collections
         let unsubscribeNews = subscribeToNewsItems(setNewsItemsArr,teamToView);
@@ -112,7 +112,7 @@ export const Supervisor = () => {
                     </div>
                     </button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>Supervisor Reports</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>Handover Notes</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SupervisorIncidentForm user={user}/>) }}>Report Incident To Managment</button></div>
                 </section>
                 <section className={Styles.newsTicker}>

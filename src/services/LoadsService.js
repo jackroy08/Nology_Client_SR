@@ -6,7 +6,7 @@ const getLoads  = () => {
 
 //watches loads collection and updates the state whenever the db changes
 const subscribeToLoads = (setState) => {
-    firestore.collection("laods").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
+    firestore.collection("loads").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
 }
 
 const updateLoad = (load) => {
