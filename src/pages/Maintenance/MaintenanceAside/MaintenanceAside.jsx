@@ -10,7 +10,7 @@ const MaintenanceAside = () => {
             <input placeholder="Parts used"></input>
             <input placeholder="Root cause"></input>
             <input placeholder="Time taken to fix"></input>
-            <textarea placeholder="Vehicle Fix and other information"></textarea>
+            <textarea cols="30" rows="15" placeholder="Vehicle Fix and other information"></textarea>
             <button className={`${Styles.btn} ${Styles.btnPrimary}`} type="submit">Submit</button>
         </form>
         </>

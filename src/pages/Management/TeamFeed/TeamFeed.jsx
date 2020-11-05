@@ -58,19 +58,17 @@ const TeamFeed = () => {
     }
 
     useEffect(() => {
-        getUsers().then((response) => {
-            setUsersArr(response);
-        });
-        getVehicles().then((response) => {
-            setVehiclesArr(response);
-        });
+        getUsers().then((response) => setUsersArr(response));
+        getVehicles().then((response) => setVehiclesArr(response));
         usersArr.forEach((user) => {
+            console.log(user.currentTeam);
             if(!teamsArr.includes(user.currentTeam) && user.currentTeam !== undefined ) {
                 teamsArr.push(user.currentTeam);
             }
         });
         getLoads().then((response) => setLoads(response));
     }, []);
+
 
     return (
         <article className={Styles.dataFeed}>
