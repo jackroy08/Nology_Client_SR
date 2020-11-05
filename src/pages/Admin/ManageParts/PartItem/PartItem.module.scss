@@ -1,9 +1,9 @@
 @import '../../../../assets/styles/buttons'; 
 @import '../../../../assets/styles/variables'; 
 
-  .teamItem {
+  .partItem {
     display:grid;
-    grid-template-columns: 75px 1fr 1fr 1fr 32px 32px;
+    grid-template-columns: 75px 1fr 32px 32px;
     justify-items: start;
     align-items: center;
     background-color: $background-color1;

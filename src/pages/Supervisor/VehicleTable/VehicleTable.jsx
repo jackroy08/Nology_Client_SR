@@ -8,9 +8,9 @@ const VehicleTable = (props) => {
 
   const getVehicleJsx = (vehicle) => {
     return (
-      <li key={vehicle.plantID} className={`${Styles.vehicleItem} ${vehicle.goStatus ? "" : Styles.unavailable}`}>
-        <p>{vehicle.plantID}</p>
-        <p>{vehicle.plantType}</p>
+      <li key={vehicle.vehicleID} className={`${Styles.vehicleItem} ${vehicle.goStatus ? "" : Styles.unavailable}`}>
+        <p>{vehicle.vehicleID}</p>
+        <p>{vehicle.vehicleType}</p>
         <p>{vehicle.goStatus ? "Available" : "Not Available"}</p>
         <p>{vehicle.currentTeam ? vehicle.currentTeam : "No team"}</p>
         <p>{vehicle.currentUser}</p>
@@ -42,8 +42,8 @@ const VehicleTable = (props) => {
 
       <ul className={Styles.vehicleList} ref={element => {list=element}} style={{height : listHeight}}>
         <li key="titles" className={Styles.columnTitles}>
-          <h4>Plant ID</h4>
-          <h4>Plant Type</h4>
+          <h4>Vehicle ID</h4>
+          <h4>Vehicle Type</h4>
           <h4>Go Status</h4>
           <h4>Current Team</h4>
           <h4>Current User</h4>
