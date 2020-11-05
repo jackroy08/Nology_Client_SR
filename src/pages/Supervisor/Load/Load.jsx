@@ -6,13 +6,12 @@ export const Load = () => {
         <section>
             <h1>Add Load</h1>
             <div>
-                <h2>Driver</h2>
-                <input type="text"/>
-                <h2>Weight</h2>
-                <input type="text"/>
-                <h2>Location</h2>
-                <input type="text"/>
-                <button>Submit</button>
+                <ul>
+                    {/* list of loads goes here. option on each one to selected material and add weight */}
+                </ul>
+            </div>
+            <div>
+                {/* Additional option for the supervisor to add a load themselves. Would need to add driver themselves? */}
             </div>
         </section>
     )

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import Styles from './TeamItem.module.scss';
-import EditTeamForm  from '../EditTeamForm';
+import Styles from './PartItem.module.scss';
+import EditPartForm  from '../EditPartForm';
 import Modal from '../../../../components/Modal';
 import useModal from '../../../../components/Modal/useModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { deleteTeam } from '../../../../services/TeamsService';
+import { deletePart } from '../../../../services/PartsService';
 
 
-const TeamItem = (props) => {
+const PartItem = (props) => {
     const {isShowing, toggle} = useModal();
-    const team = props.team;
+    const part = props.part;
 
     const [isOpen, setIsOpen] = useState(false);
     const toggleStyles = isOpen ? Styles.confirmOpen : "";
@@ -17,11 +17,9 @@ const TeamItem = (props) => {
 
     return (
         
-        <li key={team.teamID} className={Styles.teamItem}>
-            <p>{team.teamID}</p>
-            <p>{team.site}</p>
-            <p>{team.teamName}</p>
-            <p>{team.subTeamName}</p>
+        <li key={part.partID} className={Styles.partItem}>
+            <p>{part.partID}</p>
+            <p>{part.partName}</p>
             <span className={Styles.faIcon} onClick={toggle}><FontAwesomeIcon  icon="pencil-alt"/></span>
             <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="trash-alt"/></span>
             <div className={`${Styles.confirmDelete} ${toggleStyles}`}>
@@ -33,16 +31,16 @@ const TeamItem = (props) => {
                         <button
                             className={Styles.btnDanger}
                             onClick={() => {
-                                deleteTeam(team);
+                                deletePart(part);
                                 setIsOpen(!isOpen);
                             }}
                         >Confirm
                         </button>
             </div>
-            <Modal innerComponent={<EditTeamForm team={team} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
+            <Modal innerComponent={<EditPartForm part={part} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
         </li>
 
     )
 }
 
-export default TeamItem;
+export default PartItem;

@@ -9,11 +9,11 @@ const getVehicles  = () => {
 const subscribeToVehicles = (setState) => firestore.collection("vehicles").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())));
 
 const createVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.plantID).set({...vehicle});
+    firestore.collection("vehicles").doc(vehicle.vehicleID).set({...vehicle});
 }
 
 const updateVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.plantID).update({...vehicle});
+    firestore.collection("vehicles").doc(vehicle.vehicleID).update({...vehicle});
 }
 
 const setVehicleIssues = (vehicle, issues, goStatus) => {
@@ -36,7 +36,7 @@ const updateVehicleIssues = (vehicle, issues) => {
 }
 
 const deleteVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.plantID).delete();
+    firestore.collection("vehicles").doc(vehicle.vehicleID).delete();
 }
 
 export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle };
