@@ -26,6 +26,25 @@ const setVehicleIssues = (vehicle, issues, goStatus) => {
         }, {merge: true})
 }
 
+const getUserVehicle = (operator) => {
+    // return firestore
+    //     .collection("vehicles")
+    //     .doc(`${assignedVehicle}`)
+    //     .get()
+    //     .then(querySnapshot => {
+    //         const data = querySnapshot.data();
+    //         return data;
+    //     });
+    return firestore
+        .collection("vehicles")
+        .where('currentUser', '==', `${operator}`)
+        .get()
+        .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data())
+            return data;
+        });
+    }
+
 const updateVehicleIssues = (vehicle, issues) => {
     firestore
         .collection("vehicles")
@@ -39,4 +58,4 @@ const deleteVehicle  = (vehicle) => {
     firestore.collection("vehicles").doc(vehicle.vehicleID).delete();
 }
 
-export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle };
+export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle, getUserVehicle };

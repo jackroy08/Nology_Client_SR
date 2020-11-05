@@ -1,18 +1,19 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { Link, navigate } from "@reach/router";
 import Styles from "./Operator.module.scss";
 import { getOperators, updateUser, getTeamSupervisor } from "../../services/UsersService";
 import useModal from "../../components/Modal/useModal";
 import SubmitLoad from "./SubmitLoad";
 import { getTeamSiteName } from "../../services/TeamsService";
+import { getUserVehicle } from "../../services/VehiclesService";
+import { UserContext } from "../../context/userContext";
 
 const Operator = () => {
     const [operatorsArr, setOperatorsArr] = useState([]);
-    const [user, setUser] = useState({});
-    const [supervisor, setSupervisor] = useState({})
+    const { user, vehicle, supervisor, teamSiteName } = useContext(UserContext);
     const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
     const {isShowing, toggle} = useModal(); 
-    const [teamSiteName, setTeamSiteName] = useState({});
+
     
     const changeStart = user.isOnShift ? "End shift" : "Start shift";
 
@@ -23,20 +24,10 @@ const Operator = () => {
         getOperators();
     }
 
-    const getUserKeys = thisUser => {
-        return (
-            <option 
-                key={thisUser.userID} 
-                value={thisUser.userID}>
-                    {thisUser.userID}
-            </option>
-        )
-    };
-
     const changeHandler = e => {
         let target = e.target.value;
         getOperators().then(response => {
-            setUser(response.filter(item => item.userID === target)[0])
+            // setUser(response.filter(item => item.userID === target)[0])
         });
     }
 
@@ -56,30 +47,8 @@ const Operator = () => {
         }
     }
 
-    useEffect(() => {
-        getOperators()
-            .then(response => {
-                setUser(response[0]);
-                setOperatorsArr(response.map(getUserKeys));
-                getTeamSupervisor(response[0].currentTeam, response[0].currentSubTeam)
-                    .then(response => {
-                        setSupervisor(response[0])
-                    });
-                getTeamSiteName(response[0].currentTeam, response[0].currentSubTeam)
-                    .then(response => {
-                        setTeamSiteName(response[0])
-                    });
-            });
-    }, []);  
-
     return (
-        <main className={Styles.pageGrid}>
-            <select 
-                onChange={changeHandler} 
-                name="user" 
-                id="user"> 
-                    {operatorsArr}
-            </select> 
+        <main className={Styles.pageGrid}> 
             <button
                 className={`${Styles.btn} ${Styles.btnLG}`}
                 onClick={() => updateShiftProperty()}>
@@ -88,6 +57,7 @@ const Operator = () => {
             <button 
                 onClick={() => checklistBarrier()} 
                 user={user} 
+                vehicle={vehicle}
                 className={`${Styles.btn} ${Styles.btnLG}`}>
                     Accept Vehicle
             </button>

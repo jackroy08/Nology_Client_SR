@@ -25,7 +25,7 @@ const Confirmation = (props) => {
 
     const submitHandler = () => {
         setVehicleIssues("001", issuesArr, setGoStatusHandler(issuesArr));
-        navigate("/Operator")
+        navigate("/operator")
     }
 
     const setGoStatusHandler = (arr) => {
@@ -66,7 +66,7 @@ const Confirmation = (props) => {
             </ul>
             <section className={Styles.navigation}>
                 <button onClick={backHandler} className={Styles.btn}>Back</button>
-                <Link to="/Operator">
+                <Link to="/operator">
                     <button onClick={submitHandler} className={Styles.btn}>Confirm checklist</button>
                 </Link>
             </section>
