@@ -53,6 +53,7 @@ export const DailyReport = () => {
             type: "supervisorReport",
             isImportant: true,
             SeenBy: [],
+            // captital S?
             info: data,
             dateCreated: new Date().toString()
         }

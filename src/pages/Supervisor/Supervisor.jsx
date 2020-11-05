@@ -16,6 +16,7 @@ import NewsTicker from "./NewsTicker";
 import Modal from "./../../components/Modal";
 import useModal from "./../../components/Modal/useModal";
 import SupervisorIncidentForm from './SupervisorIncidentForm/SupervisorIncidentForm';
+import SignOffMaintenance from "./SignOffMaintenance"
 
 export const Supervisor = () => {
     //dummy data
@@ -90,6 +91,10 @@ export const Supervisor = () => {
     // show notification ternary statement
     const showNotification = maintenanceIssues.filter(issue => issue.status).length ? Styles.showNotification : "";
 
+    const showAlert = () => {
+        alert('Will route to vehicle selection and prestart checklist')
+    }
+
     return (
         <>
             <main className={Styles.pageGrid}> 
@@ -100,12 +105,12 @@ export const Supervisor = () => {
                     </select></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<Load users={filteredUsersArr}/>) }}>Add Load</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<AssignVehicles usersArr={filteredUsersArr} vehiclesArr={filteredVehiclesArr} />) }}>Reassign Vehicles</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SignOffMaintenance />)}}>Sign off Maintenance
                     <div className={`${Styles.notification} ${showNotification}`}>
                         <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
                     </div>
                     </button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={showAlert}>Check Out Vehicle</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>Handover Notes</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SupervisorIncidentForm user={user}/>) }}>Report Incident To Managment</button></div>
                 </section>
