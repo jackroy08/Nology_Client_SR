@@ -36,7 +36,8 @@ const Management = () => {
     useEffect(() => {
         fetchVehicles();
         safetySignalStatus("go");
-    })
+        console.log("running again")
+    }, []);
 
     return (   
         <>
