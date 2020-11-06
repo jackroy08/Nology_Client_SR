@@ -13,7 +13,7 @@ const SupervisorPrivateRoute = (props) => {
         console.log(pathway);
 
             if (pathway === "/management" || pathway === "/admin") {
-                if (user.userType !== "management" || user.userType !== "admin"){
+                if (user.userType !== "management" && user.userType !== "admin"){
                     alert(
                         "You do not have permission to access this page"
                     );
@@ -40,7 +40,7 @@ const SupervisorPrivateRoute = (props) => {
             //         );
             //         navigate(`/`);
             // }
-    }, []);
+    }, [pathway]);
 
     return <>{children}</>;
 }
