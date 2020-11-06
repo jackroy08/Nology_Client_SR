@@ -18,14 +18,12 @@ const TeamFeed = () => {
 
     const getTeamJsx = (team) => {
 
-        // Seperate morning, afternoon, evening team stuff!!!
-        // user.currentSubTeam: Afternoon etc.
-
         const teamVehicleCountArr = [];
         const teamActiveVehicleCountArr = [];
         const classAArr = [];
         const userTeamArr = [];
         const userActiveTeamArr = [];
+        const teamLoadsArr = [];
 
         vehiclesArr.map(vehicle => {
             if(vehicle.currentTeam == team) teamVehicleCountArr.push(vehicle) 
@@ -42,6 +40,9 @@ const TeamFeed = () => {
         userTeamArr.map(user => {
             if(user.isOnShift == true) userActiveTeamArr.push(user);
         });
+        loads.forEach((load) => {
+            if(load.team === team) teamLoadsArr.push(load);
+        });
 
         return (
             <article className={Styles.teamReport}>
@@ -50,40 +51,24 @@ const TeamFeed = () => {
                 <p>There are {teamActiveVehicleCountArr.length} active vehicles in the team</p>
                 <p>There are {userTeamArr.length} team members</p>
                 <p>There are currently {userActiveTeamArr.length} team members on shift</p>
-                {/* Loads submitted on current shift */}
-                <p>There have been X loads during this shift.</p>
+                <p>There have been {teamLoadsArr.length} loads during this shift.</p>
                 <p>There have been {classAArr.length} class A vehicle issues.</p>
             </article>
         )
     }
 
-    const fetchUsersArr = () => {
-        getUsers().then((response) => {
-            setUsersArr(response);
-        })
-    }
-    const fetchVehiclesArr = () => {
-        getVehicles().then((response) => {
-            setVehiclesArr(response);
-        })
-    }
-    const fetchTeamsArr = () => {
+    useEffect(() => {
+        getUsers().then((response) => setUsersArr(response));
+        getVehicles().then((response) => setVehiclesArr(response));
         usersArr.forEach((user) => {
+            console.log(user.currentTeam);
             if(!teamsArr.includes(user.currentTeam) && user.currentTeam !== undefined ) {
                 teamsArr.push(user.currentTeam);
             }
         });
-    }
-    const fetchLoads = () => {
         getLoads().then((response) => setLoads(response));
-    }
-
-    useEffect(() => {
-        fetchUsersArr();
-        fetchVehiclesArr();
-        fetchLoads();
     }, []);
-    fetchTeamsArr();
+
 
     return (
         <article className={Styles.dataFeed}>

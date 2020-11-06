@@ -11,6 +11,7 @@ import Admin from "./pages/Admin";
 import ChecklistContainer from "./pages/Checklist/ChecklistContainer";
 import SubmitLoad from "./pages/Operator/SubmitLoad";
 import ReportAProblem from "./pages/Operator/ReportAProblem/ReportAProblem";
+import MaintenanceAside from "./pages/Maintenance/MaintenanceAside";
 // Components
 import Header from './components/header';
 // Data
@@ -28,6 +29,7 @@ const App = () => {
         <Operator path="/Operator" />
         <Supervisor path="/Supervisor" />
         <Maintenance path="/Maintenance" />
+        <MaintenanceAside path="/MaintenanceAside" />
         <Management path="/Management/*" />
         <Admin path="/Admin/*" />
         <ChecklistContainer path="/Checklist" checklistData={checklistData} />
