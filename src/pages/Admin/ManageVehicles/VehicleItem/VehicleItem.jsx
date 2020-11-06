@@ -10,7 +10,6 @@ import { deleteVehicle } from '../../../../services/VehiclesService';
 const VehicleItem = (props) => {
     const {isShowing, toggle} = useModal();
     const vehicle = props.vehicle;
-
     const [isOpen, setIsOpen] = useState(false);
     const toggleStyles = isOpen ? Styles.confirmOpen : "";
     
@@ -23,7 +22,6 @@ const VehicleItem = (props) => {
     // this.lastChecked = new Date();
     // this.checkedLog = null;
 
-
     return (
         <li key={vehicle.vehicleID} className={Styles.vehicleItem}>
             <p>{vehicle.vehicleID}</p>
@@ -31,7 +29,8 @@ const VehicleItem = (props) => {
             <p>{vehicle.goStatus}</p>
             <p>{vehicle.currentTeam}</p>
             <p>{vehicle.currentUser}</p>
-            <p>{vehicle.lastChecked}</p>
+            {/* need to figure out to convert date object into a string, i cant seem to get toUTCstring() to work */}
+            <p>05 Nov 2020{/*vehicle.lastChecked*/}</p>
             <span className={Styles.faIcon} onClick={toggle}><FontAwesomeIcon  icon="pencil-alt"/></span>
             <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="trash-alt"/></span>
             <div className={`${Styles.confirmDelete} ${toggleStyles}`}>

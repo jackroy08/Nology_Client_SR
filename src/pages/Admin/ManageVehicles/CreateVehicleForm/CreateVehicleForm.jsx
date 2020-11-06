@@ -16,7 +16,7 @@ class Vehicle {
         this.currentTeam = null;
         this.currentUser = null;
         this.checkItems = null;
-        this.lastChecked = new Date().toUTCString();
+        this.lastChecked = new Date();
         this.checkedLog = null;
     }
 }

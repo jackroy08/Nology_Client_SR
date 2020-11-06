@@ -19,7 +19,8 @@ const ManageTeams = () => {
             setTeamsArr(response);
             setTeamNamesArr([...new Set(response.map(team => team.teamName))]);
         });
-        subscribeToTeams(setTeamsArr);
+        const unsubscribe = subscribeToTeams(setTeamsArr);
+        return unsubscribe
     }, [])
 
     useEffect(() => {
