@@ -19,7 +19,8 @@ const ManageSites = () => {
             setSitesArr(response);
             setSiteNamesArr([...new Set(response.map(site => site.siteName))]);
         });
-        subscribeToSites(setSitesArr);
+        const unsubscribe = subscribeToSites(setSitesArr);
+        return unsubscribe;
     }, [])
 
     useEffect(() => {

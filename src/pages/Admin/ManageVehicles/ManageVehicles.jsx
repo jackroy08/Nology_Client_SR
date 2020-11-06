@@ -38,7 +38,8 @@ const ManageVehicles = () => {
             setVehiclesArr(response);
             // setVehicleTypesArr([...new Set(response.map(vehicle => vehicle.vehicleType))]);
         });
-        subscribeToVehicles(setVehiclesArr);
+        const unsubscribe = subscribeToVehicles(setVehiclesArr);
+        return unsubscribe;
     }, [])
 
     useEffect(() => {
@@ -46,7 +47,7 @@ const ManageVehicles = () => {
             setFilteredVehiclesArr(vehiclesArr);
             // setVehicleTypesArr([...new Set(vehiclesArr.map(vehicle => vehicle.vehicleType))])
         }
-    }, [vehiclesArr])
+    }, [])
 
     const filterVehicles = (vehicleType) => {
         if (vehicleType) {

@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
     apiKey: "AIzaSyDqsbZFmp_VqfQb6bwGCDGBbqgcZvjDIm4",
     authDomain: "shiftreporter-3420e.firebaseapp.com",
@@ -11,7 +12,9 @@ const firebaseConfig = {
     appId: "1:1050190735525:web:6f2b5b8594aeaa7355854c",
     measurementId: "G-9QY0TP48NQ"
   };
-firebase.initializeApp(firebaseConfig);
+
+
+  firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
 

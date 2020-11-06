@@ -1,12 +1,8 @@
 @import '../../../assets/styles/buttons'; 
 
-.pageGrid {
-  display: grid;
-  justify-items: center;
-  margin-top: 1em;
-}
+@import '../../../assets/styles/buttons'; 
 
-.userListSection {
+.usersListSection {
   width: 100%;
   padding: 0 $base-spacing*2 $base-spacing*2 $base-spacing*2;
 
@@ -33,7 +29,7 @@
     padding: $base-spacing;
   }
 
-  .userList {
+  .usersList {
     width: 100%;
     background-color: $background-color1;
     margin: 0;
@@ -42,7 +38,7 @@
 
   .userItem, .columnTitles {
     display:grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 50px;
+    grid-template-columns: 75px 1fr 1fr 1fr 1fr 1fr 64px;
     justify-items: start;
     align-items: center;
   }

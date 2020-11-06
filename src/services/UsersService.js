@@ -1,4 +1,3 @@
-import usersArr from "../data/users";
 import { firestore } from "../firebase";
 
 const getUsers = () => {
@@ -9,6 +8,15 @@ const getUsers = () => {
             return data;
         });
 }
+
+const subscribeToUsers = (setState) => {
+    return firestore.collection("users").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
+}
+const createUser  = (newUser) => firestore.collection("users").doc(newUser.userID).set({...newUser});
+
+const updateUser  = (updatedUser) => firestore.collection("users").doc(updatedUser.userID).update({...updatedUser});
+
+const deleteUser  = (user) => firestore.collection("users").doc(user.userID).delete();
 
 const getOperators = () => {
     return firestore
@@ -34,19 +42,4 @@ const getTeamSupervisor = (operatorTeam, operatorSubTeam) => {
         });
     }
 
-const createUser  = () => {
-    console.log("create users here")
-}
-
-const updateUser = (user) => {
-    firestore
-        .collection("users")
-        .doc(user.userID)
-        .update({...user})
-}
-
-const deleteUser  = () => {
-    console.log("delete users here")
-}
-
-export { getUsers, getOperators, getTeamSupervisor, createUser, updateUser, deleteUser };
+export { getUsers, subscribeToUsers, createUser, updateUser, deleteUser,  getOperators, getTeamSupervisor};
