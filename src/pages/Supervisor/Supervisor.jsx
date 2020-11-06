@@ -15,8 +15,8 @@ import UserTable from "./UserTable";
 import NewsTicker from "./NewsTicker";
 import Modal from "./../../components/Modal";
 import useModal from "./../../components/Modal/useModal";
-import {firestore} from "../../firebase"
 import SupervisorIncidentForm from './SupervisorIncidentForm/SupervisorIncidentForm';
+import SignOffMaintenance from "./SignOffMaintenance"
 
 export const Supervisor = () => {
     //dummy data
@@ -62,9 +62,7 @@ export const Supervisor = () => {
     useEffect(()=>{
         //refilter when teamToView Changes
         setFilteredVehiclesArr(vehiclesArr.filter(teamToView==="All" ? () => true : vehicle => vehicle.currentTeam===teamToView));
-
         setFilteredUsersArr(usersArr.filter(teamToView==="All" ? () => true : user => user.currentTeam===teamToView));
-       
 
         // subscribe to collections
         let unsubscribeNews = subscribeToNewsItems(setNewsItemsArr,teamToView);
@@ -73,16 +71,13 @@ export const Supervisor = () => {
         }
     },[teamToView])
 
-    //need to do the same same for users
-    // useEffect(() => {
-    //     setFilteredVehiclesArr(vehiclesArr.filter(teamToView==="All" ? () => true : vehicle => vehicle.currentTeam===teamToView));
-    //     setResizevehicleTable(!resizeVehicleTable)
-    // },[vehiclesArr])
+    useEffect(()=>{
+        setFilteredVehiclesArr(vehiclesArr.filter(teamToView==="All" ? () => true : vehicle => vehicle.currentTeam===teamToView));
+    },[vehiclesArr])
 
-    // useEffect(() => {
-    //     setFilteredVehiclesArr(vehiclesArr.filter(teamToView==="All" ? () => true : vehicle => vehicle.currentTeam===teamToView));
-    //     setResizevehicleTable(!resizeVehicleTable)
-    // },[usersArr])
+    useEffect(()=>{
+        setFilteredUsersArr(usersArr.filter(teamToView==="All" ? () => true : user => user.currentTeam===teamToView));
+    },[usersArr])
 
     //handle change team dropdown
     const handleTeamChange = e => {
@@ -96,6 +91,10 @@ export const Supervisor = () => {
     // show notification ternary statement
     const showNotification = maintenanceIssues.filter(issue => issue.status).length ? Styles.showNotification : "";
 
+    const showAlert = () => {
+        alert('Will route to vehicle selection and prestart checklist')
+    }
+
     return (
         <>
             <main className={Styles.pageGrid}> 
@@ -104,15 +103,15 @@ export const Supervisor = () => {
                     <div><select name="team" onChange={handleTeamChange}>
                         {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
                     </select></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<Load />) }}>Add Load</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<Load users={filteredUsersArr}/>) }}>Add Load</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<AssignVehicles usersArr={filteredUsersArr} vehiclesArr={filteredVehiclesArr} />) }}>Reassign Vehicles</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Sign off Maintenance
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SignOffMaintenance />)}}>Sign off Maintenance
                     <div className={`${Styles.notification} ${showNotification}`}>
                         <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
                     </div>
                     </button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`}>Check Out Vehicle</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>Supervisor Reports</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={showAlert}>Check Out Vehicle</button></div>
+                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>Handover Notes</button></div>
                     <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SupervisorIncidentForm user={user}/>) }}>Report Incident To Managment</button></div>
                 </section>
                 <section className={Styles.newsTicker}>
@@ -126,6 +125,7 @@ export const Supervisor = () => {
                 </section>
 
                 <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>
+
             </main>
         </>
     )
