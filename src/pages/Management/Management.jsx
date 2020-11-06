@@ -36,7 +36,7 @@ const Management = () => {
     useEffect(() => {
         fetchVehicles();
         safetySignalStatus("go");
-    })
+    }, [])
 
     return (   
         <>
