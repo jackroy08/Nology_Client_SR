@@ -28,7 +28,10 @@ export const UserProvider = (props) => {
                         .doc(username)
                         .set({
                             authID: response.user.uid
-                        }, {merge: true})
+                        }, {merge: true});
+
+                        navigate("/");
+                        alert("Sign up successful");
                 }).catch(function(error) {
                     alert(error.message)
             });

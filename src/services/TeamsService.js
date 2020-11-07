@@ -25,7 +25,6 @@ const deleteTeam  = (team) => {
 }
 
 const getTeamSiteName = (operatorTeam, operatorSubTeam) => {
-    console.log(operatorTeam);
     return firestore
         .collection("teams")
         .where("teamName", "==", `${operatorTeam}`)
