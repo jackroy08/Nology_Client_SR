@@ -1,15 +1,15 @@
 import { Link } from '@reach/router';
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ClassAChecks from '../ClassAChecks';
 import ClassBChecks from '../ClassBChecks';
 import ClassCChecks from '../ClassCChecks';
 import Confirmation from '../Confirmation';
+import { UserContext } from "../../../context/userContext";
 
 const ChecklistContainer = (props) => {
-    
-    const {checklistData, user} = props;
+    const { user, vehicle } = useContext(UserContext);
+    const { checklistData } = props;
     const [step, setStep] = useState(1);
-    const [vehicleType, setVehicleType] = useState("ADT");
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
     const vehicleKeys = Object.keys(checklistData);
 
@@ -19,8 +19,8 @@ const ChecklistContainer = (props) => {
                     acc[classType][val] = {
                         classType: classType, 
                         issue: val,
-                        vehicleID: vehicleType,
-                        operator: "2002",
+                        vehicleID: vehicle.plantID, //THIS NEEDS TO CHANGE TO WHATEVER NICK CHANGED IT TO
+                        operator: user.userID,
                         supervisor: "supervisor1",
                         additionalDetails: document.getElementById("additional-details").value,
                         dateCreated: new Date().toUTCString()
@@ -39,10 +39,6 @@ const ChecklistContainer = (props) => {
         setStep(step - 1);
     }
 
-    const vehicleChangeHandler = e => {
-        setVehicleType(e.target.value);
-    }
-
     const getVehicleTypes = thisVehicle => {
         return <option key={thisVehicle} value={thisVehicle}>{thisVehicle}</option> 
     };
@@ -52,7 +48,7 @@ const ChecklistContainer = (props) => {
                             failedElements: failedElements,
                             failObject: failObject, 
                             checklistData: checklistData, 
-                            vehicleType: vehicleType, 
+                            vehicleType: vehicle.plantType, //THIS NEEDS TO CHANGE TO WHATEVER NICK CHANGED IT TO
                             nextHandler: nextHandler, 
                             backHandler: backHandler
                         }
@@ -61,9 +57,9 @@ const ChecklistContainer = (props) => {
         switch (step) {
                 case 1: return (
                     <section>
-                        <select onChange={vehicleChangeHandler} name="vehicle" id="vehicle"> 
-                            {vehicleKeys.map(getVehicleTypes)}
-                        </select> 
+                        <p>
+                            Vehicle type: {vehicle.plantType}
+                        </p> 
                         <button onClick={nextHandler}>Next</button>
                         <Link to="/Operator">
                             <button>Back</button>
@@ -80,7 +76,7 @@ const ChecklistContainer = (props) => {
 
     return (
         <div>
-            {console.log(failedElements)}
+            {console.log(vehicle)}
             {navigation()}
         </div>
     )

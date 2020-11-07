@@ -15,7 +15,14 @@
 }
 
 .loginContainer {
-  margin-top:150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loginBtns {
+  height: 30vh;
+  width: 30vh;
+  margin: 50px;
 }
 
 .backgroundImage {
