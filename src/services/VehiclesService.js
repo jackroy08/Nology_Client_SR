@@ -54,10 +54,5 @@ const updateVehicleIssues = (vehicle, issues) => {
         .update({
             checkItems: firebase.firestore.FieldValue.arrayUnion({...issues})
         })
-}
-
-const deleteVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.vehicleID).delete();
-}
-
+    }
 export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle, getUserVehicle };
