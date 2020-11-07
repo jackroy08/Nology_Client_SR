@@ -30,7 +30,7 @@ const Management = () => {
 
     useEffect(() => {
         safetySignalStatus("go");
-    })
+    }, []);
 
     return (   
         <>

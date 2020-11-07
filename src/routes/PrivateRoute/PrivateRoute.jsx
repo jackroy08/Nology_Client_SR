@@ -9,37 +9,27 @@ const SupervisorPrivateRoute = (props) => {
     
 
     useEffect(() => {
-        console.log(user.userType);
-        console.log(pathway);
+        const message = "You do not have permission to access this page";
 
             if (pathway === "/management" || pathway === "/admin") {
                 if (user.userType !== "management" && user.userType !== "admin"){
-                    alert(
-                        "You do not have permission to access this page"
-                    );
+                    alert(message);
                     navigate(`/${user.userType}`);
                 };
             } else if (pathway === "/supervisor") {
                 if (user.userType == "operator" || user.userType == "maintenance"){
-                    alert(
-                        "You do not have permission to access this page"
-                    );
+                    alert(message);
                     navigate(`/${user.userType}`);
                 };
             } else if (pathway === "/maintenance") {
                 if (user.userType === "operator") {
-                    alert(
-                        "You do not have permission to view this page"
-                    );
+                    alert(message);
                     navigate(`/${user.userType}`);
                 }
+            } else if (!user) {
+                alert(message);
+                    navigate(`/`);
             }
-            // } else if (!user.userType) {
-            //     alert(
-            //             "You do not have permission to view this page"
-            //         );
-            //         navigate(`/`);
-            // }
     }, [pathway]);
 
     return <>{children}</>;

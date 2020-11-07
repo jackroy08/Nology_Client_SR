@@ -35,11 +35,10 @@ const App = () => {
             <Maintenance path="/maintenance" />
             <Management path="/management/*" />
             <Admin path="/admin/*" />
+            <ChecklistContainer path="/Checklist" checklistData={checklistData} />
+            <SubmitLoad path="/SubmitLoad" />
+            <ReportAProblem path="/ReportAProblem" />
           </PrivateRoute>
-          {/* need to include three below in private routing somehow... */}
-          <ChecklistContainer path="/Checklist" checklistData={checklistData} />
-          <SubmitLoad path="/SubmitLoad" />
-          <ReportAProblem path="/ReportAProblem" />
         </Router>
       </UserProvider>
     </>

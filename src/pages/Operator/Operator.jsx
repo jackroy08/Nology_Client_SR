@@ -1,20 +1,15 @@
-import React, {useState, useEffect, useContext} from "react";
-import { Link, navigate } from "@reach/router";
+import React, {useState, useContext} from "react";
+import { navigate } from "@reach/router";
 import Styles from "./Operator.module.scss";
-import { getOperators, updateUser, getTeamSupervisor } from "../../services/UsersService";
+import { getOperators, updateUser } from "../../services/UsersService";
 import useModal from "../../components/Modal/useModal";
 import SubmitLoad from "./SubmitLoad";
-import { getTeamSiteName } from "../../services/TeamsService";
-import { getUserVehicle } from "../../services/VehiclesService";
 import { UserContext } from "../../context/userContext";
 
 const Operator = () => {
-    const [operatorsArr, setOperatorsArr] = useState([]);
     const { user, vehicle, supervisor, teamSiteName } = useContext(UserContext);
     const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
     const {isShowing, toggle} = useModal(); 
-
-    
     const changeStart = user.isOnShift ? "End shift" : "Start shift";
 
     const updateShiftProperty = () => {
@@ -22,13 +17,6 @@ const Operator = () => {
         user.isOnShift = !user.isOnShift;
         updateUser(user);
         getOperators();
-    }
-
-    const changeHandler = e => {
-        let target = e.target.value;
-        getOperators().then(response => {
-            // setUser(response.filter(item => item.userID === target)[0])
-        });
     }
 
     const checklistBarrier = () => {

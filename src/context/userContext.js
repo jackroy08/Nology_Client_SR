@@ -10,7 +10,7 @@ import { getTeamSiteName } from "../services/TeamsService";
 export const UserContext = createContext({});
 
 export const UserProvider = (props) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
     const [supervisor, setSupervisor] = useState({});
     const [vehicle, setVehicle] = useState({});
     const [teamSiteName, setTeamSiteName] = useState({});
@@ -21,11 +21,9 @@ export const UserProvider = (props) => {
             email = username;
         } else email = `${username}@shiftreporter.com`;
 
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(response => {
-                        firestore
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(response => {
+                    firestore
                         .collection("users")
                         .doc(username)
                         .set({
@@ -33,10 +31,7 @@ export const UserProvider = (props) => {
                         }, {merge: true})
                 }).catch(function(error) {
                     alert(error.message)
-                })
-            }).catch(function(error) {
-                alert(error.message)
-        });
+            });
     }
 
     const signIn = (username, password) => {
@@ -45,65 +40,57 @@ export const UserProvider = (props) => {
             email = username;
         } else email = `${username}@shiftreporter.com`;
 
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(response => {
-                    firestore
-                        .collection("users").where("authID" , "==" , `${response.user.uid}`)
-                        .get()
-                        .then(response => {
-                            response.forEach(doc => {
-                                setUser(doc.data());
-                            });
+            firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(response => {
+                firestore
+                    .collection("users").where("authID" , "==" , `${response.user.uid}`)
+                    .get()
+                    .then(response => {
+                        response.forEach(doc => {
+                            setUser(doc.data());
+                            localStorage.setItem('user', JSON.stringify(doc.data()))
                         });
-                }).catch(function(error) {
-                    alert(error.message)
-                });
+                    });
             }).catch(function(error) {
                 alert(error.message)
-        });
-    }
+            });
+        };
 
     const signOut = () => {
-        console.log('signing out')
         firebase
             .auth()
             .signOut()
             .then(() => {
                 navigate(`/`);
+                localStorage.removeItem("user")
                 setTimeout(() => setUser(null), 1000);
             })
             .catch((error) => {
-                console.log(error);
+                alert(error);
             });
     };
 
-    if (user) {
-        navigate(`/${user.userType}`);
-    }
-
-    useEffect(() => {
-        console.log(user);
-        if (user){
-            
-            getUserVehicle(user.userID)
-                .then(response => {
-                    setVehicle(response[0]);
-                    console.log(response[0]);
-                });
-            getTeamSupervisor(user.currentTeam, user.currentSubTeam)
-                .then(response => {
-                    setSupervisor(response[0])
-                });
-            getTeamSiteName(user.currentTeam, user.currentSubTeam)
-                .then(response => {
-                    setTeamSiteName(response[0])
-                });
-            }
-        }, [user])
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then(
+            useEffect(() => {
+                if (user){
+                    navigate(`/${user.userType}`);
+                    getUserVehicle(user.userID)
+                        .then(response => {
+                            setVehicle(response[0]);
+                        });
+                    getTeamSupervisor(user.currentTeam, user.currentSubTeam)
+                        .then(response => {
+                            setSupervisor(response[0])
+                        });
+                    getTeamSiteName(user.currentTeam, user.currentSubTeam)
+                        .then(response => {
+                            setTeamSiteName(response[0])
+                        });
+                }
+            }, [user])
+        )
     
-
     return (
         <UserContext.Provider value={{ user, signUp, signOut, signIn, vehicle, supervisor, teamSiteName }}>
             {props.children}
