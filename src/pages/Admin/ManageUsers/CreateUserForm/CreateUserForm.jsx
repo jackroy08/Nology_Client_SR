@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import Styles from './CreateUserForm.module.scss';
 import usersArr from '../../../../data/users';
+import { createUser } from '../../../../services/UsersService'
+import { getTeams, subscribeToTeams } from '../../../../services/TeamsService';
 
 // ------ CLASSES ----- //
 
 class User {
-    constructor(userType, fullName, userID, dateOfBirth, password) {
+    constructor(userID, userType, fullName, dateOfBirth) {
+    this.userID = userID;
     this.userType = userType;
     this.fullNameStr = fullName;
-    this.userID = userID;
     this.dateOfBirth = dateOfBirth;
-    this.password = password;
     }
 }
 class Supervisor extends User {
-    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentsubTeamName) {
-    super(userType, fullName, userID, dateOfBirth, password);
+    constructor(userID, userType, fullName, dateOfBirth, currentTeam, currentsubTeamName) {
+    super(userID, userType, fullName, dateOfBirth);
     this.currentTeam = currentTeam;
     this.currentsubTeamName = currentsubTeamName;
     this.isOnShift = false;
     }
 }
 class Operator extends Supervisor {
-    constructor(userType, fullName, userID, dateOfBirth, password, currentTeam, currentsubTeamName, isOnShift) {
-        super(userType, fullName, userID, dateOfBirth, password, currentTeam, currentsubTeamName, isOnShift);
+    constructor(userID, userType, fullName, dateOfBirth, currentTeam, currentsubTeamName, isOnShift) {
+        super(userID, userType, fullName, dateOfBirth, currentTeam, currentsubTeamName, isOnShift);
         this.assignedVehicle = "";
     }
 }
@@ -34,35 +35,37 @@ class Operator extends Supervisor {
 const CreateUserForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
     
-    const createNewUser = (data) => {
-        switch (data.userType) {
-            case "management" : usersArr.push(new User(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password)); break;
-            case "maintenance" : usersArr.push(new User(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password)); break;
-            case "supervisor" : usersArr.push(new Supervisor(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentsubTeamName)); break;
-            case "operator" : usersArr.push(new Operator(data.userType, data.fullName, data.userID, data.dateOfBirth, data.password, data.currentTeam, data.currentsubTeamName)); break;
-            default: /* do nothing; */; break;
-        }
+    const [teamNamesArr, setTeamNamesArr] = useState([null]);
+    const [subTeamNamesArr, setSubTeamNamesArr] = useState([null]);
+    
+    useEffect(() => {
+        getTeams().then(response => {
+            setTeamNamesArr([...new Set(response.map(team => team.teamName))]);
+            setSubTeamNamesArr([...new Set(response.map(team => team.subTeamName))]);
+        });
+    }, [])
+
+const createNewUser = (data) => {
+    switch (data.userType) {
+        case "operator" : createUser(new Operator(data.userID, data.userType, data.fullName, data.dateOfBirth, data.currentTeam, data.currentsubTeamName));
+        case "supervisor" : createUser(new Supervisor(data.userID, data.userType, data.fullName, data.dateOfBirth, data.currentTeam, data.currentsubTeamName)); break;
+        case "maintenance" : createUser(new User(data.userID, data.userType, data.fullName, data.dateOfBirth)); break;
+        case "management" : createUser(new User(data.userID, data.userType, data.fullName, data.dateOfBirth)); break;
+        default: /* do nothing; */; break;
     }
+    {props.hide()}
+}   
     
     return ( 
         <form className={Styles.userForm} onSubmit={handleSubmit(createNewUser)}>
-            <label htmlFor="userID">Employee No# :</label>
+            <label htmlFor="userID">User ID# :</label>
             <input
                 type="text"
                 id="userID"
                 name="userID"
                 placeholder="eg: MINE123456"
                 ref={register({ required: true })} />
-                {errors.userID && <p>userID is required.</p>}
-            
-            <label htmlFor="password">Password :</label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="P@ssw0rd!"
-                ref={register({ required: true, minLength: 8 })} />
-                {errors.password && <p>Password is required. Minimin Length of 8 characters</p>}
+                {errors.userID && <p>UserID is required.</p>}
             
             <label htmlFor="userType">Select User Type :</label>
             <select
@@ -81,12 +84,10 @@ const CreateUserForm = (props) => {
             <select
                 name="currentTeam"
                 id="currentTeam" 
-                ref={register({ required: true })}>
+                ref={register()}>
                 <option value="">Select Team</option>
-                <option value="TeamA">Team A</option>
-                <option value="TeamB">Team B</option>
-                <option value="TeamC">Team C</option>
-                <option value="TeamD">Team D</option>
+                {teamNamesArr.map((teamName) => <option key={teamName}>{teamName}</option>)}
+
             </select>
             
             
@@ -94,11 +95,10 @@ const CreateUserForm = (props) => {
             <select
                 name="currentsubTeamName"
                 id="currentsubTeamName" 
-                ref={register({ required: true })}>
+                ref={register()}>
                 <option value="">Select Sub Team</option>
-                <option value="Morning">Morning</option>
-                <option value="Afternoon">Afternoon</option>
-                <option value="Night">Night</option>
+                {subTeamNamesArr.map((subTeamName) => <option key={subTeamName}>{subTeamName}</option>)}
+
             </select>
             
             <label htmlFor="fullName">Full Name :</label>

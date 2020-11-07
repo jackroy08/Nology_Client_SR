@@ -45,14 +45,29 @@
         border: 2px solid black;
         background-color: $background-color1;
         gap: 0.5em;
-        border-radius: 25px;
+        // border-radius: 25px;
         margin: 10px 0;
-        padding: 15px;
-        margin-top: 5px;
+        padding: 20px;
         height: 75%;
+        overflow-y: scroll;
 
-        li {
-            margin: 15px;
+        .flexCharts {
+            display: flex;
+            padding-bottom: 40px;
+            
+            .pieData {
+                width: 50%;
+                height: 100%;
+            }
+            .loadData {
+                width: 50%;
+                height: 100%;
+            }
+        }
+        
+        .siteData {
+            width: 100%;
+            height: 100%;
         }
     }
 }

@@ -1,6 +1,7 @@
 import { firestore } from "./../firebase";
 
 const getNewsItems  = (team) => {
+    console.log("get news")
     if(team === "All"){
         return firestore.collection("newsItems").orderBy("dateCreated").limit(20).get().then(response => response.docs.map(document => document.data()));
     }else{
@@ -9,6 +10,7 @@ const getNewsItems  = (team) => {
 }
 
 const subscribeToNewsItems = (setState,team) => {
+    console.log("subscribe news")
     if(team === "All"){
         return firestore.collection("newsItems").orderBy("dateCreated").limit(20).onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))        
     }else{
@@ -17,6 +19,7 @@ const subscribeToNewsItems = (setState,team) => {
 }
 
 const createNewsItem  = (newsItem) => {
+    console.log("create news")
     firestore.collection("newsItems").add({...newsItem});
 }
 

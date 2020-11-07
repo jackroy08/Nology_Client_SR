@@ -6,17 +6,18 @@ const getVehicles  = () => {
 }
 
 //watches vehicles collection and updates the state whenever the db changes
-const subscribeToVehicles = (setState) => firestore.collection("vehicles").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())));
-
-const createVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.vehicleID).set({...vehicle});
+const subscribeToVehicles = (setState) => {
+    return firestore.collection("vehicles").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())));
 }
 
-const updateVehicle  = (vehicle) => {
-    firestore.collection("vehicles").doc(vehicle.vehicleID).update({...vehicle});
-}
+const createVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle.vehicleID).set({...vehicle});
+
+const updateVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle.vehicleID).update({...vehicle});
+
+const deleteVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle.vehicleID).delete();
 
 const setVehicleIssues = (vehicle, issues, goStatus) => {
+    console.log("setVehicleIssues");
     firestore
         .collection("vehicles")
         .doc(vehicle)
@@ -46,6 +47,7 @@ const getUserVehicle = (operator) => {
     }
 
 const updateVehicleIssues = (vehicle, issues) => {
+    console.log("updateVehicleIssues");
     firestore
         .collection("vehicles")
         .doc(vehicle)

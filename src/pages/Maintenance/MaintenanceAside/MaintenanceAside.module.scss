@@ -1,8 +1,16 @@
 @import '../../../assets/styles/buttons';
 
+.asideHeader {
+    font-size: 50px;
+    padding: 50px;
+    text-align: center;
+}
+
+
 .maintenanceAside {
     grid-area: Aside;
-    max-height: 300px;
+    width: 80%;
+    margin: auto;
     display: grid;
     gap: 2em;
     grid-template-columns: 1fr 1fr;
@@ -13,6 +21,8 @@
     ;
     
     input {
+        width: 75%;
+        margin: auto;
         border: 2px solid rgb(51, 51, 51);
         border-radius: 15px;
     }
@@ -20,7 +30,7 @@
     textarea {
         border: 2px solid rgb(51, 51, 51);
         margin: auto;
-        width: 100%;
+        width: 85%;
         height: 100%;
         grid-area: text;
         border-radius: 15px;

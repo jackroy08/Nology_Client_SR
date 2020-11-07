@@ -12,6 +12,7 @@ import ChecklistContainer from "./pages/Checklist/ChecklistContainer";
 import SubmitLoad from "./pages/Operator/SubmitLoad";
 import ReportAProblem from "./pages/Operator/ReportAProblem/ReportAProblem";
 import PrivateRoute from "./routes/PrivateRoute";
+import MaintenanceAside from "./pages/Maintenance/MaintenanceAside";
 // Components
 import Header from './components/header';
 // Data
