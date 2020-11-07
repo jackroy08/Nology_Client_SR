@@ -11,7 +11,6 @@ const ChecklistContainer = (props) => {
     const { checklistData } = props;
     const [step, setStep] = useState(1);
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
-    const vehicleKeys = Object.keys(checklistData);
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[vehicleType][classType]).reduce((acc, val) => {
@@ -48,7 +47,7 @@ const ChecklistContainer = (props) => {
                             failedElements: failedElements,
                             failObject: failObject, 
                             checklistData: checklistData, 
-                            vehicleType: vehicle.plantType, //THIS NEEDS TO CHANGE TO WHATEVER NICK CHANGED IT TO
+                            vehicleType: vehicle.vehicleType,
                             nextHandler: nextHandler, 
                             backHandler: backHandler
                         }
@@ -58,7 +57,7 @@ const ChecklistContainer = (props) => {
                 case 1: return (
                     <section>
                         <p>
-                            Vehicle type: {vehicle.plantType}
+                            Vehicle type: {vehicle.vehicleType}
                         </p> 
                         <button onClick={nextHandler}>Next</button>
                         <Link to="/Operator">

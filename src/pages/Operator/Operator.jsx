@@ -1,37 +1,50 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import { navigate } from "@reach/router";
-import Styles from "./Operator.module.scss";
+import { UserContext } from "../../context/userContext";
 import { getOperators, updateUser } from "../../services/UsersService";
+import Styles from "./Operator.module.scss";
+import Modal from "../../components/Modal";
 import useModal from "../../components/Modal/useModal";
 import SubmitLoad from "./SubmitLoad";
-import { UserContext } from "../../context/userContext";
+import ReportAProblem from "./ReportAProblem";
+import Error from "../../components/Error";
 
 const Operator = () => {
-    const { user, vehicle, supervisor, teamSiteName } = useContext(UserContext);
+    const { user, vehicle } = useContext(UserContext);
+    const { isShowing, toggle } = useModal();
     const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
-    const {isShowing, toggle} = useModal(); 
+    const [modalContent, setModalContent] = useState(null);
     const changeStart = user.isOnShift ? "End shift" : "Start shift";
 
     const updateShiftProperty = () => {
-        setIsShiftStart(() => !isShiftStart);
         user.isOnShift = !user.isOnShift;
-        updateUser(user);
+        setIsShiftStart(user.isOnShift);
+        updateUser(user).then(response => localStorage.setItem("user", JSON.stringify(user)));
         getOperators();
     }
 
     const checklistBarrier = () => {
-        if (user.isOnShift) {
+        if (user.isOnShift && user.assignedVehicle) {
             navigate("/Checklist")
+        } else if (!user.isOnShift) {
+            let message = "Please begin your shift to accept a vehicle";
+            setModalContent(<Error message={message} hide={toggle} />);
+            toggle()
         } else {
-            alert("Please begin your shift to accept a vehicle")
+            let message = "Please confirm with your supervisor that a vehicle is assigned";
+            setModalContent(<Error message={message} hide={toggle} />);
+            toggle()
         }
     }
 
     const reportBarrier = () => {
         if (user.isOnShift) {
-            navigate("/ReportAProblem")
+            toggle();
+            setModalContent(<ReportAProblem hide={toggle} />);
         } else {
-            alert("Please begin your shift to report a problem")
+            let message = "Please begin your shift to report a problem";
+            setModalContent(<Error message={message} hide={toggle} />);
+            toggle()
         }
     }
 
@@ -49,6 +62,7 @@ const Operator = () => {
                 className={`${Styles.btn} ${Styles.btnLG}`}>
                     Accept Vehicle
             </button>
+            
             <button 
                 onClick={() => reportBarrier()}
                 user={user} 
@@ -62,16 +76,10 @@ const Operator = () => {
             <button 
                 user={user} 
                 className={`${Styles.btn} ${Styles.btnLG}`} 
-                onClick= {toggle}>
+                onClick= {() => {toggle(); setModalContent(<SubmitLoad hide={toggle} />)}}>
                     Submit Load
             </button>
-            <SubmitLoad 
-                isShowing={isShowing} 
-                hide={toggle}
-                user={user}
-                supervisor={supervisor}
-                teamSiteName={teamSiteName}
-            />
+            <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>
         </main>
     )
 }
