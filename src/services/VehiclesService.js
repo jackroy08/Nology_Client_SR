@@ -28,20 +28,12 @@ const setVehicleIssues = (vehicle, issues, goStatus) => {
 }
 
 const getUserVehicle = (operator) => {
-    // return firestore
-    //     .collection("vehicles")
-    //     .doc(`${assignedVehicle}`)
-    //     .get()
-    //     .then(querySnapshot => {
-    //         const data = querySnapshot.data();
-    //         return data;
-    //     });
     return firestore
         .collection("vehicles")
         .where('currentUser', '==', `${operator}`)
         .get()
         .then(querySnapshot => {
-            const data = querySnapshot.docs.map(doc => doc.data())
+            const data = querySnapshot.docs.map(doc => doc.data());
             return data;
         });
     }
