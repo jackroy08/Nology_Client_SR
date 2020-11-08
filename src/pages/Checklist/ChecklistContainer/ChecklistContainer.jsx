@@ -8,10 +8,11 @@ import Confirmation from '../Confirmation';
 import { UserContext } from "../../../context/userContext";
 
 const ChecklistContainer = (props) => {
-    const { user, vehicle } = useContext(UserContext);
+    const { user, vehicle, supervisor } = useContext(UserContext);
     const [checklistData, setChecklistData] = useState({});
     const [step, setStep] = useState(1);
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
+    const supervisorProperty = supervisor ? supervisor.userID : null;
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[classType]).reduce((acc, val) => {
@@ -21,10 +22,9 @@ const ChecklistContainer = (props) => {
                         issue: val,
                         vehicleID: vehicle.vehicleID,
                         operator: user.userID,
-                        supervisor: "supervisor1",
+                        supervisor: supervisorProperty,
                         additionalDetails: document.getElementById("additional-details").value,
                         dateCreated: new Date().toUTCString()
-                        //NEED TO CHANGE THESE VALUES BASED ON USER LOGGED IN
                     };
                     } else acc[classType][val] = {};
                 return acc;
@@ -32,6 +32,7 @@ const ChecklistContainer = (props) => {
     }
 
     const nextHandler = ()  => {
+        console.log(failedElements);
         setStep(step + 1);
     }
 
@@ -73,6 +74,7 @@ const ChecklistContainer = (props) => {
         useEffect(() => {
             getChecklists(vehicle.vehicleType)
                 .then(response => setChecklistData(response))
+            
         }, [])
 
     return (

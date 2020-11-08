@@ -10,7 +10,7 @@ import ReportAProblem from "./ReportAProblem";
 import Error from "../../components/Error";
 
 const Operator = () => {
-    const { user, vehicle } = useContext(UserContext);
+    const { user, vehicle, supervisor } = useContext(UserContext);
     const { isShowing, toggle } = useModal();
     const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
     const [modalContent, setModalContent] = useState(null);
@@ -69,9 +69,6 @@ const Operator = () => {
                 className={`${Styles.btn} ${Styles.btnLG}`}>
                     Report a problem
             </button>
-
-            {/* <ReportAProblem problemShowing={problemShowing} problemHide={problemToggle} /> */}
-            {/* need similar functionality for submit load when screen developed */}
             
             <button 
                 user={user} 
