@@ -11,101 +11,84 @@ const TeamFeed = () => {
     const [teamsArr, setTeamsArr] = useState([]);
     const [usersArr, setUsersArr] = useState([]);
     const [vehiclesArr, setVehiclesArr] = useState([]);
+    const [wholeTeamsArr, setWholeTeamsArr] = useState([]);
 
-    const subTeamData = {
-        datasets: [{
-            // data: [10, 10, 10],
-            data: [],
-            borderWidth: 1
-        }],
-        labels: [
-            // "1",
-            // "2",
-            // "3"
-        ]
-    }
-    const teamVehicles = {
-        datasets: [{
-            data: [],
-            borderWidth: 1
-        }],
-        labels: [
-        ]
-    }
-    const teamLoads = {
-        datasets: [{
-            data: [],
-            borderWidth: 1
-        }],
-        labels: [
-        ]
-    }
+    const getSubTeamJsx = (team) => {
 
-    const getGraphData = () => {
-        const teamsList = [];
+        const subTeamData = {
+            datasets: [{
+                // data: [10, 10, 10],
+                data: [],
+                borderWidth: 1
+            }],
+            labels: [
+                // "1",
+                // "2",
+                // "3"
+            ]
+        }
 
-        // sub team checks
-        teamsArr.map((team) => {
-            const subTeamUsers = [];
-            usersArr.map((user) => {
-                if(user.currentTeam == team.teamName && user.currentSubTeam == team.subTeamName) subTeamUsers.push(user);
-            });
-            subTeamData.datasets.data.push(subTeamUsers.length);
-            subTeamData.labels.push(`${team.teamName} ${team.subTeamName}`);
-
-            if(!teamsList.includes(team.teamName)) teamsList.push(team.teamName);
+        const subTeamUsers = [];
+        usersArr.map((user) => {
+            if(user.currentTeam == team.teamName && user.currentSubTeam == team.subTeamName) subTeamUsers.push(user);
         });
+        subTeamData.datasets[0].data.push(subTeamUsers.length);
+        subTeamData.labels.push(`${team.teamName} ${team.subTeamName}`);
+        if(!wholeTeamsArr.includes(team.teamName)) setWholeTeamsArr(prevArr => prevArr.concat([team.teamName]));
 
-        // overall team checks
-        teamsList.map((team) => {
-
-            // team vehicles
-            const teamVehicleList = [];
-            vehiclesArr.map((vehicle) => {
-                if(vehicle.currentTeam == team) teamVehicleList.push(vehicle);
-            })
-            teamVehicles.datasets.data.push(teamVehicleList.length);
-            teamVehicles.labels.push(team);
-
-            // team loads
-            const loadList = loads[0];
-            const teamLoadArr = []
-
-            if (loadList !== undefined) {
-                loadList.recentLoads.map((load) => {
-                    if(load.team == team) teamLoadArr.push(load);
-                })
-            }
-            teamLoads.datasets.data.push(teamLoadArr.length);
-            teamLoads.labels.push(team);
-        });
-
-        console.log(teamsArr);
-        console.log(usersArr);
-        console.log(loads);
-        console.log(vehiclesArr);
-    }
-
-    useEffect(() => {
-        getTeams().then((response) => setTeamsArr(response));
-        getUsers().then((response) => setUsersArr(response));
-        getVehicles().then((response) => setVehiclesArr(response));
-        getLoads().then((response) => setLoads(response));
-
-        getGraphData();
-    }, []);
-
-    return (
-        <article className={Styles.dataFeed}>
-            <h1 className={Styles.feedTitle}>Live feed for teams</h1>
-            <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamsArr.length}</span> teams on this site.</h2>
-            <section className={Styles.feedList}>
-                <Bar
+        return (
+            <Bar
                     data={subTeamData}
                     // width={100}
                     // height={50}
                     // options={{ maintainAspectRatio: false }}
                 />
+        )
+    }
+
+
+    const getTeamJsx = (team) => {
+
+        const teamVehicles = {
+            datasets: [{
+                data: [],
+                borderWidth: 1
+            }],
+            labels: [
+            ]
+        }
+        const teamLoads = {
+            datasets: [{
+                data: [],
+                borderWidth: 1
+            }],
+            labels: [
+            ]
+        }
+
+        // team vehicles
+        const teamVehicleList = [];
+        vehiclesArr.map((vehicle) => {
+            if(vehicle.currentTeam == team) teamVehicleList.push(vehicle);
+        })
+        teamVehicles.datasets[0].data.push(teamVehicleList.length);
+        teamVehicles.labels.push(team);
+
+        // team loads
+        const loadList = loads[0];
+        const teamLoadArr = []
+        if (loadList !== undefined) {
+            if(loadList.recentLoads !== undefined) {
+                loadList.recentLoads.map((load) => {
+                    if(load.team == team) teamLoadArr.push(load);
+                })
+            }
+        }
+        teamLoads.datasets[0].data.push(teamLoadArr.length);
+        teamLoads.labels.push(team);
+
+        return (
+            <>
                 <Bar
                     data={teamVehicles}
                     // width={100}
@@ -118,6 +101,24 @@ const TeamFeed = () => {
                     // height={50}
                     // options={{ maintainAspectRatio: false }}
                 />
+            </>
+        )
+    };
+
+    useEffect(() => {
+        getTeams().then((response) => setTeamsArr(response));
+        getUsers().then((response) => setUsersArr(response));
+        getVehicles().then((response) => setVehiclesArr(response));
+        getLoads().then((response) => setLoads(response));
+    }, []);
+
+    return (
+        <article className={Styles.dataFeed}>
+            <h1 className={Styles.feedTitle}>Live feed for teams</h1>
+            <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamsArr.length}</span> teams on this site.</h2>
+            <section className={Styles.feedList}>
+                {teamsArr.map(getSubTeamJsx)}
+                {wholeTeamsArr.map(getTeamJsx)}
             </section>
         </article>
     )
