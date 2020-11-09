@@ -1,5 +1,8 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import { updateUser } from "../../../services/UsersService";
+import { updateVehicle } from "../../../services/VehiclesService";
+
 export const AssignVehicles = (props) => {
 
     const { usersArr, vehiclesArr } = props;
@@ -7,16 +10,17 @@ export const AssignVehicles = (props) => {
     const { register, handleSubmit} = useForm();
 
     const onSubmit = (data) => {
-
-        //go to database
-        vehiclesArr.forEach(vehicle => {
-            if(vehicle.vehicleID === data.vehicle){
-                vehicle.currentUser = data.driver;
+        let updatedUser = usersArr.filter(user => user.userID === data.driver)[0];
+        let updatedVehicle = vehiclesArr.filter(vehicle => vehicle.vehicleID === data.vehicle)[0];
+        updateUser({
+            ...updatedUser, 
+            assignedVehicle: data.vehicle
             }
+        );
+        updateVehicle({
+            ...updatedVehicle,
+            currentUser: data.driver
         });
-
-        console.log(vehiclesArr);
-    
     }
 
     return (
@@ -27,7 +31,7 @@ export const AssignVehicles = (props) => {
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                     
                     <select name="driver" ref={register({required: true})}>
-                        {usersArr.filter((user) => user.userType === "operator").map(employee => <option key={employee.userID} value={`${employee.userID}`}>{`${employee.userID}-${employee.fullNameStr}`}</option>)}
+                        {usersArr.filter((user) => user.userType === "operator").map(employee => <option key={employee.userID} value={employee.userID}>{`${employee.userID}-${employee.fullNameStr}`}</option>)}
                     </select>
 
                     <h2>Vehicle</h2>

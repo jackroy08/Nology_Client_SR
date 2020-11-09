@@ -25,7 +25,6 @@ const SupervisorIncidentForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createNewsItem(formData);
-
   }
 
 

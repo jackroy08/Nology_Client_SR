@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
@@ -7,8 +7,7 @@ import { getVehicles, createVehicle, subscribeToVehicles } from './../../service
 import { getNewsItems, subscribeToNewsItems, createNewsItem } from "../../services/newsItemsService";
 import { getTeams } from "../../services/TeamsService";
 import { getUsers } from "../../services/UsersService";
-
-// import usersArr from "../../data/users";
+import { UserContext } from "../../context/userContext";
 
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
@@ -22,16 +21,9 @@ export const Supervisor = () => {
     //dummy data
     const maintenanceIssues = [{status: false},{status: true},{status: false},{status: false},{status: false},{status: false},{status: false},{status: false}]
 
-    //Update when we actually get the user/// OPnAuthStateChange ting
-    const user = {
-        userID: "1001",
-        currentTeam: "Team A",
-        currentSubTeam: "Morning",
-        fullNameStr: "Edward Supervisor"
-    }
-    //get teams
+    const user = useContext(UserContext).user
+
     const getUniqueTeams = teamsArr => [...teamsArr.map(teamObj => teamObj.teamName).filter((team,i,teams) => teams.slice(i+1).includes(team) ? false : true),"All"];
-    // end of dummy data
 
     const [vehiclesArr, setVehiclesArr] = useState([]);
     const [filteredVehiclesArr, setFilteredVehiclesArr] = useState([]);
@@ -40,7 +32,7 @@ export const Supervisor = () => {
     const [filteredUsersArr, setFilteredUsersArr] = useState([]);
     
     const [newsItemsArr, setNewsItemsArr] = useState([]);
-    const [teamToView, setTeamView] = useState(user.currentTeam);
+    const [teamToView, setTeamView] = useState(user.currentTeam ? user.currentTeam : "All");
     const [teamsAvailableToView, setTeamsAvailableToView] = useState([]);
 
     //page load effects
@@ -102,7 +94,7 @@ export const Supervisor = () => {
                 <section className={Styles.asideContainer}>
                     <div className={Styles.selectTeam}>
                         <select name="team" onChange={handleTeamChange}>
-                            {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
+                            {teamsAvailableToView.map(team => <option key={team} value={team} selected={team===user.currentTeam ? "selected" : ""}>{team}</option>)}
                         </select>
                     </div>
                     <article className={Styles.buttonGrid}>
