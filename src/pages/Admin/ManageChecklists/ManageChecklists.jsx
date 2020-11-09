@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { firestore } from "../../../firebase";
+import { navigate } from "@reach/router";
 import ChecklistItem from "./ChecklistItem";
 
 const ManageChecklists = () => {
@@ -15,7 +16,7 @@ const ManageChecklists = () => {
         setItems(items-1);
     }
 
-    const submitChecklist = (e) => {
+    const submitChecklist = async (e) => {
         e.preventDefault();
         let checkObj = {classA: {}, classB: {}, classC: {}}
         let checkItems = document.querySelectorAll(".checklistItem > .check");
@@ -32,11 +33,11 @@ const ManageChecklists = () => {
             }            
         })
 
-        firestore
+        await firestore
             .collection("checklistData")
             .doc(document.getElementById("vehicleName").value)
             .set({checkObj})
-        console.log(checkObj);
+        navigate("/admin");
     }
 
     const itemsRender = () => {

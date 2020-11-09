@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChecklistItem = () => {
     return (
-        <li class="checklistItem">
+        <li className="checklistItem">
             <label htmlFor="class">Class of check:</label>
             <select className="class" name="class">
                 <option value="classA">

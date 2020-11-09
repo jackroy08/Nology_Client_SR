@@ -4,8 +4,6 @@ import Styles from "../../../components/Modal/Modal.module.scss";
 import { createLoad } from "../../../services/LoadsService";
 import { UserContext } from "../../../context/userContext";
 
-// import { navigate } from "@reach/router";
-
 const SubmitLoad = (props) => {
     const { isShowing, hide } = props;
     const { user, supervisor, teamSiteName } = useContext(UserContext);
