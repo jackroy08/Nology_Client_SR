@@ -7,7 +7,7 @@ import { UserContext } from "../../context/userContext";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const openMenu = open ? Styles.accountMenuOpen : "";
-  const { signOut } = useContext(UserContext);
+  const { signOut, user } = useContext(UserContext);
 
   
   return (
@@ -34,7 +34,7 @@ const Header = () => {
         </button>
         <ul className={`${Styles.accountMenu} ${openMenu}`}>
           <li> 
-            <button className={Styles.btn}>Change Password</button>
+            {user ? <p>User: {user.userID}</p> : <></>}
           </li>
           <li> 
             <button onClick={signOut}className={Styles.btn}>Logout</button>
