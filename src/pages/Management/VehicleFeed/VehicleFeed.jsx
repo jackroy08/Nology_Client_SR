@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import useModal from "../../../components/Modal/useModal";
 import Styles from "./VehicleFeed.module.scss";
-
-import Report from "../Report";
-import Modal from "../../../components/Modal";
-
 import { getVehicles } from "../../../services/VehiclesService";
 import { getLoads } from "../../../services/LoadsService";
 import { Doughnut, Bar } from 'react-chartjs-2';
@@ -12,11 +7,9 @@ import { Doughnut, Bar } from 'react-chartjs-2';
 const VehicleFeed = () => {
     const [loadsArr, setLoadsArr] = useState([]);
     const [vehiclesArr, setVehiclesArr] = useState([]);
-    const [vehicleIssues, setVehicleIssues] = useState([]);
     const [classAIssues, setClassAIssues] = useState([]);
     const [classBIssues, setClassBIssues] = useState([]);
     const [classCIssues, setClassCIssues] = useState([]);
-    const {isShowing, toggle} = useModal();
     const vehicleCountArr = [];
 
     vehiclesArr.map(vehicle => {
@@ -30,18 +23,22 @@ const VehicleFeed = () => {
         getLoads().then((response) => {
             setLoadsArr(response);
         });
-        if(vehiclesArr.checkItems !== undefined) {
-            setClassAIssues(vehiclesArr.checkItems.classA);
-            setClassBIssues(vehiclesArr.checkItems.classB);
-            setClassCIssues(vehiclesArr.checkItems.classC);
-            setVehicleIssues(vehiclesArr.checkItems);
-        }
+
+        vehiclesArr.map((vehicle) => {
+            if(vehicle.checkItems !== undefined) {
+                for (let i = 0; i < vehiclesArr.checkItems.length; i++) {
+                    const checkItem = vehiclesArr.checkItems[i];
+                    if(checkItem.classType == "classA") setClassAIssues(prevArr => prevArr.concat([checkItem]));
+                    else if(checkItem.classType == "classB") setClassBIssues(prevArr => prevArr.concat([checkItem]));
+                    else if(checkItem.classType == "classC") setClassCIssues(prevArr => prevArr.concat([checkItem]));
+                }
+            }
+        })
     }, []);
 
     const pieData = {
         datasets: [{
-            // data: [vehicleCountArr.length, (vehiclesArr.length-vehicleCountArr.length)],
-            data: [7, 11],
+            data: [vehicleCountArr.length, (vehiclesArr.length-vehicleCountArr.length)],
             backgroundColor: [
                 "green",
                 "red",
@@ -61,6 +58,7 @@ const VehicleFeed = () => {
 
     const loadData = {
         datasets: [{
+            // Not working
             // data: [loadsArr.length],
             data: [40],
             backgroundColor: ["blue"],
@@ -75,6 +73,7 @@ const VehicleFeed = () => {
 
     const siteData = {
         datasets: [{
+            // Also not working
             // data: [classAIssues.length, classBIssues.length, classCIssues.length],
             data: [5, 7, 10],
             backgroundColor: [
@@ -100,8 +99,6 @@ const VehicleFeed = () => {
     return (
         <article className={Styles.dataFeed}>
             <h1 className={Styles.feedTitle}>Live feed for vehicles</h1>
-            <button className={Styles.btn} onClick={toggle}>Report</button>
-            <Modal innerComponent={<Report item={vehicleIssues} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
             <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{vehiclesArr.length}</span> vehicles on this site.</h2>
             <section className={Styles.feedList}>
                 <div className={Styles.flexCharts}>
