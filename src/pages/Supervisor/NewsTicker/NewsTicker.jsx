@@ -8,8 +8,6 @@ const NewsTicker = (props) => {
   const regularNewsItems = props.newsItems.filter(i => !i.isImportant);
   const {setModalContent, toggle} = props;
 
-  
-
   return (
     <>
         <ul className={Styles.importantNews}>

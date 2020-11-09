@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "@reach/router";
 import MaintenanceDropdown from "../MaintenanceDropdown";
 import Styles from "./MaintenanceListItem.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -22,6 +23,7 @@ const MaintenanceListItem = (props) => {
             <p>{props.problem.vehicleIssue}</p>
             <input type="checkbox" onClick={() => setIsFixed(!isFixed)}/>
             <p>{checkBox}</p>
+            <Link to="../MaintenanceAside"><button>Send Report</button></Link>
             {open && <MaintenanceDropdown />}
         </div>
     )

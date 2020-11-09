@@ -36,14 +36,14 @@ const Management = () => {
     useEffect(() => {
         fetchVehicles();
         safetySignalStatus("go");
-    })
+    }, []);
 
     return (   
         <>
             <main className={Styles.managementMain}>
                 <section className={Styles.headingContainer}>
                     <h1 className={Styles.managementTitle}>Management</h1>
-                    <Link to="../Admin"><button className={Styles.btn}>Go to admin page</button></Link>
+                    <Link to="../admin"><button className={Styles.btn}>Go to admin page</button></Link>
                 </section>
                 <div className={Styles.trafficLightSignal}>
                     <div className={`${Styles.defaultSignal} ${redSignal}`}></div>

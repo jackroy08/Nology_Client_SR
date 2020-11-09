@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import ReactDOM from 'react-dom';
 import Styles from "../../../components/Modal/Modal.module.scss";
 import { updateLoad } from "../../../services/LoadsService";
+import { UserContext } from "../../../context/userContext";
 
 // import { navigate } from "@reach/router";
 
 const SubmitLoad = (props) => {
-    const { isShowing, hide, user, supervisor, teamSiteName } = props;
+    const { isShowing, hide } = props;
+    const { user, supervisor, teamSiteName } = useContext(UserContext);
     
     const SubmitHandler = () => {
         console.log(teamSiteName);
@@ -16,7 +18,7 @@ const SubmitLoad = (props) => {
             supervisor: supervisor.fullNameStr,
             team: user.currentTeam,
             site: teamSiteName.site,
-            isSignedOff: false 
+            isSignedOff: null
         }; 
         updateLoad(load);
         hide();
@@ -54,7 +56,7 @@ const SubmitLoad = (props) => {
                     </div>
             </React.Fragment>, document.body
             ) : null
-         )
+        )
     )
 }
 

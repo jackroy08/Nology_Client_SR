@@ -19,7 +19,8 @@ const ManageParts = () => {
             setPartsArr(response);
             setPartNamesArr([...new Set(response.map(part => part.partName))]);
         });
-        subscribeToParts(setPartsArr);
+        const unsubscribe = subscribeToParts(setPartsArr);
+        return unsubscribe;
     }, [])
 
     useEffect(() => {

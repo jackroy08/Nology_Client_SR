@@ -41,7 +41,7 @@ const ReportAProblem = () => {
                 <textarea id="additional-details" placeholder="Please enter any additional details"></textarea>
             </fieldset>
             <div>
-                <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={()=> navigate("/Operator")}>Cancel</button>
+                <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={()=> navigate("/operator")}>Cancel</button>
                 <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit" onClick={submitHandler}>Report</button>
             </div>
             {/* // Ext- add camera API plugin functionality */}

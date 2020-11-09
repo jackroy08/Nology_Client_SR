@@ -11,31 +11,37 @@ import Admin from "./pages/Admin";
 import ChecklistContainer from "./pages/Checklist/ChecklistContainer";
 import SubmitLoad from "./pages/Operator/SubmitLoad";
 import ReportAProblem from "./pages/Operator/ReportAProblem/ReportAProblem";
+import PrivateRoute from "./routes/PrivateRoute";
 import MaintenanceAside from "./pages/Maintenance/MaintenanceAside";
 // Components
 import Header from './components/header';
 // Data
 import checklistData from "./data/checklistdata.js";
 import library from "./data/fa-library";
+//Providers
+import { UserProvider } from "./context/userContext";
 
 
 
 const App = () => {
   return (
     <>
-      <Header />
-      <Router className={styles.fullWidth}>
-        <Login path="/" />
-        <Operator path="/Operator" />
-        <Supervisor path="/Supervisor" />
-        <Maintenance path="/Maintenance" />
-        <MaintenanceAside path="/MaintenanceAside" />
-        <Management path="/Management/*" />
-        <Admin path="/Admin/*" />
-        <ChecklistContainer path="/Checklist" checklistData={checklistData} />
-        <SubmitLoad path="/SubmitLoad" />
-        <ReportAProblem path="/ReportAProblem" />
-      </Router>
+    <UserProvider>
+        <Header />
+        <Router className={styles.fullWidth}>
+          <Login path="/" />
+          <Operator path="/operator" />
+          <PrivateRoute path="/">
+            <Supervisor path="/supervisor" />    
+            <Maintenance path="/maintenance" />
+            <Management path="/management/*" />
+            <Admin path="/admin/*" />
+            <ChecklistContainer path="/Checklist" checklistData={checklistData} />
+            <SubmitLoad path="/SubmitLoad" />
+            <ReportAProblem path="/ReportAProblem" />
+          </PrivateRoute>
+        </Router>
+      </UserProvider>
     </>
   );
 }
