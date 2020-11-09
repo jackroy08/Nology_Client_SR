@@ -21,6 +21,7 @@ export const AssignVehicles = (props) => {
             ...updatedVehicle,
             currentUser: data.driver
         });
+        alert(`${updatedUser.fullNameStr} assigned to ${updatedVehicle.vehicleType}-${updatedVehicle.vehicleID}`);
     }
 
     return (
@@ -31,7 +32,7 @@ export const AssignVehicles = (props) => {
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                     
                     <select name="driver" ref={register({required: true})}>
-                        {usersArr.filter((user) => user.userType === "operator").map(employee => <option key={employee.userID} value={employee.userID}>{`${employee.userID}-${employee.fullNameStr}`}</option>)}
+                        {usersArr.map(employee => <option key={employee.userID} value={employee.userID}>{`${employee.userID}-${employee.fullNameStr}`}</option>)}
                     </select>
 
                     <h2>Vehicle</h2>
