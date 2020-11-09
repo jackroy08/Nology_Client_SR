@@ -14,7 +14,7 @@ const SubmitLoad = (props) => {
         console.log(teamSiteName);
         const load = {
             driver: user.fullNameStr,
-            currentDate: new Date().toUTCString(),
+            currentDate: new Date(),
             supervisor: supervisor.fullNameStr,
             team: user.currentTeam,
             site: teamSiteName.site,
