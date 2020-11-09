@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ReactDOM from 'react-dom';
 import Styles from "../../../components/Modal/Modal.module.scss";
-import { updateLoad } from "../../../services/LoadsService";
+import { createLoad } from "../../../services/LoadsService";
 import { UserContext } from "../../../context/userContext";
 
 // import { navigate } from "@reach/router";
@@ -11,16 +11,17 @@ const SubmitLoad = (props) => {
     const { user, supervisor, teamSiteName } = useContext(UserContext);
     
     const SubmitHandler = () => {
-        console.log(teamSiteName);
         const load = {
-            driver: user.fullNameStr,
+            driver: user.userID,
+            driverName: user.fullNameStr,
             currentDate: new Date(),
-            supervisor: supervisor.fullNameStr,
+            supervisor: supervisor.userID,
+            supervisorName: supervisor.fullNameStr,
             team: user.currentTeam,
             site: teamSiteName.site,
             isSignedOff: null
         }; 
-        updateLoad(load);
+        createLoad(load);
         hide();
     }
 
