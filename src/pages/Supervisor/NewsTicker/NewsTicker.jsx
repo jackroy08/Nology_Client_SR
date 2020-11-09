@@ -10,7 +10,7 @@ const NewsTicker = (props) => {
 
   return (
     <>
-        <header>
+        <header className={Styles.header}>
           <div className={Styles.newsFeedSummary}>
             <p>Timestamp</p>
             <p>Team</p>
