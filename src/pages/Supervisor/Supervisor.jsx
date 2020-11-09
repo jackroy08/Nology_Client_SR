@@ -16,12 +16,13 @@ import Modal from "./../../components/Modal";
 import useModal from "./../../components/Modal/useModal";
 import SupervisorIncidentForm from './SupervisorIncidentForm/SupervisorIncidentForm';
 import SignOffMaintenance from "./SignOffMaintenance"
+import { navigate } from '@reach/router';
 
 export const Supervisor = () => {
     //dummy data
     const maintenanceIssues = [{status: false},{status: true},{status: false},{status: false},{status: false},{status: false},{status: false},{status: false}]
 
-    const user = useContext(UserContext).user
+    const { user } = useContext(UserContext)
 
     const getUniqueTeams = teamsArr => [...teamsArr.map(teamObj => teamObj.teamName).filter((team,i,teams) => teams.slice(i+1).includes(team) ? false : true),"All"];
 
@@ -83,8 +84,12 @@ export const Supervisor = () => {
     // show notification ternary statement
     const showNotification = maintenanceIssues.filter(issue => issue.status).length ? Styles.showNotification : "";
 
-    const showAlert = () => {
-        alert('Will route to vehicle selection and prestart checklist')
+    const handleCheckOutVehicle = () => {
+        if(user.assignedVehicle){
+            navigate("/Checklist")
+        }else{
+            alert("No vehicle assigned, click Reassign Vehicles to assign yourself a vehicle")
+        }
     }
 
     return (
@@ -117,7 +122,7 @@ export const Supervisor = () => {
                             </button>
                         </div>
                         <div>
-                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={showAlert}>
+                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={handleCheckOutVehicle}>
                                 Check Out Vehicle
                             </button>
                         </div>

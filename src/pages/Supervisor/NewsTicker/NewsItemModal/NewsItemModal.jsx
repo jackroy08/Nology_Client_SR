@@ -79,9 +79,7 @@ const NewsItemModal = (props) => {
     case "supervisorIncident":
       additionalInfo = (
         <>
-          <p>Title: {info["title"]}</p>
-          <p>Message: {info["message"]}</p>
-          <p>Important: {info["important"]}</p>
+          <p>Reported By: {info["reportedBy"]}</p>
         </>
       )
 
