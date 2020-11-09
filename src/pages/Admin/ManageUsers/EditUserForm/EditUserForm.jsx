@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import Styles from './EditUserForm.module.scss';
 import { updateUser } from '../../../../services/UsersService';
+import { getTeams } from '../../../../services/TeamsService'
 
 
 const EditUserForm = (props) => {
@@ -9,7 +10,7 @@ const EditUserForm = (props) => {
         userID,
         userType, 
         currentTeam, 
-        currentsubTeamName,
+        currentSubTeamName,
         fullNameStr,
         dateOfBirth 
     } = props.user
@@ -21,7 +22,7 @@ const EditUserForm = (props) => {
             userID : userID,
             userType : data.userType, 
             currentTeam : data.currentTeam, 
-            currentsubTeam: data.currentsubTeamName,
+            currentSubTeam: data.currentSubTeamName,
             fullNameStr : data.fullNameStr,
             dateOfBirth : data.dateOfBirth
         }
@@ -29,6 +30,16 @@ const EditUserForm = (props) => {
         return updateUser(updatedTeam);
     }
     
+    const [teamNamesArr, setTeamNamesArr] = useState([null]);
+    const [subTeamNamesArr, setSubTeamNamesArr] = useState([null]);
+    
+    useEffect(() => {
+        getTeams().then(response => {
+            setTeamNamesArr([...new Set(response.map(team => team.teamName))]);
+            setSubTeamNamesArr([...new Set(response.map(team => team.subTeamName))]);
+        });
+    }, [])
+
     return (
         <form className={Styles.userForm} onSubmit={handleSubmit(updateCurrentUser)}>
                         
@@ -53,22 +64,17 @@ const EditUserForm = (props) => {
                 id="currentTeam" 
                 ref={register()}>
                 <option value="">Select Team</option>
-                <option value="teamA">Team A</option>
-                <option value="teamB">Team B</option>
-                <option value="teamC">Team C</option>
-                <option value="teamD">Team D</option>
+                {teamNamesArr.map((teamName) => <option key={teamName}>{teamName}</option>)}
             </select>
             
-            <label htmlFor="currentsubTeamName">Select Sub Team :</label>
+            <label htmlFor="currentSubTeamName">Select Sub Team :</label>
             <select
-                defaultValue={currentsubTeamName}
-                name="currentsubTeamName"
-                id="currentsubTeamName" 
+                defaultValue={currentSubTeamName}
+                name="currentSubTeamName"
+                id="currentSubTeamName" 
                 ref={register()}>
                 <option value="">Select Sub Team</option>
-                <option value="Morning">Morning</option>
-                <option value="Afternoon">Afternoon</option>
-                <option value="Night">Night</option>
+                {subTeamNamesArr.map((subTeamName) => <option key={subTeamName}>{subTeamName}</option>)}
             </select>
             
 
