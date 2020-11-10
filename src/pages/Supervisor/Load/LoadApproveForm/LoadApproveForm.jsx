@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Styles from "./LoadApproveForm.module.scss";
 import { getLoads, updateLoad, deleteLoad } from "./../../../../services/LoadsService";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../../../context/userContext";
+import { createNewsItem } from "../../../../services/newsItemsService";
 
 const LoadApproveForm = (props) => {
   
+  const {user} = useContext(UserContext)
   const { index, load } = props;
   const { driver, currentDate } = load;
 
@@ -18,6 +21,23 @@ const LoadApproveForm = (props) => {
       }
       delete newLoad.id;
       updateLoad(load.id, newLoad)
+
+      ////
+      createNewsItem({
+        dateCreated: new Date(),
+        title: "Load Approved",
+        message: `Load Approved by ${user.fullNameStr}`,
+        team: user.currentTeam,
+        type: "loadApproved",
+        seenBy: [],
+        isImportant: false,
+        info: {
+            driver: load.diver,
+            mass: data.mass,
+            material: data.material,
+            approvedBy: user.userID
+        }
+      })
   }
 
   const date = currentDate.toDate().toString().substring(0, 21);

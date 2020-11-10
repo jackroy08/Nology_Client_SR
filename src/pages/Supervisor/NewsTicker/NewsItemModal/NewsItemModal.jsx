@@ -67,7 +67,6 @@ const NewsItemModal = (props) => {
     case "loadApproved" :
       additionalInfo = (
         <>
-          <p>Vehicle: {info["vehicle"]}</p>
           <p>Driver: {info["driver"]}</p>
           <p>Mass: {info["mass"]}</p>
           <p>Material: {info["material"]}</p>
