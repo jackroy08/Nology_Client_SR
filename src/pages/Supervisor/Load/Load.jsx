@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Styles from "./Load.module.scss";
 import { getLoads, subscribeToLoads, createLoad } from "./../../../services/LoadsService";
+import { createNewsItem } from "../../../services/newsItemsService";
 import LoadApproveForm from "./LoadApproveForm";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../../context/userContext";
@@ -19,7 +20,6 @@ export const Load = (props) => {
     const { user, teamSiteName } = useContext(UserContext);
 
     useEffect(() => {
-        console.log("subscribing")
         const unsubscribe = subscribeToLoads(setLoadsArray);
         // const getLoadsArr = async() => {
         //     setLoadsArray((await getLoads()).filter(load => load.isSignedOff === null).filter(load => load.team === user.currentTeam))
@@ -27,7 +27,6 @@ export const Load = (props) => {
         // getLoads().then(dataArray => setLoadsArray(dataArray.map(load=> load[0]).filter(load => load.isSignedOff===null).filter(load => load.team === user.currentTeam)))
         return () => {
             unsubscribe();
-            console.log("unsubscribing")
         }
     }, [])
 
@@ -47,8 +46,22 @@ export const Load = (props) => {
             team: user.currentTeam
         }
         createLoad(newLoad)
-        //make news item
-
+        
+        createNewsItem({
+            dateCreated: new Date(),
+            title: "Load",
+            message: `Load Added and Approved by ${user.fullNameStr}`,
+            team: user.currentTeam,
+            type: "loadCreatedBySupervisor",
+            seenBy: [],
+            isImportant: false,
+            info: {
+                driver: data.addDriver,
+                mass: data.addMass,
+                material: data.addMaterial,
+                approvedBy: user.userID
+            }
+        })
     }
 
 
