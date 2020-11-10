@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import Styles from './Login.module.scss';
 import backgroundImage from '../../assets/images/background-image.jpg';
 import { UserContext } from "../../context/userContext";
@@ -12,6 +12,7 @@ const Login = () => {
     const { signUp, signIn, user } = useContext(UserContext);
     const { isShowing, toggle } = useModal();
     const [modalContent, setModalContent] = useState(null);
+
     return (
         <main className={Styles.loginPage}>
             <h1 className={Styles.title}>Shift Reporter</h1>

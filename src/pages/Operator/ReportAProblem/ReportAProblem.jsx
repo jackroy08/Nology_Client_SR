@@ -10,13 +10,15 @@ const ReportAProblem = () => {
         console.log(e);
         e.preventDefault()
         let error =  {
-            "Class type": document.getElementById("class-type").value,
-            "Issue": document.getElementById("issue-type").value,
-            "Operator": "operator",
-            "Supervisor": "supervisor",
-            "Vehicle ID": "vehicleId",
-            "Additional details": document.getElementById("additional-details").value,
-            "Date created": new Date().toUTCString()
+            classType: document.getElementById("class-type").value,
+            issue: document.getElementById("issue-type").value,
+            operator: "operator",
+            supervisor: "supervisor",
+            vehicleID: "vehicleId",
+            additionalDetails: document.getElementById("additional-details").value,
+            dateCreated: new Date().toUTCString(),
+            maintenanceSignoff: false,
+            supervisorSignoff: false
         }
         updateVehicleIssues("001", error)
         navigate("/Operator");

@@ -17,7 +17,6 @@ const updateVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle
 const deleteVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle.vehicleID).delete();
 
 const setVehicleIssues = (vehicle, issues, goStatus) => {
-    console.log("setVehicleIssues");
     firestore
         .collection("vehicles")
         .doc(vehicle)
@@ -28,20 +27,12 @@ const setVehicleIssues = (vehicle, issues, goStatus) => {
 }
 
 const getUserVehicle = (operator) => {
-    // return firestore
-    //     .collection("vehicles")
-    //     .doc(`${assignedVehicle}`)
-    //     .get()
-    //     .then(querySnapshot => {
-    //         const data = querySnapshot.data();
-    //         return data;
-    //     });
     return firestore
         .collection("vehicles")
         .where('currentUser', '==', `${operator}`)
         .get()
         .then(querySnapshot => {
-            const data = querySnapshot.docs.map(doc => doc.data())
+            const data = querySnapshot.docs.map(doc => doc.data());
             return data;
         });
     }

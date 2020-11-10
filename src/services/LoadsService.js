@@ -8,18 +8,10 @@ const getLoads  = () => {
 const subscribeToLoads = (setState) => {
     firestore.collection("loads").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
 }
-
-const updateLoad = (load) => {
-    firestore
-        .collection("loads")
-        .doc("recentLoads")
-        .update({
-            loadsArr: firebase.firestore.FieldValue.arrayUnion({...load})
-        })
-    }
     
 const createLoad  = (load) => {
-    firestore.collection("loads").doc("recentLoads").set({...load});
+    firestore.collection("loads")
+        .add({...load});
 }
 
 const updateLoads = (load) => {
@@ -27,14 +19,7 @@ const updateLoads = (load) => {
 }
 
 const deleteLoad  = (load) => {
-    getLoads().then(response => response[0].loadsArr)
-    .then(loads => {
-        const newLoadsArr = loads.filter(arrLoad => {
-            return load !== arrLoad;
-        });
-        firestore.collection("loads").doc("recentLoads").delete();
-        createLoad(newLoadsArr);
-    })    
+
 }
 
-export { getLoads, subscribeToLoads, updateLoads, deleteLoad, updateLoad }
+export { getLoads, subscribeToLoads, updateLoads, deleteLoad, createLoad }
