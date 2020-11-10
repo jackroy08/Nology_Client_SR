@@ -6,7 +6,7 @@ const firestore = app.firestore();
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-exports.scheduledFunction = functions.pubsub.schedule('35 8 * * *').onRun((context) => {
+exports.scheduledFunction = functions.pubsub.schedule('1 0 * * *').onRun((context) => {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - 30);
     return firestore

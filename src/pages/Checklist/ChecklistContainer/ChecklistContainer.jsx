@@ -24,7 +24,9 @@ const ChecklistContainer = (props) => {
                         operator: user.userID,
                         supervisor: supervisorProperty,
                         additionalDetails: document.getElementById("additional-details").value,
-                        dateCreated: new Date().toUTCString()
+                        dateCreated: new Date().toUTCString(),
+                        maintenanceSignoff: false,
+                        supervisorSignoff: false
                     };
                     } else acc[classType][val] = {};
                 return acc;

@@ -17,7 +17,6 @@ const updateVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle
 const deleteVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle.vehicleID).delete();
 
 const setVehicleIssues = (vehicle, issues, goStatus) => {
-    console.log("setVehicleIssues");
     firestore
         .collection("vehicles")
         .doc(vehicle)
