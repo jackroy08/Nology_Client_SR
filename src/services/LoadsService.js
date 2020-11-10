@@ -14,7 +14,7 @@ const createLoad  = (load) => {
         .add({...load});
 }
 
-const updateLoads = (load) => {
+const updateLoad = (load) => {
     firestore.collection("loads").doc("recentLoads").update({...load});
 }
 
@@ -22,4 +22,4 @@ const deleteLoad  = (load) => {
 
 }
 
-export { getLoads, subscribeToLoads, updateLoads, deleteLoad, createLoad }
+export { getLoads, subscribeToLoads, updateLoad, deleteLoad, createLoad }

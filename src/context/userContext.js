@@ -40,18 +40,28 @@ export const UserProvider = (props) => {
         if (username.match(/@/)){
             email = username;
         } else email = `${username}@shiftreporter.com`;
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+
+
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
             .then(
                 firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(response => {
+                    // Save the current user in state
                     firestore
                         .collection("users").where("authID" , "==" , `${response.user.uid}`)
                         .get()
                         .then(response => {
                             response.forEach(doc => {
-                                setUser(doc.data());
-                                localStorage.setItem("user", JSON.stringify(doc.data()))
+                                firestore
+                                    .collection("users")
+                                    .doc(doc.data().userID)
+                                    .onSnapshot(doc => {
+                                        console.log("snapshot running");
+                                        setUser(doc.data());
+                                        localStorage.setItem("user", JSON.stringify(doc.data()))
+                                    })
                             });
+                            navigateToPage();
                         });
                 }).catch(function(error) {
                     alert(error.message)
@@ -74,7 +84,7 @@ export const UserProvider = (props) => {
     };
 
     
-    useEffect(() => {
+    const navigateToPage = () => {
         if (user) {
             navigate(`/${user.userType}`);
             getUserVehicle(user.userID)
@@ -90,7 +100,7 @@ export const UserProvider = (props) => {
                     setTeamSiteName(response[0])
                 });
         }
-    }, [user])
+    }
     
     return (
         <UserContext.Provider value={{ user, signUp, signOut, signIn, vehicle, supervisor, teamSiteName }}>

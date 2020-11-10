@@ -74,6 +74,7 @@ const ChecklistContainer = (props) => {
         }
 
         useEffect(() => {
+            console.log(vehicle);
             getChecklists(vehicle.vehicleType)
                 .then(response => setChecklistData(response))
             
