@@ -57,14 +57,15 @@ const TeamFeed = () => {
     }
 
     const updateLoadsGraph = (parentTeams, loads) => {
-        const loadsList = loads[0];
+        // const loadsList = loads[0];
 
         parentTeams.forEach((team) => {
             const teamLoads = [];
-            for (const [key] of Object.entries(loadsList)) {
-                if(loadsList[key].team == team) {
+            for (const [key] of Object.entries(loads)) {
+                if(loads[key].team == team) {
                     teamLoads.push("load");
                 };
+                console.log(loads);
             }
             teamLoadData.labels.push(team);
             teamLoadData.datasets[0].data.push(teamLoads.length);
@@ -90,14 +91,17 @@ const TeamFeed = () => {
             <h1 className={Styles.feedTitle}>Live feed for teams</h1>
             <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamsArr.length}</span> teams on this site.</h2>
             <section className={Styles.feedList}>
+                <p>Graph of Sub-Team Users</p>
                 <Bar
                     data={subTeamData}
                     legend={{display: false}}
                 />
+                <p>Graph of Team Vehicles</p>
                 <Bar
                     data={teamVehicleData}
                     legend={{display: false}}
                 />
+                <p>Graph of Team loads</p>
                 <Bar
                     data={teamLoadData}
                     legend={{display: false}}
