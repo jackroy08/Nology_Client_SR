@@ -5,7 +5,7 @@ import NewsItemModal from "./../NewsItemModal";
 
 const NewsItem = (props) => {
 
-  const {time, title, message} = props.item;
+  const {dateCreated, title, message} = props.item;
   const {setModalContent, toggle} = props;
 
   const toggleModal = () => {
@@ -15,7 +15,7 @@ const NewsItem = (props) => {
 
   return (
     <li className={styles.newsItem}>
-      <p>{time}</p>
+      <p>{dateCreated.toDate().toString().substring(0, 21)}</p>
       <p>{title}</p>
       <p>{message}</p>
       <p onClick={toggleModal}><FontAwesomeIcon icon="arrow-down"/></p>
