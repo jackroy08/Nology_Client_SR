@@ -40,21 +40,23 @@ export const UserProvider = (props) => {
         if (username.match(/@/)){
             email = username;
         } else email = `${username}@shiftreporter.com`;
-
-            firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(response => {
-                firestore
-                    .collection("users").where("authID" , "==" , `${response.user.uid}`)
-                    .get()
-                    .then(response => {
-                        response.forEach(doc => {
-                            setUser(doc.data());
-                            localStorage.setItem('user', JSON.stringify(doc.data()))
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .then(
+                firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(response => {
+                    firestore
+                        .collection("users").where("authID" , "==" , `${response.user.uid}`)
+                        .get()
+                        .then(response => {
+                            response.forEach(doc => {
+                                setUser(doc.data());
+                                localStorage.setItem("user", JSON.stringify(doc.data()))
+                            });
                         });
-                    });
-            }).catch(function(error) {
-                alert(error.message)
-            });
+                }).catch(function(error) {
+                    alert(error.message)
+                })
+            )
         };
 
     const signOut = () => {
@@ -71,26 +73,24 @@ export const UserProvider = (props) => {
             });
     };
 
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-        .then(
-            useEffect(() => {
-                if (user){
-                    navigate(`/${user.userType}`);
-                    getUserVehicle(user.userID)
-                        .then(response => {
-                            setVehicle(response[0]);
-                        });
-                    getTeamSupervisor(user.currentTeam, user.currentSubTeam)
-                        .then(response => {
-                            setSupervisor(response[0])
-                        });
-                    getTeamSiteName(user.currentTeam, user.currentSubTeam)
-                        .then(response => {
-                            setTeamSiteName(response[0])
-                        });
-                }
-            }, [user])
-        )
+    
+    useEffect(() => {
+        if (user) {
+            navigate(`/${user.userType}`);
+            getUserVehicle(user.userID)
+                .then(response => {
+                    setVehicle(response[0]);
+                });
+            getTeamSupervisor(user.currentTeam, user.currentSubTeam)
+                .then(response => {
+                    setSupervisor(response[0])
+                });
+            getTeamSiteName(user.currentTeam, user.currentSubTeam)
+                .then(response => {
+                    setTeamSiteName(response[0])
+                });
+        }
+    }, [user])
     
     return (
         <UserContext.Provider value={{ user, signUp, signOut, signIn, vehicle, supervisor, teamSiteName }}>

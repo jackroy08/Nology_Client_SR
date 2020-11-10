@@ -1,29 +1,24 @@
 import React from "react";
 import Styles from "./LoadApproveForm.module.scss";
+import { getLoads, updateLoad, deleteLoad } from "./../../../../services/LoadsService";
 import { useForm } from "react-hook-form";
 
 const LoadApproveForm = (props) => {
   
   const { index, load } = props;
   const { driver, currentDate } = load;
- 
+
   const { register, handleSubmit } = useForm();
 
-  const submitForm = (data) => {
-    //edit load with new data -  not sure how to do this with loads services
+    const submitForm = (data) => {
+      deleteLoad(load);
+      let newLoad = {
+        ...load,
+        ...data,
+        isSignedOff: data.isApproved == 1 ? true : false,
+      }
+      updateLoad(newLoad)
   }
-
-//   const submitForm = (data) => {
-//     // let newLoadItem = {
-//     //     currentDate : "",
-//     //     driver: "",
-//     //     isSignedOff: "",
-//     //     site:"",
-//     //     team:"",
-//     // }
-//     console.log(data);
-// }
-// // console.log(loadsArray);
 
 
   return (
@@ -39,6 +34,7 @@ const LoadApproveForm = (props) => {
               ref={register}
               id={`yes${index}`}
               name="isApproved"
+              value={1}
               />
           </label>
 
@@ -49,6 +45,7 @@ const LoadApproveForm = (props) => {
               ref={register}
               id={`no${index}`}
               name="isApproved"
+              value={0}
               />
           </label>
 

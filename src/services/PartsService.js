@@ -4,7 +4,6 @@ import { firestore } from '../firebase';
 
 
 const getParts = () => firestore.collection("parts").get().then((response) => {
-    console.log("get parts")
     return response.docs.map((doc) => doc.data())
 });
 
