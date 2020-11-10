@@ -108,6 +108,7 @@ const VehicleFeed = () => {
             <section className={Styles.feedList}>
                 <div className={Styles.flexCharts}>
                     <div className={Styles.pieData}>
+                        <p>Chart of Vehicles on Site</p>
                         <Doughnut 
                             data={pieData} 
                             width={100}
@@ -115,6 +116,7 @@ const VehicleFeed = () => {
                             options={{ maintainAspectRatio: false }} />
                     </div>
                     <div className={Styles.loadData}>
+                        <p>Graph of Site Loads</p>
                         <Bar 
                             data={loadData}
                             legend={{display: false}}
@@ -124,6 +126,7 @@ const VehicleFeed = () => {
                     </div>
                 </div>
                 <div className={Styles.siteData}>
+                    <p>Graph of Site Issues</p>
                     <Bar data={siteData} legend={false} options={{maintainAspectRatio: false}}/>
                 </div>
             </section>
