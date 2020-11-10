@@ -7,7 +7,6 @@ import { Doughnut, Bar } from 'react-chartjs-2';
 const VehicleFeed = () => {
     const [vehiclesArr, setVehiclesArr] = useState([]);
     const vehicleCountArr = [];
-    const siteLoads = [];
     const classAIssues = [];
     const classBIssues = [];
     const classCIssues = [];
@@ -35,13 +34,26 @@ const VehicleFeed = () => {
                 }
             })
 
-            for (const [key] of Object.entries(loads[0])) {
-                siteLoads.push("load");
-            }
             siteData.datasets[0].data.push(classAIssues.length);
             siteData.datasets[0].data.push(classBIssues.length);
             siteData.datasets[0].data.push(classCIssues.length);
-            loadData.datasets[0].data.push(siteLoads.length);
+
+            setLoadData(prevData => {
+
+                prevData.datasets[0].data.push(loads.length);
+
+                return {
+                    datasets: [{
+                        data: [loads.length],
+                        backgroundColor: ["blue"],
+                        borderColor: ["black"],
+                        borderWidth: 1
+                    }],
+                    labels: [
+                        "Loads"
+                    ]
+                }
+            })
         }) 
     }, []);
 
@@ -65,7 +77,7 @@ const VehicleFeed = () => {
         ]
     };
 
-    const loadData = {
+    const [loadData, setLoadData] = useState({
         datasets: [{
             data: [],
             backgroundColor: ["blue"],
@@ -74,9 +86,9 @@ const VehicleFeed = () => {
         }],
 
         labels: [
-            "Loads",
+            "Loads","2"
         ]
-    }
+    })
 
     const siteData = {
         datasets: [{
@@ -113,22 +125,24 @@ const VehicleFeed = () => {
                             data={pieData} 
                             width={100}
                             height={250}
-                            options={{ maintainAspectRatio: false }} />
+                            options={{ maintainAspectRatio: true, responsive: true }}
+                        />
                     </div>
                     <div className={Styles.loadData}>
                         <p>Graph of Site Loads</p>
-                        <Bar 
-                            data={loadData}
-                            legend={{display: false}}
-                            width={100}
-                            height={250}
-                            options={{maintainAspectRatio: false}}/>
+                       
                     </div>
                 </div>
                 <div className={Styles.siteData}>
                     <p>Graph of Site Issues</p>
                     <Bar data={siteData} legend={false} options={{maintainAspectRatio: false}}/>
                 </div>
+
+                <Bar 
+                    data={loadData}
+                    legend={{display: false}}
+                    options={{maintainAspectRatio: true, responsive: true}}
+                />
             </section>
         </article>
     )
