@@ -1,6 +1,5 @@
 import { Link } from '@reach/router';
-import React, { useState, useContext, useEffect } from 'react'
-import { getChecklists } from "../../../services/ChecklistsService";
+import React, { useState, useContext } from 'react'
 import ClassAChecks from '../ClassAChecks';
 import ClassBChecks from '../ClassBChecks';
 import ClassCChecks from '../ClassCChecks';
@@ -8,8 +7,7 @@ import Confirmation from '../Confirmation';
 import { UserContext } from "../../../context/userContext";
 
 const ChecklistContainer = (props) => {
-    const { user, vehicle, supervisor } = useContext(UserContext);
-    const [checklistData, setChecklistData] = useState({});
+    const { user, vehicle, supervisor, checklistData } = useContext(UserContext);
     const [step, setStep] = useState(1);
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
     const supervisorProperty = supervisor ? supervisor.userID : null;

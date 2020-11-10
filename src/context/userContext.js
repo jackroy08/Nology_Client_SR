@@ -4,12 +4,14 @@ import firebase, { firestore } from "../firebase";
 import { getUserVehicle } from "../services/VehiclesService"
 import { getTeamSupervisor } from "../services/UsersService"
 import { getTeamSiteName } from "../services/TeamsService";
+import { getChecklists } from "../services/ChecklistsService";
 
 export const UserContext = createContext({});
 
 export const UserProvider = (props) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
     const [supervisor, setSupervisor] = useState({});
+    const [checklistData, setChecklistData] = useState({});
     const [vehicle, setVehicle] = useState({});
     const [teamSiteName, setTeamSiteName] = useState({});
 
@@ -54,7 +56,6 @@ export const UserProvider = (props) => {
                             .then((collection) => {
                                 if (collection.docs[0]) {
                                     const subscription = collection.docs[0].ref.onSnapshot((user) => {
-                                        console.log(user);
                                         setUser(user.data());
                                         localStorage.setItem("user", JSON.stringify(user.data()));
                                         navigate(`/${user.data().userType}`);
@@ -118,15 +119,22 @@ export const UserProvider = (props) => {
     }, [])
 
     useEffect(() => {
-        console.log("outside");
         if (user){
-            console.log("inside");
             loadUserContent()
         }
         }, [user]);
+
+    useEffect(() => {
+        if (vehicle.vehicleType) {
+            getChecklists(vehicle.vehicleType)
+                .then(response => {
+                    setChecklistData(response)
+                })
+        }
+    }, [vehicle])
     
     return (
-        <UserContext.Provider value={{ user, signUp, signOut, signIn, vehicle, supervisor, teamSiteName }}>
+        <UserContext.Provider value={{ user, signUp, signOut, signIn, vehicle, supervisor, teamSiteName, checklistData }}>
             {props.children}
         </UserContext.Provider>
     );

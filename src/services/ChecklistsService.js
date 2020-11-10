@@ -1,11 +1,12 @@
 import { firestore } from "./../firebase";
 
 const getChecklists  = (vehicleType) => {
-    return firestore
-        .collection("checklistData")
-        .doc(vehicleType)
-        .get()
-        .then(response => response.data())
+    console.log(vehicleType)
+        return firestore
+            .collection("checklistData")
+            .doc(vehicleType)
+            .get()
+            .then(response => response.data())
 }
 
 const subscribeToChecklist = () => {
