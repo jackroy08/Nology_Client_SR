@@ -16,16 +16,16 @@ class User {
     }
 }
 class Supervisor extends User {
-    constructor(userID, userType, fullName, dateOfBirth, currentTeam, currentsubTeamName) {
+    constructor(userID, userType, fullName, dateOfBirth, currentTeam, currentSubTeamName) {
     super(userID, userType, fullName, dateOfBirth);
     this.currentTeam = currentTeam;
-    this.currentsubTeamName = currentsubTeamName;
+    this.currentSubTeamName = currentSubTeamName;
     this.isOnShift = false;
     }
 }
 class Operator extends Supervisor {
-    constructor(userID, userType, fullName, dateOfBirth, currentTeam, currentsubTeamName, isOnShift) {
-        super(userID, userType, fullName, dateOfBirth, currentTeam, currentsubTeamName, isOnShift);
+    constructor(userID, userType, fullName, dateOfBirth, currentTeam, currentSubTeamName, isOnShift) {
+        super(userID, userType, fullName, dateOfBirth, currentTeam, currentSubTeamName, isOnShift);
         this.assignedVehicle = "";
     }
 }
@@ -47,8 +47,8 @@ const CreateUserForm = (props) => {
 
 const createNewUser = (data) => {
     switch (data.userType) {
-        case "operator" : createUser(new Operator(data.userID, data.userType, data.fullName, data.dateOfBirth, data.currentTeam, data.currentsubTeamName));
-        case "supervisor" : createUser(new Supervisor(data.userID, data.userType, data.fullName, data.dateOfBirth, data.currentTeam, data.currentsubTeamName)); break;
+        case "operator" : createUser(new Operator(data.userID, data.userType, data.fullName, data.dateOfBirth, data.currentTeam, data.currentSubTeamName));
+        case "supervisor" : createUser(new Supervisor(data.userID, data.userType, data.fullName, data.dateOfBirth, data.currentTeam, data.currentSubTeamName)); break;
         case "maintenance" : createUser(new User(data.userID, data.userType, data.fullName, data.dateOfBirth)); break;
         case "management" : createUser(new User(data.userID, data.userType, data.fullName, data.dateOfBirth)); break;
         default: /* do nothing; */; break;
@@ -91,10 +91,10 @@ const createNewUser = (data) => {
             </select>
             
             
-            <label htmlFor="currentsubTeamName">Select Sub Team :</label>
+            <label htmlFor="currentSubTeamName">Select Sub Team :</label>
             <select
-                name="currentsubTeamName"
-                id="currentsubTeamName" 
+                name="currentSubTeamName"
+                id="currentSubTeamName" 
                 ref={register()}>
                 <option value="">Select Sub Team</option>
                 {subTeamNamesArr.map((subTeamName) => <option key={subTeamName}>{subTeamName}</option>)}

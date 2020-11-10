@@ -7,7 +7,9 @@ import {
     faArrowDown,
     faUserCircle,
     faTrashAlt,
-    faPencilAlt
+    faPencilAlt,
+    faExclamationTriangle,
+    faCheckCircle
 
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,5 +21,7 @@ export default library.add(
     faArrowDown,
     faUserCircle,
     faTrashAlt,
-    faPencilAlt
+    faPencilAlt,
+    faExclamationTriangle,
+    faCheckCircle
 );
