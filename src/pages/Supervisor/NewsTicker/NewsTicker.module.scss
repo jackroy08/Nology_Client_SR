@@ -4,6 +4,34 @@ li {
     padding: $base-spacing;
 }
 
+.header {
+    background-color: lightgrey;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: $base-spacing $base-spacing * 2;
+
+    .newsFeedSummary{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-between;
+
+        p {
+        font-weight: 700;
+        }
+    }
+
+    h3 {
+        // flex-grow: 1;
+        margin-right: auto;
+    }
+}
+
+
+
+
+
 .regularNews{
     height: 250px;
     overflow-y: auto;

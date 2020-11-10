@@ -1,13 +1,14 @@
 @import '../../../assets/styles/buttons'; 
-@import "../../../assets/styles/variables";
+@import '../../../assets/styles/variables';
 
 
 .userListSection {
     width: 100%;
-    padding: 0 $base-spacing*2 $base-spacing*2 $base-spacing*2;
 
-    header {
-        background-color: $primary-color;
+    .header {
+        // background-color: $background-color1;
+        background-color: lightgrey;
+        color: white;
         display: flex;
         align-items: center;
         padding: $base-spacing $base-spacing*2;
@@ -57,6 +58,7 @@
         background-color: $background-color1;
         margin-bottom: $base-spacing;
         padding: 0 $base-spacing;
+        border-bottom: 1px solid grey;
 
         &:hover {
         background-color: $background-color2;

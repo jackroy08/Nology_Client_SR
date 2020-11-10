@@ -33,10 +33,10 @@ const Management = () => {
         getVehicles().then((response) => setVehiclesArr(response));
     }
 
-    useEffect(() => {
-        fetchVehicles();
-        safetySignalStatus("go");
-    }, []);
+    // useEffect(() => {
+    //     fetchVehicles();
+    //     safetySignalStatus("go");
+    // }, []);
 
     return (   
         <>
