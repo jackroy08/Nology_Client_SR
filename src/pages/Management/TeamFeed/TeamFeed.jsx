@@ -57,12 +57,11 @@ const TeamFeed = () => {
     }
 
     const updateLoadsGraph = (parentTeams, loads) => {
-        const loadsList = loads[0];
 
         parentTeams.forEach((team) => {
             const teamLoads = [];
-            for (const [key] of Object.entries(loadsList)) {
-                if(loadsList[key].team == team) {
+            for (const [key] of Object.entries(loads)) {
+                if(loads[key].team == team) {
                     teamLoads.push("load");
                 };
             }
