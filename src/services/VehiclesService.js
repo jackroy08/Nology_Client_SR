@@ -26,10 +26,10 @@ const setVehicleIssues = (vehicle, issues, goStatus) => {
         }, {merge: true})
 }
 
-const getUserVehicle = (operator) => {
+const getUserVehicle = (assignedVehicle) => {
     return firestore
         .collection("vehicles")
-        .where('currentUser', '==', `${operator}`)
+        .where('vehicleID', '==', assignedVehicle)
         .get()
         .then(querySnapshot => {
             const data = querySnapshot.docs.map(doc => doc.data());
@@ -38,7 +38,6 @@ const getUserVehicle = (operator) => {
     }
 
 const updateVehicleIssues = (vehicle, issues) => {
-    console.log("updateVehicleIssues");
     firestore
         .collection("vehicles")
         .doc(vehicle)

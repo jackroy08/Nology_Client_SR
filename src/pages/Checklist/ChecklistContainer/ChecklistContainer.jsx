@@ -16,25 +16,24 @@ const ChecklistContainer = (props) => {
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[classType]).reduce((acc, val) => {
-                if (!document.getElementById(val).checked) {
-                    acc[classType][val] = {
-                        classType: classType, 
-                        issue: val,
-                        vehicleID: vehicle.vehicleID,
-                        operator: user.userID,
-                        supervisor: supervisorProperty,
-                        additionalDetails: document.getElementById("additional-details").value,
-                        dateCreated: new Date().toUTCString(),
-                        maintenanceSignoff: false,
-                        supervisorSignoff: false
-                    };
-                    } else acc[classType][val] = {};
-                return acc;
+            if (!document.getElementById(val).checked) {
+                acc[classType][val] = {
+                    classType: classType, 
+                    issue: val,
+                    vehicleID: vehicle.vehicleID,
+                    operator: user.userID,
+                    supervisor: supervisorProperty,
+                    additionalDetails: document.getElementById("additional-details").value,
+                    dateCreated: new Date().toUTCString(),
+                    maintenanceSignoff: false,
+                    supervisorSignoff: false
+                };
+                } else acc[classType][val] = {};
+            return acc;
         }, failedElements);
     }
 
     const nextHandler = ()  => {
-        console.log(failedElements);
         setStep(step + 1);
     }
 
@@ -72,13 +71,6 @@ const ChecklistContainer = (props) => {
                 default: return "error page"
             }
         }
-
-        useEffect(() => {
-            console.log(vehicle);
-            getChecklists(vehicle.vehicleType)
-                .then(response => setChecklistData(response))
-            
-        }, [])
 
     return (
         <div>
