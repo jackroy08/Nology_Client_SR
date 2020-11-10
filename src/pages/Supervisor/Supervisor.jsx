@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
@@ -7,8 +7,7 @@ import { getVehicles, createVehicle, subscribeToVehicles } from './../../service
 import { getNewsItems, subscribeToNewsItems, createNewsItem } from "../../services/newsItemsService";
 import { getTeams } from "../../services/TeamsService";
 import { getUsers } from "../../services/UsersService";
-
-// import usersArr from "../../data/users";
+import { UserContext } from "../../context/userContext";
 
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
@@ -17,21 +16,15 @@ import Modal from "./../../components/Modal";
 import useModal from "./../../components/Modal/useModal";
 import SupervisorIncidentForm from './SupervisorIncidentForm/SupervisorIncidentForm';
 import SignOffMaintenance from "./SignOffMaintenance"
+import { navigate } from '@reach/router';
 
 export const Supervisor = () => {
     //dummy data
     const maintenanceIssues = [{status: false},{status: true},{status: false},{status: false},{status: false},{status: false},{status: false},{status: false}]
 
-    //Update when we actually get the user/// OPnAuthStateChange ting
-    const user = {
-        userID: "1001",
-        currentTeam: "Team A",
-        currentSubTeam: "Morning",
-        fullNameStr: "Edward Supervisor"
-    }
-    //get teams
+    const { user } = useContext(UserContext)
+
     const getUniqueTeams = teamsArr => [...teamsArr.map(teamObj => teamObj.teamName).filter((team,i,teams) => teams.slice(i+1).includes(team) ? false : true),"All"];
-    // end of dummy data
 
     const [vehiclesArr, setVehiclesArr] = useState([]);
     const [filteredVehiclesArr, setFilteredVehiclesArr] = useState([]);
@@ -40,7 +33,7 @@ export const Supervisor = () => {
     const [filteredUsersArr, setFilteredUsersArr] = useState([]);
     
     const [newsItemsArr, setNewsItemsArr] = useState([]);
-    const [teamToView, setTeamView] = useState(user.currentTeam);
+    const [teamToView, setTeamView] = useState(user.currentTeam ? user.currentTeam : "All");
     const [teamsAvailableToView, setTeamsAvailableToView] = useState([]);
 
     //page load effects
@@ -91,37 +84,71 @@ export const Supervisor = () => {
     // show notification ternary statement
     const showNotification = maintenanceIssues.filter(issue => issue.status).length ? Styles.showNotification : "";
 
-    const showAlert = () => {
-        alert('Will route to vehicle selection and prestart checklist')
+    const handleCheckOutVehicle = () => {
+        if(user.assignedVehicle){
+            navigate("/Checklist")
+        }else{
+            alert("No vehicle assigned, click Reassign Vehicles to assign yourself a vehicle")
+        }
     }
 
     return (
         <>
-            <main className={Styles.pageGrid}> 
+            <main className={Styles.pageFlex}> 
 
-                <section className={Styles.buttonGrid}>
-                    <div><select name="team" onChange={handleTeamChange}>
-                        {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
-                    </select></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<Load users={filteredUsersArr}/>) }}>Add Load</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<AssignVehicles usersArr={filteredUsersArr} vehiclesArr={filteredVehiclesArr} />) }}>Reassign Vehicles</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SignOffMaintenance />)}}>Sign off Maintenance
-                    <div className={`${Styles.notification} ${showNotification}`}>
-                        <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
+                <section className={Styles.asideContainer}>
+                    <div className={Styles.selectTeam}>
+                        <select name="team" onChange={handleTeamChange}>
+                            {teamsAvailableToView.map(team => <option key={team} value={team} selected={team===user.currentTeam ? "selected" : ""}>{team}</option>)}
+                        </select>
                     </div>
-                    </button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={showAlert}>Check Out Vehicle</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>Handover Notes</button></div>
-                    <div><button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SupervisorIncidentForm user={user}/>) }}>Report Incident To Managment</button></div>
+                    <article className={Styles.buttonGrid}>
+                        <div>
+                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<Load users={filteredUsersArr}/>) }}>
+                                Add Load
+                            </button>
+                        </div>
+                        <div>
+                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<AssignVehicles usersArr={filteredUsersArr} vehiclesArr={filteredVehiclesArr} />) }}>
+                                Reassign Vehicles
+                            </button>
+                        </div>
+                        <div>
+                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SignOffMaintenance />)}}>
+                                Approve Maintenance
+                                <article className={`${Styles.notification} ${showNotification}`}>
+                                    <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
+                                </article>
+                            </button>
+                        </div>
+                        <div>
+                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={handleCheckOutVehicle}>
+                                Check Out Vehicle
+                            </button>
+                        </div>
+                        <div>
+                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>
+                                Supervisor Report
+                            </button>
+                        </div>
+                        <div>
+                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SupervisorIncidentForm user={user}/>) }}>
+                                Report an Incident
+                            </button>
+                        </div>
+                    </article>
                 </section>
-                <section className={Styles.newsTicker}>
-                    {<NewsTicker newsItems={newsItemsArr} setModalContent={setModalContent} toggle={toggle} />}
-                </section>
-                <section className={Styles.dataTable}>
-                    <VehicleTable filteredVehiclesArr={filteredVehiclesArr} />
-                </section>
-                <section className={Styles.dataTable}>
-                    <UserTable filteredUsersArr={filteredUsersArr}/>
+
+                <section className={Styles.newsFeed}>
+                    <article className={Styles.newsTicker}>
+                        {<NewsTicker newsItems={newsItemsArr} setModalContent={setModalContent} toggle={toggle} />}
+                    </article>
+                    <article className={Styles.dataTable}>
+                        <VehicleTable filteredVehiclesArr={filteredVehiclesArr} />
+                    </article>
+                    <article className={Styles.dataTable}>
+                        <UserTable filteredUsersArr={filteredUsersArr}/>
+                    </article>
                 </section>
 
                 <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>

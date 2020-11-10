@@ -30,7 +30,7 @@ const VehicleTable = (props) => {
 
   return (
     <section className={Styles.vehicleListSection}>
-      <header onClick={headerOnClick}>
+      <header className={Styles.header} onClick={headerOnClick}>
         <h3>Team Vehicle Stats</h3>
         <div className={Styles.vehicleSummary}>
           <p>Total Vehicles: {filteredVehiclesArr.length}</p>

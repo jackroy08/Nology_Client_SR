@@ -5,8 +5,6 @@ import { getUserVehicle } from "../services/VehiclesService"
 import { getTeamSupervisor } from "../services/UsersService"
 import { getTeamSiteName } from "../services/TeamsService";
 
-
-
 export const UserContext = createContext({});
 
 export const UserProvider = (props) => {
