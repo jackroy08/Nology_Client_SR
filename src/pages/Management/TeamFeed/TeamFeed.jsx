@@ -7,109 +7,82 @@ import { getLoads } from "../../../services/LoadsService";
 import { Bar } from 'react-chartjs-2';
 
 const TeamFeed = () => {
-    const [loads, setLoads] = useState([]);
     const [teamsArr, setTeamsArr] = useState([]);
-    const [usersArr, setUsersArr] = useState([]);
-    const [vehiclesArr, setVehiclesArr] = useState([]);
-    const [wholeTeamsArr, setWholeTeamsArr] = useState([]);
+    const parentTeams = [];
 
-    const getSubTeamJsx = (team) => {
-
-        const subTeamData = {
-            datasets: [{
-                // data: [10, 10, 10],
-                data: [],
-                borderWidth: 1
-            }],
-            labels: [
-                // "1",
-                // "2",
-                // "3"
-            ]
-        }
-
-        const subTeamUsers = [];
-        usersArr.map((user) => {
-            if(user.currentTeam == team.teamName && user.currentSubTeam == team.subTeamName) subTeamUsers.push(user);
-        });
-        subTeamData.datasets[0].data.push(subTeamUsers.length);
-        subTeamData.labels.push(`${team.teamName} ${team.subTeamName}`);
-        if(!wholeTeamsArr.includes(team.teamName)) setWholeTeamsArr(prevArr => prevArr.concat([team.teamName]));
-
-        return (
-            <Bar
-                    data={subTeamData}
-                    // width={100}
-                    // height={50}
-                    // options={{ maintainAspectRatio: false }}
-                />
-        )
+    const subTeamData = {
+        datasets: [{
+            data: [],
+            borderWidth: 1,
+            backgroundColor: "yellow"
+        }],
+        labels: []
+    }
+    const teamVehicleData = {
+        datasets: [{
+            data: [],
+            borderWidth: 1,
+            backgroundColor: "orange"
+        }],
+        labels: [
+        ]
+    }
+    const teamLoadData = {
+        datasets: [{
+            data: [],
+            borderWidth: 1,
+            backgroundColor: "cyan"
+        }],
+        labels: [
+        ]
     }
 
+    const updateUserGraph = (teams, users) => {
 
-    const getTeamJsx = (team) => {
+        teams.forEach((team) => {
+            const subTeamUsers = users.filter(u => u.currentTeam == team.teamName && u.currentSubTeam == team.subTeamName);
+            subTeamData.labels.push(`${team.teamName} ${team.subTeamName}`);
+            subTeamData.datasets[0].data.push(subTeamUsers.length);
+            if(!parentTeams.includes(team.teamName)) parentTeams.push(team.teamName);
+        });
+    }
 
-        const teamVehicles = {
-            datasets: [{
-                data: [],
-                borderWidth: 1
-            }],
-            labels: [
-            ]
-        }
-        const teamLoads = {
-            datasets: [{
-                data: [],
-                borderWidth: 1
-            }],
-            labels: [
-            ]
-        }
+    const updateVehiclesGraph = (parentTeams, vehicles) => {
 
-        // team vehicles
-        const teamVehicleList = [];
-        vehiclesArr.map((vehicle) => {
-            if(vehicle.currentTeam == team) teamVehicleList.push(vehicle);
+        parentTeams.forEach((team) => {
+            const teamVehicles = vehicles.filter(v => v.currentTeam == team);
+            teamVehicleData.labels.push(team);
+            teamVehicleData.datasets[0].data.push(teamVehicles.length);
         })
-        teamVehicles.datasets[0].data.push(teamVehicleList.length);
-        teamVehicles.labels.push(team);
+    }
 
-        // team loads
-        const loadList = loads[0];
-        const teamLoadArr = []
-        if (loadList !== undefined) {
-            if(loadList.recentLoads !== undefined) {
-                loadList.recentLoads.map((load) => {
-                    if(load.team == team) teamLoadArr.push(load);
-                })
+    const updateLoadsGraph = (parentTeams, loads) => {
+        const loadsList = loads[0];
+
+        parentTeams.forEach((team) => {
+            const teamLoads = [];
+            for (const [key] of Object.entries(loadsList)) {
+                if(loadsList[key].team == team) {
+                    teamLoads.push("load");
+                };
             }
-        }
-        teamLoads.datasets[0].data.push(teamLoadArr.length);
-        teamLoads.labels.push(team);
-
-        return (
-            <>
-                <Bar
-                    data={teamVehicles}
-                    // width={100}
-                    // height={50}
-                    // options={{ maintainAspectRatio: false }}
-                />
-                <Bar
-                    data={teamLoads}
-                    // width={100}
-                    // height={50}
-                    // options={{ maintainAspectRatio: false }}
-                />
-            </>
-        )
-    };
+            teamLoadData.labels.push(team);
+            teamLoadData.datasets[0].data.push(teamLoads.length);
+        })
+    }
 
     useEffect(() => {
-        getTeams().then((response) => setTeamsArr(response));
-        getUsers().then((response) => setUsersArr(response));
-        getVehicles().then((response) => setVehiclesArr(response));
-        getLoads().then((response) => setLoads(response));
+        const promises = [getUsers(), getTeams(), getVehicles(), getLoads()];
+
+        Promise.all(promises).then(response => {
+
+            const [users, teams, vehicles, loads] = response;
+            setTeamsArr(teams);
+
+            updateUserGraph(teams, users);
+            updateVehiclesGraph(parentTeams, vehicles);
+            updateLoadsGraph(parentTeams, loads);
+        }) 
     }, []);
 
     return (
@@ -117,8 +90,18 @@ const TeamFeed = () => {
             <h1 className={Styles.feedTitle}>Live feed for teams</h1>
             <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamsArr.length}</span> teams on this site.</h2>
             <section className={Styles.feedList}>
-                {teamsArr.map(getSubTeamJsx)}
-                {wholeTeamsArr.map(getTeamJsx)}
+                <Bar
+                    data={subTeamData}
+                    legend={{display: false}}
+                />
+                <Bar
+                    data={teamVehicleData}
+                    legend={{display: false}}
+                />
+                <Bar
+                    data={teamLoadData}
+                    legend={{display: false}}
+                />
             </section>
         </article>
     )

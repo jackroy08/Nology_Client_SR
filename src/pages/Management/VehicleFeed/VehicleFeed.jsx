@@ -5,35 +5,44 @@ import { getLoads } from "../../../services/LoadsService";
 import { Doughnut, Bar } from 'react-chartjs-2';
 
 const VehicleFeed = () => {
-    const [loadsArr, setLoadsArr] = useState([]);
     const [vehiclesArr, setVehiclesArr] = useState([]);
-    const [classAIssues, setClassAIssues] = useState([]);
-    const [classBIssues, setClassBIssues] = useState([]);
-    const [classCIssues, setClassCIssues] = useState([]);
     const vehicleCountArr = [];
+    const siteLoads = [];
+    const classAIssues = [];
+    const classBIssues = [];
+    const classCIssues = [];
 
     vehiclesArr.map(vehicle => {
         if(vehicle.currentUser !== null) vehicleCountArr.push(vehicle);
     });
 
     useEffect(() => {
-        getVehicles().then((response) => {
-            setVehiclesArr(response);
-        });
-        getLoads().then((response) => {
-            setLoadsArr(response);
-        });
+        const promises = [getVehicles(), getLoads()];
+        Promise.all(promises).then(response => {
 
-        vehiclesArr.map((vehicle) => {
-            if(vehicle.checkItems !== undefined) {
-                for (let i = 0; i < vehiclesArr.checkItems.length; i++) {
-                    const checkItem = vehiclesArr.checkItems[i];
-                    if(checkItem.classType == "classA") setClassAIssues(prevArr => prevArr.concat([checkItem]));
-                    else if(checkItem.classType == "classB") setClassBIssues(prevArr => prevArr.concat([checkItem]));
-                    else if(checkItem.classType == "classC") setClassCIssues(prevArr => prevArr.concat([checkItem]));
+            const [vehicles, loads] = response;
+            setVehiclesArr(vehicles);
+            vehicles.map((vehicle) => {
+                
+                if(vehicle.checkItems !== null) {
+                    for (let i = 0; i < vehicle.checkItems.length; i++) {
+                        const checkItem = vehicle.checkItems[i];
+
+                        if(checkItem.classType == "classA") classAIssues.push(checkItem);
+                        else if(checkItem.classType == "classB") classBIssues.push(checkItem);
+                        else if(checkItem.classType == "classC") classCIssues.push(checkItem);
+                    }                
                 }
+            })
+
+            for (const [key] of Object.entries(loads[0])) {
+                siteLoads.push("load");
             }
-        })
+            siteData.datasets[0].data.push(classAIssues.length);
+            siteData.datasets[0].data.push(classBIssues.length);
+            siteData.datasets[0].data.push(classCIssues.length);
+            loadData.datasets[0].data.push(siteLoads.length);
+        }) 
     }, []);
 
     const pieData = {
@@ -58,9 +67,7 @@ const VehicleFeed = () => {
 
     const loadData = {
         datasets: [{
-            // Not working
-            // data: [loadsArr.length],
-            data: [40],
+            data: [],
             backgroundColor: ["blue"],
             borderColor: ["black"],
             borderWidth: 1
@@ -73,9 +80,7 @@ const VehicleFeed = () => {
 
     const siteData = {
         datasets: [{
-            // Also not working
-            // data: [classAIssues.length, classBIssues.length, classCIssues.length],
-            data: [5, 7, 10],
+            data: [],
             backgroundColor: [
                 "red",
                 "orange",
@@ -112,7 +117,7 @@ const VehicleFeed = () => {
                     <div className={Styles.loadData}>
                         <Bar 
                             data={loadData}
-                            legend={false}
+                            legend={{display: false}}
                             width={100}
                             height={250}
                             options={{maintainAspectRatio: false}}/>
