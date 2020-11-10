@@ -7,8 +7,7 @@ import { getVehicles, createVehicle, subscribeToVehicles } from './../../service
 import { getNewsItems, subscribeToNewsItems, createNewsItem } from "../../services/newsItemsService";
 import { getTeams } from "../../services/TeamsService";
 import { getUsers } from "../../services/UsersService";
-
-// import usersArr from "../../data/users";
+import SideNav from "../../components/SideNav";
 
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
@@ -97,52 +96,33 @@ export const Supervisor = () => {
 
     return (
         <>
-            <main className={Styles.pageFlex}> 
+            <div className={Styles.pageContainer}> 
 
-                <section className={Styles.asideContainer}>
-                    <div className={Styles.selectTeam}>
-                        <select name="team" onChange={handleTeamChange}>
-                            {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
-                        </select>
-                    </div>
-                    <article className={Styles.buttonGrid}>
-                        <div>
-                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<Load users={filteredUsersArr}/>) }}>
-                                Add Load
-                            </button>
+                <SideNav>
+                    <h2>Supervisor</h2>
+                    <label htmlFor="team">Select Team : </label>
+                    <select className={`${Styles.selectTeam} ${Styles.selectPrimary}`} name="team" onChange={handleTeamChange}>
+                        {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
+                    </select>
+                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<Load users={filteredUsersArr}/>) }}>
+                        Add Load</button>
+                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<AssignVehicles usersArr={filteredUsersArr} vehiclesArr={filteredVehiclesArr} />) }}>
+                        Reassign Vehicles</button>
+                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<SignOffMaintenance />)}}>
+                        Approve Maintenance
+                        <div className={`${Styles.notification} ${showNotification}`}>
+                            <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
                         </div>
-                        <div>
-                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<AssignVehicles usersArr={filteredUsersArr} vehiclesArr={filteredVehiclesArr} />) }}>
-                                Reassign Vehicles
-                            </button>
-                        </div>
-                        <div>
-                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SignOffMaintenance />)}}>
-                                Approve Maintenance
-                                <article className={`${Styles.notification} ${showNotification}`}>
-                                    <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
-                                </article>
-                            </button>
-                        </div>
-                        <div>
-                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={showAlert}>
-                                Check Out Vehicle
-                            </button>
-                        </div>
-                        <div>
-                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>
-                                Supervisor Report
-                            </button>
-                        </div>
-                        <div>
-                            <button className={`${Styles.btnPrimary} ${Styles.btn}`} onClick={() => { toggle(); setModalContent(<SupervisorIncidentForm user={user}/>) }}>
-                                Report an Incident
-                            </button>
-                        </div>
-                    </article>
-                </section>
+                    </button>
+                    <button className={Styles.btnNav} onClick={showAlert}>
+                        Check Out Vehicle</button>
+                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>
+                        Supervisor Report</button>
+                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<SupervisorIncidentForm user={user}/>) }}>
+                        Report an Incident</button>
+                </SideNav>
 
-                <section className={Styles.newsFeed}>
+                <main className={Styles.mainContent}>
                     <article className={Styles.newsTicker}>
                         {<NewsTicker newsItems={newsItemsArr} setModalContent={setModalContent} toggle={toggle} />}
                     </article>
@@ -152,11 +132,11 @@ export const Supervisor = () => {
                     <article className={Styles.dataTable}>
                         <UserTable filteredUsersArr={filteredUsersArr}/>
                     </article>
-                </section>
+                </main>
 
                 <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>
 
-            </main>
+            </div>
         </>
     )
 }

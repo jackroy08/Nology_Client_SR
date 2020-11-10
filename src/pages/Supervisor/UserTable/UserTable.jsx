@@ -27,10 +27,10 @@ const UserTable = (props) => {
       </li>
     )
   }
-
-  const [listHeight, setListHeight] = useState(0)
-
+  
   let list;
+  
+  const [listHeight, setListHeight] = useState(0)
 
   const headerOnClick = () => {
     listHeight ? setListHeight(0) : setListHeight(list.scrollHeight)

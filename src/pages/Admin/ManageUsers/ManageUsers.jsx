@@ -42,9 +42,9 @@ const ManageUsers = () => {
         <section className={Styles.usersListSection}>
             <header>
                 <h3>Users</h3>
-                <button onClick={toggle}>Create New User</button>
+                <button className={Styles.btnPrimary} onClick={toggle}>Create New User</button>
                 <Modal innerComponent={<CreateUserForm hide={toggle}/>} isShowing={isShowing} hide={toggle} />
-                <select onChange={(event) => filterUsers(event.target.value)}>
+                <select className={Styles.selectPrimary} onChange={(event) => filterUsers(event.target.value)}>
                         <option value="">All Users</option>
                         <option value="operator">Operator</option>
                         <option value="supervisor">Supervisor</option>
@@ -54,13 +54,13 @@ const ManageUsers = () => {
             </header>                    
             <ul className={Styles.usersList}>
                 <li className={Styles.columnTitles}>
-                    <h4>User ID</h4>
+                    <h4>ID</h4>
                     <h4>Full Name</h4>
                     <h4>Date of Birth</h4>
                     <h4>On Shift?</h4>
                     <h4>Team</h4>
                     <h4>Sub Team</h4>
-                    <h4>Action</h4><h4>Site</h4>
+                    <h4>Action</h4>
                 </li>
                 {filteredUsersArr.map((user) => <UserItem key={user.userID} user={user} />)}
                 </ul>

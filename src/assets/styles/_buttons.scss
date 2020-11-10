@@ -2,24 +2,7 @@
 @import "./fonts";
 
 // Put your GENERIC button styles in here
-button {
-  box-sizing:border-box;
-  background-color: $background-color2;
-  color:rgb(51, 51, 51);
-  border: 1px solid rgb(51, 51, 51);
-  cursor:pointer;
-  font-family: $font;
-  font-size:14px;
-  font-weight:400;
-  padding: 8px;
-  margin: 0 6px;
-  transition: 0.15s ease-in-out;
 
-  &:active, &:hover {
-    background-color: $background-color4;
-  }
-}
- 
 .btnSM {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -30,25 +13,66 @@ button {
   font-size: 1.25rem;
 }
 
-.btnPrimary {
-  color: $dark-text-color;
-  background-color: $primary-color;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.432);
-  &:active, &:hover {
-    background-color: $background-color4;
+.btnNav {
+  height: 50px;
+  width: 100%;
+  padding: $base-spacing*2;
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid $grey;
+  margin-bottom: $base-spacing;
+  text-transform: uppercase;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background: $blue;
+    color: $light-text-high;
   }
 }
+
+.btnPrimary {
+  padding: $base-spacing/2;
+  border-radius: 5px;
+  position: relative;
+  margin: $base-spacing/2;
+  border: 1px solid $grey;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background: $blue;
+    color: $light-text-high;
+  }
+}
+
 .btnSecondary {
-  color: $light-text-color;
-  background-color: $dark-text-color;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.432);
+  padding: $base-spacing/2;
+  border-radius: 5px;
+  position: relative;
+  margin: $base-spacing/2;
+  border: 1px solid $grey;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+
+  color: $light-text-mid;
+  background-color: $dark-text-mid;
+  
   &:active, &:hover {
     background-color: $background-color4;
   }
 }
 
 .btnSuccess {
-  color: $dark-text-color;
+  padding: $base-spacing/2;
+  border-radius: 5px;
+  position: relative;
+  margin: $base-spacing/2;
+  border: 1px solid $grey;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+  
+  color: $dark-text-mid;
   background-color: $success-color;
   &:active, &:hover {
     background-color: $success-color-lighten;
@@ -56,7 +80,15 @@ button {
 }
 
 .btnInfo {
-  color:$dark-text-color;
+  padding: $base-spacing/2;
+  border-radius: 5px;
+  position: relative;
+  margin: $base-spacing/2;
+  border: 1px solid $grey;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+
+  color:$dark-text-mid;
   background-color: $info-color;
   &:active, &:hover {
     background-color: $background-color4;
@@ -64,7 +96,15 @@ button {
 }
 
 .btnWarning {
-  color: $dark-text-color;
+  padding: $base-spacing/2;
+  border-radius: 5px;
+  position: relative;
+  margin: $base-spacing/2;
+  border: 1px solid $grey;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+
+  color: $dark-text-mid;
   background-color: $warning-color;
   &:active, &:hover {
     background-color: $background-color4;
@@ -72,7 +112,15 @@ button {
 }
 
 .btnDanger {
-  color: $dark-text-color;
+  padding: $base-spacing/2;
+  border-radius: 5px;
+  position: relative;
+  margin: $base-spacing/2;
+  border: 1px solid $grey;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+
+  color: $dark-text-mid;
   background-color: $danger-color;
   &:active, &:hover {
     background-color: $danger-color-lighten;
@@ -80,6 +128,14 @@ button {
 }
 
 .btnDisabled {
+  padding: $base-spacing/2;
+  border-radius: 5px;
+  position: relative;
+  margin: $base-spacing/2;
+  border: 1px solid $grey;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+
   opacity: 0.65;
 
   &:active, &:hover {

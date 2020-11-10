@@ -9,7 +9,6 @@ const Header = () => {
   const openMenu = open ? Styles.accountMenuOpen : "";
   const { signOut } = useContext(UserContext);
 
-  
   return (
     <header className={Styles.appHeader}>
       <button 

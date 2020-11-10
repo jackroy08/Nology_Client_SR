@@ -1,42 +1,33 @@
 @import '../../../assets/styles/buttons'; 
+@import '../../../assets/styles/forms'; 
 
 .sitesListSection {
   width: 100%;
-  padding: 0 $base-spacing*2 $base-spacing*2 $base-spacing*2;
+  padding: 0 $base-spacing;
 
   header {
-    background-color: $primary-color;
     display: flex;
     justify-items: flex-end;
     align-items: center;
-    padding: $base-spacing $base-spacing*2;
 
     h3{
       margin-right: auto;
-    }
-    button, select {
-      background-color: $primary-color;
-      color: $dark-text-color;
-      &:hover {
-        background-color: $background-color3;
-      }
     }
   }
 
   .columnTitles{
     padding: $base-spacing;
+    background: $grey-lighten;
   }
 
   .sitesList {
     width: 100%;
     background-color: $background-color1;
-    margin: 0;
-    padding: 0 $base-spacing $base-spacing $base-spacing;
   }
 
   .siteItem, .columnTitles {
     display:grid;
-    grid-template-columns: 75px 1fr 50px;
+    grid-template-columns: 50px 1fr 50px;
     justify-items: start;
     align-items: center;
   }

@@ -1,23 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-* {
-  font-size: 14px;
-  font-family: 'Roboto', sans-serif;
-}
+// * {
+//   font-family: 'Roboto', sans-serif;
+// }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Rubik', sans-serif;
+h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: $light-text-high;
+
 }
 
 h2 {
-  font-size: 50px;
-  color: $light-text-color;
+  font-size: 1.2rem;
+  color: $blue;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: $base-spacing;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 1rem;
 }
+
 h4 {
+  font-size: 0.7rem;
   font-weight: 500;
+  color: $dark-text-high;
+}
+
+p{
+  font-size: 0.7rem;
+  color: $dark-text-mid;
 }
 
 $font: 'Roboto', -apple-system, system-ui, system-ui, "Helvetica Neue", Arial, sans-serif;

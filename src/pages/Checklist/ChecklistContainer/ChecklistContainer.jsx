@@ -19,7 +19,7 @@ const ChecklistContainer = (props) => {
                     acc[classType][val] = {
                         classType: classType, 
                         issue: val,
-                        vehicleID: vehicle.plantID, //THIS NEEDS TO CHANGE TO WHATEVER NICK CHANGED IT TO
+                        vehicleID: vehicle.vehicleID,
                         operator: user.userID,
                         supervisor: "supervisor1",
                         additionalDetails: document.getElementById("additional-details").value,
@@ -48,7 +48,7 @@ const ChecklistContainer = (props) => {
                             failedElements: failedElements,
                             failObject: failObject, 
                             checklistData: checklistData, 
-                            vehicleType: vehicle.plantType, //THIS NEEDS TO CHANGE TO WHATEVER NICK CHANGED IT TO
+                            vehicleType: vehicle.vehicleType,
                             nextHandler: nextHandler, 
                             backHandler: backHandler
                         }

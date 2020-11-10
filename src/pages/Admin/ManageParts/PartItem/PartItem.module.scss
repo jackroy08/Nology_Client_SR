@@ -3,16 +3,16 @@
 
   .partItem {
     display:grid;
-    grid-template-columns: 75px 1fr 32px 32px;
+    grid-template-columns: 50px 1fr 25px 25px;
     justify-items: start;
     align-items: center;
     background-color: $background-color1;
-    margin-bottom: $base-spacing;
-    padding: 0 $base-spacing;
+    padding: $base-spacing/2;
+    border-bottom: 1px solid $grey-lighten;
     position: relative;
 
     &:hover {
-      background-color: $background-color2;
+      background-color: $grey-lighten-more;
     }
 
     button {
@@ -35,7 +35,6 @@
 
   .faIcon {
     cursor: pointer;
-    font-size: 1.2em;
-    margin: 0.5em;
-    color: $dark-text-color;
+    font-size: 1em;
+    color: $dark-text-mid;
   }
