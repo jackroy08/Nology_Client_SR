@@ -10,6 +10,16 @@ const NewsTicker = (props) => {
 
   return (
     <>
+        <header className={Styles.header}>
+          <div className={Styles.newsFeedSummary}>
+            <p>Timestamp</p>
+            <p>Team</p>
+            <p>Category</p>
+            <p>Title</p>
+            <p>Message</p>
+          </div>
+        </header>
+
         <ul className={Styles.importantNews}>
           {importantNewsItems.map(item => <NewsItem key={Math.random()} item={item} setModalContent={setModalContent} toggle={toggle} />)}
         </ul>

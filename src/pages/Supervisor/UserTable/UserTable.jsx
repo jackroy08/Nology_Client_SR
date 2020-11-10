@@ -38,7 +38,7 @@ const UserTable = (props) => {
 
   return (
     <section className={Styles.userListSection}>
-      <header onClick={headerOnClick}>
+      <header className={Styles.header} onClick={headerOnClick}>
         <h3>Team Member Info</h3>
         <div className={Styles.userSummary}>
           <p>Total Operators: {userData.length}</p>

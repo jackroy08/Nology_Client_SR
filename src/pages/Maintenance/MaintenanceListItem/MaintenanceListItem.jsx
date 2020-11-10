@@ -5,27 +5,56 @@ import Styles from "./MaintenanceListItem.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const MaintenanceListItem = (props) => {
+    const {
+        additionalDetails,
+        classType,
+        dateCreated,
+        issue,
+        operator,
+        supervisor,
+        maintenance,
+        vehicleID } = props.job
 
-    const [isFixed, setIsFixed] = useState(false);
-    const checkBox = isFixed ? "Fixed" : "Not fixed";
-    const [open, setOpen] = useState(false);
-    const openDropdown = open ? Styles.dropdownOpen : Styles.dropdownClosed;
-    const changeBorderEffect = open ? Styles.borderChange : "";
+        const [isOpen, setIsOpen] = useState(false);
+        const toggleStyles = isOpen ? Styles.confirmOpen : "";
+    
+    // const [isFixed, setIsFixed] = useState(false);
+    // const checkBox = isFixed ? "Fixed" : "Not fixed";
 
-    const issueClass = props.problem.issueClass;
-    let colorClass = issueClass === 'A' ? Styles.issueAClass : issueClass === 'B' ? Styles.issueBClass : issueClass === 'C' ? Styles.issueCClass : Styles.error;
+    let colorClass = classType === 'classA' ? Styles.classA 
+                    : classType === 'classB' ? Styles.classB
+                    : classType === 'classC' ? Styles.classC
+                    : Styles.classError;
 
     return (
-        <div className={Styles.listItem}>
-            <div className={`${Styles.arrowIcon} ${changeBorderEffect}`}><FontAwesomeIcon className={openDropdown} onClick={() => setOpen(!open)} icon="arrow-down"/></div>
-            <p className={`${Styles.issueClass} ${colorClass}`}>{props.problem.issueClass}</p>
-            <p>{props.problem.vehicleName}</p>
-            <p>{props.problem.vehicleIssue}</p>
-            <input type="checkbox" onClick={() => setIsFixed(!isFixed)}/>
-            <p>{checkBox}</p>
-            <Link to="../MaintenanceAside"><button>Send Report</button></Link>
-            {open && <MaintenanceDropdown />}
-        </div>
+        <li key={vehicleID} className={Styles.jobItem}>
+            <p>{vehicleID}</p>
+            <p className={colorClass}><FontAwesomeIcon  icon="exclamation-triangle"/></p>
+            <p>{issue}</p>
+            <p>{operator}</p>
+            <p>{supervisor}</p>
+            <p>{maintenance}</p>
+            {/* <p>{additionalDetails}</p> */}
+             {/* <p>{dateCreated}</p> */}
+            <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="check-circle"/></span>
+            <div className={`${Styles.confirmDelete} ${toggleStyles}`}>
+                        <button
+                            className={Styles.btnPrimary}
+                            onClick={() => setIsOpen(!isOpen)}
+                            >Cancel
+                        </button>
+                        <button
+                            className={Styles.btnDanger}
+                            onClick={() => {
+                                // Insert here a function to mark the job as complete
+                                setIsOpen(!isOpen);
+                            }}
+                        >Confirm
+                        </button>
+            </div>
+            {/* The Model below can be the Maintenance Complete job form. */}
+            {/* <Modal innerComponent={<^^ComponantName^^ job={props.job} hide={toggle}/>} isShowing={isShowing} hide={toggle} /> */}
+        </li>
     )
 }
 
