@@ -51,6 +51,12 @@
         height: 75%;
         overflow-y: scroll;
 
+        p {
+            text-align: center;
+            text-decoration: underline;
+            font-weight: 850;
+        }
+
         .flexCharts {
             display: flex;
             padding-bottom: 40px;

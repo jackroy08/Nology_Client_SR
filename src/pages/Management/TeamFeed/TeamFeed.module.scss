@@ -43,24 +43,18 @@
     .feedList {
         overflow-y: scroll;
         margin-top: 5px;
-        height: 300px;
+        height: 315px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        background-color: $background-color1;
+        border: 2px solid black;
 
-        .teamReport {
-            box-sizing:border-box;
-            background-color: $background-color1;
-            gap: 0.5em;
-            width: 48%;
-            border-radius: 25px;
+        p {
+            text-align: center;
+            text-decoration: underline;
+            font-weight: 850;
             margin: 10px 0;
-            padding: 15px;
-            border: 2px solid black;
-
-            p {
-                margin: 10px 5px;
-            }
         }
     }
 }
