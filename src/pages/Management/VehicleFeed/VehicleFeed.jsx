@@ -34,7 +34,7 @@ const VehicleFeed = () => {
                 }
             })
 
-            setSiteData(prevData => {
+            setSiteData(() => {
                 return {
                     datasets: [{
                         data: [classAIssues.length, classBIssues.length, classCIssues.length],
@@ -60,7 +60,7 @@ const VehicleFeed = () => {
             })
 
 
-            setLoadData(prevData => {
+            setLoadData(() => {
                 return {
                     datasets: [{
                         data: [loads.length],
