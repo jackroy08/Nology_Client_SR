@@ -11,21 +11,22 @@ const LoadApproveForm = (props) => {
   const { register, handleSubmit } = useForm();
 
     const submitForm = (data) => {
-      deleteLoad(load);
       let newLoad = {
         ...load,
         ...data,
         isSignedOff: data.isApproved == 1 ? true : false,
       }
-      updateLoad(newLoad)
+      delete newLoad.id;
+      updateLoad(load.id, newLoad)
   }
 
+  const date = currentDate.toDate().toString().substring(0, 21);
 
   return (
     <>
       <form className={Styles.approveLoadForm} onSubmit={handleSubmit(submitForm)}>
           <h5>{driver}</h5>
-          <h5>{currentDate}</h5>
+          <h5>{date}</h5>
 
           <label htmlFor={`yes${index}`}>
           Approve 
