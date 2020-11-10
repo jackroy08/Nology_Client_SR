@@ -27,15 +27,14 @@ const updateLoads = (load) => {
 }
 
 const deleteLoad  = (load) => {
-
-    let loadArr = [];
-    getLoads().then(response => loadArr=response);
-    const newLoadsArr = loadArr.filter((arrLoad) => {
-        return load !== arrLoad;
-    });
-    firestore.collection("loads").doc("recentLoads").delete();
-    
-    createLoad(newLoadsArr);
+    getLoads().then(response => response[0].loadsArr)
+    .then(loads => {
+        const newLoadsArr = loads.filter(arrLoad => {
+            return load !== arrLoad;
+        });
+        firestore.collection("loads").doc("recentLoads").delete();
+        createLoad(newLoadsArr);
+    })    
 }
 
 export { getLoads, subscribeToLoads, updateLoads, deleteLoad, updateLoad }

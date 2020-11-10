@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Styles from "./Load.module.scss";
-import { getLoads, updateLoad } from "./../../../services/LoadsService";
+import { getLoads } from "./../../../services/LoadsService";
 import LoadApproveForm from "./LoadApproveForm";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../../context/userContext";
 
 
 export const Load = (props) => {
@@ -13,8 +14,11 @@ export const Load = (props) => {
 
     const [ loadsArray, setLoadsArray ] = useState([]);
 
+    const { user } = useContext(UserContext);
+
     useEffect(() => {
-        getLoads().then(dataArray => setLoadsArray(dataArray[0].loadsArr.filter(load => load.isSignedOff===null)));
+        getLoads().then(dataArray => setLoadsArray(dataArray.map(load=> load[0]).filter(load => load.isSignedOff===null).filter(load => load.team === user.currentTeam)))
+        // getLoads().then(dataArray => setLoadsArray(dataArray[0].loadsArr.filter(load => load.isSignedOff===null)));
     }, [])
 
     const onSubmit = (data) => {
@@ -24,7 +28,7 @@ export const Load = (props) => {
     return (
         <section>
             <h2>Approve Load</h2>
-            {loadsArray.map((load,i) => (<LoadApproveForm key={i} index={i} load={load} />))}
+            {loadsArray.map((load, i) => (<LoadApproveForm key={i} index={i} load={load} />))}
             {/* Additional option for the supervisor to add a load themselves. Would need to add driver themselves? */} 
             <h2>Add Load</h2>
             <form className={Styles.addLoad} onSubmit={handleSubmit(onSubmit)}>
