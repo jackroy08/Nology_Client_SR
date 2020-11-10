@@ -1,21 +1,16 @@
 import React from "react";
 import Styles from "../Checklist.module.scss";
-import RenderAdditionalOptions from "../RenderAdditionalOptions";
 import Confirmation from "../Confirmation";
-import { updateVehicle } from "../../../services/VehiclesService";
 
 const ClassCChecks = (props) => {
-  
     const { setFailedElements, failedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
-    // const classType = "Class C";
-    const checkboxArr = checklistData[vehicleType].classC ? 
-        Object.keys(checklistData[vehicleType].classC):
+    const checkboxArr = checklistData.classC ? 
+        Object.keys(checklistData.classC):
         [];
-    const additionalFieldsArr = Object.keys(checklistData[vehicleType])
-        .filter(key => !key.match("lass"));
+
     const getChecklist = item => (
         <div key={item}>
-            <img src={checklistData[vehicleType].classC[item]} alt=""/>
+            <img src={checklistData.classC[item]} alt=""/>
             <label htmlFor={item}>{item}   
             </label>
             <input type="checkbox" id={item} name={item} value={item}/> 
@@ -31,23 +26,6 @@ const ClassCChecks = (props) => {
                     <div className={Styles.responses}>
                         {checkboxArr.map(getChecklist)}
                     </div>
-
-                    {additionalFieldsArr ? 
-                        <>
-                            <h2>Additional checks</h2>
-                            <section className={Styles.optionsFlex}>
-                                {additionalFieldsArr.map(item => 
-                                <RenderAdditionalOptions 
-                                    getChecklist={getChecklist} 
-                                    classVal={"classC"}
-                                    checklistData={checklistData}
-                                    vehicleType={vehicleType} 
-                                    item={item}
-                                    key={item} 
-                                />)}
-                            </section>
-                        </>:
-                        null}
                     <textarea name="class-c-comment" id="additional-details"></textarea>
                 
                     <section className={Styles.navigation}>

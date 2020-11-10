@@ -6,24 +6,26 @@ const firestore = app.firestore();
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-exports.scheduledFunction = functions.pubsub.schedule('5 8 * * *').onRun(async (context) => {
+exports.scheduledFunction = functions.pubsub.schedule('35 8 * * *').onRun((context) => {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - 30);
-    await firestore
+    return firestore
         .collection("loads")
         .where("currentDate", "<", cutoffDate)
-        .get()
-        .then(loads => {
-            return loads.forEach(load => {
-                firestore
+        .get().then(async res => {
+            await res.forEach(load => {
+                return firestore
                     .collection("archivedLoads")
                     .doc(load.id)
                     .set({...load.data()})
-            });
-        });
-    firestore
-        .collection("loads")
-        .where("currentDate", "<", cutoffDate)
-        .delete();
-    return null;
+                })
+
+            res.forEach(load => {
+                return firestore
+                    .collection("loads")
+                    .doc(load.id)
+                    .delete()
+            })
+            return res;
+        })
 });
