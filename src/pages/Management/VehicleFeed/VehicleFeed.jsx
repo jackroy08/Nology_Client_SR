@@ -34,14 +34,33 @@ const VehicleFeed = () => {
                 }
             })
 
-            siteData.datasets[0].data.push(classAIssues.length);
-            siteData.datasets[0].data.push(classBIssues.length);
-            siteData.datasets[0].data.push(classCIssues.length);
+            setSiteData(prevData => {
+                return {
+                    datasets: [{
+                        data: [classAIssues.length, classBIssues.length, classCIssues.length],
+                        backgroundColor: [
+                            "red",
+                            "orange",
+                            "green",
+                        ],
+                        borderColor: [
+                            "black",
+                            "black",
+                            "black",
+                        ],
+                        borderWidth: 1
+                    }],
+                    
+                    labels: [
+                        "Class A Fails",
+                        "Class B Fails",
+                        "Class C Fails",
+                    ]
+                }
+            })
+
 
             setLoadData(prevData => {
-
-                prevData.datasets[0].data.push(loads.length);
-
                 return {
                     datasets: [{
                         data: [loads.length],
@@ -80,38 +99,14 @@ const VehicleFeed = () => {
     const [loadData, setLoadData] = useState({
         datasets: [{
             data: [],
-            backgroundColor: ["blue"],
-            borderColor: ["black"],
-            borderWidth: 1
         }],
+    });
 
-        labels: [
-            "Loads","2"
-        ]
-    })
-
-    const siteData = {
+    const [siteData, setSiteData] = useState({
         datasets: [{
             data: [],
-            backgroundColor: [
-                "red",
-                "orange",
-                "green",
-            ],
-            borderColor: [
-                "black",
-                "black",
-                "black",
-            ],
-            borderWidth: 1
         }],
-        
-        labels: [
-            "Class A Fails",
-            "Class B Fails",
-            "Class C Fails",
-        ]
-    }
+    });
 
     return (
         <article className={Styles.dataFeed}>
@@ -123,26 +118,22 @@ const VehicleFeed = () => {
                         <p>Chart of Vehicles on Site</p>
                         <Doughnut 
                             data={pieData} 
-                            width={100}
-                            height={250}
                             options={{ maintainAspectRatio: true, responsive: true }}
                         />
                     </div>
                     <div className={Styles.loadData}>
                         <p>Graph of Site Loads</p>
-                       
+                        <Bar 
+                            data={loadData}
+                            legend={{display: false}}
+                            options={{maintainAspectRatio: true, responsive: true}}
+                        />
                     </div>
                 </div>
                 <div className={Styles.siteData}>
                     <p>Graph of Site Issues</p>
                     <Bar data={siteData} legend={false} options={{maintainAspectRatio: false}}/>
                 </div>
-
-                <Bar 
-                    data={loadData}
-                    legend={{display: false}}
-                    options={{maintainAspectRatio: true, responsive: true}}
-                />
             </section>
         </article>
     )
