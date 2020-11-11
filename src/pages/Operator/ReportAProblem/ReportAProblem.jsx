@@ -31,7 +31,7 @@ const ReportAProblem = () => {
             photo: photo ? photo : ""
         }
         updateVehicleIssues("001", error)
-        navigate("/Operator");
+        navigate(`/${user.userType}`);
     }
     
     const togglePhoto = (e) =>  {
@@ -73,7 +73,7 @@ const ReportAProblem = () => {
                 <textarea id="additional-details" placeholder="Please enter any additional details"></textarea>
             </fieldset>
             <div>
-                <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={()=> navigate("/operator")}>Cancel</button>
+                <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={()=> navigate(`/operator`)}>Cancel</button>
                 <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit" onClick={submitHandler}>Report</button>
                 <button onClick={togglePhoto}>Take a photo</button>
                 
@@ -83,9 +83,7 @@ const ReportAProblem = () => {
                     onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
                     onTakePhotoAnimationDone = { (dataUri) => { handleTakePhotoAnimationDone(dataUri); } }
                     onCameraError = { (error) => { handleCameraError(error); } }
-                    // idealFacingMode = {FACING_MODES.ENVIRONMENT}
                     idealResolution = {{width: 640, height: 480}}
-                    // imageType = {IMAGE_TYPES.JPG}
                     imageCompression = {0.97}
                     isMaxResolution = {true}
                     isImageMirror = {false}
