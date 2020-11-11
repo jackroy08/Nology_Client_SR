@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./SupervisorIncidentForm.module.scss";
 import { createNewsItem } from "./../../../services/newsItemsService";
+import toastService from "../../../services/toastService";
 
 const SupervisorIncidentForm = (props) => {
 
@@ -20,22 +21,18 @@ const SupervisorIncidentForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
     createNewsItem({
       ...formData,
       team: "Managment",
       type:"supervisorIncident",
       seenBy: [],
-      dateCreated: new Date().toString(), 
+      dateCreated: new Date(), 
       info: {
         reportedBy: user.fullNameStr
       },
     });
-    alert('form submitted');
+    toastService("Form Submitted", 2000);
   }
-
-  //Add dropdown for teams
-  //add checkbox for is important
 
   return (
     <>
