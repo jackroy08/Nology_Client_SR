@@ -60,6 +60,8 @@ const Admin = () => {
                 <Link to="ManageTeams"><button className={Styles.btnNav}> -  Manage Teams</button></Link>
                 <Link to="ManageSites"><button className={Styles.btnNav}> - Manage Sites</button></Link>
                 <Link to="ManageParts"><button className={Styles.btnNav}> - Manage Parts</button></Link>
+                <Link to="ManageChecklists"><button className={Styles.btnNav}> - Manage Checklists</button></Link>
+                <button className={Styles.btnNav} onClick={handleExport}>Export firestore data</button>
             </SideNav>
             <main className={Styles.pageContainer}>
                 <Router style={{width: "100%"}}>
@@ -68,6 +70,7 @@ const Admin = () => {
                     <ManageTeams path="ManageTeams"/>
                     <ManageSites path="ManageSites"/>
                     <ManageParts path="ManageParts"/>
+                    <ManageChecklists path="ManageChecklists" />
                 </Router>
             </main>
         </div>
