@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styles from "./SignOffMaintenance.module.scss"
 import { useForm } from "react-hook-form";
+import { subscribeToVehicles } from "../../../services/VehiclesService";
 
 export const SignOffMaintenance = () => {
+
+  const [ vehiclesArray, setVehiclesArray ] = useState([])
+  const [ filteredVehiclesArray, setFilteredVehiclesArray ] = useState([])
+
+  useEffect(() => {
+    const unsubscribe = subscribeToVehicles(setVehiclesArray);
+    return () => {
+      unsubscribe();
+    }
+  }, [])
+
+  useEffect(() => {
+    setFilteredVehiclesArray(vehiclesArray);
+    console.log(vehiclesArray);
+    console.log(filteredVehiclesArray);
+  }, [vehiclesArray])
 
   const { register, handleSubmit } = useForm()
 
   const onSubmit = () => { 
     console.log('form working?');
-  }
+  } 
 
   return (
     <section>
