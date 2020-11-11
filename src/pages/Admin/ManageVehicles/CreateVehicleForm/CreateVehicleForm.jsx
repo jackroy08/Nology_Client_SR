@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { useForm } from "react-hook-form";
 import Styles from './CreateVehicleForm.module.scss';
 import { createVehicle } from '../../../../services/VehiclesService'
-import { getVehicles, subscribeToVehicles } from '../../../../services/VehiclesService'
 
 // ------ CLASSES ----- //
 
@@ -25,36 +23,12 @@ class Vehicle {
 
 const CreateVehicleForm = (props) => {
     const { register, handleSubmit, errors } = useForm();
-    const [vehicleTypesArr, setVehicleTypesArr] = useState([
-        "Articulated Water Truck",
-        "Diesel Bowser",
-        "Drills",
-        "Excavator",
-        "Fel",
-        "Forklift",
-        "Grader",
-        "Ldv",
-        "Srv Water Bowser",
-        "TrackD ozer",
-        "Rdt",
-        "Truck Mounted Crane",
-        "Tlb",
-        "Lighting Vehicle",
-        "Hydraulic Rig Operator",
-        "Loader",
-        "Haul Truck",
-        "Bus"]);
+    const { vehicleTypesArr } =  props;
     
     const createNewVehicle = (data) => {
         {props.hide()}
         return createVehicle(new Vehicle(data.vehicleID, data.vehicleType, data.goStatus));
     }
-    
-    // useEffect(() => {
-    //     getVehicles().then(response => {
-    //         setVehicleTypesArr(response.map(vehicle => vehicle.vehicleType));
-    //     });
-    // }, [])
     
     return (
         <form className={Styles.vehicleForm} onSubmit={handleSubmit(createNewVehicle)}>

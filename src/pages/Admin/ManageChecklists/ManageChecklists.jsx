@@ -37,7 +37,7 @@ const ManageChecklists = () => {
         await firestore
             .collection("checklistData")
             .doc(document.getElementById("vehicleName").value)
-            .set({checkObj})
+            .set({...checkObj})
         navigate("/admin");
     }
 

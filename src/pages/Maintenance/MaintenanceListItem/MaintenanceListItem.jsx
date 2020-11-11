@@ -29,7 +29,7 @@ const MaintenanceListItem = (props) => {
             .then(res => {
                 props.job.assignedMaintenance = user.userID;
                 res.checkItems.map(item => {
-                    if (item.issue === props.job.issue) {
+                    if (item.issueID === props.job.issueID) {
                         item.assignedMaintenance = user.userID
                     }
                 });
@@ -42,7 +42,7 @@ const MaintenanceListItem = (props) => {
             .then(res => {
                 props.job.maintenanceSignoff = true;
                 res.checkItems.map(item => {
-                    if (item.issue === props.job.issue) {
+                    if (item.issueID === props.job.issueID) {
                         item.maintenanceSignoff = true;
                     }
                 })

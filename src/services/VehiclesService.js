@@ -14,8 +14,8 @@ const getVehicleTypes = () => {
         .collection("checklistData")
         .get()
         .then(res => {
-            res.docs.map(doc => doc.id)
-        });
+            return res.docs.map(doc => doc.id)
+    });
 }
 
 //watches vehicles collection and updates the state whenever the db changes

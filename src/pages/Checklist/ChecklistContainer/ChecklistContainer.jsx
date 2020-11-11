@@ -4,6 +4,7 @@ import ClassAChecks from '../ClassAChecks';
 import ClassBChecks from '../ClassBChecks';
 import ClassCChecks from '../ClassCChecks';
 import Confirmation from '../Confirmation';
+import { v4 as uuidv4 } from "uuid";
 import { UserContext } from "../../../context/userContext";
 
 const ChecklistContainer = (props) => {
@@ -25,7 +26,8 @@ const ChecklistContainer = (props) => {
                     dateCreated: new Date().toUTCString(),
                     assignedMaintenance: "",
                     maintenanceSignoff: false,
-                    supervisorSignoff: false
+                    supervisorSignoff: false,
+                    issueID: uuidv4()
                 };
                 } else acc[classType][val] = {};
             return acc;

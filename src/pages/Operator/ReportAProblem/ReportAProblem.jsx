@@ -6,6 +6,7 @@ import { updateVehicleIssues } from "../../../services/VehiclesService";
 import { UserContext } from "../../../context/userContext";
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
 const ReportAProblem = () => {
@@ -28,7 +29,8 @@ const ReportAProblem = () => {
             assignedMaintenance: "",
             maintenanceSignoff: false,
             supervisorSignoff: false,
-            photo: photo ? photo : ""
+            photo: photo ? photo : "",
+            issueID: uuidv4()
         }
         updateVehicleIssues("001", error)
         navigate(`/${user.userType}`);
