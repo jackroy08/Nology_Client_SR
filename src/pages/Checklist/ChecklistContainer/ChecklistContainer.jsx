@@ -23,6 +23,7 @@ const ChecklistContainer = (props) => {
                     supervisor: supervisorProperty,
                     additionalDetails: document.getElementById("additional-details").value,
                     dateCreated: new Date().toUTCString(),
+                    assignedMaintenance: "",
                     maintenanceSignoff: false,
                     supervisorSignoff: false
                 };

@@ -5,6 +5,10 @@ const getVehicles  = () => {
     return firestore.collection("vehicles").get().then(response => response.docs.map(document => document.data()));
 }
 
+const getVehicleByID  = (vehicleID) => {
+    return firestore.collection("vehicles").doc(vehicleID).get().then(doc => doc.data());
+}
+
 //watches vehicles collection and updates the state whenever the db changes
 const subscribeToVehicles = (setState) => {
     return firestore.collection("vehicles").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())));
@@ -45,4 +49,4 @@ const updateVehicleIssues = (vehicle, issues) => {
             checkItems: firebase.firestore.FieldValue.arrayUnion({...issues})
         })
     }
-export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle, getUserVehicle };
+export { getVehicles, getVehicleByID, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle, getUserVehicle };
