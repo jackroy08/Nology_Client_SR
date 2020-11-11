@@ -20,15 +20,26 @@ export const Load = (props) => {
     const { user, teamSiteName } = useContext(UserContext);
 
     useEffect(() => {
-        const unsubscribe = subscribeToLoads(setLoadsArray);
-        // const getLoadsArr = async() => {
-        //     setLoadsArray((await getLoads()).filter(load => load.isSignedOff === null).filter(load => load.team === user.currentTeam))
-        // }
-        // getLoads().then(dataArray => setLoadsArray(dataArray.map(load=> load[0]).filter(load => load.isSignedOff===null).filter(load => load.team === user.currentTeam)))
-        return () => {
+        // 1. is mounted set to false on component dismount to prevent assigning state on unmounted component
+        let isMounted = true;
+
+        // 2. subscribes to snapshot and save the unsubscribe function to a variable for use on dismount
+        const unsubscribe = subscribeToLoads(snapshot => {
+            // 3. get the collection documents for us to store in state
+            const docs = snapshot.docs.map(document => ({...document.data(), id: document.id}));
+            
+            // 4. check that component is still mounted before attempting to set state
+            if (isMounted) setLoadsArray(docs)   
+        });     
+
+        // 5. Unmount function - Which will unsubscribe us from the loads subscription
+        return(() => {
+            isMounted = false;
             unsubscribe();
-        }
-    }, [])
+        })
+    }, []);
+
+    // getTeams().then(res => {if(mounted){setTeamsAvailableToView((getUniqueTeams(res)))}});
 
     useEffect(()=>{
         setFilteredLoadsArr(loadsArray.filter(load => load.isSignedOff === null).filter(load => load.team === user.currentTeam))
@@ -45,7 +56,7 @@ export const Load = (props) => {
             supervisor: user.fullNameStr,
             team: user.currentTeam
         }
-        createLoad(newLoad)
+        createLoad(newLoad) 
         
         createNewsItem({
             dateCreated: new Date(),
@@ -64,8 +75,8 @@ export const Load = (props) => {
         })
     }
 
-
-    const approveLoads = filteredLoadsArr.length ? filteredLoadsArr.map((load, i) => (<LoadApproveForm key={i} index={i} load={load} />)) : <p className={Styles.noLoads}>There are currently no loads to approve</p>;
+    //ToDo - an items index can change as the loads can be removed from filtered array loads, so this shouldnt be used as the key
+    const approveLoads = filteredLoadsArr.length ? filteredLoadsArr.map((load, i) => (<LoadApproveForm key={i} index={i} load={load} />)) : <h3>There are currently no loads to approve</h3>;
 
     return (
         <section>
