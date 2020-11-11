@@ -1,29 +1,13 @@
 @import "./../../assets/styles/variables";
 // @import "./../../assets/styles/fonts";
 
-.main {
-    width: 95%;
-    margin: 0 auto;
-}
-
-.pageGrid {
-    background-color: $background-color1;
-    padding: 1em;
+.pageContainer {
+    width: 100%;
     justify-items: center;
-    border-radius: 25px;
+    display: flex;
 }
 
-.title {
-    font-size: 90px;
-    color: $light-text-mid;
-    font-family: rubik;
-    font-style: normal;
-    font-weight: 700;
-}
-
-@media (min-width: 1024px) {
-    .pageGrid {
-        grid-template-columns: 2fr 1fr;
-        grid-template-areas: "List Aside";
-    }
+.mainContent {
+    width: 100%;
+    padding: 10px;
 }

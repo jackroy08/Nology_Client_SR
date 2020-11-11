@@ -8,11 +8,12 @@ const SideNav = (props) => {
     
   const [open, setOpen] = useState(false);
   const openMenu = open ? Styles.accountMenuOpen : "";
+  const { user } = useContext(UserContext);
 
   return (
     <nav className={Styles.sideNav}>
       <header className={Styles.sideNavHeader}>
-          <h1>SHIFT REPORTER</h1>
+          <h1>© Shift Reporter</h1>
       </header>
       <section className={Styles.sideNavMenu}>
         
@@ -34,7 +35,7 @@ const SideNav = (props) => {
           <li className={Styles.accountMenuAccount} onClick={() => (setOpen(!open))}>
             <span className={Styles.faIcon} >
               <FontAwesomeIcon icon="user-circle"/></span>
-            <p>User Name</p>
+              <p>{user.userID}</p>
           </li>
         </ul>
       </footer>

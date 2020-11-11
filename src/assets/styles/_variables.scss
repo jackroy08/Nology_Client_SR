@@ -4,13 +4,13 @@
 $background: #5C636A;
 
 //table background color accents
-$background-color1: rgba(255, 255, 255, 0.2);
+$background-color1: rgb(240, 240, 250);
 $background-color2: rgba(255, 255, 255, 0.4);
-$background-color3: rgba(255, 255, 255, 0.6);
+$background-color3: rgba(44, 44, 44, 0.6);
 $background-color4: rgba(255, 255, 255, 0.8);
 
 //colour variables
-$primary-color: #FFAA00;
+$primary-color: rgb(80, 99, 255);
 $secondary-color: rgb(50, 50, 50);
 $success-color: rgb(16, 212, 13);
 $success-color-lighten: rgb(4, 253, 0);
@@ -35,12 +35,12 @@ $grey: #9e9e9e;
 $grey-darken: #616161;
 
 //text colour variables
-$dark-text-high: rgba(0,0,0,0.9);
-$dark-text-mid: rgba(0,0,0,0.7);
-$dark-text-low: rgba(0,0,0,0.5);
-$light-text-high: rgba(255,255,255,0.9);
-$light-text-mid: rgba(255,255,255,0.7);
-$light-text-low: rgba(255,255,255,0.5);
+$dark-text-high: rgb(33,41,69);
+$dark-text-mid: rgb(165,173,198);
+$dark-text-low:rgb(185, 188, 197);
+$light-text-high: rgb(250,250,250);
+$light-text-mid: rgb(240,240,240);
+$light-text-low: rgb(200,200,200);
 
 //fault classes colors
 $class-a-color: #D40D0D;

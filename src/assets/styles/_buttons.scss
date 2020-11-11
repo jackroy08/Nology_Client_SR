@@ -19,8 +19,23 @@
   padding: $base-spacing*2;
   border-radius: 5px;
   position: relative;
+  text-align: left;
+  border: 0;
+  transition: 0.1s ease-in-out;
+  color: $dark-text-mid;
+  cursor: pointer;
+  background: none;
+  
+  &:hover {
+    color: $dark-text-high;
+  }
+}
+
+.btnJobClaim {
+  padding: $base-spacing/2;
+  border-radius: 5px;
+  position: relative;
   border: 1px solid $grey;
-  margin-bottom: $base-spacing;
   text-transform: uppercase;
   transition: 0.15s ease-in-out;
   cursor: pointer;

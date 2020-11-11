@@ -36,7 +36,7 @@ const MaintenanceListItem = (props) => {
             <p>{issue}</p>
             <p>{operator}</p>
             <p>{supervisor}</p>
-            <p>{maintenance ? maintenance : <button onClick={() => claimJob(vehicleID)}>Claim Job</button>}</p>
+            <p>{maintenance ? maintenance : <button className={Styles.btnJobClaim} onClick={() => claimJob(vehicleID)}>Claim Job</button>}</p>
             {/* <p>{additionalDetails}</p> */}
              {/* <p>{dateCreated}</p> */}
             <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="check-circle"/></span>

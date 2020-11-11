@@ -14,15 +14,15 @@ const Admin = () => {
         <div className={Styles.pageContainer}> 
             <SideNav>
                 <h2>Admin</h2>
-                <Link to="ManageUsers"><button className={Styles.btnNav}>Manage Users</button></Link>
-                <Link to="ManageVehicles"><button className={Styles.btnNav}>Manage Vehicles</button></Link>
-                <Link to="ManageTeams"><button className={Styles.btnNav}>Manage Teams</button></Link>
-                <Link to="ManageSites"><button className={Styles.btnNav}>Manage Sites</button></Link>
-                <Link to="ManageParts"><button className={Styles.btnNav}>Manage Parts</button></Link>
+                <Link to="ManageUsers"><button className={Styles.btnNav}> - Manage Users</button></Link>
+                <Link to="ManageVehicles"><button className={Styles.btnNav}> -  Manage Vehicles</button></Link>
+                <Link to="ManageTeams"><button className={Styles.btnNav}> -  Manage Teams</button></Link>
+                <Link to="ManageSites"><button className={Styles.btnNav}> - Manage Sites</button></Link>
+                <Link to="ManageParts"><button className={Styles.btnNav}> - Manage Parts</button></Link>
             </SideNav>
             <main className={Styles.pageContainer}>
                 <Router style={{width: "100%"}}>
-                    <ManageUsers path="ManageUsers"/>
+                    <ManageUsers default path="ManagerUsers"/>
                     <ManageVehicles path="ManageVehicles" />
                     <ManageTeams path="ManageTeams"/>
                     <ManageSites path="ManageSites"/>
