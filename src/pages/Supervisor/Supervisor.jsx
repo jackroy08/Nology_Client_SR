@@ -7,11 +7,8 @@ import { getVehicles, createVehicle, subscribeToVehicles } from './../../service
 import { getNewsItems, subscribeToNewsItems, createNewsItem } from "../../services/newsItemsService";
 import { getTeams } from "../../services/TeamsService";
 import { getUsers } from "../../services/UsersService";
-<<<<<<< HEAD
 import SideNav from "../../components/SideNav";
-=======
 import { UserContext } from "../../context/userContext";
->>>>>>> efc9006e199652b644a464219be3d85f844121c4
 
 import VehicleTable from "./VehicleTable";
 import UserTable from "./UserTable";
