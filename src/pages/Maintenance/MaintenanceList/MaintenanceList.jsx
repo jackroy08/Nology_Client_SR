@@ -41,7 +41,7 @@ const MaintenanceList = () => {
         <section className={Styles.jobsListSection}>
             <header>
                 <h3>Outstanding Jobs</h3>
-                <select onChange={(event) => filterJobs(event.target.value)}>
+                <select className={Styles.selectPrimary} onChange={(event) => filterJobs(event.target.value)}>
                         <option value="">All Vehicles</option>
                         {vehicleIDArr ? vehicleIDArr.map((vehicleID) => <option key={vehicleID} value={vehicleID}>{vehicleID}</option>) : null}
 

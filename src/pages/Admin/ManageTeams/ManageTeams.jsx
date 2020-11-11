@@ -42,15 +42,16 @@ const ManageTeams = () => {
         <section className={Styles.teamsListSection}>
             <header>
                 <h3>Teams</h3>
-                <button onClick={toggle}>Create New Team</button>
+                <button className={Styles.btnPrimary} onClick={toggle}>Create New Team</button>
                 <Modal innerComponent={<CreateTeamForm hide={toggle}/>} isShowing={isShowing} hide={toggle} />
-                <select onChange={(event) => filterTeams(event.target.value)}>
+                <select className={Styles.selectPrimary} onChange={(event) => filterTeams(event.target.value)}>
                         <option value="">All Teams</option>
                         {teamNamesArr ? teamNamesArr.map((team) => <option key={team} value={team}>{team}</option>) : null}
                     </select>
             </header>                    
             <ul className={Styles.teamsList}>
                 <li className={Styles.columnTitles}>
+                    <h4>ID</h4>
                     <h4>Site</h4>
                     <h4>Team Name</h4>
                     <h4>Sub Team Name</h4>

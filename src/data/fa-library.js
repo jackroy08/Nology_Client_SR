@@ -9,7 +9,9 @@ import {
     faTrashAlt,
     faPencilAlt,
     faExclamationTriangle,
-    faCheckCircle
+    faCheckCircle,
+    faSignOutAlt,
+    faKey
 
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -23,5 +25,7 @@ export default library.add(
     faTrashAlt,
     faPencilAlt,
     faExclamationTriangle,
-    faCheckCircle
+    faCheckCircle,
+    faSignOutAlt,
+    faKey
 );

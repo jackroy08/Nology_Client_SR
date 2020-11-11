@@ -42,16 +42,16 @@ const ManageParts = () => {
         <section className={Styles.partsListSection}>
             <header>
                 <h3>Parts</h3>
-                <button onClick={toggle}>Create New Part</button>
+                <button className={Styles.btnPrimary} onClick={toggle}>Create New Part</button>
                 <Modal innerComponent={<CreatePartForm hide={toggle}/>} isShowing={isShowing} hide={toggle} />
-                <select onChange={(event) => filterParts(event.target.value)}>
+                <select className={Styles.selectPrimary} onChange={(event) => filterParts(event.target.value)}>
                         <option value="">All Parts</option>
                         {partNamesArr ? partNamesArr.map((part) => <option key={part} value={part}>{part}</option>) : null}
                     </select>
             </header>                    
             <ul className={Styles.partsList}>
                 <li className={Styles.columnTitles}>
-                    <h4>Part ID</h4>
+                    <h4>ID</h4>
                     <h4>Part Name</h4>
                     <h4>Action</h4>
                 </li>

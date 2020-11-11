@@ -40,6 +40,16 @@ const ChecklistContainer = (props) => {
     }
 
     const propsMethods = {
+<<<<<<< HEAD
+                            setFailedElements: setFailedElements,
+                            failedElements: failedElements,
+                            failObject: failObject, 
+                            checklistData: checklistData, 
+                            vehicleType: vehicle.vehicleType,
+                            nextHandler: nextHandler, 
+                            backHandler: backHandler
+                        }
+=======
         setFailedElements: setFailedElements,
         failedElements: failedElements,
         failObject: failObject, 
@@ -48,6 +58,7 @@ const ChecklistContainer = (props) => {
         nextHandler: nextHandler, 
         backHandler: backHandler
     }
+>>>>>>> efc9006e199652b644a464219be3d85f844121c4
 
     let navigation = () => {
         switch (step) {

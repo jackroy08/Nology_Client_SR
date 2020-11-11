@@ -1,5 +1,16 @@
 @import '../../assets/styles/buttons'; 
 
+.pageContainer {
+  width: 100%;
+  justify-items: center;
+  display: flex;
+}
+
+.mainContent {
+  width: 100%;
+  padding: 10px;
+}
+
 .adminNav {
   display: flex;
   justify-content: center;
