@@ -1,14 +1,23 @@
 import { firestore } from "./../firebase";
 
-const getChecklists  = () => {
-    console.log("get Checklists here")
+const getChecklists  = (vehicleType) => {
+        return firestore
+            .collection("checklistData")
+            .doc(vehicleType)
+            .get()
+            .then(response => response.data())
 }
 
 const subscribeToChecklist = () => {
     console.log("subscibe to checklists here")
 }
-const createChecklist  = () => {
-    console.log("create Checklists here")
+const createChecklist  = (data) => {
+    Object.keys(data).forEach(type => {
+        firestore
+        .collection("checklistData")
+        .doc(type)
+        .set(data[type]);
+    })
 }
 
 const updateChecklist  = () => {

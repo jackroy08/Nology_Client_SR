@@ -29,13 +29,32 @@ const Management = () => {
         }
     }
 
-    const fetchVehicles = () => {
-        getVehicles().then((response) => setVehiclesArr(response));
-    }
-
     useEffect(() => {
-        fetchVehicles();
-        safetySignalStatus("go");
+
+    const promises = [getVehicles()];
+    Promise.all(promises).then(response => {
+
+        const classAIssues = [];
+        const classBIssues = [];
+        const classCIssues = [];
+        const [vehicles] = response;
+
+        setVehiclesArr(vehicles);
+        vehicles.map((vehicle) => {
+            
+            if(vehicle.checkItems !== null) {
+                for (let i = 0; i < vehicle.checkItems.length; i++) {
+                    const checkItem = vehicle.checkItems[i];
+
+                    if(checkItem.classType == "classA") classAIssues.push(checkItem);
+                    else if(checkItem.classType == "classB") classBIssues.push(checkItem);
+                }                
+            }
+        })
+        if(classAIssues.length > 0) safetySignalStatus("noGo");
+        else if(classBIssues.length >= 5) safetySignalStatus("goBut");
+        else safetySignalStatus("go");
+    }) 
     }, []);
 
     return (   

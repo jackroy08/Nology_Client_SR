@@ -4,7 +4,7 @@ import Styles from "./Confirmation.module.scss";
 import { setVehicleIssues } from "../../../services/VehiclesService";
 
 const Confirmation = (props) => {
-    const {backHandler, failedElements} = props;
+    const { vehicle, backHandler, failedElements } = props;
     const [issuesArr, setIssuesArr] = useState([]);
 
     const getFailedElementJsx = (classType) => {
@@ -24,7 +24,7 @@ const Confirmation = (props) => {
     }
 
     const submitHandler = () => {
-        setVehicleIssues("001", issuesArr, setGoStatusHandler(issuesArr));
+        setVehicleIssues(vehicle.vehicleID, issuesArr, setGoStatusHandler(issuesArr));
         navigate("/operator")
     }
 
@@ -44,7 +44,7 @@ const Confirmation = (props) => {
         const issues = [];
         Object.keys(failedElements).map(classType => {
             Object.keys(failedElements[classType]).map(elem => {
-                if (failedElements[classType][elem]["Issue"]) {
+                if (failedElements[classType][elem]["issue"]) {
                     issues.push(failedElements[classType][elem]);
                 }
             });

@@ -1,25 +1,44 @@
 import firebase, { firestore } from "../firebase";
 
+// const getLoads  = () => {
+//     return firestore.collection("loads").get().then(response => response.docs.map(document => document.data()));
+// }
+
 const getLoads  = () => {
-    return firestore.collection("loads").get().then(response => response.docs.map(document => document.data()));
+    return firestore.collection("loads")
+        .get()
+        .then(response => response.docs
+        .map(document => {
+            return {
+                ...document.data(),
+                id: document.id
+            }
+        })
+        );
 }
 
 //watches loads collection and updates the state whenever the db changes
 const subscribeToLoads = (setState) => {
-    firestore.collection("loads").onSnapshot(snapshot => setState(snapshot.docs.map(document => document.data())))
+    return firestore.collection("loads")
+        .onSnapshot(snapshot => setState(snapshot.docs
+            .map(document => {
+                return {
+                    ...document.data(),
+                    id: document.id
+                }
+            })
+        ));
 }
 
-const updateLoad = (load) => {
-    firestore
-        .collection("loads")
-        .doc("recentLoads")
-        .update({
-            loadsArr: firebase.firestore.FieldValue.arrayUnion({...load})
-        })
-    }
-    
+// dont touch this function //
 const createLoad  = (load) => {
-    firestore.collection("loads").doc("recentLoads").set({...load});
+    firestore.collection("loads")
+        .add({...load});
+}
+///////////////////////////////
+
+const updateLoad = (document, load) => {
+    firestore.collection("loads").doc(document).update({...load});
 }
 
 const updateLoads = (load) => {
@@ -27,15 +46,7 @@ const updateLoads = (load) => {
 }
 
 const deleteLoad  = (load) => {
-
-    let loadArr = [];
-    getLoads().then(response => loadArr=response);
-    const newLoadsArr = loadArr.filter((arrLoad) => {
-        return load !== arrLoad;
-    });
-    firestore.collection("loads").doc("recentLoads").delete();
-    
-    createLoad(newLoadsArr);
+    console.log('working');
 }
 
-export { getLoads, subscribeToLoads, updateLoads, deleteLoad, updateLoad }
+export { getLoads, subscribeToLoads, updateLoad, updateLoads, deleteLoad, createLoad }

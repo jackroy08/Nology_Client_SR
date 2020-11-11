@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./SupervisorIncidentForm.module.scss";
 import { createNewsItem } from "./../../../services/newsItemsService";
+import toastService from "../../../services/toastService";
 
 const SupervisorIncidentForm = (props) => {
 
@@ -9,28 +10,29 @@ const SupervisorIncidentForm = (props) => {
   const [formData, setFormData] = useState({
     title: null,
     message: null,
-    team: "Managment",
-    type:"Supervisor Report",
-    isImportant: true,
-    seenBy: [],
-    info: {info:"i am info"}
+    isImportant: null
   });
 
   const updateForm = (e) => {
     const newObject = {...formData};
-    newObject[e.target.name] = e.target.value;
+    newObject[e.target.name] = e.target.type==="checkbox" ? e.target.checked ? true : false : e.target.value;
     setFormData(newObject);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createNewsItem(formData);
-
+    createNewsItem({
+      ...formData,
+      team: "Managment",
+      type:"supervisorIncident",
+      seenBy: [],
+      dateCreated: new Date(), 
+      info: {
+        reportedBy: user.fullNameStr
+      },
+    });
+    toastService("Form Submitted", 2000);
   }
-
-
-  //Add dropdown for teams
-  //add checkbox for is important
 
   return (
     <>
@@ -45,7 +47,7 @@ const SupervisorIncidentForm = (props) => {
         </label>
         <label htmlFor="isImportant">
           Important?
-          <input type="checkbox" name="isImportant" onInput={updateForm} />
+          <input type="checkbox" name="isImportant" value="true" onInput={updateForm} />
         </label>
         <input type="submit" />
       </form>

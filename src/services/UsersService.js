@@ -14,7 +14,12 @@ const subscribeToUsers = (setState) => {
 }
 const createUser  = (newUser) => firestore.collection("users").doc(newUser.userID).set({...newUser});
 
-const updateUser  = (updatedUser) => firestore.collection("users").doc(updatedUser.userID).update({...updatedUser});
+const updateUser  = (updatedUser) => {
+    return firestore
+        .collection("users")
+        .doc(updatedUser.userID)
+        .update({...updatedUser})
+};
 
 const deleteUser  = (user) => firestore.collection("users").doc(user.userID).delete();
 
@@ -37,7 +42,7 @@ const getTeamSupervisor = (operatorTeam, operatorSubTeam) => {
         .where("currentSubTeam", "==", `${operatorSubTeam}`)
         .get()
         .then(querySnapshot => {
-            const data = querySnapshot.docs.map(doc => doc.data())
+            const data = querySnapshot.docs.map(doc => doc.data());
             return data;
         });
     }
