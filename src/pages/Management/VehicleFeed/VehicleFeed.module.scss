@@ -50,6 +50,14 @@
         padding: 20px;
         height: 75%;
         overflow-y: scroll;
+        position: relative;
+
+        p {
+            text-align: center;
+            text-decoration: underline;
+            font-weight: 850;
+            padding: 25px 0 30px;
+        }
 
         .flexCharts {
             display: flex;
@@ -67,7 +75,7 @@
         
         .siteData {
             width: 100%;
-            height: 100%;
+            height: 90%;
         }
     }
 }

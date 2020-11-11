@@ -1,6 +1,6 @@
 import React from "react";
 import Styles from "./LoadApproveForm.module.scss";
-import { getLoads, updateLoad, deleteLoad } from "./../../../../services/LoadsService";
+import { getLoads, updateLoads, deleteLoad } from "./../../../../services/LoadsService";
 import { useForm } from "react-hook-form";
 
 const LoadApproveForm = (props) => {
@@ -17,7 +17,7 @@ const LoadApproveForm = (props) => {
         ...data,
         isSignedOff: data.isApproved == 1 ? true : false,
       }
-      updateLoad(newLoad)
+      updateLoads(newLoad)
   }
 
 
