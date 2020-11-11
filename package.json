@@ -14,6 +14,7 @@
     "chart.js": "^2.9.4",
     "firebase": "^7.24.0",
     "firebase-cli": "^1.2.0",
+    "lodash": "^4.17.20",
     "node-sass": "4.14.1",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
