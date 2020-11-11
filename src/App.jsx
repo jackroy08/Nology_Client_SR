@@ -27,7 +27,7 @@ const App = () => {
   return (
     <>
     <UserProvider>
-        <Header />
+        {/* <Header /> */}
         <Router className={styles.fullWidth}>
           <Login path="/" />
           <Operator path="/operator" />

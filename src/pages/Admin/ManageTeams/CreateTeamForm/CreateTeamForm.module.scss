@@ -1,12 +1,13 @@
 @import '../../../../assets/styles/buttons'; 
-
+@import '../../../../assets/styles/forms'; 
 .teamForm {
   margin-top: 1em;
   display: grid;
   align-items: center;
-  gap:0.5em;
+  background-color: white;
+  gap:$base-spacing * 2;
   grid-template-columns: 1fr 1fr;
-  background-color: $background-color1;
+  
   padding: $base-spacing * 2;
 
 
@@ -16,5 +17,8 @@
     font-size: 0.8em;
     margin: 0;
     grid-column: 2/3;
-  };
+  }
+  button {
+    width: 100%;
+  }
 }

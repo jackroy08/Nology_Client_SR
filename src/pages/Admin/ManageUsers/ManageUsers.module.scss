@@ -3,26 +3,33 @@
 
 .usersListSection {
   width: 100%;
-  padding: 0 $base-spacing;
+  background: white;
+  padding: 0 $base-spacing*2 $base-spacing*2 $base-spacing*2;
+  border-radius: 10px;
 
   header {
     display: flex;
     justify-items: flex-end;
     align-items: center;
+    padding: $base-spacing*2 0;
+    border-bottom: 3px solid $background-color1;
 
     h3{
       margin-right: auto;
+    }
+    select {
+      margin-left: 10px;
     }
   }
 
   .columnTitles{
     padding: $base-spacing $base-spacing/2;
-    background: $grey-lighten;
+    // background-color: $background-color1;
+    padding: $base-spacing;
   }
 
   .usersList {
     width: 100%;
-    background-color: $background-color1;
   }
 
   .userItem, .columnTitles {
@@ -33,7 +40,6 @@
   }
   
   .userItem {
-    background-color: $background-color1;
     margin-bottom: $base-spacing;
     padding: 0 $base-spacing;
 

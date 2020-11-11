@@ -25,19 +25,19 @@ const TeamItem = (props) => {
             <span className={Styles.faIcon} onClick={toggle}><FontAwesomeIcon  icon="pencil-alt"/></span>
             <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="trash-alt"/></span>
             <div className={`${Styles.confirmDelete} ${toggleStyles}`}>
-                        <button
-                            className={Styles.btnPrimary}
-                            onClick={() => setIsOpen(!isOpen)}
-                            >Cancel
-                        </button>
-                        <button
-                            className={Styles.btnDanger}
-                            onClick={() => {
-                                deleteTeam(team);
-                                setIsOpen(!isOpen);
-                            }}
-                        >Confirm
-                        </button>
+                <button
+                    className={Styles.btnSecondary}
+                    onClick={() => setIsOpen(!isOpen)}
+                    >Cancel
+                </button>
+                <button
+                    className={Styles.btnPrimary}
+                    onClick={() => {
+                        deleteTeam(team);
+                        setIsOpen(!isOpen);
+                    }}
+                >Confirm
+                </button>
             </div>
             <Modal innerComponent={<EditTeamForm team={team} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
         </li>

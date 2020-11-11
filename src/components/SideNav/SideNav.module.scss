@@ -6,10 +6,10 @@
   min-width: 250px;
   padding: $base-spacing*2;
   height: 100vh;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   position: sticky;
   top: 0;
-  grid-template-rows: min-content auto min-content;
   justify-items: center;
   align-items: start;
   // background: $grey-lighten;
@@ -31,28 +31,27 @@
   padding: 0 $base-spacing*2;
 }
 
-.sideNavFooter {
+.accountMenu {
   width: 100%;
   display :flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
   background: white;
   border-radius: 10px;
-}
-
-.faIcon {
-  font-size: 1.5rem;
-  justify-self: center;
+  overflow: hidden;
+  padding: $base-spacing*2;
 }
 
 .accountMenu li {
   cursor: pointer;
-  padding: $base-spacing;
-  display: grid;
+  padding: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
   align-items: center;
-  grid-template-columns: 50px auto;
   transition: 0.3s ease-in-out;
   transform-origin: left;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   color: $dark-text-mid;
   
   &:hover {
@@ -61,9 +60,15 @@
 }
 
 .accountMenuLogout, .accountMenuPassword {
-  transform: translateX(-100%);
+  // transform: translateX(-100%);
 }
 
 .accountMenuOpen {
-  transform: translateX(0%);
+  height: 300px;
+}
+
+.faIcon {
+  font-size: 1.5rem;
+  justify-self: center;
+  margin-right: 10px;
 }

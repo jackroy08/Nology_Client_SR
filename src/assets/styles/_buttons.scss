@@ -47,34 +47,32 @@
 }
 
 .btnPrimary {
-  padding: $base-spacing/2;
+  padding: 10px 20px;
+  font-weight: 500;
+  max-width: 200px;
+  background: $primary-color;
+  border: none;
   border-radius: 5px;
-  position: relative;
-  margin: $base-spacing/2;
-  border: 1px solid $grey;
-  transition: 0.15s ease-in-out;
-  cursor: pointer;
+  color: white;
+  transition: background 0.3s ease;
 
   &:hover {
-    background: $blue;
-    color: $light-text-high;
+    cursor: pointer;
   }
 }
 
 .btnSecondary {
-  padding: $base-spacing/2;
+  padding: 10px 20px;
+  font-weight: 500;
+  max-width: 200px;
+  background: $background-color2;
+  border: none;
   border-radius: 5px;
-  position: relative;
-  margin: $base-spacing/2;
-  border: 1px solid $grey;
-  transition: 0.15s ease-in-out;
-  cursor: pointer;
+  color: $primary-color;
+  transition: background 0.3s ease;
 
-  color: $light-text-mid;
-  background-color: $dark-text-mid;
-  
-  &:active, &:hover {
-    background-color: $background-color4;
+  &:hover {
+    cursor: pointer;
   }
 }
 

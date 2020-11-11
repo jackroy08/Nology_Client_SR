@@ -38,6 +38,7 @@ const CreateTeamForm = (props) => {
         <form className={Styles.teamForm} onSubmit={handleSubmit(createNewTeam)}>
             <label htmlFor="site">Select Site :</label>
             <select
+                className={Styles.selectPrimary}
                 name="site"
                 id="site"
                 ref={register({ required: true })}>
@@ -48,6 +49,7 @@ const CreateTeamForm = (props) => {
 
             <label htmlFor="teamID">Team ID:</label>
             <input
+                className={Styles.inputPrimary}
                 type="text"
                 id="teamID"
                 name="teamID"
@@ -57,6 +59,7 @@ const CreateTeamForm = (props) => {
 
             <label htmlFor="teamName">Team Name:</label>
             <input
+                className={Styles.inputPrimary}
                 type="text"
                 id="teamName"
                 name="teamName"
@@ -66,6 +69,7 @@ const CreateTeamForm = (props) => {
             
             <label htmlFor="subTeamName">Sub Team Name :</label>
             <input
+                className={Styles.inputPrimary}
                 type="text"
                 id="subTeamName"
                 name="subTeamName"
@@ -74,14 +78,14 @@ const CreateTeamForm = (props) => {
                 {errors.subTeamName && <p>Sub Team Name is required.</p>}
                 
             <button
-                className={`${Styles.btn} ${Styles.btnDanger}`}
+                className={`${Styles.btn} ${Styles.btnPrimary}`}
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={props.hide}
                 >Cancel
                 </button>
             <button 
-                className={`${Styles.btn} ${Styles.btnSuccess}`}
+                className={`${Styles.btn} ${Styles.btnSecondary}`}
                 type="submit"
                 >Create</button>
         </form>
