@@ -18,8 +18,12 @@ const updateLoad = (load) => {
     firestore.collection("loads").doc("recentLoads").update({...load});
 }
 
+const updateLoads = (load) => {
+    firestore.collection("loads").doc("recentLoads").update({...load});
+}
+
 const deleteLoad  = (load) => {
 
 }
 
-export { getLoads, subscribeToLoads, updateLoad, deleteLoad, createLoad }
+export { getLoads, subscribeToLoads, updateLoad, updateLoads, deleteLoad, createLoad }
