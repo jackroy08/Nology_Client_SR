@@ -2,6 +2,7 @@ import React from "react";
 import Styles from "./SignOffMaintenanceForm.module.scss";
 import { useForm } from "react-hook-form";
 import { updateVehicleIssue } from "../../../../services/VehiclesService";
+import { cloneDeep } from "lodash";
 
 const SignOffMaintenanceForm = (props) => {
 
@@ -10,8 +11,13 @@ const SignOffMaintenanceForm = (props) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (formData) => { 
+
+    //removing added field before putting into firestore
+    const newCheckItem = cloneDeep(checkItem);
+    delete newCheckItem.vehicleType;
+    
     updateVehicleIssue({
-      ...checkItem,
+      ...newCheckItem,
       supervisorSignoff: formData.approved==="true" ? true : false
       //ToDo What is flow if superviosr rejects a maintenance fix.
     })
