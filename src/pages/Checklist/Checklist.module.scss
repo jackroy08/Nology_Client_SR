@@ -11,11 +11,11 @@ img {
     h1 {
         font-size: 2em;
         margin: 0;
-        color: $light-text-color
+        color: $light-text-mid
     }
 
     form {
-        color: $dark-text-color;
+        color: $dark-text-mid;
         background-color: white;
         div {
             display: grid;
@@ -38,7 +38,7 @@ img {
 
         h2{
             text-align: center;
-            color: $light-text-color; 
+            color: $light-text-mid; 
             font-size: 2em;
         }
 

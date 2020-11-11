@@ -1,34 +1,36 @@
 @import '../../assets/styles/buttons'; 
+@import "../../assets/styles/forms";
 @import "../../assets/styles/variables";
 
-.pageFlex {
+.pageContainer {
     width: 100%;
     justify-items: center;
     display: flex;
 }
 
-.asideContainer {
-    background-color: $background-color4;
-    height: 100vh;
+.mainContent {
+    width: 100%;
+    padding: 10px;
 }
 
-.buttonGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 340px;
-    height: 500px;
+.newsTicker{
+    position: relative;
+    list-style: none;
+    padding-inline-start: 0px;
+    width: 100%;
+    background: $grey-lighten;
+    margin: 0px;
+}
 
-    div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.dataTable {
+    grid-column: 2 / 3;
+    width: 100%;
+    background: $grey-lighten;
 }
 
 .selectTeam {
-    width: 92%;
-    height: 60px;
-    margin: 7px auto;
+    width: 100%;
+    margin: $base-spacing 0 0 0;
 
     select {
         width: 100%;
@@ -67,24 +69,5 @@
     display: flex;
 } 
 
-.newsFeed {
-    width: 100%;
-    padding: 10px;
-    background-color: white;
-}
-
-.newsTicker{
-    position: relative;
-    list-style: none;
-    padding-inline-start: 0px;
-    width: 100%;
-    background-color: $background-color1;
-    margin: 0px;
-}
-
-.dataTable {
-    grid-column: 2 / 3;
-    width: 100%;
-}
 
 

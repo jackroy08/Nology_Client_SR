@@ -3,20 +3,21 @@
 
 // Put your GENERIC form styles in here
 
-select, input {
-  box-sizing:border-box;
-  background-color: $background-color2;
-  color:rgb(51, 51, 51);
-  border: 1px solid rgb(51, 51, 51);
-  cursor:pointer;
-  font-family: $font;
-  font-size:14px;
-  font-weight:400;
-  padding: 8px;
-  transition: 0.15s ease-in-out;
-  background: white;
-  &:active, &:hover {
-    background-color: $background-color4;
-  }
+label {
+  font-size: 0.8rem;
+}
 
+.inputPrimary, .selectPrimary {
+  padding: $base-spacing/2;
+  margin: $base-spacing;
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid $grey;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background: $blue;
+    color: $light-text-high;
+  }
 }

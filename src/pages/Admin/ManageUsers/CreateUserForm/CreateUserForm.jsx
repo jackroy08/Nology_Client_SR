@@ -60,6 +60,7 @@ const createNewUser = (data) => {
         <form className={Styles.userForm} onSubmit={handleSubmit(createNewUser)}>
             <label htmlFor="userID">User ID# :</label>
             <input
+                className={Styles.inputPrimary}
                 type="text"
                 id="userID"
                 name="userID"
@@ -69,6 +70,7 @@ const createNewUser = (data) => {
             
             <label htmlFor="userType">Select User Type :</label>
             <select
+                className={Styles.selectPrimary}
                 name="userType"
                 id="userType"
                 ref={register({ required: true })}>
@@ -82,6 +84,7 @@ const createNewUser = (data) => {
 
             <label htmlFor="currentTeam">Select Team :</label>
             <select
+                className={Styles.selectPrimary}
                 name="currentTeam"
                 id="currentTeam" 
                 ref={register()}>
@@ -93,6 +96,7 @@ const createNewUser = (data) => {
             
             <label htmlFor="currentSubTeamName">Select Sub Team :</label>
             <select
+                className={Styles.selectPrimary}
                 name="currentSubTeamName"
                 id="currentSubTeamName" 
                 ref={register()}>
@@ -103,6 +107,7 @@ const createNewUser = (data) => {
             
             <label htmlFor="fullName">Full Name :</label>
             <input
+                className={Styles.inputPrimary}
                 type="text"
                 id="fullName"
                 name="fullName"
@@ -112,6 +117,7 @@ const createNewUser = (data) => {
             
             <label htmlFor="dateOfBirth">Date of Birth :</label>
             <input
+                className={Styles.inputPrimary}
                 type="date"
                 id="dateOfBirth"
                 name="dateOfBirth"

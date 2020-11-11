@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { createNewsItem } from "../../../services/newsItemsService";
+import { UserContext } from "../../../context/userContext";
+import toastService from "../../../services/toastService";
+
 
 export const DailyReport = () => { 
 
-    const user = {
-        currentTeam: "teamA"
-    }
+const { user } = useContext(UserContext)
     
     const { register, handleSubmit } = useForm();
 
-    //should be back endddddd
     const toLowerCaseHyphen = (str) => {
         return str.split(" ").map(word => {
             return word.toLowerCase()
@@ -23,7 +23,6 @@ export const DailyReport = () => {
             this.type = type;
             this.label = label;
             this.id  = toLowerCaseHyphen(this.label);
-            
         }
     }
 
@@ -45,20 +44,18 @@ export const DailyReport = () => {
     /////////////////
 
     const submitForm = (data) => {
-        console.log(data);
         let newsItemToSubmit = {
             title: "Supervisor Report",
             message: "new supervisor report",
             team: user.currentTeam,
             type: "supervisorReport",
             isImportant: true,
-            SeenBy: [],
-            // captital S?
+            seenBy: [],
             info: data,
-            dateCreated: new Date().toString()
+            dateCreated: new Date()
         }
         createNewsItem(newsItemToSubmit);
-        alert('form submitted');
+        toastService("Form Submitted", 2000);
     }
 
     return (

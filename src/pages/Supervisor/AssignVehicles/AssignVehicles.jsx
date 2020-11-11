@@ -2,6 +2,7 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import { updateUser } from "../../../services/UsersService";
 import { updateVehicle } from "../../../services/VehiclesService";
+import showToast from "../../../services/toastService";
 
 export const AssignVehicles = (props) => {
 
@@ -27,7 +28,7 @@ export const AssignVehicles = (props) => {
                 currentUser: data.driver
             });
         }finally{
-            alert(`${updatedUser.fullNameStr} assigned to ${updatedVehicle.vehicleType}-${updatedVehicle.vehicleID}`);
+            showToast(`${updatedUser.fullNameStr} assigned to ${updatedVehicle.vehicleType}-${updatedVehicle.vehicleID}`,2000);
         }
         
     }
