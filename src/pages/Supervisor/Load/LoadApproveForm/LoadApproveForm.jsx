@@ -1,31 +1,53 @@
-import React from "react";
+import React, { useContext } from "react";
 import Styles from "./LoadApproveForm.module.scss";
-import { getLoads, updateLoads, deleteLoad } from "./../../../../services/LoadsService";
+import { updateLoad } from "./../../../../services/LoadsService";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../../../context/userContext";
+import { createNewsItem } from "../../../../services/newsItemsService";
 
 const LoadApproveForm = (props) => {
   
+  const {user} = useContext(UserContext)
   const { index, load } = props;
   const { driver, currentDate } = load;
 
   const { register, handleSubmit } = useForm();
 
     const submitForm = (data) => {
-      deleteLoad(load);
       let newLoad = {
         ...load,
         ...data,
         isSignedOff: data.isApproved == 1 ? true : false,
       }
-      updateLoads(newLoad)
+      delete newLoad.id;
+      delete newLoad.isApproved;
+      updateLoad(load.id, newLoad)
+
+      ////
+      createNewsItem({
+        dateCreated: new Date(),
+        title: data.isApproved == 1 ? "Load Approved" : "Load Rejected",
+        message: `Load ${ data.isApproved == 1 ? "approved" : "rejected" } by ${user.fullNameStr}`,
+        team: user.currentTeam,
+        type: "loadApproved",
+        seenBy: [],
+        isImportant: false,
+        info: {
+            driver: load.driver,
+            mass: data.mass,
+            material: data.material,
+            approvedBy: user.userID
+        }
+      })
   }
 
+  const date = currentDate.toDate().toString().substring(0, 21);
 
   return (
     <>
       <form className={Styles.approveLoadForm} onSubmit={handleSubmit(submitForm)}>
           <h5>{driver}</h5>
-          <h5>{currentDate}</h5>
+          <h5>{date}</h5>
 
           <label htmlFor={`yes${index}`}>
           Approve 

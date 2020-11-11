@@ -18,6 +18,12 @@ import SupervisorIncidentForm from './SupervisorIncidentForm/SupervisorIncidentF
 import SignOffMaintenance from "./SignOffMaintenance"
 import { navigate } from '@reach/router';
 
+///// BUGS /////
+// 1. When you click back on checkout vehicle, it takes you to an empty page (doesn't take you back to supervisor)
+// 2. When you close the add load modal, page goes blank 
+// 3. When you approve a load, the load does not dissapear on users screen (but does update on firestore)
+////////////////
+
 export const Supervisor = () => {
     //dummy data
     const maintenanceIssues = [{status: false},{status: true},{status: false},{status: false},{status: false},{status: false},{status: false},{status: false}]
@@ -38,6 +44,7 @@ export const Supervisor = () => {
 
     //page load effects
     useEffect(() => {
+        let mounted = true;
         //get vehicles
         getVehicles().then(dataArr => setVehiclesArr(dataArr));
         getUsers().then(dataArr => setUsersArr(dataArr));
@@ -45,11 +52,14 @@ export const Supervisor = () => {
         getNewsItems(teamToView).then(dataArr => setNewsItemsArr(dataArr));
         //set teams that can be selected
         // setTeamsAvailableToView(getUniqueTeams([]));
-        getTeams().then((res) => {setTeamsAvailableToView((getUniqueTeams(res)))});
+        getTeams().then(res => {if(mounted){setTeamsAvailableToView((getUniqueTeams(res)))}});
         //subscribing to all vehicles as this doesnt have a teams filter on the service
         let unsubscribeVehicles = subscribeToVehicles(setVehiclesArr,teamToView);
         //Need to do same for users
-        return () => {unsubscribeVehicles()}
+        return () => {
+            mounted = false;
+            unsubscribeVehicles();
+        }
     }, [])
 
     useEffect(()=>{
@@ -98,8 +108,8 @@ export const Supervisor = () => {
 
                 <section className={Styles.asideContainer}>
                     <div className={Styles.selectTeam}>
-                        <select name="team" onChange={handleTeamChange}>
-                            {teamsAvailableToView.map(team => <option key={team} value={team} selected={team===user.currentTeam ? "selected" : ""}>{team}</option>)}
+                        <select name="team" onChange={handleTeamChange} value={teamToView}>
+                            {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
                         </select>
                     </div>
                     <article className={Styles.buttonGrid}>

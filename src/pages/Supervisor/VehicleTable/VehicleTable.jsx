@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import Styles from "./VehicleTable.module.scss";
 
 const VehicleTable = (props) => {
