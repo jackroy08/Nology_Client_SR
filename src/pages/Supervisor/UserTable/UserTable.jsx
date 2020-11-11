@@ -39,11 +39,14 @@ const UserTable = (props) => {
   return (
     <section className={Styles.userListSection}>
       <header className={Styles.header} onClick={headerOnClick}>
-        <h3>Team Member Info</h3>
+        <h3>Team Members</h3>
         <div className={Styles.userSummary}>
-          <p>Total Operators: {userData.length}</p>
-          <p>Operators on Shift: {userData.filter(v => v.goStatus).length}</p>
-          <p>Operators Away: {userData.filter(v => !v.goStatus).length}</p>
+          <p>Total:</p>
+          <p>{userData.length}</p>
+          <p>On Shift:</p>
+          <p>{userData.filter(v => v.goStatus).length}</p>
+          <p>Away:</p>
+          <p>{userData.filter(v => !v.goStatus).length}</p>
         </div>
       </header>
 

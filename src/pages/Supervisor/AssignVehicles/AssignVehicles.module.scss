@@ -2,11 +2,11 @@
 @import "./../../../assets/styles/forms";
 @import "./../../../assets/styles/buttons";
 
-.incidentTitle {
-  margin: $base-spacing*2 0;
+.assignVehicleTitle {
+    margin: $base-spacing*2 0;
 }
 
-.incidentForm {
+.assignVehicleForm {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: $base-spacing*2;

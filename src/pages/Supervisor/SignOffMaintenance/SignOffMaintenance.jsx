@@ -12,33 +12,37 @@ export const SignOffMaintenance = () => {
 
   return (
     <section>
-      <h2>Sign off Maintenance</h2>
-      <form className={Styles.addLoad} onSubmit={handleSubmit(onSubmit)}>
-        <h5>Driver: Matty Operator</h5>
-        <h5>Vehicle: Haul Truck</h5>
-        <h5>Issue: flat tire</h5>
+      <h3 className={Styles.signOffMaintenanceTitle}>Sign off Maintenance</h3>
+      <form className={Styles.signOffMaintenanceForm} onSubmit={handleSubmit(onSubmit)}>
+        
+        <label>Driver: </label>
+        <h5>Matty Operator</h5>
+        
+        <label>Vehicle: </label>
+        <h5>Haul Truck</h5>
+        
+        <label>Issue: </label>
+        <h5>flat tire</h5>
 
-        <label htmlFor="">
-          Approve
-          <input 
+        <label htmlFor="goStatusAccept">Approve
+        <input 
             type="radio"
             ref={register}
-            id=""
-            name="goStatus"
+            id="goStatusAccept"
+            name="goStatusAccept"
             />
         </label>
 
-        <label htmlFor="">
-          Reject
+        <label htmlFor="goStatusReject">Reject
           <input 
             type="radio"
             ref={register}
-            id=""
-            name="goStatus"
+            id="gostatusReject"
+            name="goStatusReject"
           />
         </label>
-        
-        <input type="submit"/>
+
+        <button className={Styles.btnPrimary} type="submit">Submit</button>
       </form>
     </section>
   )

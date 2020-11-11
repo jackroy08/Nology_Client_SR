@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./SupervisorIncidentForm.module.scss";
+import Styles from "./SupervisorIncidentForm.module.scss";
 import { createNewsItem } from "./../../../services/newsItemsService";
 import toastService from "../../../services/toastService";
 
@@ -36,20 +36,18 @@ const SupervisorIncidentForm = (props) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">
-          Title
-          <input type="text" name="title" placeholder="Title..." onInput={updateForm} />
-        </label>
-        <label htmlFor="message">
-          Message
-          <input type="text" name="message" placeholder="Message..." onInput={updateForm} />
-        </label>
-        <label htmlFor="isImportant">
-          Important?
-          <input type="checkbox" name="isImportant" value="true" onInput={updateForm} />
-        </label>
-        <input type="submit" />
+      <h3 className={Styles.incidentTitle}>Report An Incident</h3>
+      <form className={Styles.incidentForm} onSubmit={handleSubmit}>
+        <label htmlFor="title">Title</label>
+        <input className={Styles.inputPrimary} type="text" name="title" placeholder="Title..." onInput={updateForm} />
+        
+        <label htmlFor="message">Message</label>
+        <input className={Styles.inputPrimary} type="text" name="message" placeholder="Message..." onInput={updateForm} />
+        
+        <label htmlFor="isImportant">Important?</label>
+        <input className={Styles.inputPrimary} type="checkbox" name="isImportant" value="true" onInput={updateForm} />
+        
+        <button className={Styles.btnPrimary} type="submit">Submit</button>
       </form>
     </>
   );
