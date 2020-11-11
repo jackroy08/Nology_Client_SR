@@ -35,7 +35,6 @@ const getOperators = () => {
 }
 
 const getTeamSupervisor = (operatorTeam, operatorSubTeam) => {
-    console.log(operatorTeam);
     return firestore
         .collection("users")
         .where('userType', '==', "supervisor")

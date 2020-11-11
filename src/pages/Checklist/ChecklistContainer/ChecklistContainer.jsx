@@ -1,6 +1,5 @@
 import { Link } from '@reach/router';
-import React, { useState, useContext, useEffect } from 'react'
-import { getChecklists } from "../../../services/ChecklistsService";
+import React, { useState, useContext } from 'react'
 import ClassAChecks from '../ClassAChecks';
 import ClassBChecks from '../ClassBChecks';
 import ClassCChecks from '../ClassCChecks';
@@ -8,33 +7,31 @@ import Confirmation from '../Confirmation';
 import { UserContext } from "../../../context/userContext";
 
 const ChecklistContainer = (props) => {
-    const { user, vehicle, supervisor } = useContext(UserContext);
-    const [checklistData, setChecklistData] = useState({});
+    const { user, vehicle, supervisor, checklistData } = useContext(UserContext);
     const [step, setStep] = useState(1);
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
     const supervisorProperty = supervisor ? supervisor.userID : null;
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[classType]).reduce((acc, val) => {
-                if (!document.getElementById(val).checked) {
-                    acc[classType][val] = {
-                        classType: classType, 
-                        issue: val,
-                        vehicleID: vehicle.vehicleID,
-                        operator: user.userID,
-                        supervisor: supervisorProperty,
-                        additionalDetails: document.getElementById("additional-details").value,
-                        dateCreated: new Date().toUTCString(),
-                        maintenanceSignoff: false,
-                        supervisorSignoff: false
-                    };
-                    } else acc[classType][val] = {};
-                return acc;
+            if (!document.getElementById(val).checked) {
+                acc[classType][val] = {
+                    classType: classType, 
+                    issue: val,
+                    vehicleID: vehicle.vehicleID,
+                    operator: user.userID,
+                    supervisor: supervisorProperty,
+                    additionalDetails: document.getElementById("additional-details").value,
+                    dateCreated: new Date().toUTCString(),
+                    maintenanceSignoff: false,
+                    supervisorSignoff: false
+                };
+                } else acc[classType][val] = {};
+            return acc;
         }, failedElements);
     }
 
     const nextHandler = ()  => {
-        console.log(failedElements);
         setStep(step + 1);
     }
 
@@ -72,12 +69,6 @@ const ChecklistContainer = (props) => {
                 default: return "error page"
             }
         }
-
-        useEffect(() => {
-            getChecklists(vehicle.vehicleType)
-                .then(response => setChecklistData(response))
-            
-        }, [])
 
     return (
         <div>
