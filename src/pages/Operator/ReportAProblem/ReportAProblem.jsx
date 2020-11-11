@@ -3,8 +3,8 @@ import React from "react";
 import Styles from "../../../components/Modal/Modal.module.scss";
 import "./ReportAProblem.module.scss";
 import { updateVehicleIssues } from "../../../services/VehiclesService";
-// import 'react-html5-camera-photo/build/css/index.css'; Camera import line, need function adding 
-// Could look at making new modal for Report a problem to fix issue of submit load page being rendered instead
+import Camera from 'react-html5-camera-photo';
+import 'react-html5-camera-photo/build/css/index.css';
 const ReportAProblem = () => {
     const submitHandler = (e) => {
         console.log(e);
@@ -23,6 +23,12 @@ const ReportAProblem = () => {
         updateVehicleIssues("001", error)
         navigate("/Operator");
     }
+    const togglePhoto = () =>  {
+        return <Camera onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); }} />
+    }
+    const handleTakePhoto = (dataUri) => {
+            console.log("takePhoto");
+        }
     return (
         <form>
             <h1>Please give details of your issue below:</h1>
@@ -45,6 +51,7 @@ const ReportAProblem = () => {
             <div>
                 <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={()=> navigate("/operator")}>Cancel</button>
                 <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit" onClick={submitHandler}>Report</button>
+                <button onClick={() => togglePhoto}>Take a photo</button>
             </div>
             {/* // Ext- add camera API plugin functionality */}
         </form>

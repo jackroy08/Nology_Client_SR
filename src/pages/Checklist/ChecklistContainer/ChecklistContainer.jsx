@@ -60,7 +60,7 @@ const ChecklistContainer = (props) => {
                             Vehicle type: {vehicle.vehicleType}
                         </p> 
                         <button onClick={nextHandler}>Next</button>
-                        <Link to="/Operator">
+                        <Link to={`/${user.userType}`}>
                             <button>Back</button>
                         </Link>
                     </section>
