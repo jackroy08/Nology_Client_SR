@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Styles from "./SignOffMaintenance.module.scss"
-import { useForm } from "react-hook-form";
 import { subscribeToVehicles } from "../../../services/VehiclesService";
+import { UserContext } from "./../../../context/userContext";
+import SignOffMaintenanceForm from "./SignOffMaintenanceForm";
 
 export const SignOffMaintenance = () => {
 
   const [ vehiclesArray, setVehiclesArray ] = useState([])
   const [ filteredVehiclesArray, setFilteredVehiclesArray ] = useState([])
+  const [ checkItemsArr, setCheckItemsArr ] = useState([]);
+
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const unsubscribe = subscribeToVehicles(setVehiclesArray);
@@ -16,47 +20,29 @@ export const SignOffMaintenance = () => {
   }, [])
 
   useEffect(() => {
-    setFilteredVehiclesArray(vehiclesArray);
-    console.log(vehiclesArray);
-    console.log(filteredVehiclesArray);
+    setFilteredVehiclesArray(vehiclesArray.filter(vehicle => vehicle.currentTeam === user.currentTeam));
   }, [vehiclesArray])
 
-  const { register, handleSubmit } = useForm()
+  useEffect(() => {
+    let newCheckItemsArr=[];
+    filteredVehiclesArray.forEach(vehicle =>{
+      if(vehicle.checkItems){
+        vehicle.checkItems.forEach(checkItem => {
+          if(checkItem.maintenanceSignoff && !checkItem.supervisorSignoff){
+            newCheckItemsArr.push({...checkItem, vehicleType: vehicle.vehicleType})
+          }
+        })
+      }
+    })
+    setCheckItemsArr(newCheckItemsArr)  
+  }, [filteredVehiclesArray])
 
-  const onSubmit = () => { 
-    console.log('form working?');
-  } 
+  const signOffMaintenanceForms = checkItemsArr.length ? checkItemsArr.map(checkItem => (<SignOffMaintenanceForm checkItem={checkItem} key={checkItem.issueID} />)) : <h3>There are currently no maintenance issues to sign off</h3>;
 
   return (
     <section>
       <h2>Sign off Maintenance</h2>
-      <form className={Styles.addLoad} onSubmit={handleSubmit(onSubmit)}>
-        <h5>Driver: Matty Operator</h5>
-        <h5>Vehicle: Haul Truck</h5>
-        <h5>Issue: flat tire</h5>
-
-        <label htmlFor="">
-          Approve
-          <input 
-            type="radio"
-            ref={register}
-            id=""
-            name="goStatus"
-            />
-        </label>
-
-        <label htmlFor="">
-          Reject
-          <input 
-            type="radio"
-            ref={register}
-            id=""
-            name="goStatus"
-          />
-        </label>
-        
-        <input type="submit"/>
-      </form>
+      {signOffMaintenanceForms}
     </section>
   )
 }
