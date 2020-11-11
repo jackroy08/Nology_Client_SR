@@ -108,7 +108,7 @@ export const Supervisor = () => {
 
                 <section className={Styles.asideContainer}>
                     <div className={Styles.selectTeam}>
-                        <select name="team" onChange={handleTeamChange} value={user.currentTeam}>
+                        <select name="team" onChange={handleTeamChange} value={teamToView}>
                             {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
                         </select>
                     </div>
