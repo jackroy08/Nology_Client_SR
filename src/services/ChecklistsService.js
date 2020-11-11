@@ -1,7 +1,6 @@
 import { firestore } from "./../firebase";
 
 const getChecklists  = (vehicleType) => {
-    console.log(vehicleType)
         return firestore
             .collection("checklistData")
             .doc(vehicleType)
