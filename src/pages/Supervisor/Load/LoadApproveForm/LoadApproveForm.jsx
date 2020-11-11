@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Styles from "./LoadApproveForm.module.scss";
-import { getLoads, updateLoad, deleteLoad } from "./../../../../services/LoadsService";
+import { updateLoad } from "./../../../../services/LoadsService";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../../../context/userContext";
 import { createNewsItem } from "../../../../services/newsItemsService";

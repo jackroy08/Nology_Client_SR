@@ -10,7 +10,7 @@ import ReportAProblem from "./ReportAProblem";
 import Error from "../../components/Error";
 
 const Operator = () => {
-    const { user, vehicle, supervisor } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const { isShowing, toggle } = useModal();
     const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
     const [modalContent, setModalContent] = useState(null);
@@ -58,7 +58,6 @@ const Operator = () => {
             <button 
                 onClick={() => checklistBarrier()} 
                 user={user} 
-                vehicle={vehicle}
                 className={`${Styles.btn} ${Styles.btnLG}`}>
                     Accept Vehicle
             </button>

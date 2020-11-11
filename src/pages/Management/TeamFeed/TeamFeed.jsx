@@ -1,83 +1,114 @@
 import React, { useState, useEffect } from "react";
 import Styles from "./TeamFeed.module.scss";
-import Modal from "../../../components/Modal";
-import useModal from "../../../components/Modal/useModal";
-import Report from "../Report";
+import { getTeams } from "../../../services/TeamsService";
 import { getUsers } from "../../../services/UsersService";
 import { getVehicles } from "../../../services/VehiclesService";
 import { getLoads } from "../../../services/LoadsService";
+import { Bar } from 'react-chartjs-2';
 
 const TeamFeed = () => {
-    const [loads, setLoads] = useState([]);
     const [teamsArr, setTeamsArr] = useState([]);
-    const [usersArr, setUsersArr] = useState([]);
-    const [vehiclesArr, setVehiclesArr] = useState([]);
-    const {isShowing, toggle} = useModal();
-
-    const teamUpdates = [];
-
-    const getTeamJsx = (team) => {
-
-        const teamVehicleCountArr = [];
-        const teamActiveVehicleCountArr = [];
-        const classAArr = [];
-        const userTeamArr = [];
-        const userActiveTeamArr = [];
-        const teamLoadsArr = [];
-
-        vehiclesArr.map(vehicle => {
-            if(vehicle.currentTeam == team) teamVehicleCountArr.push(vehicle) 
-        });
-        teamVehicleCountArr.map(vehicle => {
-            if(vehicle.currentUser !== null) teamActiveVehicleCountArr.push(vehicle);
-        });
-        teamActiveVehicleCountArr.map(vehicle => {
-            if(vehicle.checkItems.classA !== undefined) classAArr.push(vehicle.checkItems.classA);
-        });
-        usersArr.map(user => {
-            if(user.currentTeam == team) userTeamArr.push(user);
-        });
-        userTeamArr.map(user => {
-            if(user.isOnShift == true) userActiveTeamArr.push(user);
-        });
-        loads.forEach((load) => {
-            if(load.team === team) teamLoadsArr.push(load);
-        });
-
-        return (
-            <article className={Styles.teamReport}>
-                <h3>{team}:</h3>
-                <p>There are {teamVehicleCountArr.length} vehicles in the team.</p>
-                <p>There are {teamActiveVehicleCountArr.length} active vehicles in the team</p>
-                <p>There are {userTeamArr.length} team members</p>
-                <p>There are currently {userActiveTeamArr.length} team members on shift</p>
-                <p>There have been {teamLoadsArr.length} loads during this shift.</p>
-                <p>There have been {classAArr.length} class A vehicle issues.</p>
-            </article>
-        )
-    }
+    const parentTeams = [];
 
     useEffect(() => {
-        getUsers().then((response) => setUsersArr(response));
-        getVehicles().then((response) => setVehiclesArr(response));
-        usersArr.forEach((user) => {
-            console.log(user.currentTeam);
-            if(!teamsArr.includes(user.currentTeam) && user.currentTeam !== undefined ) {
-                teamsArr.push(user.currentTeam);
-            }
-        });
-        getLoads().then((response) => setLoads(response));
+        const promises = [getUsers(), getTeams(), getVehicles(), getLoads()];
+
+        Promise.all(promises).then(response => {
+
+            const [users, teams, vehicles, loads] = response;
+            setTeamsArr(teams);
+
+            teams.forEach((team) => {
+                const subTeamUsers = users.filter(u => u.currentTeam == team.teamName && u.currentSubTeam == team.subTeamName);
+                if(!parentTeams.includes(team.teamName)) parentTeams.push(team.teamName);
+    
+                setSubTeamData(prevData => {
+                    return {
+                        datasets: [{
+                            data: prevData.datasets[0].data.concat([subTeamUsers.length]),
+                            borderWidth: 1,
+                            backgroundColor: "yellow"
+                        }],
+                        labels: prevData.labels.concat([`${team.teamName} ${team.subTeamName}`])
+                    }
+                });
+            });
+            parentTeams.forEach((team) => {
+                const teamVehicles = vehicles.filter(v => v.currentTeam == team);
+
+                setVehicleTeamData(prevData => {
+                    return {
+                        datasets: [{
+                            data: prevData.datasets[0].data.concat([teamVehicles.length]),
+                            borderWidth: 1,
+                            backgroundColor: "orange"
+                        }],
+                        labels: prevData.labels.concat([team])
+                    }
+                });
+            });
+            parentTeams.forEach((team) => {
+                const teamLoads = [];
+                for (const [key] of Object.entries(loads)) {
+                    if(loads[key].team == team) {
+                        teamLoads.push("load");
+                    };
+                    console.log(loads);
+                }
+
+                setTeamLoadData(prevData => {
+                    return {
+                        datasets: [{
+                            data: prevData.datasets[0].data.concat([teamLoads.length]),
+                            borderWidth: 1,
+                            backgroundColor: "cyan"
+                        }],
+                        labels: prevData.labels.concat([team])
+                    }
+                });
+            });
+        }); 
     }, []);
 
+    const [subTeamData, setSubTeamData] = useState({
+        datasets: [{data: [],}],
+    });
+    const [teamVehicleData, setVehicleTeamData] = useState({
+        datasets: [{data: [],}],
+    });
+    const [teamLoadData, setTeamLoadData] = useState({
+        datasets: [{data: [],}],
+    });
 
     return (
         <article className={Styles.dataFeed}>
             <h1 className={Styles.feedTitle}>Live feed for teams</h1>
-            <button className={Styles.btn} onClick={toggle}>Report</button>
-            <Modal innerComponent={<Report item={teamUpdates} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
             <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamsArr.length}</span> teams on this site.</h2>
             <section className={Styles.feedList}>
-                {teamsArr.map(getTeamJsx)}
+                <div className={Styles.chartContainer}>
+                    <p>Graph of Sub-Team Users</p>
+                    <Bar
+                        data={subTeamData}
+                        legend={{display: false}}
+                            options={{maintainAspectRatio: true, responsive: true}}
+                    />
+                </div>
+                <div className={Styles.chartContainer}>
+                    <p>Graph of Team Vehicles</p>
+                    <Bar
+                        data={teamVehicleData}
+                        legend={{display: false}}
+                        options={{maintainAspectRatio: true, responsive: true}}
+                    />
+                </div>
+                <div className={Styles.chartContainer}>
+                    <p>Graph of Team loads</p>
+                    <Bar
+                        data={teamLoadData}
+                        legend={{display: false}}
+                        options={{maintainAspectRatio: true, responsive: true}}
+                    />
+                </div>
             </section>
         </article>
     )
