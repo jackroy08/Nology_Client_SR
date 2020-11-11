@@ -18,16 +18,9 @@ const getLoads  = () => {
 }
 
 //watches loads collection and updates the state whenever the db changes
-const subscribeToLoads = (setState) => {
+const subscribeToLoads = (handleSnapshot) => {
     return firestore.collection("loads")
-        .onSnapshot(snapshot => setState(snapshot.docs
-            .map(document => {
-                return {
-                    ...document.data(),
-                    id: document.id
-                }
-            })
-        ));
+        .onSnapshot(handleSnapshot);
 }
 
 // dont touch this function //

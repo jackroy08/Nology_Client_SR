@@ -123,7 +123,7 @@ export const Supervisor = () => {
                             <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
                         </div>
                     </button>
-                    <button className={Styles.btnNav}>
+                    <button className={Styles.btnNav} onClick={handleCheckOutVehicle}>
                         Check Out Vehicle</button>
                     <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>
                         Supervisor Report</button>

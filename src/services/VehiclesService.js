@@ -45,4 +45,27 @@ const updateVehicleIssues = (vehicle, issues) => {
             checkItems: firebase.firestore.FieldValue.arrayUnion({...issues})
         })
     }
-export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle, getUserVehicle };
+
+const updateVehicleIssue = async (issue) => {
+    let response;
+    try{
+        const vehicle = (await firestore.collection("vehicles").doc(issue.vehicleID).get()).data();
+        const oldCheckItems = vehicle.checkItems; 
+        const newCheckItems = oldCheckItems.map(checkItem => {
+            if(checkItem.issueID===issue.issueID){
+                return issue;
+            }else{
+                return checkItem;
+            }
+        })
+        firestore.collection("vehicles").doc(issue.vehicleID).update({checkItems: newCheckItems});
+        response="OK"
+    }catch(error){
+        response = error;
+    }finally{
+        return response;
+    }
+
+}
+
+export { getVehicles, subscribeToVehicles, createVehicle, updateVehicle, setVehicleIssues, updateVehicleIssues, deleteVehicle, getUserVehicle, updateVehicleIssue };
