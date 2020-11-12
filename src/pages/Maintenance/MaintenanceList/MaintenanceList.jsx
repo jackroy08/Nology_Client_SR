@@ -59,7 +59,6 @@ const MaintenanceList = () => {
                     <h4>Operator</h4>
                     <h4>Supervisor</h4>
                     <h4>Assigned to</h4>
-                    <h4>✔</h4>
                 </li>
                 {filteredJobsArr.map((job) => <MaintenanceListItem key={`${job.vehicleID}-${job.issue}`} job={job}/>)} 
             </ul>
