@@ -2,6 +2,7 @@ import { Link, navigate } from "@reach/router";
 import React, { useState, useEffect } from "react";
 import Styles from "./Confirmation.module.scss";
 import { setVehicleIssues } from "../../../services/VehiclesService";
+import { createNewsItem } from "./../../../services/newsItemsService";
 
 const Confirmation = (props) => {
     const { vehicle, backHandler, failedElements } = props;
@@ -25,9 +26,21 @@ const Confirmation = (props) => {
 
     const submitHandler = () => {
         setVehicleIssues(vehicle.vehicleID, issuesArr, setGoStatusHandler(issuesArr));
-        //ToDo generate news item here
-        //failed elements contains failed checks
-        //go status
+        // createNewsItem({
+        //     dateCreated: issuesArr.dateCreated,
+        //     title: `Vehicle Checklist Complete`,
+        //     message: `${vehicle.vehicleID} - checklist complete - ${setGoStatusHandler(issuesArr)}`,
+        //     team: vehicle.currentTeam,
+        //     type: "vehicleCheckListComplete",
+        //     info: {
+        //         driver: vehicle.currentUser,
+        //         vehicle: `${vehicle.vehicleType}-${vehicle.vehicleID}`,
+        //         status: setGoStatusHandler(issuesArr)
+        //     },
+        //     seenBy: [],
+        //     isImportant: false
+        // })
+
         navigate("/operator")
     }
 
@@ -53,6 +66,7 @@ const Confirmation = (props) => {
             });
         });
         setIssuesArr(issues);
+        console.log(issues);
     }, [])
 
     return (
