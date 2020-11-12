@@ -1,5 +1,4 @@
-import { navigate } from "@reach/router";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Styles from "../../../components/Modal/Modal.module.scss";
 import "./ReportAProblem.module.scss";
 import { updateVehicleIssues } from "../../../services/VehiclesService";
@@ -9,6 +8,7 @@ import 'react-html5-camera-photo/build/css/index.css';
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import firebase from "firebase";
+import showToast from "../../../services/toastService";
 
 const ReportAProblem = (props) => {
     const { hide } = props;
@@ -16,10 +16,6 @@ const ReportAProblem = (props) => {
     const { user, vehicle, supervisor } = useContext(UserContext);
     const supervisorProperty = supervisor ? supervisor.userID ? supervisor.userID : null : null;
     const [photo, setPhoto] = useState("");
-
-    useEffect(() => {
-        console.log("hide was cahnged.."+hide);
-    }, [hide])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -48,6 +44,7 @@ const ReportAProblem = (props) => {
         }
         updateVehicleIssues(vehicle.vehicleID, error);
         hide();
+        showToast("Your issue has been recorded and passed to maintenance.", 2000);
     }
     
     const togglePhoto = (e) =>  {

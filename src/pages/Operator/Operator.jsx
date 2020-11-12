@@ -39,12 +39,17 @@ const Operator = () => {
     }
 
     const reportBarrier = () => {
-        if (user.isOnShift) {
+        if (user.isOnShift && user.assignedVehicle) {
             toggle();
             setModalContent(<ReportAProblem hide={toggle} />);
             
-        } else {
-            let message = "Please begin your shift to report a problem";
+        } else if (!user.isOnShift) {
+            let message = "Please begin your shift to accept a vehicle";
+            setModalContent(<Error message={message} hide={toggle} />);
+            toggle()
+        }
+        else {
+            let message = "Please confirm with your supervisor that a vehicle is assigned";
             toggle()
             setModalContent(<Error message={message} hide={toggle} />);            
         }
@@ -80,7 +85,6 @@ const Operator = () => {
                     onClick= {() => {toggle(); setModalContent(<SubmitLoad hide={toggle} />)}}>
                     Submit Load
                 </button>
-                {console.log("here is the isShowing.. " + isShowing)}
                 <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>
                 
             </SideNav>
