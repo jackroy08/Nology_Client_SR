@@ -10,14 +10,16 @@ const SubmitLoad = (props) => {
     const { user, supervisor, teamSiteName } = useContext(UserContext);
     
     const SubmitHandler = () => {
+        console.log(supervisor)
+        console.log(supervisor.length ? "null" : supervisor.userID)
         const load = {
             driver: user.userID,
             driverName: user.fullNameStr,
             currentDate: new Date(),
-            supervisor: supervisor.userID,
-            supervisorName: supervisor.fullNameStr,
+            supervisor: supervisor.userID ? supervisor.userID : null,
+            supervisorName: supervisor.fullNameStr ? supervisor.fullNameStr : null,
             team: user.currentTeam,
-            site: teamSiteName.site,
+            site: teamSiteName.site ? teamSiteName.site : null,
             isSignedOff: null
         }; 
         createLoad(load);

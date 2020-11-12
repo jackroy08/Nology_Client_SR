@@ -35,8 +35,8 @@ const NewsItemModal = (props) => {
           <p>Vehicle: {info["vehicle"]}</p>
           <p>Driver: {info["driver"]}</p>
           <p>Fault Class: {info["faultClass"]}</p>
-          <p>Fault Description: {info["faultDescription"]} </p>
-          <p>Fix By: {info["fixBy"]}</p>
+          <p>Issue: {info["faultName"]}</p>
+          <p>Fault Description: {info["faultDescription"]}</p>
         </>
       )
       break;
@@ -47,17 +47,43 @@ const NewsItemModal = (props) => {
           <p>Vehicle: {info["vehicle"]}</p>
           <p>Fault Class: {info["faultClass"]}</p>
           <p>Issue: {info["faultName"]}</p>
-          <p>Fault Description: {info["faultDescription"]} </p>
           <p>Completed By: {info["completedBy"]}</p>
           <p>Go to Maintenance SignOff to Approve</p>
         </>
       )
       break;
 
-    case "loadReported" :
+    case "maintenanceSuperviorSignoff" :
       additionalInfo = (
         <>
           <p>Vehicle: {info["vehicle"]}</p>
+          <p>Fault Class: {info["faultClass"]}</p>
+          <p>Issue: {info["faultName"]}</p>
+          <p>Completed By: {info["completedBy"]}</p>
+        </>
+      )
+      break;
+    
+    case "vehicleCheckListComplete" : 
+      additionalInfo = (
+          <>
+            <p>Vehicle: {info["vehicle"]}</p>
+            <p>Driver: {info["driver"]}</p>
+            <p>Status: {info["status"]}</p>
+          </>
+        )
+      break;
+
+    case "vehicleAssigned" : 
+      additionalInfo = (
+        <>
+        </>
+      )
+    break;
+
+    case "loadReported" :
+      additionalInfo = (
+        <>
           <p>Driver: {info["driver"]}</p>
           <p>Go to Approve Loads to Approve</p>
         </>

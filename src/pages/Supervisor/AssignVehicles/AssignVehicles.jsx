@@ -4,6 +4,7 @@ import { updateUser } from "../../../services/UsersService";
 import { updateVehicle } from "../../../services/VehiclesService";
 import Styles from "./AssignVehicles.module.scss";
 import showToast from "../../../services/toastService";
+import {createNewsItem} from "../../../services/newsItemsService";
 
 export const AssignVehicles = (props) => {
 
@@ -18,19 +19,28 @@ export const AssignVehicles = (props) => {
         //should remove vehicles and users previous links
         //should proabbly have a service function that does this?
         
-        try{
-            updateUser({
-                ...updatedUser, 
-                assignedVehicle: data.vehicle
-                }
-            );
-            updateVehicle({
-                ...updatedVehicle,
-                currentUser: data.driver
-            });
-        }finally{
-            showToast(`${updatedUser.fullNameStr} assigned to ${updatedVehicle.vehicleType}-${updatedVehicle.vehicleID}`,2000);
-        }
+        
+        updateUser({
+            ...updatedUser, 
+            assignedVehicle: data.vehicle
+            }
+        );
+        updateVehicle({
+            ...updatedVehicle,
+            currentUser: data.driver
+        });
+        showToast(`${updatedUser.fullNameStr} assigned to ${updatedVehicle.vehicleType}-${updatedVehicle.vehicleID}`,2000);
+        createNewsItem({
+            dateCreated: new Date,
+            title: `Vehicle Assigned`,
+            message: `User ${data.driver} assigned to vehicle ${data.vehicle}`,
+            team: usersArr[0].currentTeam,
+            type: "vehicleAssigned",
+            info: {},
+            seenBy: [],
+            isImportant: false
+        })
+    
         
     }
 
