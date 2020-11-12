@@ -137,6 +137,7 @@ export const UserProvider = (props) => {
         if (vehicle.vehicleType) {
             getChecklists(vehicle.vehicleType)
                 .then(response => {
+                    console.log(response);
                     setChecklistData(response)
                 })
         }

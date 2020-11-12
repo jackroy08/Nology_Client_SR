@@ -4,6 +4,7 @@ import ClassAChecks from '../ClassAChecks';
 import ClassBChecks from '../ClassBChecks';
 import ClassCChecks from '../ClassCChecks';
 import Confirmation from '../Confirmation';
+import { v4 as uuidv4 } from "uuid";
 import { UserContext } from "../../../context/userContext";
 
 const ChecklistContainer = (props) => {
@@ -23,8 +24,10 @@ const ChecklistContainer = (props) => {
                     supervisor: supervisorProperty,
                     additionalDetails: document.getElementById("additional-details").value,
                     dateCreated: new Date().toUTCString(),
+                    assignedMaintenance: "",
                     maintenanceSignoff: false,
-                    supervisorSignoff: false
+                    supervisorSignoff: false,
+                    issueID: uuidv4()
                 };
                 } else acc[classType][val] = {};
             return acc;
@@ -57,7 +60,7 @@ const ChecklistContainer = (props) => {
                             Vehicle type: {vehicle.vehicleType}
                         </p> 
                         <button onClick={nextHandler}>Next</button>
-                        <Link to="/Operator">
+                        <Link to={`/${user.userType}`}>
                             <button>Back</button>
                         </Link>
                     </section>

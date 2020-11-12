@@ -5,7 +5,7 @@ import Modal from '../../../components/Modal';
 import CreateVehicleForm from './CreateVehicleForm';
 import VehicleItem from './VehicleItem';
 import { firestore } from '../../../firebase'
-import { getVehicles, subscribeToVehicles } from '../../../services/VehiclesService';
+import { getVehicles, getVehicleTypes, subscribeToVehicles } from '../../../services/VehiclesService';
 
 const ManageVehicles = () => {
     const {isShowing, toggle} = useModal();
@@ -37,6 +37,10 @@ const ManageVehicles = () => {
             setFilteredVehiclesArr(response);
             setVehiclesArr(response);
             // setVehicleTypesArr([...new Set(response.map(vehicle => vehicle.vehicleType))]);
+            getVehicleTypes()
+                .then(res => {
+                    setVehicleTypesArr(res)
+                })
         });
         const unsubscribe = subscribeToVehicles(setVehiclesArr);
         return unsubscribe;
@@ -62,7 +66,7 @@ const ManageVehicles = () => {
             <header>
                 <h3>Vehicles</h3>
                 <button className={Styles.btnPrimary} onClick={toggle}>Create New Vehicle</button>
-                <Modal innerComponent={<CreateVehicleForm hide={toggle}/>} isShowing={isShowing} hide={toggle} />
+                <Modal innerComponent={<CreateVehicleForm vehicleTypesArr={vehicleTypesArr} hide={toggle}/>} isShowing={isShowing} hide={toggle} />
                 <select className={Styles.selectPrimary} onChange={(event) => filterVehicles(event.target.value)}>
                         <option value="">All Vehicle Types</option>
                         {vehicleTypesArr.map((vehicle) => <option key={vehicle}>{vehicle}</option>)}
