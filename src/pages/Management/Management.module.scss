@@ -5,43 +5,53 @@
     width: 100%;
     justify-items: center;
     display: flex;
+    background-color: $background-color1;
 }
 
 .trafficLightSignal {
-    width: 100%;
-    background-color: $background-color1;
     display: flex;
-    align-items: center;
-    border-radius: 20px;
     padding: 0 $base-spacing*2;
 
     .defaultSignal {
         width: 40px;
         height: 40px;
         margin: 5px;
-        border: 2px solid black;
+        border: 2px solid #8E95A8;
         border-radius: 50%;
-        background-color: $background-color1;
     }
     .redSignal {
-        background-color: red;
+        background-color: #ff392e;
     }
     .amberSignal {
-        background-color: orange;
+        background-color: #FFA500;
     }
     .greenSignal {
-        background-color: green;
+        background-color: #2DA488;
     }
+}
+
+.sectionTitle {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.summaryContainer {
+    display: flex;
 }
 
 .mainContent {
     width: 100%;
     padding: $base-spacing*2 $base-spacing*2 0 $base-spacing*2;
+    max-width: 1300px;
 
     .liveFeedContainer {
-        background: white;
         display: flex;
-        align-items: center;
-        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .liveFeedContainer {
+        display: block!important;
     }
 }
