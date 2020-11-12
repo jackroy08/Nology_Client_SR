@@ -1,5 +1,5 @@
 import { navigate } from "@reach/router";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Styles from "../../../components/Modal/Modal.module.scss";
 import "./ReportAProblem.module.scss";
 import { updateVehicleIssues } from "../../../services/VehiclesService";
@@ -8,16 +8,30 @@ import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import firebase from "firebase";
 
-const ReportAProblem = () => {
+const ReportAProblem = (props) => {
+    const { hide } = props;
     const [isPhotoOpen, setIsPhotoOpen] = useState(false)
     const { user, vehicle, supervisor } = useContext(UserContext);
-    const supervisorProperty = supervisor ? supervisor.userID : null;
+    const supervisorProperty = supervisor ? supervisor.userID ? supervisor.userID : null : null;
     const [photo, setPhoto] = useState("");
 
+    useEffect(() => {
+        console.log("hide was cahnged.."+hide);
+    }, [hide])
+
     const submitHandler = (e) => {
-        console.log(e);
         e.preventDefault()
+        // const storageRef = firebase.storage().ref();
+        // const imageCode = uuidv4();
+        // const issueImageRef = storageRef.child(`issueimages/${imageCode}.jpg`);
+        // const file = new File(photo.getPath())
+
+        // issueImageRef.put(file).then(snapshot => {
+        //     console.log('Uploaded a blob or file!');
+        // });
+
         let error =  {
             classType: document.getElementById("class-type").value,
             issue: document.getElementById("issue-type").value,
@@ -29,11 +43,11 @@ const ReportAProblem = () => {
             assignedMaintenance: "",
             maintenanceSignoff: false,
             supervisorSignoff: false,
-            photo: photo ? photo : "",
+            photo: "", //Will need to amend for photo functionality
             issueID: uuidv4()
         }
-        updateVehicleIssues("001", error)
-        navigate(`/${user.userType}`);
+        updateVehicleIssues(vehicle.vehicleID, error);
+        hide();
     }
     
     const togglePhoto = (e) =>  {
@@ -75,7 +89,7 @@ const ReportAProblem = () => {
                 <textarea id="additional-details" placeholder="Please enter any additional details"></textarea>
             </fieldset>
             <div>
-                <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={()=> navigate(`/operator`)}>Cancel</button>
+                <button type="button" className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={() => hide()}>Cancel</button>
                 <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit" onClick={submitHandler}>Report</button>
                 <button onClick={togglePhoto}>Take a photo</button>
                 
@@ -85,8 +99,8 @@ const ReportAProblem = () => {
                     onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
                     onTakePhotoAnimationDone = { (dataUri) => { handleTakePhotoAnimationDone(dataUri); } }
                     onCameraError = { (error) => { handleCameraError(error); } }
-                    idealResolution = {{width: 640, height: 480}}
-                    imageCompression = {0.97}
+                    idealResolution = {{width: 400, height: 300}}
+                    imageCompression = {0.1}
                     isMaxResolution = {true}
                     isImageMirror = {false}
                     isSilentMode = {false}

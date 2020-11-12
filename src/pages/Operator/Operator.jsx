@@ -12,7 +12,6 @@ import Error from "../../components/Error";
 
 const Operator = () => {
     const { user } = useContext(UserContext);
-    console.log(user);
     const { isShowing, toggle } = useModal();
     const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
     const [modalContent, setModalContent] = useState(null);
@@ -43,10 +42,11 @@ const Operator = () => {
         if (user.isOnShift) {
             toggle();
             setModalContent(<ReportAProblem hide={toggle} />);
+            
         } else {
             let message = "Please begin your shift to report a problem";
-            setModalContent(<Error message={message} hide={toggle} />);
             toggle()
+            setModalContent(<Error message={message} hide={toggle} />);            
         }
     }
 
@@ -80,6 +80,7 @@ const Operator = () => {
                     onClick= {() => {toggle(); setModalContent(<SubmitLoad hide={toggle} />)}}>
                     Submit Load
                 </button>
+                {console.log("here is the isShowing.. " + isShowing)}
                 <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>
                 
             </SideNav>
