@@ -102,7 +102,7 @@ export const Supervisor = () => {
             if(vehicle.checkItems){
             vehicle.checkItems.forEach(checkItem => {
                 if(checkItem.maintenanceSignoff && !checkItem.supervisorSignoff){
-                newCheckItemsArr.push({...checkItem, vehicleType: vehicle.vehicleType})
+                newCheckItemsArr.push({...checkItem, vehicleType: vehicle.vehicleType, team: vehicle.currentTeam})
                 }
             })
             }

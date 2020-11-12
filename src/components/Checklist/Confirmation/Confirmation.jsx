@@ -2,6 +2,7 @@ import { Link, navigate } from "@reach/router";
 import React, { useState, useEffect } from "react";
 import Styles from "./Confirmation.module.scss";
 import { setVehicleIssues } from "../../../services/VehiclesService";
+import { createNewsItem } from "./../../../services/newsItemsService";
 
 const Confirmation = (props) => {
     const { vehicle, backHandler, failedElements } = props;
@@ -11,7 +12,7 @@ const Confirmation = (props) => {
         return Object.keys(failedElements[classType]).map(elem => {
             if (failedElements[classType][elem].issue) {
                 return (
-                    <li key={failedElements[classType][elem].issue} className= {Styles.userItem}>
+                    <li key={failedElements[classType][elem].issue} className= {Styles.errorItem}>
                         <p>{failedElements[classType][elem].classType}</p>
                         <p>{failedElements[classType][elem].issue}</p>
                         <p>{failedElements[classType][elem].vehicleID}</p>
@@ -25,6 +26,46 @@ const Confirmation = (props) => {
 
     const submitHandler = () => {
         setVehicleIssues(vehicle.vehicleID, issuesArr, setGoStatusHandler(issuesArr));
+        createNewsItem({
+            dateCreated: new Date(),
+            title: `Vehicle Checklist Complete`,
+            message: `${vehicle.vehicleID} - checklist complete - ${setGoStatusHandler(issuesArr)}`,
+            team: vehicle.currentTeam,
+            type: "vehicleCheckListComplete",
+            info: {
+                driver: vehicle.currentUser,
+                vehicle: `${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                status: setGoStatusHandler(issuesArr)
+            },
+            seenBy: [],
+            isImportant: false
+        })
+
+        issuesArr.forEach(issue => {
+            
+            let letters = issue.classType.split("")
+            letters[0] = letters[0].toUpperCase()
+            letters.splice(5, 0, " ")
+            let title = letters.join("")
+            createNewsItem({                
+                title: `${title} issue raised`,
+                message: `${issue.issue} reported on ${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                team: vehicle.currentTeam,
+                type: "maintenanceRaised",
+                isImportant: false,
+                seenBy: [],
+                info:{
+                    vehicle: `${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                    driver: vehicle.currentUser,
+                    faultClass: issue.classType,
+                    issue: issue.issue,
+                    faultDescription: issue.additionalDetails
+                },                     
+                dateCreated: new Date()
+            });
+        })
+
+
         navigate("/operator")
     }
 
@@ -50,11 +91,12 @@ const Confirmation = (props) => {
             });
         });
         setIssuesArr(issues);
+        console.log(issues);
     }, [])
 
     return (
-        <section className={Styles.userListSection}>
-            <ul className={Styles.userList}>
+        <article className={Styles.errorListTable}>
+            <ul className={Styles.errorList}>
                 <li className={Styles.columnTitles}>
                     <h4>Class of issue</h4>
                     <h4>Issue</h4>
@@ -64,13 +106,13 @@ const Confirmation = (props) => {
                 </li>
                 {Object.keys(failedElements).map(getFailedElementJsx)}
             </ul>
-            <section className={Styles.navigation}>
-                <button onClick={backHandler} className={Styles.btn}>Back</button>
+            <div className={Styles.navigation}>
+                <button onClick={backHandler} className={Styles.btnSecondary}>Back</button>
                 <Link to="/operator">
-                    <button onClick={submitHandler} className={Styles.btn}>Confirm checklist</button>
+                    <button onClick={submitHandler} className={Styles.btnPrimary}>Confirm checklist</button>
                 </Link>
-            </section>
-        </section>
+            </div>
+        </article>
     )
 }
 

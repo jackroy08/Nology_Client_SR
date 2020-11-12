@@ -1,5 +1,7 @@
 import firebase, { firestore } from "../firebase";
 
+import { createNewsItem } from "./newsItemsService";
+
 // const getLoads  = () => {
 //     return firestore.collection("loads").get().then(response => response.docs.map(document => document.data()));
 // }
@@ -23,12 +25,22 @@ const subscribeToLoads = (handleSnapshot) => {
         .onSnapshot(handleSnapshot);
 }
 
-// dont touch this function //
+
 const createLoad  = (load) => {
     firestore.collection("loads")
         .add({...load});
+    createNewsItem({
+        dateCreated: load.currentDate,
+        title: `Load Reported`,
+        message: `${load.driver} reported load`,
+        team: load.team,
+        type: "loadReported",
+        info: {driver: load.driver},
+        seenBy: [],
+        isImportant: false
+    })
 }
-///////////////////////////////
+
 
 const updateLoad = (document, load) => {
     firestore.collection("loads").doc(document).update({...load});

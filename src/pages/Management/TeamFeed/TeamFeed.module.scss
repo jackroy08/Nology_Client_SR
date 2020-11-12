@@ -1,5 +1,7 @@
 @import "../../../assets/styles/variables";
-@import '../../../assets/styles/buttons'; 
+@import '../../../assets/styles/buttons';
+@import '../../../assets/styles/forms'; 
+@import '../../../assets/styles/fonts';
 
 .dataFeed {
     box-sizing:border-box;
@@ -10,6 +12,7 @@
     cursor:pointer;
     padding:6px 12px;
     position: relative;
+    border-radius: 10px;
 
     .feedList {
         margin-top: 5px;
@@ -27,8 +30,10 @@
 
             p {
                 text-align: center;
+                color:black;
+                font-family: 'Poppins' ;
                 text-decoration: underline;
-                font-weight: 850;
+                //font-weight: 850;
                 margin: 10px 0;
             }
         }        
