@@ -1,0 +1,49 @@
+@import "../../../assets/styles/variables";
+@import '../../../assets/styles/buttons';
+
+.section {
+    border: 2px solid #E1EBF4;
+    border-radius: 25px;
+    background: white;
+    width: 250px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 15px 5px;
+    position: relative;
+}
+
+.sectionNumber {
+    font-size: 38px;
+    font-weight: bold;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.sectionTitle {
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.sectionIcon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 42px;
+    color: #ffb449;
+    height: 80px;
+    border-radius: 50px;
+    width: 80px!important;
+    padding: 20px;
+}
+.sectionIconOne {
+    color: #ffb449;
+    background: #FFF5D9;
+}
+.sectionIconTwo {
+    color: #396AFF;
+    background: #E7EDFF;
+}
+.sectionIconThree {
+    color: #2DA488;
+    background: #ebffe5;
+}

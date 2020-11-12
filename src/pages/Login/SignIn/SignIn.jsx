@@ -12,7 +12,8 @@ const SignIn = () => {
 
     return (
         <form className={Styles.loginForm}>
-            <p>If you have previously signed up, please enter your details here.</p>
+            <h2 className={Styles.loginTitle}>Sign in..</h2>
+            {/* <p>If you have previously signed up, please enter your details here.</p> */}
             <label className={Styles.idnumber}>Username/email</label>
             <input placeholder="i.e 763489" id="signInID" required/>
             <label className={Styles.password}>Password</label>

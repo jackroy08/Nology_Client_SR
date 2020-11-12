@@ -1,7 +1,6 @@
 import React from "react"
-import { Router } from "@reach/router"
+import { Router, Link } from "@reach/router"
 import Styles from "./Admin.module.scss";
-import { Link } from "@reach/router";
 import ManageUsers from './ManageUsers'
 import ManageVehicles from "./ManageVehicles";
 import ManageTeams from './ManageTeams'
@@ -55,12 +54,13 @@ const Admin = () => {
         <div className={Styles.pageContainer}> 
             <SideNav>
                 <h2>Admin</h2>
-                <Link to="ManageUsers"><button className={Styles.btnNav}> - Manage Users</button></Link>
-                <Link to="ManageVehicles"><button className={Styles.btnNav}> -  Manage Vehicles</button></Link>
-                <Link to="ManageTeams"><button className={Styles.btnNav}> -  Manage Teams</button></Link>
-                <Link to="ManageSites"><button className={Styles.btnNav}> - Manage Sites</button></Link>
-                <Link to="ManageParts"><button className={Styles.btnNav}> - Manage Parts</button></Link>
-                <Link to="ManageChecklists"><button className={Styles.btnNav}> - Manage Checklists</button></Link>
+                <Link to="ManageUsers"><button className={Styles.btnNav}>Users</button></Link>
+                <Link to="ManageVehicles"><button className={Styles.btnNav}>Vehicles</button></Link>
+                <Link to="ManageTeams"><button className={Styles.btnNav}>Teams</button></Link>
+                <Link to="ManageSites"><button className={Styles.btnNav}>Sites</button></Link>
+                <Link to="ManageParts"><button className={Styles.btnNav}>Parts</button></Link>
+                <Link to="ManageChecklists"><button className={Styles.btnNav}>Checklists</button></Link>
+                <Link to="Management"><button className={Styles.btnNav}>Management Page</button></Link>
                 <button className={Styles.btnNav} onClick={handleExport}>Export firestore data</button>
 
             </SideNav>

@@ -1,0 +1,27 @@
+@import "./../../../assets/styles/variables";
+@import "./../../../assets/styles/forms";
+@import "./../../../assets/styles/buttons";
+
+.submitLoadTitle {
+  margin: $base-spacing*2 0;
+}
+
+.submitLoadForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $base-spacing*2;
+  width: 100%;
+  margin: 0 auto;
+
+  div {
+      grid-column: 1/3;
+      display: flex;
+      justify-content: space-between;
+  }
+
+  button {
+      grid-column: 2/3;
+      justify-self: end;
+  }
+}
+

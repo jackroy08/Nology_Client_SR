@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import { navigate } from "@reach/router";
+
+import { Router, Link, navigate } from "@reach/router";
 import { UserContext } from "../../context/userContext";
 import { getOperators, updateUser } from "../../services/UsersService";
 import Styles from "./Operator.module.scss";
@@ -9,6 +10,9 @@ import SideNav from "../../components/SideNav"
 import SubmitLoad from "./SubmitLoad";
 import ReportAProblem from "./ReportAProblem";
 import Error from "../../components/Error";
+import Dashboard from "./Dashboard";
+import Checklist from "../../components/Checklist";
+import checklistData from "../../data/checklistdata.js";
 
 const Operator = () => {
     const { user } = useContext(UserContext);
@@ -26,7 +30,7 @@ const Operator = () => {
 
     const checklistBarrier = () => {
         if (user.isOnShift && user.assignedVehicle) {
-            navigate("/Checklist")
+            navigate("/operator/checklist")
         } else if (!user.isOnShift) {
             let message = "Please begin your shift to accept a vehicle";
             setModalContent(<Error message={message} hide={toggle} />);
@@ -60,11 +64,13 @@ const Operator = () => {
         <div className={Styles.pageContainer}> 
             <SideNav>
                 <h2>Operator</h2>
+                
                 <button
                     className={Styles.btnNav}
                     onClick={() => updateShiftProperty()}>
                     {changeStart}
                 </button>
+                
                 <button 
                     className={Styles.btnNav}
                     onClick={() => checklistBarrier()} 
@@ -89,7 +95,10 @@ const Operator = () => {
                 
             </SideNav>
             <main className={Styles.mainContent}>
-                
+                <Router style={{width: "100%"}}>
+                    <Dashboard default path="/dashboard"/>
+                    <Checklist path="/checklist" checklistData={checklistData}/>
+                </Router>
             </main>
             
         </div>

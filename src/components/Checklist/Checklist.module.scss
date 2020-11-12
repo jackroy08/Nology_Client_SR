@@ -1,0 +1,126 @@
+@import '../../assets/styles/buttons';
+@import "../../assets/styles/forms";
+@import "../../assets/styles/variables";
+
+.confirmVehicleSection {
+    width: 100%;
+    background: white;
+    padding: 0 $base-spacing*2 $base-spacing $base-spacing*2;
+    border-radius: 10px;
+    margin-bottom: $base-spacing*2;
+
+    header {
+        display: flex;
+        justify-items: flex-end;
+        align-items: center;
+        padding: $base-spacing*2 0;
+        border-bottom: 3px solid $background-color1;
+
+        h3 {
+            margin-right: auto;
+        }
+    }
+}
+
+.vehicleDisplay {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    p {
+        padding: $base-spacing $base-spacing 0 $base-spacing;
+        font-size: 1rem;
+    }
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    padding: $base-spacing;
+
+    button {
+        height: fit-content;
+        margin: $base-spacing;
+    }
+}
+
+.classChecks {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    gap: 1em;
+    
+    img {
+        max-height: 40px;
+        max-width: 80px;
+    }
+
+    form {
+        color: $dark-text-mid;
+        background-color: white;
+        width: 100%;
+        
+        div {
+            display: grid;
+            grid-template-columns: 80px 2fr 40px;
+            align-items: center;
+        }
+
+        div.responses {
+            display: grid;
+            gap: $base-spacing;
+            grid-template-columns: 1fr 1fr 1fr;
+            text-align: left;
+        }
+
+        section.optionsFlex {
+            display: flex;
+            justify-content: space-between;
+            background-color: $background-color1;
+            padding: 10px;
+            border: none;
+
+            section.additionalOptions {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                margin: 10px;
+            }
+        }
+    }
+
+    textarea {
+        width: 100%;
+        height: 100px;
+    }
+    
+    button {
+        margin: $base-spacing;
+    }
+}
+
+.responseMessage {
+    font-size: 1.5em;
+}
+
+.confirmationDiv {
+    height: 50vh;
+    background-color: lightgrey;
+    border: 2px solid rgb(51, 51, 51);
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1000px) {
+    .classChecks form div.responses {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .classChecks form div.responses {
+        grid-template-columns: 1fr;
+    }
+}

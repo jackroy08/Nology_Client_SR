@@ -7,6 +7,10 @@ label {
   font-size: 0.8rem;
 }
 
+input[type=checkbox] {
+  transform: scale(2);
+}
+
 .inputPrimary, .selectPrimary {
   padding: 10px 20px;
   font-weight: 500;
@@ -17,8 +21,18 @@ label {
   border-radius: 5px;
   color: $primary-color;
   transition: background 0.3s ease;
-
+  
   &:hover {
     cursor: pointer;
   }
+}
+
+.textareaPrimary {
+  padding: $base-spacing;
+  margin: $base-spacing 0;
+  border-radius: 10px;
+  // background: $background-color2;
+  border: 2px solid $primary-color;
+  color:  darken($primary-color, 5%);
+  font-weight: 500;
 }

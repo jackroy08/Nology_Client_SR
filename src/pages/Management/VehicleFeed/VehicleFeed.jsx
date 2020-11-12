@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Styles from "./VehicleFeed.module.scss";
 import { getVehicles } from "../../../services/VehiclesService";
-import { getLoads } from "../../../services/LoadsService";
 import { Doughnut, Bar } from 'react-chartjs-2';
 
 const VehicleFeed = () => {
@@ -12,24 +11,26 @@ const VehicleFeed = () => {
     const classCIssues = [];
 
     vehiclesArr.map(vehicle => {
-        if(vehicle.currentUser !== null) vehicleCountArr.push(vehicle);
+        if (vehicle.currentUser !== null) vehicleCountArr.push(vehicle);
     });
 
     useEffect(() => {
-        const promises = [getVehicles(), getLoads()];
+        const promises = [getVehicles()];
         Promise.all(promises).then(response => {
 
-            const [vehicles, loads] = response;
+            const [vehicles] = response;
             setVehiclesArr(vehicles);
             vehicles.map((vehicle) => {
-                
-                if(vehicle.checkItems !== null) {
+
+                if (vehicle.checkItems !== null) {
                     for (let i = 0; i < vehicle.checkItems.length; i++) {
                         const checkItem = vehicle.checkItems[i];
 
-                        if(checkItem.classType == "classA") classAIssues.push(checkItem);
-                        else if(checkItem.classType == "classB") classBIssues.push(checkItem);
-                        else if(checkItem.classType == "classC") classCIssues.push(checkItem);
+                        console.log(checkItem);
+
+                        if(checkItem.classType == "classA" && checkItem.supervisorSignoff == false) classAIssues.push(checkItem);
+                        else if(checkItem.classType == "classB" && checkItem.supervisorSignoff == false) classBIssues.push(checkItem);
+                        else if(checkItem.classType == "classC" && checkItem.supervisorSignoff == false) classCIssues.push(checkItem);
                     }                
                 }
             })
@@ -39,37 +40,16 @@ const VehicleFeed = () => {
                     datasets: [{
                         data: [classAIssues.length, classBIssues.length, classCIssues.length],
                         backgroundColor: [
-                            "red",
-                            "orange",
-                            "green",
+                            "#396AFF",
+                            "#7C8FFF",
+                            "#E9ECFF",
                         ],
-                        borderColor: [
-                            "black",
-                            "black",
-                            "black",
-                        ],
-                        borderWidth: 1
                     }],
-                    
+
                     labels: [
                         "Class A Fails",
                         "Class B Fails",
                         "Class C Fails",
-                    ]
-                }
-            })
-
-
-            setLoadData(() => {
-                return {
-                    datasets: [{
-                        data: [loads.length],
-                        backgroundColor: ["blue"],
-                        borderColor: ["black"],
-                        borderWidth: 1
-                    }],
-                    labels: [
-                        "Loads"
                     ]
                 }
             })
@@ -78,16 +58,11 @@ const VehicleFeed = () => {
 
     const pieData = {
         datasets: [{
-            data: [vehicleCountArr.length, (vehiclesArr.length-vehicleCountArr.length)],
+            data: [vehicleCountArr.length, (vehiclesArr.length - vehicleCountArr.length)],
             backgroundColor: [
-                "green",
-                "red",
+                "#2DA488",
+                "#E5F6F2",
             ],
-            borderColor: [
-                "black",
-                "black",
-            ],
-            borderWidth: 1
         }],
 
         labels: [
@@ -95,12 +70,6 @@ const VehicleFeed = () => {
             "Inactive vehicles",
         ]
     };
-
-    const [loadData, setLoadData] = useState({
-        datasets: [{
-            data: [],
-        }],
-    });
 
     const [siteData, setSiteData] = useState({
         datasets: [{
@@ -110,31 +79,24 @@ const VehicleFeed = () => {
 
     return (
         <article className={Styles.dataFeed}>
-            <h1 className={Styles.feedTitle}>Live feed for vehicles</h1>
-            <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{vehiclesArr.length}</span> vehicles on this site.</h2>
-            <section className={Styles.feedList}>
-                <div className={Styles.flexCharts}>
-                    <div className={Styles.pieData}>
-                        <p>Chart of Vehicles on Site</p>
-                        <Doughnut 
-                            data={pieData} 
-                            options={{ maintainAspectRatio: true, responsive: true }}
-                        />
-                    </div>
-                    <div className={Styles.loadData}>
-                        <p>Graph of Site Loads</p>
-                        <Bar 
-                            data={loadData}
-                            legend={{display: false}}
-                            options={{maintainAspectRatio: true, responsive: true}}
-                        />
-                    </div>
-                </div>
-                <div className={Styles.siteData}>
-                    <p>Graph of Site Issues</p>
-                    <Bar data={siteData} legend={false} options={{maintainAspectRatio: false}}/>
-                </div>
-            </section>
+            <div className={Styles.pieData}>
+                <Doughnut
+                    data={pieData}
+                    legend={{display: false}}
+                    options={{ maintainAspectRatio: true, responsive: true }}
+                />
+                <article>
+                    <p className={Styles.counter}>{vehicleCountArr.length}</p>
+                    <p>Active Vehicles on Site</p>
+                </article>
+            </div>
+            <div className={Styles.siteData}>
+                <Bar 
+                    data={siteData}
+                    legend={false}
+                    options={{maintainAspectRatio: true, reponsive: true}}
+                />
+            </div>
         </article>
     )
 }

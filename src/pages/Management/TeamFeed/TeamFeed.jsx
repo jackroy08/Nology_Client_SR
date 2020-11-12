@@ -20,14 +20,14 @@ const TeamFeed = () => {
 
             teams.forEach((team) => {
                 const subTeamUsers = users.filter(u => u.currentTeam == team.teamName && u.currentSubTeam == team.subTeamName);
-                if(!parentTeams.includes(team.teamName)) parentTeams.push(team.teamName);
-    
+                if (!parentTeams.includes(team.teamName)) parentTeams.push(team.teamName);
+
                 setSubTeamData(prevData => {
                     return {
                         datasets: [{
                             data: prevData.datasets[0].data.concat([subTeamUsers.length]),
                             borderWidth: 1,
-                            backgroundColor: "yellow"
+                            backgroundColor: "#2DA488"
                         }],
                         labels: prevData.labels.concat([`${team.teamName} ${team.subTeamName}`])
                     }
@@ -41,7 +41,7 @@ const TeamFeed = () => {
                         datasets: [{
                             data: prevData.datasets[0].data.concat([teamVehicles.length]),
                             borderWidth: 1,
-                            backgroundColor: "orange"
+                            backgroundColor: "#FFA500"
                         }],
                         labels: prevData.labels.concat([team])
                     }
@@ -50,10 +50,9 @@ const TeamFeed = () => {
             parentTeams.forEach((team) => {
                 const teamLoads = [];
                 for (const [key] of Object.entries(loads)) {
-                    if(loads[key].team == team) {
+                    if (loads[key].team == team) {
                         teamLoads.push("load");
                     };
-                    console.log(loads);
                 }
 
                 setTeamLoadData(prevData => {
@@ -61,52 +60,51 @@ const TeamFeed = () => {
                         datasets: [{
                             data: prevData.datasets[0].data.concat([teamLoads.length]),
                             borderWidth: 1,
-                            backgroundColor: "cyan"
+                            backgroundColor: "#396AFF"
                         }],
                         labels: prevData.labels.concat([team])
                     }
                 });
             });
-        }); 
+        });
     }, []);
 
     const [subTeamData, setSubTeamData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
     const [teamVehicleData, setVehicleTeamData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
     const [teamLoadData, setTeamLoadData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
 
     return (
+        
         <article className={Styles.dataFeed}>
-            <h1 className={Styles.feedTitle}>Live feed for teams</h1>
-            <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamsArr.length}</span> teams on this site.</h2>
             <section className={Styles.feedList}>
                 <div className={Styles.chartContainer}>
-                    <p>Graph of Sub-Team Users</p>
+                    <p className={Styles.chartContainerTitle}>Amount of users per sub-team</p>
                     <Bar
                         data={subTeamData}
                         legend={{display: false}}
-                            options={{maintainAspectRatio: true, responsive: true}}
+                        options={{maintainAspectRatio: true, responsive: true}}
                     />
                 </div>
                 <div className={Styles.chartContainer}>
-                    <p>Graph of Team Vehicles</p>
+                    <p className={Styles.chartContainerTitle}>Amount of team vehicles</p>
                     <Bar
                         data={teamVehicleData}
-                        legend={{display: false}}
-                        options={{maintainAspectRatio: true, responsive: true}}
+                        legend={{ display: false }}
+                        options={{ maintainAspectRatio: true, responsive: true }}
                     />
                 </div>
                 <div className={Styles.chartContainer}>
-                    <p>Graph of Team loads</p>
+                    <p className={Styles.chartContainerTitle}>Amount of loads per team</p>
                     <Bar
                         data={teamLoadData}
-                        legend={{display: false}}
-                        options={{maintainAspectRatio: true, responsive: true}}
+                        legend={{ display: false }}
+                        options={{ maintainAspectRatio: true, responsive: true }}
                     />
                 </div>
             </section>
