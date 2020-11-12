@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+    import React, { useState, useEffect, useContext } from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
@@ -42,6 +42,11 @@ export const Supervisor = () => {
     const [newsItemsArr, setNewsItemsArr] = useState([]);
     const [teamToView, setTeamView] = useState(user.currentTeam ? user.currentTeam : "All");
     const [teamsAvailableToView, setTeamsAvailableToView] = useState([]);
+    //
+    const [ vehicleChecksArray, setVehicleChecksArray ] = useState([])
+    const [ filteredVehicleChecksArray, setFilteredVehicleChecksArray ] = useState([])
+    const [ checkItemsArr, setCheckItemsArr ] = useState([]);
+    //
 
     //page load effects
     useEffect(() => {
@@ -52,14 +57,17 @@ export const Supervisor = () => {
         //get news items
         getNewsItems(teamToView).then(dataArr => setNewsItemsArr(dataArr));
         //set teams that can be selected
-        // setTeamsAvailableToView(getUniqueTeams([]));
         getTeams().then(res => {if(mounted){setTeamsAvailableToView((getUniqueTeams(res)))}});
         //subscribing to all vehicles as this doesnt have a teams filter on the service
-        let unsubscribeVehicles = subscribeToVehicles(setVehiclesArr,teamToView);
+        let unsubscribeVehicles = subscribeToVehicles(setVehiclesArr, teamToView);
+        const unsubscribeVehicleChecks = subscribeToVehicles(setVehicleChecksArray);
+        //
         //Need to do same for users
         return () => {
             mounted = false;
             unsubscribeVehicles();
+            unsubscribeVehicleChecks();
+            //
         }
     }, [])
 
@@ -82,6 +90,26 @@ export const Supervisor = () => {
     useEffect(()=>{
         setFilteredUsersArr(usersArr.filter(teamToView==="All" ? () => true : user => user.currentTeam===teamToView));
     },[usersArr])
+
+    // toDo refactor useState and useEffect so more tidy (e.g. setting state to vehicles twice)
+    useEffect(() => {
+        setFilteredVehicleChecksArray(vehicleChecksArray.filter(vehicle => vehicle.currentTeam === user.currentTeam));
+    }, [vehicleChecksArray])
+    
+        useEffect(() => {
+        let newCheckItemsArr=[];
+        filteredVehicleChecksArray.forEach(vehicle =>{
+            if(vehicle.checkItems){
+            vehicle.checkItems.forEach(checkItem => {
+                if(checkItem.maintenanceSignoff && !checkItem.supervisorSignoff){
+                newCheckItemsArr.push({...checkItem, vehicleType: vehicle.vehicleType})
+                }
+            })
+            }
+        })
+        setCheckItemsArr(newCheckItemsArr)  
+    }, [filteredVehicleChecksArray])
+    //
 
     //handle change team dropdown
     const handleTeamChange = e => {
@@ -117,10 +145,10 @@ export const Supervisor = () => {
                         Add Load</button>
                     <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<AssignVehicles usersArr={filteredUsersArr} vehiclesArr={filteredVehiclesArr} />) }}>
                         Reassign Vehicles</button>
-                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<SignOffMaintenance />)}}>
+                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<SignOffMaintenance checkItemsArr={checkItemsArr} />)}}>
                         Approve Maintenance
                         <div className={`${Styles.notification} ${showNotification}`}>
-                            <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
+                            <p>{checkItemsArr.length}</p>
                         </div>
                     </button>
                     <button className={Styles.btnNav} onClick={handleCheckOutVehicle}>

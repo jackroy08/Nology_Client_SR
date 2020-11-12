@@ -1,43 +1,25 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Styles from "./SignOffMaintenance.module.scss"
-import { subscribeToVehicles } from "../../../services/VehiclesService";
-import { UserContext } from "./../../../context/userContext";
+// import { subscribeToVehicles } from "../../../services/VehiclesService";
+// import { UserContext } from "./../../../context/userContext";
 import SignOffMaintenanceForm from "./SignOffMaintenanceForm";
 
-export const SignOffMaintenance = () => {
+export const SignOffMaintenance = (props) => {
 
-  const [ vehiclesArray, setVehiclesArray ] = useState([])
-  const [ filteredVehiclesArray, setFilteredVehiclesArray ] = useState([])
-  const [ checkItemsArr, setCheckItemsArr ] = useState([]);
+  const { checkItemsArr } = props;
 
-  const { user } = useContext(UserContext);
+  // Making a copy of check items to map over so they can be removed from the list when approved or rejected.
+  // This isnt handled by subscribe in supervisor as the modal doesnt update on check items state in supervisor changing as the change is deep and react diffing is shallow.
+  // Logic for getting check items is in supervisor so supervisor knows the number of check items to show in the notification bubble
+  // Really this should all be in context 🤷‍♀️ 
+  const [ checkItemsCopy, setCheckItemsCopy ] = useState([...checkItemsArr])
 
-  useEffect(() => {
-    const unsubscribe = subscribeToVehicles(setVehiclesArray);
-    return () => {
-      unsubscribe();
-    }
-  }, [])
+  const handleSubmit = (issueID) => {
+    const filteredItems = checkItemsCopy.filter(checkItemCopy => checkItemCopy.issueID !== issueID);
+    setCheckItemsCopy(filteredItems)
+  }
 
-  useEffect(() => {
-    setFilteredVehiclesArray(vehiclesArray.filter(vehicle => vehicle.currentTeam === user.currentTeam));
-  }, [vehiclesArray])
-
-  useEffect(() => {
-    let newCheckItemsArr=[];
-    filteredVehiclesArray.forEach(vehicle =>{
-      if(vehicle.checkItems){
-        vehicle.checkItems.forEach(checkItem => {
-          if(checkItem.maintenanceSignoff && !checkItem.supervisorSignoff){
-            newCheckItemsArr.push({...checkItem, vehicleType: vehicle.vehicleType})
-          }
-        })
-      }
-    })
-    setCheckItemsArr(newCheckItemsArr)  
-  }, [filteredVehiclesArray])
-
-  const signOffMaintenanceForms = checkItemsArr.length ? checkItemsArr.map(checkItem => (<SignOffMaintenanceForm checkItem={checkItem} key={checkItem.issueID} />)) : <h3>There are currently no maintenance issues to sign off</h3>;
+  const signOffMaintenanceForms = checkItemsCopy.length ? checkItemsCopy.map(checkItem => (<SignOffMaintenanceForm checkItem={checkItem} key={checkItem.issueID} onFormSubmit={handleSubmit} />)) : <h3>There are currently no maintenance issues to sign off</h3>;
 
   return (
     <section>

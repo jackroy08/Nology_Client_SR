@@ -6,7 +6,7 @@ import { cloneDeep } from "lodash";
 
 const SignOffMaintenanceForm = (props) => {
 
-  const { checkItem } = props;
+  const { checkItem, onFormSubmit} = props;
 
   const { register, handleSubmit } = useForm();
 
@@ -21,15 +21,26 @@ const SignOffMaintenanceForm = (props) => {
       supervisorSignoff: formData.approved==="true" ? true : false
       //ToDo What is flow if superviosr rejects a maintenance fix.
     })
+
+    // this function is here to update the parent that the check items have changed dynamically 
+    onFormSubmit(checkItem.issueID);
   } 
 
   return (
     <>
-      <form className={Styles.addLoad} onSubmit={handleSubmit(onSubmit)}>
-        <h5>Driver: {checkItem.operator}</h5>
-        <h5>Vehicle: {`${checkItem.vehicleType}-${checkItem.vehicleID}`}</h5>
-        <h5>Issue: {checkItem.issue}</h5>
-        <h5>{checkItem.classType}</h5>
+      <form className={Styles.approveMaintenance} onSubmit={handleSubmit(onSubmit)}>
+        <h5>Driver: 
+          <p>{checkItem.operator}</p>
+        </h5>
+        <h5>Vehicle: 
+          <p>{`${checkItem.vehicleType}-${checkItem.vehicleID}`}</p>
+        </h5>
+        <h5>Issue:
+          <p>{checkItem.issue}</p>
+        </h5>
+        <h5>Class:
+          <p>{checkItem.classType}</p>
+        </h5>
 
         <label htmlFor="">
           Approve
@@ -51,7 +62,7 @@ const SignOffMaintenanceForm = (props) => {
           />
         </label>
           
-          <input type="submit"/>
+        <input type="submit"/>
     </form>
     </>
   );

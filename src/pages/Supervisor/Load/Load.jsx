@@ -82,7 +82,6 @@ export const Load = (props) => {
         <section>
             <h2>Approve Load</h2>
             {approveLoads}
-            {/* Additional option for the supervisor to add a load themselves. Would need to add driver themselves? */} 
             <h2>Add Load</h2>
             <form className={Styles.addLoad} onSubmit={handleSubmit(onSubmit)}>
                 
