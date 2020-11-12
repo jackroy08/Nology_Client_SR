@@ -27,10 +27,14 @@ const MaintenanceReport = () => {
             "otherInfo": otherInfo
         }
         const reportVehicle = vehicleList.filter((vehicle) => vehicle.vehicleID == vehicleID);
-        const reportProblem = reportVehicle[0].checkItems.filter((report) => report.issue == vehicleIssue && report.maintenanceSignoff == false);
-        reportProblem[0].maintenanceSignoff = reportObj;
-        console.log(reportProblem[0]);
-        updateVehicleIssue(reportProblem[0]);
+        if(reportVehicle.length !== 0) {
+            const reportProblem = reportVehicle[0].checkItems.filter((report) => report.issue == vehicleIssue && report.maintenanceSignoff == false);
+            if(reportProblem.length !== 0) {
+                reportProblem[0].maintenanceSignoff = reportObj;
+                console.log(reportProblem[0]);
+                updateVehicleIssue(reportProblem[0]);
+            } else alert("Please enter a valid, active issue for the vehicle you have chosen.");
+        } else alert("Please enter in a vehicle ID of a valid vehicle.");
     }
 
     return (

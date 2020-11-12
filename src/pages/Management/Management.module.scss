@@ -42,10 +42,16 @@
 .mainContent {
     width: 100%;
     padding: $base-spacing*2 $base-spacing*2 0 $base-spacing*2;
-    background:$background-color1;
+    max-width: 1300px;
 
     .liveFeedContainer {
         display: flex;
         flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .liveFeedContainer {
+        display: block!important;
     }
 }
