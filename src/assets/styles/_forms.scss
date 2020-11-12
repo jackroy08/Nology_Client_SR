@@ -7,6 +7,10 @@ label {
   font-size: 0.8rem;
 }
 
+input[type=checkbox] {
+  transform: scale(2);
+}
+
 .inputPrimary, .selectPrimary {
   padding: 10px 20px;
   font-weight: 500;

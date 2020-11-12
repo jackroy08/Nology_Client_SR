@@ -62,7 +62,7 @@
         
         div {
             display: grid;
-            grid-template-columns: 80px 2fr 20px;
+            grid-template-columns: 80px 2fr 40px;
             align-items: center;
         }
 
@@ -111,4 +111,16 @@
     padding: 20px;
     display: flex;
     align-items: center;
+}
+
+@media only screen and (max-width: 1000px) {
+    .classChecks form div.responses {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .classChecks form div.responses {
+        grid-template-columns: 1fr;
+    }
 }
