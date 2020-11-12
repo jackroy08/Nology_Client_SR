@@ -16,15 +16,15 @@ describe("ManagementSummary tests", () => {
         expect(component).toBeTruthy();
     })
 
-    it('renders a FontAwesomeIcon', () => {
+    it('renders three FontAwesomeIcons', () => {
         expect(component.find(FontAwesomeIcon)).toHaveLength[3];
     })
 
-    it('renders a section container', () => {
+    it('renders three section containers', () => {
         expect(component.find(<section></section>)).toHaveLength[3];
     })
 
-    it('renders a h1 tag', () => {
+    it('renders three h1 tags', () => {
         expect(component.find(<h1></h1>)).toHaveLength[3];
     })
 
