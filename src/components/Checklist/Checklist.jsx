@@ -12,11 +12,7 @@ const Checklist = (props) => {
     const { user, vehicle, supervisor, checklistData } = useContext(UserContext);
     const [step, setStep] = useState(1);
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
-<<<<<<< HEAD:src/pages/Checklist/ChecklistContainer/ChecklistContainer.jsx
-    const supervisorProperty = supervisor.userID ? supervisor.userID : null;
-=======
     const supervisorProperty = supervisor ? supervisor.userID ? supervisor.userID : null : null;
->>>>>>> 7b7c0af074dbf6e5527ae8fc27ed460470627cf7:src/components/Checklist/Checklist.jsx
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[classType]).reduce((acc, val) => {
