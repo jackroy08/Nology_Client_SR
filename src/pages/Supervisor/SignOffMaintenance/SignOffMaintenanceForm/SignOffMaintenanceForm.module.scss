@@ -1,9 +1,9 @@
 @import "./../../../../assets/styles/variables";
 
-.approveLoadForm {
+.addLoad {
     display: flex;
     flex-direction: row;
     width: 95%;
-    margin: $base-spacing*2;
+    margin: 0 auto;
     background-color: $background-color2;
 }

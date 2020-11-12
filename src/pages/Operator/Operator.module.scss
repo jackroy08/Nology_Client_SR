@@ -1,17 +1,12 @@
 @import '../../assets/styles/buttons';
 
-.pageGrid {
-    display: grid;
-    gap: 1em;
+.pageContainer {
     width: 100%;
     justify-items: center;
+    display: flex;
+}
 
-    button {
-        .start {
-            background-color: green;
-        }
-        .end {
-            background-color: red;
-        }
-    }
+.mainContent {
+    width: 100%;
+    padding: $base-spacing*2 $base-spacing*2 0 $base-spacing*2;
 }

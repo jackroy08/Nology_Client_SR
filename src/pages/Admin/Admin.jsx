@@ -62,8 +62,9 @@ const Admin = () => {
                 <Link to="ManageParts"><button className={Styles.btnNav}> - Manage Parts</button></Link>
                 <Link to="ManageChecklists"><button className={Styles.btnNav}> - Manage Checklists</button></Link>
                 <button className={Styles.btnNav} onClick={handleExport}>Export firestore data</button>
+
             </SideNav>
-            <main className={Styles.pageContainer}>
+            <main className={Styles.mainContent}>
                 <Router style={{width: "100%"}}>
                     <ManageUsers default path="ManagerUsers"/>
                     <ManageVehicles path="ManageVehicles" />

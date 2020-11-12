@@ -29,7 +29,7 @@ const CreatePartForm = (props) => {
     return ( 
         <form className={Styles.partForm} onSubmit={handleSubmit(createNewPart)}>
             <label htmlFor="partID">Part ID:</label>
-            <input
+            <input className={Styles.inputPrimary}
                 type="text"
                 id="partID"
                 name="partID"
@@ -38,7 +38,7 @@ const CreatePartForm = (props) => {
                 {errors.partID && <p>Part ID is required.</p>}
                 
             <label htmlFor="partName">Part Name:</label>
-            <input
+            <input className={Styles.inputPrimary}
                 type="text"
                 id="partName"
                 name="partName"
@@ -47,14 +47,14 @@ const CreatePartForm = (props) => {
                 {errors.partName && <p>Part Name is required.</p>}
                 
             <button
-                className={`${Styles.btn} ${Styles.btnDanger}`}
+                className={`${Styles.btn} ${Styles.btnPrimary}`}
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={props.hide}
                 >Cancel
                 </button>
             <button 
-                className={`${Styles.btn} ${Styles.btnSuccess}`}
+                className={`${Styles.btn} ${Styles.btnSecondary}`}
                 type="submit"
                 >Create</button>
         </form>

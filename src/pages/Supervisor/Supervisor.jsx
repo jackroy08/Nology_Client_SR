@@ -109,10 +109,6 @@ export const Supervisor = () => {
 
                 <SideNav>
                     <h2>Supervisor</h2>
-                    <label htmlFor="team">Select Team : </label>
-                    <select className={`${Styles.selectTeam} ${Styles.selectPrimary}`} name="team" onChange={handleTeamChange}>
-                        {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
-                    </select>
                     <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<Load users={filteredUsersArr}/>) }}>
                         Add Load</button>
                     <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<AssignVehicles usersArr={filteredUsersArr} vehiclesArr={filteredVehiclesArr} />) }}>
@@ -123,17 +119,21 @@ export const Supervisor = () => {
                             <p>{maintenanceIssues.filter(issue => issue.status).length}</p>
                         </div>
                     </button>
-                    <button className={Styles.btnNav}>
+                    <button className={Styles.btnNav} onClick={handleCheckOutVehicle}>
                         Check Out Vehicle</button>
-                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>
-                        Supervisor Report</button>
                     <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<SupervisorIncidentForm user={user}/>) }}>
                         Report an Incident</button>
+                    <button className={Styles.btnNav} onClick={() => { toggle(); setModalContent(<DailyReport />) }}>
+                        Handover Report</button>
                 </SideNav>
 
                 <main className={Styles.mainContent}>
                     <article className={Styles.newsTicker}>
-                        {<NewsTicker newsItems={newsItemsArr} setModalContent={setModalContent} toggle={toggle} />}
+                        {<NewsTicker newsItems={newsItemsArr} setModalContent={setModalContent} toggle={toggle}>
+                            <select className={`${Styles.selectTeam} ${Styles.selectPrimary}`} name="team" onChange={handleTeamChange}>
+                            {teamsAvailableToView.map(team => <option key={team} value={team}>{team}</option>)}
+                            </select>
+                        </NewsTicker>}
                     </article>
                     <article className={Styles.dataTable}>
                         <VehicleTable filteredVehiclesArr={filteredVehiclesArr} />

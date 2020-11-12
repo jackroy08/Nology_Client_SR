@@ -27,12 +27,12 @@ const UserItem = (props) => {
             <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="trash-alt"/></span>
             <div className={`${Styles.confirmDelete} ${toggleStyles}`}>
                         <button
-                            className={Styles.btnPrimary}
+                            className={Styles.btnSecondary}
                             onClick={() => setIsOpen(!isOpen)}
                             >Cancel
                         </button>
                         <button
-                            className={Styles.btnDanger}
+                            className={Styles.btnPrimary}
                             onClick={() => {
                                 deleteUser(user);
                                 setIsOpen(!isOpen);

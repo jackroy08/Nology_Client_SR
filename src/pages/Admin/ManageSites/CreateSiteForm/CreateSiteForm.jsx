@@ -27,7 +27,7 @@ const CreateSiteForm = (props) => {
     return (
         <form className={Styles.siteForm} onSubmit={handleSubmit(createNewSite)}>
             <label htmlFor="siteID">Site ID :</label>
-            <input
+            <input className={Styles.inputPrimary}
                 type="text"
                 id="siteID"
                 name="siteID"
@@ -36,7 +36,7 @@ const CreateSiteForm = (props) => {
                 {errors.siteID && <p>Site ID is required. Must be unique.</p>}
                 
             <label htmlFor="siteName">Site Name :</label>
-            <input
+            <input className={Styles.inputPrimary}
                 type="text"
                 id="siteName"
                 name="siteName"
@@ -45,14 +45,14 @@ const CreateSiteForm = (props) => {
                 {errors.siteName && <p>Site name is required. Minimum length of 2 characters.</p>}
 
                 <button
-                className={`${Styles.btn} ${Styles.btnDanger}`}
+                className={`${Styles.btn} ${Styles.btnPrimary}`}
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={props.hide}
                 >Cancel
                 </button>
             <button 
-                className={`${Styles.btn} ${Styles.btnSuccess}`}
+                className={`${Styles.btn} ${Styles.btnSecondary}`}
                 type="submit"
                 >Create</button>
         </form>
