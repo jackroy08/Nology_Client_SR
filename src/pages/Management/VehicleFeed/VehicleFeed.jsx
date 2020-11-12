@@ -26,9 +26,11 @@ const VehicleFeed = () => {
                     for (let i = 0; i < vehicle.checkItems.length; i++) {
                         const checkItem = vehicle.checkItems[i];
 
-                        if(checkItem.classType == "classA") classAIssues.push(checkItem);
-                        else if(checkItem.classType == "classB") classBIssues.push(checkItem);
-                        else if(checkItem.classType == "classC") classCIssues.push(checkItem);
+                        console.log(checkItem);
+
+                        if(checkItem.classType == "classA" && checkItem.supervisorSignoff == false) classAIssues.push(checkItem);
+                        else if(checkItem.classType == "classB" && checkItem.supervisorSignoff == false) classBIssues.push(checkItem);
+                        else if(checkItem.classType == "classC" && checkItem.supervisorSignoff == false) classCIssues.push(checkItem);
                     }                
                 }
             })
