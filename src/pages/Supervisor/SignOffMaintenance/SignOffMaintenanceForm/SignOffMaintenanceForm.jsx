@@ -20,8 +20,8 @@ const SignOffMaintenanceForm = (props) => {
     
     updateVehicleIssue({
       ...newCheckItem,
-      supervisorSignoff: formData.approved==="true" ? true : false
-      //ToDo What is flow if superviosr rejects a maintenance fix.
+      supervisorSignoff: formData.approved==="true" ? true : false,
+      maintenanceSignoff: formData.approved==="true" ? newCheckItem.maintenanceSignoff : false
     })
 
     //raise a news item

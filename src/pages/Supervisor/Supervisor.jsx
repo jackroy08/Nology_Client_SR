@@ -6,7 +6,7 @@ import { DailyReport } from './DailyReport/DailyReport';
 import { getVehicles, subscribeToVehicles } from './../../services/VehiclesService';
 import { getNewsItems, subscribeToNewsItems } from "../../services/newsItemsService";
 import { getTeams } from "../../services/TeamsService";
-import { getUsers } from "../../services/UsersService";
+import { getUsers, subscribeToUsers } from "../../services/UsersService";
 import SideNav from "../../components/SideNav";
 import { UserContext } from "../../context/userContext";
 
@@ -59,7 +59,8 @@ export const Supervisor = () => {
         //set teams that can be selected
         getTeams().then(res => {if(mounted){setTeamsAvailableToView((getUniqueTeams(res)))}});
         //subscribing to all vehicles as this doesnt have a teams filter on the service
-        const unsubscribeVehicles = subscribeToVehicles(setVehiclesArr, teamToView);
+        const unsubscribeVehicles = subscribeToVehicles(setVehiclesArr);
+        const unsubscribeUsers = subscribeToUsers(setUsersArr);
         const unsubscribeVehicleChecks = subscribeToVehicles(setVehicleChecksArray);
         //
         //Need to do same for users
@@ -82,15 +83,7 @@ export const Supervisor = () => {
             unsubscribeNews();
         }
     },[teamToView,vehiclesArr,usersArr])
-
-    // useEffect(()=>{
-    //     setFilteredVehiclesArr(vehiclesArr.filter(teamToView==="All" ? () => true : vehicle => vehicle.currentTeam===teamToView));
-    // },[vehiclesArr])
-
-    // useEffect(()=>{
-    //     setFilteredUsersArr(usersArr.filter(teamToView==="All" ? () => true : user => user.currentTeam===teamToView));
-    // },[usersArr])
-
+    
     useEffect(() => {
         setFilteredVehicleChecksArray(vehicleChecksArray.filter(vehicle => vehicle.currentTeam === user.currentTeam));
     }, [vehicleChecksArray])
