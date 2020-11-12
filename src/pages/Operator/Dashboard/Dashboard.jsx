@@ -17,7 +17,7 @@ const Dashboard = (props) => {
                     <h3>Shift</h3>
                 </header>
                 <p>Status:</p>
-                {/* <p>{result}</p> */}
+                {/* <p>{props.result}</p> */}
                 <p>You are currently On Shift / You have not yet started your shift</p>
             </section>
 
