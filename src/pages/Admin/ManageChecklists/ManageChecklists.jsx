@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { firestore } from "../../../firebase";
 import { navigate } from "@reach/router";
 import ChecklistItem from "./ChecklistItem";
+import Styles from "./ManageChecklists.module.scss"
 
 const ManageChecklists = () => {
     const [items, setItems] = useState(1)
@@ -36,7 +37,7 @@ const ManageChecklists = () => {
         await firestore
             .collection("checklistData")
             .doc(document.getElementById("vehicleName").value)
-            .set({checkObj})
+            .set({...checkObj})
         navigate("/admin");
     }
 
@@ -56,13 +57,16 @@ const ManageChecklists = () => {
         <>
             <h3>Add a new checklist</h3>
             <form>
-                <label htmlFor="vehicle-name">
+                <div>
+                    <label htmlFor="vehicle-name">Vehicle type:</label>
                     <input type="text" id="vehicleName" />
-                </label>
+                </div>
                 {itemsRender()}
-                <button onClick={addChecklistItem}>+</button>
-                <button type="submit" onClick={submitChecklist}>Submit</button>
-                <button onClick={removeChecklistItem}>-</button>
+                <div className="addMore">
+                    <button onClick={removeChecklistItem}>-</button>
+                    <button type="submit" onClick={submitChecklist}>Submit</button>
+                    <button onClick={addChecklistItem}>+</button>
+                </div>
             </form>
             
         </>

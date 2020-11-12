@@ -39,7 +39,7 @@ const SideNav = (props) => {
         <li className={Styles.accountMenuAccount} onClick={() => (setOpen(!open))}>
           <span className={Styles.faIcon} >
             <FontAwesomeIcon icon="user-circle"/></span>
-            <p>{user.userID}</p>
+          <p>{user ? user.userID : ""}</p>
         </li>
       </ul>
     

@@ -5,6 +5,9 @@ import { getUserVehicle } from "../services/VehiclesService"
 import { getTeamSupervisor } from "../services/UsersService"
 import { getTeamSiteName } from "../services/TeamsService";
 import { getChecklists } from "../services/ChecklistsService";
+import Modal from "../components/Modal";
+import useModal from "../components/Modal/useModal";
+import Error from "../components/Error";
 
 export const UserContext = createContext({});
 
@@ -14,6 +17,8 @@ export const UserProvider = (props) => {
     const [checklistData, setChecklistData] = useState({});
     const [vehicle, setVehicle] = useState({});
     const [teamSiteName, setTeamSiteName] = useState({});
+    const { isShowing, toggle } = useModal();
+    const [modalContent, setModalContent] = useState(null);
 
     const signUp = (username, password) => {
         let email;
@@ -30,11 +35,11 @@ export const UserProvider = (props) => {
                     .set({
                         authID: response.user.uid
                     }, {merge: true});
-
-                    navigate("/");
-                    alert("Sign up successful");
+                    setModalContent(<Error message={"Sign up successful. Please log in to continue"} hide={toggle} />);
+                    toggle();
             }).catch(function(error) {
-                alert(error.message)
+                setModalContent(<Error message={error.message} hide={toggle} />);
+                toggle();
         });
     }
 
@@ -65,8 +70,8 @@ export const UserProvider = (props) => {
                                 }                             
                             })
                 }).catch(function(error) {
-                    alert(error.message)
-                    console.log(error);
+                    setModalContent(<Error message={error.message} hide={toggle} />);
+                    toggle();
                 })
             )
         };
@@ -87,18 +92,22 @@ export const UserProvider = (props) => {
 
     
     const loadUserContent = () => {
-        getUserVehicle(user.assignedVehicle)
-            .then(response => {
-                setVehicle(response[0]);
-            });
-        getTeamSupervisor(user.currentTeam, user.currentSubTeam)
-            .then(response => {
-                setSupervisor(response[0])
-            });
+        if (user.assignedVehicle) {
+            getUserVehicle(user.assignedVehicle)
+                .then(response => {
+                    setVehicle(response[0]);
+                });
+            }
+        if (user.currentTeam && user.currentSubTeam) {
+            getTeamSupervisor(user.currentTeam, user.currentSubTeam)
+                .then(response => {
+                    setSupervisor(response[0])
+                });
         getTeamSiteName(user.currentTeam, user.currentSubTeam)
             .then(response => {
                 setTeamSiteName(response[0])
             });
+        }
     }   
 
     useEffect(() => {
@@ -136,6 +145,7 @@ export const UserProvider = (props) => {
     return (
         <UserContext.Provider value={{ user, signUp, signOut, signIn, vehicle, supervisor, teamSiteName, checklistData }}>
             {props.children}
+            <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>
         </UserContext.Provider>
     );
 };

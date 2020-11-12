@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "../Checklist.module.scss";
 
 const ClassAChecks = (props) => {
-
+    console.log(props);
     const { setFailedElements, failObject, checklistData, vehicleType, nextHandler, backHandler} = props.propsMethods;
     const checkboxArr = Object.keys(checklistData.classA);
 

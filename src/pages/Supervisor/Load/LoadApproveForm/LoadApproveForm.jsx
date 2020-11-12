@@ -23,7 +23,7 @@ const LoadApproveForm = (props) => {
       delete newLoad.isApproved;
       updateLoad(load.id, newLoad)
 
-      ////
+      //// 
       createNewsItem({
         dateCreated: new Date(),
         title: data.isApproved == 1 ? "Load Approved" : "Load Rejected",
