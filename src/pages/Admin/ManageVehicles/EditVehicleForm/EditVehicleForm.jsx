@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import Styles from './EditVehicleForm.module.scss';
 import sitesArr from '../../../../data/sites';
 import { updateVehicle } from '../../../../services/VehiclesService'
+import { getTeams} from '../../../../services/TeamsService';
 
 const vehicleTypesArr = [
     "Articulated Water Truck",
@@ -30,24 +31,35 @@ const EditVehicleForm = (props) => {
         vehicleID,
         vehicleType,
         goStatus,
+        currentTeam
     } = props.vehicle
 
     const { register, handleSubmit, errors } = useForm();
+    const [teamNamesArr, setTeamNamesArr] = useState([null]);
+    const [subTeamNamesArr, setSubTeamNamesArr] = useState([null]);
 
     const updateCurrentVehicle = (data) => {
         const updatedVehicle = {
             vehicleType : data.vehicleType,
             goStatus : data.goStatus,
+            currentTeam : data.currentTeam,
             vehicleID : vehicleID
         }
         {props.hide()}
         return updateVehicle(updatedVehicle);
     }
+
+    useEffect(() => {
+        getTeams().then(response => {
+            setTeamNamesArr([...new Set(response.map(team => team.teamName))]);
+            setSubTeamNamesArr([...new Set(response.map(team => team.subTeamName))]);
+        });
+    }, [])
     
     return (
         <form className={Styles.vehicleForm} onSubmit={handleSubmit(updateCurrentVehicle)}>
             <label htmlFor="vehicleType">Select Vehicle Type :</label>
-            <select
+            <select className={Styles.selectPrimary}
                 defaultValue={vehicleType}
                 name="vehicleType"
                 id="vehicleType"
@@ -57,8 +69,9 @@ const EditVehicleForm = (props) => {
             </select>
             {errors.vehicleType && <p>Vehicle Type is required.</p>}
 
+
             <label htmlFor="goStatus">Select Go Status :</label>
-            <select
+            <select className={Styles.selectPrimary}
                 defaultValue={goStatus}
                 name="goStatus" 
                 id="goStatus"
@@ -70,8 +83,20 @@ const EditVehicleForm = (props) => {
                 <option value="goBut">No Go</option>
             </select>
             
-            <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Update</button>
+            <label htmlFor="currentTeam">Select Team :</label>
+            <select
+                defaultValue={currentTeam}
+                className={Styles.selectPrimary}
+                name="currentTeam"
+                id="currentTeam" 
+                ref={register()}>
+                <option value="">Select Team</option>
+                {teamNamesArr.map((teamName) => <option key={teamName}>{teamName}</option>)}
+
+            </select>
+
+            <button className={`${Styles.btn} ${Styles.btnPrimary}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
+            <button className={`${Styles.btn} ${Styles.btnSecondary}`} type="submit">Update</button>
         </form>
     )
 }

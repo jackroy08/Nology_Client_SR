@@ -31,11 +31,14 @@ const VehicleTable = (props) => {
   return (
     <section className={Styles.vehicleListSection}>
       <header className={Styles.header} onClick={headerOnClick}>
-        <h3>Team Vehicle Stats</h3>
+        <h3>Team Vehicles</h3>
         <div className={Styles.vehicleSummary}>
-          <p>Total Vehicles: {filteredVehiclesArr.length}</p>
-          <p>Working Vehicles: {filteredVehiclesArr.filter(v => v.goStatus).length}</p>
-          <p>Broken Vehicles: {filteredVehiclesArr.filter(v => !v.goStatus).length}</p>
+          <p>Total :</p>
+          <p>{filteredVehiclesArr.length}</p>
+          <p>Working :</p>
+          <p>{filteredVehiclesArr.filter(v => v.goStatus).length}</p>
+          <p>Broken :</p>
+          <p>{filteredVehiclesArr.filter(v => !v.goStatus).length}</p>
         </div>
       </header>
 

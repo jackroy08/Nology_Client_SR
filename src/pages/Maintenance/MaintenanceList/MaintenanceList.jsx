@@ -23,7 +23,11 @@ const MaintenanceList = () => {
             let jobsArr = []
             vehicleList.map(vehicle => {
                 if (vehicle.checkItems) {
-                    vehicle.checkItems.map(checkItem => jobsArr.push(checkItem))
+                    vehicle.checkItems.map(checkItem => {
+                        if (checkItem.maintenanceSignoff === false) {
+                            jobsArr.push(checkItem)
+                        }
+                    })
                 }
             })
             setOutstandingJobs(jobsArr)
@@ -57,7 +61,7 @@ const MaintenanceList = () => {
                     <h4>Assigned to</h4>
                     <h4>✔</h4>
                 </li>
-                {filteredJobsArr.map((job) => <MaintenanceListItem key={job.vehicleID} job={job}/>)} 
+                {filteredJobsArr.map((job) => <MaintenanceListItem key={`${job.vehicleID}-${job.issue}`} job={job}/>)} 
             </ul>
         </section>
     )

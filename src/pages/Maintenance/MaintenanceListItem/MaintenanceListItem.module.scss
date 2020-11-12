@@ -2,30 +2,36 @@
 @import '../../../assets/styles/variables'; 
 
 .jobItem {
-display:grid;
-grid-template-columns: 70px 32px 1fr 1fr 1fr 1fr 32px;
-justify-items: start;
-align-items: center;
-background-color: $background-color1;
-padding: $base-spacing/2;
-border-bottom: 1px solid $grey-lighten;
-position: relative;
+    display:grid;
+    grid-template-columns: 70px 32px 1fr 1fr 1fr 1fr 32px;
+    justify-items: start;
+    align-items: center;
+    padding: $base-spacing/2;
+    border-top: 1px solid $background-color1;
+    position: relative;
+    color: $dark-text-mid;
 
-&:hover {
-    background-color: $grey-lighten-more;
-}
+    &:hover {
+        background-color: $background-color1;
+        p {
+        color: $dark-text-high;
+        }
+    }
 
-.confirmDelete {
-    display: none;
-    position: absolute;
-    right: 0;
-    grid-template-columns: auto auto;
-    gap: $base-spacing;
-}
+    .confirmDelete {
+        display: none;
+        position: absolute;
+        right: 0;
+        grid-template-columns: auto auto;
+        gap: $base-spacing;
 
-.confirmOpen {
-    display: grid;
-}
+        button {
+            padding: $base-spacing/2;
+        }
+    }
+    .confirmOpen {
+        display: grid;
+    }
 }
 
 .faIcon {

@@ -1,0 +1,17 @@
+@import "./../../../assets/styles/variables";
+@import "./../../../assets/styles/forms";
+@import "./../../../assets/styles/buttons";
+
+.handoverForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $base-spacing*2;
+    width: 100%;
+    margin: 0 auto;
+
+    button {
+        grid-column: 2/3;
+        justify-self: end;
+    }
+}
+
