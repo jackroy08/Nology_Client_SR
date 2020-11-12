@@ -36,7 +36,7 @@ const NewsItemModal = (props) => {
           <p>Driver: {info["driver"]}</p>
           <p>Fault Class: {info["faultClass"]}</p>
           <p>Issue: {info["faultName"]}</p>
-          <p>Fix By: {info["fixBy"]}</p>
+          <p>Fault Description: {info["faultDescription"]}</p>
         </>
       )
       break;

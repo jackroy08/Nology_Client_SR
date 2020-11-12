@@ -41,6 +41,31 @@ const Confirmation = (props) => {
             isImportant: false
         })
 
+        issuesArr.forEach(issue => {
+            
+            let letters = issue.classType.split("")
+            letters[0] = letters[0].toUpperCase()
+            letters.splice(5, 0, " ")
+            let title = letters.join()
+            createNewsItem({                
+                title: `${title} issue raised`,
+                message: `${issue.issue} reported on ${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                team: vehicle.currentTeam,
+                type: "maintenanceRaised",
+                isImportant: false,
+                seenBy: [],
+                info:{
+                    vehicle: `${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                    driver: vehicle.currentUser,
+                    faultClass: issue.classType,
+                    issue: issue.issue,
+                    faultDescription: issue.additionalDetails
+                },                     
+                dateCreated: new Date()
+            });
+        })
+
+
         navigate("/operator")
     }
 
