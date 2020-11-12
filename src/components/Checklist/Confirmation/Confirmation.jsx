@@ -2,6 +2,7 @@ import { Link, navigate } from "@reach/router";
 import React, { useState, useEffect } from "react";
 import Styles from "./Confirmation.module.scss";
 import { setVehicleIssues } from "../../../services/VehiclesService";
+import { createNewsItem } from "./../../../services/newsItemsService";
 
 const Confirmation = (props) => {
     const { vehicle, backHandler, failedElements } = props;
@@ -25,6 +26,46 @@ const Confirmation = (props) => {
 
     const submitHandler = () => {
         setVehicleIssues(vehicle.vehicleID, issuesArr, setGoStatusHandler(issuesArr));
+        createNewsItem({
+            dateCreated: new Date(),
+            title: `Vehicle Checklist Complete`,
+            message: `${vehicle.vehicleID} - checklist complete - ${setGoStatusHandler(issuesArr)}`,
+            team: vehicle.currentTeam,
+            type: "vehicleCheckListComplete",
+            info: {
+                driver: vehicle.currentUser,
+                vehicle: `${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                status: setGoStatusHandler(issuesArr)
+            },
+            seenBy: [],
+            isImportant: false
+        })
+
+        issuesArr.forEach(issue => {
+            
+            let letters = issue.classType.split("")
+            letters[0] = letters[0].toUpperCase()
+            letters.splice(5, 0, " ")
+            let title = letters.join("")
+            createNewsItem({                
+                title: `${title} issue raised`,
+                message: `${issue.issue} reported on ${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                team: vehicle.currentTeam,
+                type: "maintenanceRaised",
+                isImportant: false,
+                seenBy: [],
+                info:{
+                    vehicle: `${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                    driver: vehicle.currentUser,
+                    faultClass: issue.classType,
+                    issue: issue.issue,
+                    faultDescription: issue.additionalDetails
+                },                     
+                dateCreated: new Date()
+            });
+        })
+
+
         navigate("/operator")
     }
 
@@ -50,6 +91,7 @@ const Confirmation = (props) => {
             });
         });
         setIssuesArr(issues);
+        console.log(issues);
     }, [])
 
     return (

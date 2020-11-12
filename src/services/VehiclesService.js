@@ -30,6 +30,7 @@ const updateVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle
 const deleteVehicle  = (vehicle) => firestore.collection("vehicles").doc(vehicle.vehicleID).delete();
 
 const setVehicleIssues = (vehicle, issues, goStatus) => {
+    console.log([...issues])
     firestore
         .collection("vehicles")
         .doc(vehicle)
@@ -39,6 +40,8 @@ const setVehicleIssues = (vehicle, issues, goStatus) => {
         }, {merge: true})
 }
 
+// toDo: 
+// FirebaseError: Function DocumentReference.set() called with invalid data. Unsupported field value: undefined (found in document vehicles/003)
 const getUserVehicle = (assignedVehicle) => {
     return firestore
         .collection("vehicles")
