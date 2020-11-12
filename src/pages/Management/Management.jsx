@@ -5,6 +5,7 @@ import VehicleFeed from "./VehicleFeed";
 import TeamFeed from "./TeamFeed";
 import SideNav from "../../components/SideNav";
 import { getVehicles } from "../../services/VehiclesService";
+import ManagementSummary from './ManagementSummary/ManagementSummary.jsx';
 
 const Management = () => {
 
@@ -71,9 +72,14 @@ const Management = () => {
                 </div>
             </SideNav>
             <main className={Styles.mainContent}>
+                <h1 className={Styles.sectionTitle}>Overview</h1>
+                <section className={Styles.summaryContainer}>
+                    <ManagementSummary />
+                </section>
+                <h1 className={Styles.sectionTitle}>Info</h1>
                 <section className={Styles.liveFeedContainer}>
-                    <VehicleFeed />
                     <TeamFeed />
+                    <VehicleFeed />
                 </section>
 
             </main>
