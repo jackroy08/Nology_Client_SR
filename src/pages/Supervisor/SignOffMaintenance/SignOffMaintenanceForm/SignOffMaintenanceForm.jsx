@@ -43,7 +43,7 @@ const SignOffMaintenanceForm = (props) => {
     })
 
 
-    // this function is here to update the parent that the check items have changed dynamically 
+    // this function is here to update the parent that the check items have changed dynamically set to false
     onFormSubmit(checkItem.issueID);
   } 
 

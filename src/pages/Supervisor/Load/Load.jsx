@@ -75,14 +75,12 @@ export const Load = (props) => {
         })
     }
 
-    //ToDo - an items index can change as the loads can be removed from filtered array loads, so this shouldnt be used as the key
-    const approveLoads = filteredLoadsArr.length ? filteredLoadsArr.map((load, i) => (<LoadApproveForm key={i} index={i} load={load} />)) : <h3>There are currently no loads to approve</h3>;
+    const approveLoads = filteredLoadsArr.length ? filteredLoadsArr.map((load, i) => (<LoadApproveForm key={`${load.currentDate.toString()}${load.driver}`} index={i} load={load} />)) : <h3>There are currently no loads to approve</h3>;
 
     return (
         <section>
             <h3>Approve Load</h3>
             {approveLoads}
-            {/* Additional option for the supervisor to add a load themselves. Would need to add driver themselves? */} 
             <h3>Add Load</h3>
             <form className={Styles.addLoadForm} onSubmit={handleSubmit(onSubmit)}>
                 

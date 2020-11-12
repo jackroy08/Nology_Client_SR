@@ -22,13 +22,12 @@ const NewsTicker = (props) => {
             <h4>Message</h4>
         </div>
         <ul className={Styles.importantNews}>
-          {importantNewsItems.map(item => <NewsItem key={Math.random()} item={item} setModalContent={setModalContent} toggle={toggle} />)}
+          {importantNewsItems.reverse().map(item => <NewsItem key={Math.random()} item={item} setModalContent={setModalContent} toggle={toggle} />)}
         </ul>
 
         <ul className={Styles.regularNews}>
-          {regularNewsItems.map(item => <NewsItem key={Math.random()} item={item} setModalContent={setModalContent} toggle={toggle} />)}
+          {regularNewsItems.reverse().map(item => <NewsItem key={Math.random()} item={item} setModalContent={setModalContent} toggle={toggle} />)}
         </ul>
-
     </>
   );
 };

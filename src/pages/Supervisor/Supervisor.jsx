@@ -91,7 +91,6 @@ export const Supervisor = () => {
     //     setFilteredUsersArr(usersArr.filter(teamToView==="All" ? () => true : user => user.currentTeam===teamToView));
     // },[usersArr])
 
-    // toDo refactor useState and useEffect so more tidy (e.g. setting state to vehicles twice)
     useEffect(() => {
         setFilteredVehicleChecksArray(vehicleChecksArray.filter(vehicle => vehicle.currentTeam === user.currentTeam));
     }, [vehicleChecksArray])
