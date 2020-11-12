@@ -22,8 +22,17 @@ export const SignOffMaintenance = (props) => {
   const signOffMaintenanceForms = checkItemsCopy.length ? checkItemsCopy.map(checkItem => (<SignOffMaintenanceForm checkItem={checkItem} key={checkItem.issueID} onFormSubmit={handleSubmit} />)) : <h3>There are currently no maintenance issues to sign off</h3>;
 
   return (
-    <section>
-      <h3>Sign off Maintenance</h3>
+    <section className={Styles.signOffMaintenanceSection}>
+      <h3 className={Styles.signOffMaintenanceTitle}>Sign off Maintenance</h3>
+      <div className={Styles.columnTitles}>
+        <h5>Driver</h5>
+        <h5>Vehicle</h5>
+        <h5>Issue</h5>
+        <h5>Class</h5>
+        <h5>Approve</h5>
+        <h5>Reject</h5>
+        <h5>Submit</h5>
+      </div>
       {signOffMaintenanceForms}
     </section>
   )
