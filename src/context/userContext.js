@@ -89,7 +89,6 @@ export const UserProvider = (props) => {
                 alert(error);
             });
     };
-
     
     const loadUserContent = () => {
         if (user.assignedVehicle) {
