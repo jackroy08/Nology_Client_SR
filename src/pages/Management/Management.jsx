@@ -3,6 +3,7 @@ import Styles from './Management.module.scss';
 import { Link } from "@reach/router";
 import VehicleFeed from "./VehicleFeed";
 import TeamFeed from "./TeamFeed";
+import SideNav from "../../components/SideNav";
 import { getVehicles } from "../../services/VehiclesService";
 
 const Management = () => {
@@ -58,23 +59,25 @@ const Management = () => {
     }, []);
 
     return (   
-        <>
-            <main className={Styles.managementMain}>
-                <section className={Styles.headingContainer}>
-                    <h1 className={Styles.managementTitle}>Management</h1>
-                    <Link to="../admin"><button className={Styles.btn}>Go to admin page</button></Link>
-                </section>
+        <div className={Styles.pageContainer}> 
+            <SideNav>
+                <h2>Management</h2>
+                <Link to="../admin"><button className={Styles.btnNav}>Admin Portal</button></Link>
+                <button className={Styles.btnNav}>Site Status : </button>
                 <div className={Styles.trafficLightSignal}>
                     <div className={`${Styles.defaultSignal} ${redSignal}`}></div>
                     <div className={`${Styles.defaultSignal} ${amberSignal}`}></div>
                     <div className={`${Styles.defaultSignal} ${greenSignal}`}></div>
                 </div>
+            </SideNav>
+            <main className={Styles.mainContent}>
                 <section className={Styles.liveFeedContainer}>
                     <VehicleFeed />
                     <TeamFeed />
                 </section>
+
             </main>
-        </>
+        </div>
     )
 }
 

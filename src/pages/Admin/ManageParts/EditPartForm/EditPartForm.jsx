@@ -23,7 +23,7 @@ const EditPartForm = (props) => {
     return (
         <form className={Styles.partForm} onSubmit={handleSubmit(updateCurrentPart)}>
             <label htmlFor="partName">Part Name :</label>
-            <input
+            <input className={Styles.inputPrimary}
                 defaultValue={partName}
                 type="text"
                 id="partName"
@@ -32,8 +32,8 @@ const EditPartForm = (props) => {
                 ref={register({ required: true })} />
                 {errors.partName && <p> Part Name is required.</p>}
             
-            <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Update</button>
+            <button className={`${Styles.btn} ${Styles.btnPrimary}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
+            <button className={`${Styles.btn} ${Styles.btnSecondary}`} type="submit">Update</button>
         </form>
     )
 }

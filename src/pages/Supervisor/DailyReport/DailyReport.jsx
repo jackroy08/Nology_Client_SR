@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Styles from "./DailyReport.module.scss";
 import { useForm } from "react-hook-form";
 import { createNewsItem } from "../../../services/newsItemsService";
 import { UserContext } from "../../../context/userContext";
@@ -60,22 +61,21 @@ const { user } = useContext(UserContext)
 
     return (
         <div>
-            <h1>Supervisor Handover Notes</h1>
-            <form onSubmit={handleSubmit(submitForm)}>
+            <h3>Supervisor Handover Notes</h3>
+            <form className={Styles.handoverForm} onSubmit={handleSubmit(submitForm)}>
                 {inputs.map(input => (
                     <>
-                        <label htmlFor={input.label}>
-                        {input.label}
+                        <label htmlFor={input.label}>{input.label}</label>
                         <input 
+                            className={Styles.inputPrimary}
                             type={input.type} 
                             name={input.id} 
                             ref={register}
                             id={input.label}
                         />
-                        </label>
                     </>
                 ))}
-                <input type="submit"/>
+                <button className={Styles.btnPrimary} type="submit">Submit</button>
             </form>
         </div>
     )
