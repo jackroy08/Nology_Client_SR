@@ -5,6 +5,7 @@ import { getOperators, updateUser } from "../../services/UsersService";
 import Styles from "./Operator.module.scss";
 import Modal from "../../components/Modal";
 import useModal from "../../components/Modal/useModal";
+import SideNav from "../../components/SideNav"
 import SubmitLoad from "./SubmitLoad";
 import ReportAProblem from "./ReportAProblem";
 import Error from "../../components/Error";
@@ -49,34 +50,43 @@ const Operator = () => {
     }
 
     return (
-        <main className={Styles.pageGrid}> 
-            <button
-                className={`${Styles.btn} ${Styles.btnLG}`}
-                onClick={() => updateShiftProperty()}>
+        
+        <div className={Styles.pageContainer}> 
+            <SideNav>
+                <h2>Operator</h2>
+                <button
+                    className={Styles.btnNav}
+                    onClick={() => updateShiftProperty()}>
                     {changeStart}
-            </button>
-            <button 
-                onClick={() => checklistBarrier()} 
-                user={user} 
-                className={`${Styles.btn} ${Styles.btnLG}`}>
+                </button>
+                <button 
+                    className={Styles.btnNav}
+                    onClick={() => checklistBarrier()} 
+                    user={user} >
                     Accept Vehicle
-            </button>
-            
-            <button 
-                onClick={() => reportBarrier()}
-                user={user} 
-                className={`${Styles.btn} ${Styles.btnLG}`}>
+                </button>
+                
+                <button 
+                    className={Styles.btnNav}
+                    onClick={() => reportBarrier()}
+                    user={user} >
                     Report a problem
-            </button>
-            
-            <button 
-                user={user} 
-                className={`${Styles.btn} ${Styles.btnLG}`} 
-                onClick= {() => {toggle(); setModalContent(<SubmitLoad hide={toggle} />)}}>
+                </button>
+                
+                <button 
+                    className={Styles.btnNav}
+                    user={user} 
+                    onClick= {() => {toggle(); setModalContent(<SubmitLoad hide={toggle} />)}}>
                     Submit Load
-            </button>
-            <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>
-        </main>
+                </button>
+                <Modal innerComponent={modalContent} isShowing={isShowing} hide={toggle}/>
+                
+            </SideNav>
+            <main className={Styles.mainContent}>
+                
+            </main>
+            
+        </div>
     )
 }
 

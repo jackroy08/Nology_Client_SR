@@ -2,6 +2,7 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import { updateUser } from "../../../services/UsersService";
 import { updateVehicle } from "../../../services/VehiclesService";
+import Styles from "./AssignVehicles.module.scss";
 import showToast from "../../../services/toastService";
 
 export const AssignVehicles = (props) => {
@@ -35,22 +36,21 @@ export const AssignVehicles = (props) => {
 
     return (
         <section>
-            <h1>Assign Vehicles</h1>
+            <h3 className={Styles.assignVehicleTitle}>Assign Vehicles</h3>
             <div>
-                <h2>Driver</h2>
-                <form action="" onSubmit={handleSubmit(onSubmit)}>
+                <form className={Styles.assignVehicleForm} action="" onSubmit={handleSubmit(onSubmit)}>
                     
-                    <select name="driver" ref={register({required: true})}>
+                    <label>Driver</label>
+                    <select className={Styles.selectPrimary} name="driver" ref={register({required: true})}>
                         {usersArr.map(employee => <option key={employee.userID} value={employee.userID}>{`${employee.userID}-${employee.fullNameStr}`}</option>)}
                     </select>
 
-                    <h2>Vehicle</h2>
-
-                    <select name="vehicle" ref={register({required: true})}>
+                    <label>Vehicle</label>
+                    <select className={Styles.selectPrimary} name="vehicle" ref={register({required: true})}>
                         {vehiclesArr.map(vehicle => <option key={vehicle.vehicleID} value={vehicle.vehicleID}>{`${vehicle.vehicleType}-${vehicle.vehicleID}`}</option>)}
                     </select>
                     
-                    <input type="submit"/>
+                    <button className={Styles.btnPrimary} type="submit">Submit</button>
                 </form>
                 </div>
         </section>

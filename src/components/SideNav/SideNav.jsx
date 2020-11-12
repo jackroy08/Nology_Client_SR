@@ -8,7 +8,7 @@ const SideNav = (props) => {
     
   const [open, setOpen] = useState(false);
   const openMenu = open ? Styles.accountMenuOpen : "";
-  const { user } = useContext(UserContext);
+  const { user, signOut } = useContext(UserContext);
 
   return (
     <nav className={Styles.sideNav}>
@@ -20,25 +20,29 @@ const SideNav = (props) => {
       {props.children}
 
       </section>
-      <footer className={Styles.sideNavFooter}>
-        <ul className={Styles.accountMenu}>
-        <li className={`${Styles.accountMenuLogout} ${openMenu}`} onClick={() => (setOpen(!open))}>
-            <span className={Styles.faIcon}>
-              <FontAwesomeIcon icon="sign-out-alt"/></span>
-            <p>Logout</p>
-          </li>
-          <li className={`${Styles.accountMenuPassword} ${openMenu}`} onClick={() => (setOpen(!open))}>
-            <span className={Styles.faIcon}>
-              <FontAwesomeIcon icon="key"/></span>
-            <p>Change Password</p>
-          </li>
-          <li className={Styles.accountMenuAccount} onClick={() => (setOpen(!open))}>
-            <span className={Styles.faIcon} >
-              <FontAwesomeIcon icon="user-circle"/></span>
-              <p>{user.userID}</p>
-          </li>
-        </ul>
-      </footer>
+    
+      <ul className={Styles.accountMenu}>
+      <li className={`${Styles.accountMenuLogout} ${openMenu}`}
+        onClick={() => {
+          (setOpen(!open))
+          (signOut())
+        }}>
+          <span className={Styles.faIcon}>
+            <FontAwesomeIcon icon="sign-out-alt"/></span>
+          <p>Logout</p>
+        </li>
+        <li className={`${Styles.accountMenuPassword} ${openMenu}`} onClick={() => (setOpen(!open))}>
+          <span className={Styles.faIcon}>
+            <FontAwesomeIcon icon="key"/></span>
+          <p>Change Password</p>
+        </li>
+        <li className={Styles.accountMenuAccount} onClick={() => (setOpen(!open))}>
+          <span className={Styles.faIcon} >
+            <FontAwesomeIcon icon="user-circle"/></span>
+            <p>{user.userID}</p>
+        </li>
+      </ul>
+    
     </nav>
 )
 }

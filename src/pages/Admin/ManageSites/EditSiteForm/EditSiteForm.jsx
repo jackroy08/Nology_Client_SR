@@ -25,7 +25,7 @@ const EditSiteForm = (props) => {
         <form className={Styles.siteForm} onSubmit={handleSubmit(updateCurrentSite)}>
             
             <label htmlFor="siteName">Site Name :</label>
-            <input
+            <input className={Styles.inputPrimary}
                 defaultValue={siteName}
                 type="text"
                 id="siteName"
@@ -33,8 +33,8 @@ const EditSiteForm = (props) => {
                 placeholder="enter the siteName"
                 ref={register({ required: true })} />
                 {errors.siteName && <p> Site Name is required.</p>}
-            <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Update</button>
+            <button className={`${Styles.btn} ${Styles.btnPrimary}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
+            <button className={`${Styles.btn} ${Styles.btnSecondary}`} type="submit">Update</button>
         </form>
     )
 }

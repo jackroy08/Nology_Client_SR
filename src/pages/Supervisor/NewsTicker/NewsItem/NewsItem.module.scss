@@ -2,10 +2,18 @@
 
 .newsItem{
     display: grid;
-    grid-template-columns: (1fr 1fr 4fr 1fr);
-    justify-content: space-evenly;
-    width: calc(100% - 20px);
-    background-color: $background-color1;
-    margin: $base-spacing;
-    border-bottom: 1px solid grey;
+    grid-template-columns: (1fr 1fr 4fr 50px);
+    justify-items: start;
+    align-items: center;
+    padding: $base-spacing/2;
+    border-top: 1px solid $background-color1;
+    position: relative;
+    color: $dark-text-mid;
+
+    &:hover {
+        background-color: $background-color1;
+        p {
+        color: $dark-text-high;
+        }
+    }
 }
