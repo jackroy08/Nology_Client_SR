@@ -9,6 +9,7 @@ import SideNav from "../../components/SideNav"
 import SubmitLoad from "./SubmitLoad";
 import ReportAProblem from "./ReportAProblem";
 import Error from "../../components/Error";
+import checklistData from "../../data/checklistdata.js";
 
 const Operator = () => {
     const { user } = useContext(UserContext);
@@ -83,7 +84,9 @@ const Operator = () => {
                 
             </SideNav>
             <main className={Styles.mainContent}>
-                
+                {/* <Router>
+                    <ChecklistContainer path="/Checklist" checklistData={checklistData} />
+                </Router> */}
             </main>
             
         </div>
