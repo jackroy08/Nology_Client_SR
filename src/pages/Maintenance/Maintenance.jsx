@@ -11,7 +11,7 @@ const Maintenance = () => {
         <div className={Styles.pageContainer}>
             <SideNav>
                 <h2>Maintenance</h2>
-                <Link to="../maintenance-report"><button>Repair Report</button></Link>
+                <Link to="../maintenance-report"><button className={Styles.btnNav}>Repair Report</button></Link>
             </SideNav>
             <main className={Styles.mainContent}>
                 <MaintenanceList />

@@ -1,8 +1,15 @@
 import React, { useState, useContext } from "react";
 import styles from "./Dashboard.module.scss";
-
+import { UserContext } from "../../../context/userContext";
 const Dashboard = (props) => {
+    const { user} = useContext(UserContext);
+    const isOnShift = () => {
+         const result = user.isOnshift ? <p>"You are currently On Shift"</p> : <p>"You have not yet started your shift"</p>;
+         return (result);
+         console.log(result);
+    }
 
+    
     return (
         <>
             <section className={styles.shiftSection}>
@@ -10,6 +17,7 @@ const Dashboard = (props) => {
                     <h3>Shift</h3>
                 </header>
                 <p>Status:</p>
+                {/* <p>{result}</p> */}
                 <p>You are currently On Shift / You have not yet started your shift</p>
             </section>
 

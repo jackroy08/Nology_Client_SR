@@ -29,18 +29,10 @@ const SignOffMaintenanceForm = (props) => {
   return (
     <>
       <form className={Styles.approveMaintenance} onSubmit={handleSubmit(onSubmit)}>
-        {/* <h5>Driver:  */}
           <p>{checkItem.operator}</p>
-        {/* </h5> */}
-        {/* <h5>Vehicle:  */}
           <p>{`${checkItem.vehicleType}-${checkItem.vehicleID}`}</p>
-        {/* </h5> */}
-        {/* // <h5>Issue: */}
           <p>{checkItem.issue}</p>
-        {/* </h5> */}
-        {/* // <h5>Class: */}
           <p>{checkItem.classType}</p>
-        {/* </h5> */}
 
         <label className={Styles.radiolbl} htmlFor="">
           Approve
