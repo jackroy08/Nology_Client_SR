@@ -64,7 +64,8 @@ const ManageUsers = () => {
                 </li>
                 {filteredUsersArr.map((user) => <UserItem key={user.userID} user={user} />)}
                 </ul>
-        </section>    )
+        </section>    
+    )
 }
 
 export default ManageUsers;

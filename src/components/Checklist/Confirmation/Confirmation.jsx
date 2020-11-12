@@ -11,7 +11,7 @@ const Confirmation = (props) => {
         return Object.keys(failedElements[classType]).map(elem => {
             if (failedElements[classType][elem].issue) {
                 return (
-                    <li key={failedElements[classType][elem].issue} className= {Styles.userItem}>
+                    <li key={failedElements[classType][elem].issue} className= {Styles.errorItem}>
                         <p>{failedElements[classType][elem].classType}</p>
                         <p>{failedElements[classType][elem].issue}</p>
                         <p>{failedElements[classType][elem].vehicleID}</p>
@@ -53,8 +53,8 @@ const Confirmation = (props) => {
     }, [])
 
     return (
-        <section className={Styles.userListSection}>
-            <ul className={Styles.userList}>
+        <article className={Styles.errorListTable}>
+            <ul className={Styles.errorList}>
                 <li className={Styles.columnTitles}>
                     <h4>Class of issue</h4>
                     <h4>Issue</h4>
@@ -64,13 +64,13 @@ const Confirmation = (props) => {
                 </li>
                 {Object.keys(failedElements).map(getFailedElementJsx)}
             </ul>
-            <section className={Styles.navigation}>
-                <button onClick={backHandler} className={Styles.btn}>Back</button>
+            <div className={Styles.navigation}>
+                <button onClick={backHandler} className={Styles.btnSecondary}>Back</button>
                 <Link to="/operator">
-                    <button onClick={submitHandler} className={Styles.btn}>Confirm checklist</button>
+                    <button onClick={submitHandler} className={Styles.btnPrimary}>Confirm checklist</button>
                 </Link>
-            </section>
-        </section>
+            </div>
+        </article>
     )
 }
 

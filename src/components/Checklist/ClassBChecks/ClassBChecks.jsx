@@ -17,21 +17,20 @@ const ClassBChecks = (props) => {
 
     return (
         <>
-            <main className={Styles.pageGrid}>
-                <h1>Class B Checks</h1>
+            <h4>Class B Checks</h4>
+            <article className={Styles.classChecks}>
                 <form id="class-b-checks">
                     <div className={Styles.responses}>
                         {checkboxArr.map(getChecklist)}
                     </div>
-                    <textarea name="class-b-comment" id="additional-details"></textarea>
-                
+                    <textarea className={Styles.textareaPrimary} name="class-b-comment" id="additional-details" placeholder="Please enter any additional details here..."></textarea>
                     <section className={Styles.navigation}>
-                        <button onClick={backHandler} className={Styles.btn}>Back</button> 
-                        <button type="button" onClick={() => {nextHandler(); setFailedElements(failObject(vehicleType, "classB"))}} className={Styles.btn}>Next</button>
+                        <button onClick={backHandler} className={Styles.btnSecondary}>Back</button> 
+                        <button type="button" className={Styles.btnPrimary} onClick={() => {nextHandler(); setFailedElements(failObject(vehicleType, "classB"))}}>Next</button>
                     </section>
                 </form>
-            </main>
-        </>
+            </article>
+    </>
     )
 }
 

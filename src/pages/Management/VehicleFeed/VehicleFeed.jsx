@@ -11,7 +11,7 @@ const VehicleFeed = () => {
     const classCIssues = [];
 
     vehiclesArr.map(vehicle => {
-        if(vehicle.currentUser !== null) vehicleCountArr.push(vehicle);
+        if (vehicle.currentUser !== null) vehicleCountArr.push(vehicle);
     });
 
     useEffect(() => {
@@ -21,15 +21,15 @@ const VehicleFeed = () => {
             const [vehicles] = response;
             setVehiclesArr(vehicles);
             vehicles.map((vehicle) => {
-                
-                if(vehicle.checkItems !== null) {
+
+                if (vehicle.checkItems !== null) {
                     for (let i = 0; i < vehicle.checkItems.length; i++) {
                         const checkItem = vehicle.checkItems[i];
 
-                        if(checkItem.classType == "classA") classAIssues.push(checkItem);
-                        else if(checkItem.classType == "classB") classBIssues.push(checkItem);
-                        else if(checkItem.classType == "classC") classCIssues.push(checkItem);
-                    }                
+                        if (checkItem.classType == "classA") classAIssues.push(checkItem);
+                        else if (checkItem.classType == "classB") classBIssues.push(checkItem);
+                        else if (checkItem.classType == "classC") classCIssues.push(checkItem);
+                    }
                 }
             })
 
@@ -43,7 +43,7 @@ const VehicleFeed = () => {
                             "#E9ECFF",
                         ],
                     }],
-                    
+
                     labels: [
                         "Class A Fails",
                         "Class B Fails",
@@ -56,7 +56,7 @@ const VehicleFeed = () => {
 
     const pieData = {
         datasets: [{
-            data: [vehicleCountArr.length, (vehiclesArr.length-vehicleCountArr.length)],
+            data: [vehicleCountArr.length, (vehiclesArr.length - vehicleCountArr.length)],
             backgroundColor: [
                 "#2DA488",
                 "#E5F6F2",

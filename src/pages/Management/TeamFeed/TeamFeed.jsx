@@ -20,8 +20,8 @@ const TeamFeed = () => {
 
             teams.forEach((team) => {
                 const subTeamUsers = users.filter(u => u.currentTeam == team.teamName && u.currentSubTeam == team.subTeamName);
-                if(!parentTeams.includes(team.teamName)) parentTeams.push(team.teamName);
-    
+                if (!parentTeams.includes(team.teamName)) parentTeams.push(team.teamName);
+
                 setSubTeamData(prevData => {
                     return {
                         datasets: [{
@@ -50,7 +50,7 @@ const TeamFeed = () => {
             parentTeams.forEach((team) => {
                 const teamLoads = [];
                 for (const [key] of Object.entries(loads)) {
-                    if(loads[key].team == team) {
+                    if (loads[key].team == team) {
                         teamLoads.push("load");
                     };
                     console.log(loads);
@@ -67,17 +67,17 @@ const TeamFeed = () => {
                     }
                 });
             });
-        }); 
+        });
     }, []);
 
     const [subTeamData, setSubTeamData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
     const [teamVehicleData, setVehicleTeamData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
     const [teamLoadData, setTeamLoadData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
 
     return (
@@ -96,16 +96,16 @@ const TeamFeed = () => {
                     <p className={Styles.chartContainerTitle}>Amount of team vehicles</p>
                     <Bar
                         data={teamVehicleData}
-                        legend={{display: false}}
-                        options={{maintainAspectRatio: true, responsive: true}}
+                        legend={{ display: false }}
+                        options={{ maintainAspectRatio: true, responsive: true }}
                     />
                 </div>
                 <div className={Styles.chartContainer}>
                     <p className={Styles.chartContainerTitle}>Amount of loads per team</p>
                     <Bar
                         data={teamLoadData}
-                        legend={{display: false}}
-                        options={{maintainAspectRatio: true, responsive: true}}
+                        legend={{ display: false }}
+                        options={{ maintainAspectRatio: true, responsive: true }}
                     />
                 </div>
             </section>
