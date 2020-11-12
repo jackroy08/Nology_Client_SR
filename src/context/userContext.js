@@ -12,7 +12,7 @@ import Error from "../components/Error";
 export const UserContext = createContext({});
 
 export const UserProvider = (props) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
     const [supervisor, setSupervisor] = useState({});
     const [checklistData, setChecklistData] = useState({});
     const [vehicle, setVehicle] = useState({});
