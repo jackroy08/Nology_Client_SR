@@ -11,7 +11,7 @@ const ChecklistContainer = (props) => {
     const { user, vehicle, supervisor, checklistData } = useContext(UserContext);
     const [step, setStep] = useState(1);
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
-    const supervisorProperty = supervisor ? supervisor.userID : null;
+    const supervisorProperty = supervisor ? supervisor.userID ? supervisor.userID : null : null;
 
     const failObject = (vehicleType, classType) => {
         return Object.keys(checklistData[classType]).reduce((acc, val) => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Styles from "./MaintenanceReport.module.scss";
 import { getVehicles, updateVehicleIssue } from "../../../services/VehiclesService";
+import { createNewsItem } from "../../../services/newsItemsService";
 
 const MaintenanceReport = () => {
 
@@ -31,6 +32,21 @@ const MaintenanceReport = () => {
         reportProblem[0].maintenanceSignoff = reportObj;
         console.log(reportProblem[0]);
         updateVehicleIssue(reportProblem[0]);
+        createNewsItem({                
+            title: "Maintenance Completed",
+            message: `${vehicleIssue} on ${reportVehicle} by ${reportProblem.assignedMaintenance}`,
+            team: reportVehicle.currentTeam,
+            type: "maintenanceComplete",
+            isImportant: false,
+            seenBy: [],
+            info: {
+                vehicle: reportVehicle,
+                faultClass: reportProblem.classType,
+                faulName: reportProblem.issue,
+                completedBy: reportProblem.assignedMaintenance
+            },
+            dateCreated: new Date()
+        })
     }
 
     return (

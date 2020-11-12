@@ -26,20 +26,20 @@ const Confirmation = (props) => {
 
     const submitHandler = () => {
         setVehicleIssues(vehicle.vehicleID, issuesArr, setGoStatusHandler(issuesArr));
-        // createNewsItem({
-        //     dateCreated: issuesArr.dateCreated,
-        //     title: `Vehicle Checklist Complete`,
-        //     message: `${vehicle.vehicleID} - checklist complete - ${setGoStatusHandler(issuesArr)}`,
-        //     team: vehicle.currentTeam,
-        //     type: "vehicleCheckListComplete",
-        //     info: {
-        //         driver: vehicle.currentUser,
-        //         vehicle: `${vehicle.vehicleType}-${vehicle.vehicleID}`,
-        //         status: setGoStatusHandler(issuesArr)
-        //     },
-        //     seenBy: [],
-        //     isImportant: false
-        // })
+        createNewsItem({
+            dateCreated: new Date(),
+            title: `Vehicle Checklist Complete`,
+            message: `${vehicle.vehicleID} - checklist complete - ${setGoStatusHandler(issuesArr)}`,
+            team: vehicle.currentTeam,
+            type: "vehicleCheckListComplete",
+            info: {
+                driver: vehicle.currentUser,
+                vehicle: `${vehicle.vehicleType}-${vehicle.vehicleID}`,
+                status: setGoStatusHandler(issuesArr)
+            },
+            seenBy: [],
+            isImportant: false
+        })
 
         navigate("/operator")
     }
