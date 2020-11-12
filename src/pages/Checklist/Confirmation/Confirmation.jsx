@@ -25,6 +25,9 @@ const Confirmation = (props) => {
 
     const submitHandler = () => {
         setVehicleIssues(vehicle.vehicleID, issuesArr, setGoStatusHandler(issuesArr));
+        //ToDo generate news item here
+        //failed elements contains failed checks
+        //go status
         navigate("/operator")
     }
 
