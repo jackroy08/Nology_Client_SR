@@ -3,20 +3,25 @@
 @import "./../../../../assets/styles/buttons";
 
 .approveMaintenance {
-    display: flex;
-    flex-direction: row;
-    // justify-content: space-between;
-    width: 950px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 120px 120px 120px;
+    align-items: center;
+    width: 1000px;
     margin: 0 auto;
     padding: 5px;
-    background-color: $background-color2;
+    background-color: white;
+    border-top: 1px solid #f0f0fa;
 
     h5 {
         padding: 0 20px;
         width: 20%;
+        font-family:'Poppins';
+        font-weight:normal;
 
-        p {
-            color: white;
+        p{
+            color:$dark-text-mid;
+            font-family:'Poppins';
+            font-weight:normal;
         }
     }
 
@@ -34,5 +39,15 @@
 
     input {
         padding: 0 20px;
+    }
+    button {
+        padding: $base-spacing/2
+    }
+    .radio{
+        margin-left:$base-spacing;
+    }
+    .radiolbl{
+        margin:10px 0px 0px 0px;
+        
     }
 }

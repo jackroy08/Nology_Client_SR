@@ -23,10 +23,7 @@ const SideNav = (props) => {
     
       <ul className={Styles.accountMenu}>
       <li className={`${Styles.accountMenuLogout} ${openMenu}`}
-        onClick={() => {
-          (setOpen(!open))
-          (signOut())
-        }}>
+        onClick={() => (signOut())}>
           <span className={Styles.faIcon}>
             <FontAwesomeIcon icon="sign-out-alt"/></span>
           <p>Logout</p>
