@@ -50,22 +50,15 @@ const SignOffMaintenanceForm = (props) => {
   return (
     <>
       <form className={Styles.approveMaintenance} onSubmit={handleSubmit(onSubmit)}>
-        <h5>Driver: 
           <p>{checkItem.operator}</p>
-        </h5>
-        <h5>Vehicle: 
           <p>{`${checkItem.vehicleType}-${checkItem.vehicleID}`}</p>
-        </h5>
-        <h5>Issue:
           <p>{checkItem.issue}</p>
-        </h5>
-        <h5>Class:
           <p>{checkItem.classType}</p>
-        </h5>
 
-        <label htmlFor="">
+        <label className={Styles.radiolbl} htmlFor="">
           Approve
           <input 
+            className={Styles.inputPrimary, Styles.radio}
             type="radio"
             ref={register}
             value="true"
@@ -73,9 +66,9 @@ const SignOffMaintenanceForm = (props) => {
           />
         </label>
 
-        <label htmlFor="">
+        <label className={Styles.radiolbl} htmlFor="">
           Reject
-          <input 
+          <input className={Styles.inputPrimary, Styles.radio}
             type="radio"
             ref={register}
             value="false"
@@ -83,7 +76,7 @@ const SignOffMaintenanceForm = (props) => {
           />
         </label>
           
-        <input type="submit"/>
+        <button className={Styles.btnPrimary} type="submit">Submit</button>
     </form>
     </>
   );

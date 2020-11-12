@@ -19,6 +19,12 @@
 
 }
 
+.loginTitle {
+  padding: 5px 0px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .loginBtns {
   padding: 10px 20px;
   font-weight: 500;
@@ -80,6 +86,7 @@ footer {
 .loginForm {
   display: grid;
   gap: 0.5em;
+  width: 300px;
 
   input {
     border-radius: 3px;
