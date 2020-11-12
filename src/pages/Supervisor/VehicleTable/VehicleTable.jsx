@@ -10,7 +10,7 @@ const VehicleTable = (props) => {
       <li key={vehicle.vehicleID} className={`${Styles.vehicleItem} ${vehicle.goStatus ? "" : Styles.unavailable}`}>
         <p>{vehicle.vehicleID}</p>
         <p>{vehicle.vehicleType}</p>
-        <p>{vehicle.goStatus ? "Available" : "Not Available"}</p>
+        <p>{vehicle.goStatus !== "No go" ? "Available" : "Not Available"}</p>
         <p>{vehicle.currentTeam ? vehicle.currentTeam : "No team"}</p>
         <p>{vehicle.currentUser}</p>
         {/* <p>{vehicle.checkItems}</p> */}
@@ -36,9 +36,9 @@ const VehicleTable = (props) => {
           <p>Total :</p>
           <p>{filteredVehiclesArr.length}</p>
           <p>Working :</p>
-          <p>{filteredVehiclesArr.filter(v => v.goStatus).length}</p>
+          <p>{filteredVehiclesArr.filter(v => v.goStatus !== "No go").length}</p>
           <p>Broken :</p>
-          <p>{filteredVehiclesArr.filter(v => !v.goStatus).length}</p>
+          <p>{filteredVehiclesArr.filter(v => v.goStatus === "No go").length}</p>
         </div>
       </header>
 

@@ -1,16 +1,6 @@
 import React, {useState} from "react";
 import Styles from "./UserTable.module.scss";
 
-
-//adding made up go status and Team - remove once data is from backend
-
-
-//where do we get current user??
-let supervisorTeam = "TeamA";
-//// End of bullshit data
-
-
-
 const UserTable = (props) => {
 
   const userData = props.filteredUsersArr;
@@ -44,9 +34,9 @@ const UserTable = (props) => {
           <p>Total:</p>
           <p>{userData.length}</p>
           <p>On Shift:</p>
-          <p>{userData.filter(v => v.goStatus).length}</p>
+          <p>{userData.filter(user => user.isOnShift).length}</p>
           <p>Away:</p>
-          <p>{userData.filter(v => !v.goStatus).length}</p>
+          <p>{userData.filter(user => !user.isOnShift).length}</p>
         </div>
       </header>
 
