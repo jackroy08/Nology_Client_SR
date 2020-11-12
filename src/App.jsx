@@ -8,7 +8,7 @@ import Supervisor from "./pages/Supervisor";
 import Maintenance from "./pages/Maintenance";
 import Management from "./pages/Management";
 import Admin from "./pages/Admin";
-import ChecklistContainer from "./pages/Checklist/ChecklistContainer";
+import Checklist from "./components/Checklist";
 import SubmitLoad from "./pages/Operator/SubmitLoad";
 import ReportAProblem from "./pages/Operator/ReportAProblem/ReportAProblem";
 import PrivateRoute from "./routes/PrivateRoute";
@@ -30,13 +30,13 @@ const App = () => {
         {/* <Header /> */}
         <Router className={styles.fullWidth}>
           <Login path="/" />
-          <Operator path="/operator" />
+          <Operator path="/operator/*" />
           <PrivateRoute path="/">
             <Supervisor path="/supervisor" />    
             <Maintenance path="/maintenance" />
             <Management path="/management/*" />
             <Admin path="/admin/*" />
-            <ChecklistContainer path="/Checklist" checklistData={checklistData} />
+            <Checklist path="/Checklist" checklistData={checklistData} />
             <SubmitLoad path="/SubmitLoad" />
             <ReportAProblem path="/ReportAProblem" />
           </PrivateRoute>

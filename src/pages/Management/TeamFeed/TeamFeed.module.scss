@@ -1,26 +1,22 @@
 @import "../../../assets/styles/variables";
-@import '../../../assets/styles/buttons'; 
+@import '../../../assets/styles/buttons';
+@import '../../../assets/styles/forms'; 
+@import '../../../assets/styles/fonts';
 
 .dataFeed {
     box-sizing:border-box;
-    background-color: $background-color1;
+    background-color: white;
     gap: 0.5em;
     width: 100%;
-    border-radius: 25px;
-    height:425px;
+    //border-radius: 15px;
+    height:95vh;
     width: 48%;
     cursor:pointer;
     padding:6px 12px;
     position: relative;
+    border-radius: 10px;
 
-    .feedTitle {
-        font-size: 40px;
-        color: $light-text-mid;
-        font-family: rubik;
-        font-style: normal;
-        font-weight: 700;
-        display: inline-block;
-    }
+   
     .btn {
         position: absolute;
         right: 20px;
@@ -35,29 +31,33 @@
             font-size: 30px;
             text-align: center;
             color: black;
-            font-family: rubik;
+            //font-family: rubik;
             font-style: normal;
-            font-weight: 850;
+            //font-weight: 850;
         }
     }
     .feedList {
         overflow-y: scroll;
+        padding:$base-spacing;
         margin-top: 5px;
-        height: 315px;
+        height: 90%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        background-color: $background-color1;
-        border: 2px solid black;
+        
+        
 
         .chartContainer {
             width: 100%;
             margin-bottom: 10px;
+            items-align:center;
 
             p {
                 text-align: center;
+                color:black;
+                font-family: 'Poppins' ;
                 text-decoration: underline;
-                font-weight: 850;
+                //font-weight: 850;
                 margin: 10px 0;
             }
         }        

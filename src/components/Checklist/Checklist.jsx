@@ -1,12 +1,13 @@
 import { Link } from '@reach/router';
+import styles from './Checklist.module.scss';
 import React, { useState, useContext } from 'react'
-import ClassAChecks from '../ClassAChecks';
-import ClassBChecks from '../ClassBChecks';
-import ClassCChecks from '../ClassCChecks';
-import Confirmation from '../Confirmation';
-import { UserContext } from "../../../context/userContext";
+import ClassAChecks from './ClassAChecks';
+import ClassBChecks from './ClassBChecks';
+import ClassCChecks from './ClassCChecks';
+import Confirmation from './Confirmation';
+import { UserContext } from "../../context/userContext";
 
-const ChecklistContainer = (props) => {
+const Checklist = (props) => {
     const { user, vehicle, supervisor, checklistData } = useContext(UserContext);
     const [step, setStep] = useState(1);
     const [failedElements, setFailedElements] = useState({classA: {}, classB: {}, classC: {}});
@@ -52,15 +53,16 @@ const ChecklistContainer = (props) => {
     let navigation = () => {
         switch (step) {
                 case 1: return (
-                    <section>
-                        <p>
-                            Vehicle type: {vehicle.vehicleType}
-                        </p> 
-                        <button onClick={nextHandler}>Next</button>
-                        <Link to="/Operator">
-                            <button>Back</button>
-                        </Link>
-                    </section>
+                    <>
+                        <div className={styles.vehicleDisplay}>
+                            <p>Vehicle type:</p>
+                            <p>{vehicle.vehicleType}</p>
+                        </div>
+                        <div className={styles.navigation}>
+                            <button className={styles.btnSecondary} onClick={ () => window.history.back()}>Back</button>
+                            <button className={styles.btnPrimary} onClick={nextHandler}>Next</button>
+                        </div>
+                    </>
                     )
                 case 2: return <ClassAChecks propsMethods={propsMethods} />
                 case 3: return <ClassBChecks propsMethods={propsMethods} />
@@ -71,10 +73,13 @@ const ChecklistContainer = (props) => {
         }
 
     return (
-        <div>
+        <section className={styles.confirmVehicleSection}>
+            <header>
+                <h3>Prestart Checklist</h3>
+            </header>      
             {navigation()}
-        </div>
+        </section>
     )
 }
 
-export default ChecklistContainer;
+export default Checklist;

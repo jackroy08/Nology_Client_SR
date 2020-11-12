@@ -12,7 +12,7 @@ const VehicleFeed = () => {
     const classCIssues = [];
 
     vehiclesArr.map(vehicle => {
-        if(vehicle.currentUser !== null) vehicleCountArr.push(vehicle);
+        if (vehicle.currentUser !== null) vehicleCountArr.push(vehicle);
     });
 
     useEffect(() => {
@@ -22,15 +22,15 @@ const VehicleFeed = () => {
             const [vehicles, loads] = response;
             setVehiclesArr(vehicles);
             vehicles.map((vehicle) => {
-                
-                if(vehicle.checkItems !== null) {
+
+                if (vehicle.checkItems !== null) {
                     for (let i = 0; i < vehicle.checkItems.length; i++) {
                         const checkItem = vehicle.checkItems[i];
 
-                        if(checkItem.classType == "classA") classAIssues.push(checkItem);
-                        else if(checkItem.classType == "classB") classBIssues.push(checkItem);
-                        else if(checkItem.classType == "classC") classCIssues.push(checkItem);
-                    }                
+                        if (checkItem.classType == "classA") classAIssues.push(checkItem);
+                        else if (checkItem.classType == "classB") classBIssues.push(checkItem);
+                        else if (checkItem.classType == "classC") classCIssues.push(checkItem);
+                    }
                 }
             })
 
@@ -50,7 +50,7 @@ const VehicleFeed = () => {
                         ],
                         borderWidth: 1
                     }],
-                    
+
                     labels: [
                         "Class A Fails",
                         "Class B Fails",
@@ -73,12 +73,12 @@ const VehicleFeed = () => {
                     ]
                 }
             })
-        }) 
+        })
     }, []);
 
     const pieData = {
         datasets: [{
-            data: [vehicleCountArr.length, (vehiclesArr.length-vehicleCountArr.length)],
+            data: [vehicleCountArr.length, (vehiclesArr.length - vehicleCountArr.length)],
             backgroundColor: [
                 "green",
                 "red",
@@ -110,29 +110,33 @@ const VehicleFeed = () => {
 
     return (
         <article className={Styles.dataFeed}>
-            <h1 className={Styles.feedTitle}>Live feed for vehicles</h1>
-            <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{vehiclesArr.length}</span> vehicles on this site.</h2>
+            {/* <h3 className={Styles.feedTitle}>Live feed for vehicles</h3> */}
+            <header className={Styles.header}>
+                <h3>Vehicle Feed</h3>
+                <h4>Vehicles:<span className={Styles.data}>{vehiclesArr.length}</span></h4>
+            </header>
+            
             <section className={Styles.feedList}>
                 <div className={Styles.flexCharts}>
                     <div className={Styles.pieData}>
                         <p>Chart of Vehicles on Site</p>
-                        <Doughnut 
-                            data={pieData} 
+                        <Doughnut
+                            data={pieData}
                             options={{ maintainAspectRatio: true, responsive: true }}
                         />
                     </div>
                     <div className={Styles.loadData}>
                         <p>Graph of Site Loads</p>
-                        <Bar 
+                        <Bar
                             data={loadData}
-                            legend={{display: false}}
-                            options={{maintainAspectRatio: true, responsive: true}}
+                            legend={{ display: false }}
+                            options={{ maintainAspectRatio: true, responsive: true }}
                         />
                     </div>
                 </div>
                 <div className={Styles.siteData}>
                     <p>Graph of Site Issues</p>
-                    <Bar data={siteData} legend={false} options={{maintainAspectRatio: false}}/>
+                    <Bar data={siteData} legend={false} options={{ maintainAspectRatio: false }} />
                 </div>
             </section>
         </article>

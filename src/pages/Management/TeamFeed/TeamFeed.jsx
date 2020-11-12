@@ -20,8 +20,8 @@ const TeamFeed = () => {
 
             teams.forEach((team) => {
                 const subTeamUsers = users.filter(u => u.currentTeam == team.teamName && u.currentSubTeam == team.subTeamName);
-                if(!parentTeams.includes(team.teamName)) parentTeams.push(team.teamName);
-    
+                if (!parentTeams.includes(team.teamName)) parentTeams.push(team.teamName);
+
                 setSubTeamData(prevData => {
                     return {
                         datasets: [{
@@ -50,7 +50,7 @@ const TeamFeed = () => {
             parentTeams.forEach((team) => {
                 const teamLoads = [];
                 for (const [key] of Object.entries(loads)) {
-                    if(loads[key].team == team) {
+                    if (loads[key].team == team) {
                         teamLoads.push("load");
                     };
                     console.log(loads);
@@ -67,46 +67,50 @@ const TeamFeed = () => {
                     }
                 });
             });
-        }); 
+        });
     }, []);
 
     const [subTeamData, setSubTeamData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
     const [teamVehicleData, setVehicleTeamData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
     const [teamLoadData, setTeamLoadData] = useState({
-        datasets: [{data: [],}],
+        datasets: [{ data: [], }],
     });
 
     return (
         <article className={Styles.dataFeed}>
-            <h1 className={Styles.feedTitle}>Live feed for teams</h1>
-            <h2 className={Styles.subHeading}>There are <span className={Styles.data}>{teamsArr.length}</span> teams on this site.</h2>
+            <header>
+                <h3>Team Feed</h3>
+                <h4>Teams:<span className={Styles.data}>{teamsArr.length}</span></h4>
+            </header>
+            {/* <h3 className={Styles.feedTitle}>Live feed for teams</h3> */}
+
             <section className={Styles.feedList}>
                 <div className={Styles.chartContainer}>
-                    <p>Graph of Sub-Team Users</p>
+                    <h4>Graph of Sub-Team Users</h4>
                     <Bar
                         data={subTeamData}
-                        legend={{display: false}}
-                            options={{maintainAspectRatio: true, responsive: true}}
+                        legend={{ display: false }}
+                        options={{ maintainAspectRatio: true, responsive: true }}
                     />
                 </div>
                 <div className={Styles.chartContainer}>
-                    <p>Graph of Team Vehicles</p>
+                    <h4>Graph of Team Vehicles</h4>
                     <Bar
                         data={teamVehicleData}
-                        legend={{display: false}}
-                        options={{maintainAspectRatio: true, responsive: true}}
+                        legend={{ display: false }}
+                        options={{ maintainAspectRatio: true, responsive: true }}
                     />
                 </div>
                 <div className={Styles.chartContainer}>
-                    <p>Graph of Team loads</p>
+                    <h4>Graph of Team loads</h4>
                     <Bar
                         data={teamLoadData}
-                        legend={{display: false}}
-                        options={{maintainAspectRatio: true, responsive: true}}
+                        legend={{ display: false }}
+                        options={{ maintainAspectRatio: true, responsive: true }}
                     />
                 </div>
             </section>
