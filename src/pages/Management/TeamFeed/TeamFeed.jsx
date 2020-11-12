@@ -53,7 +53,6 @@ const TeamFeed = () => {
                     if (loads[key].team == team) {
                         teamLoads.push("load");
                     };
-                    console.log(loads);
                 }
 
                 setTeamLoadData(prevData => {
