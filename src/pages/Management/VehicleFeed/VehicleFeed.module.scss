@@ -3,81 +3,42 @@
 @import '../../../assets/styles/forms';
 
 .dataFeed {
-    box-sizing:border-box;
-    background-color: white;
-    gap: 0.5em;
-    width: 100%;
-    border-radius: 10px;
-    height:95vh;
-    width: 48%;
+    width: 50%;
     cursor:pointer;
-    padding:6px 12px;
+    box-sizing:border-box;
+    gap: 0.5em;
+    margin: 10px 0;
+    padding: 20px;
     position: relative;
+    border-radius: 25px;
+    padding: 0px;
+    background-color: white;
+    border: 2px solid #E1EBF4;
+    height: 30%;
 
-    .feedTitle {
-        font-size: 40px;
-        color: $light-text-mid;
-        font-family: rubik;
-        font-style: normal;
-        font-weight: 700;
-        display: inline-block;
+    p {
+        font-size: 20px;
     }
-    .btn {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-    }
-    .subHeading {
-        font-size: 30px;
-        text-align: center;
-        color: black;
+    .pieData {
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 220px;
+        width: 100%;
+        padding: 100px;
+        border-bottom: 2px solid #E1EBF4;
 
-        .data {
-            font-size: 30px;
-            text-align: center;
-            color: black;
-            font-family: rubik;
-            font-style: normal;
-            font-weight: 850;
+        .counter {
+            font-weight: bold;
+            color: #212945;
         }
     }
-    .feedList {
-        box-sizing:border-box;
-       
-        
-        gap: 0.5em;
-        // border-radius: 25px;
-        margin: 10px 0;
-        padding: $base-spacing;
-        height: 90%;
-        overflow-y: scroll;
-        position: relative;
-
-        p {
-            text-align: center;
-            text-decoration: underline;
-            font-weight: 850;
-            padding: 25px 0 30px;
-        }
-
-        .flexCharts {
-            display: flex;
-            padding-bottom: $base-spacing *2;
-            height:40%;
-            
-            .pieData {
-                width: 50%;
-                height: 100%;
-            }
-            .loadData {
-                width: 50%;
-                height: 100%;
-            }
-        }
-        
-        .siteData {
-            width: 100%;
-            height: 40%;
-        }
+    .loadData {
+        padding: 100px;
+    }
+    .siteData {
+        width: 100%;
+        padding: 5%;
     }
 }

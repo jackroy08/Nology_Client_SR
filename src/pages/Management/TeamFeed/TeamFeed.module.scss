@@ -5,52 +5,28 @@
 
 .dataFeed {
     box-sizing:border-box;
-    background-color: white;
     gap: 0.5em;
     width: 100%;
-    //border-radius: 15px;
-    height:95vh;
-    width: 48%;
+    border-radius: 25px;
+    width: 50%;
     cursor:pointer;
     padding:6px 12px;
     position: relative;
     border-radius: 10px;
 
-   
-    .btn {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-    }
-    .subHeading {
-        font-size: 30px;
-        text-align: center;
-        color: black;
-
-        .data {
-            font-size: 30px;
-            text-align: center;
-            color: black;
-            //font-family: rubik;
-            font-style: normal;
-            //font-weight: 850;
-        }
-    }
     .feedList {
-        overflow-y: scroll;
-        padding:$base-spacing;
         margin-top: 5px;
-        height: 90%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        
-        
 
         .chartContainer {
+            background-color: white;
+            border: 2px solid #E1EBF4;
             width: 100%;
             margin-bottom: 10px;
-            items-align:center;
+            border-radius: 25px;
+            padding: 10px 25px;
 
             p {
                 text-align: center;
@@ -62,4 +38,12 @@
             }
         }        
     }
+}
+
+.chartContainerTitle {
+    font-size: 14px;
+    text-decoration: none!important;
+    font-weight: 400!important;
+    text-align: left!important;
+    margin-bottom: 25px!important;
 }

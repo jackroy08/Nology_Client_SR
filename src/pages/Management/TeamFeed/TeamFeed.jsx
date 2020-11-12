@@ -27,7 +27,7 @@ const TeamFeed = () => {
                         datasets: [{
                             data: prevData.datasets[0].data.concat([subTeamUsers.length]),
                             borderWidth: 1,
-                            backgroundColor: "yellow"
+                            backgroundColor: "#2DA488"
                         }],
                         labels: prevData.labels.concat([`${team.teamName} ${team.subTeamName}`])
                     }
@@ -41,7 +41,7 @@ const TeamFeed = () => {
                         datasets: [{
                             data: prevData.datasets[0].data.concat([teamVehicles.length]),
                             borderWidth: 1,
-                            backgroundColor: "orange"
+                            backgroundColor: "#FFA500"
                         }],
                         labels: prevData.labels.concat([team])
                     }
@@ -61,7 +61,7 @@ const TeamFeed = () => {
                         datasets: [{
                             data: prevData.datasets[0].data.concat([teamLoads.length]),
                             borderWidth: 1,
-                            backgroundColor: "cyan"
+                            backgroundColor: "#396AFF"
                         }],
                         labels: prevData.labels.concat([team])
                     }
@@ -81,24 +81,19 @@ const TeamFeed = () => {
     });
 
     return (
+        
         <article className={Styles.dataFeed}>
-            <header>
-                <h3>Team Feed</h3>
-                <h4>Teams:<span className={Styles.data}>{teamsArr.length}</span></h4>
-            </header>
-            {/* <h3 className={Styles.feedTitle}>Live feed for teams</h3> */}
-
             <section className={Styles.feedList}>
                 <div className={Styles.chartContainer}>
-                    <h4>Graph of Sub-Team Users</h4>
+                    <p className={Styles.chartContainerTitle}>Amount of users per sub-team</p>
                     <Bar
                         data={subTeamData}
-                        legend={{ display: false }}
-                        options={{ maintainAspectRatio: true, responsive: true }}
+                        legend={{display: false}}
+                        options={{maintainAspectRatio: true, responsive: true}}
                     />
                 </div>
                 <div className={Styles.chartContainer}>
-                    <h4>Graph of Team Vehicles</h4>
+                    <p className={Styles.chartContainerTitle}>Amount of team vehicles</p>
                     <Bar
                         data={teamVehicleData}
                         legend={{ display: false }}
@@ -106,7 +101,7 @@ const TeamFeed = () => {
                     />
                 </div>
                 <div className={Styles.chartContainer}>
-                    <h4>Graph of Team loads</h4>
+                    <p className={Styles.chartContainerTitle}>Amount of loads per team</p>
                     <Bar
                         data={teamLoadData}
                         legend={{ display: false }}
