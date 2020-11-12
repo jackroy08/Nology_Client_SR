@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Styles from "./Load.module.scss";
-import { getLoads, subscribeToLoads, createLoad } from "./../../../services/LoadsService";
+import { subscribeToLoads, createLoad } from "./../../../services/LoadsService";
 import { createNewsItem } from "../../../services/newsItemsService";
 import LoadApproveForm from "./LoadApproveForm";
 import { useForm } from "react-hook-form";

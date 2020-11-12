@@ -64,7 +64,7 @@ const { user } = useContext(UserContext)
             <h3>Supervisor Handover Notes</h3>
             <form className={Styles.handoverForm} onSubmit={handleSubmit(submitForm)}>
                 {inputs.map(input => (
-                    <>
+                    <React.Fragment key={`${input.id}label`}>    
                         <label htmlFor={input.label}>{input.label}</label>
                         <input 
                             className={Styles.inputPrimary}
@@ -73,7 +73,7 @@ const { user } = useContext(UserContext)
                             ref={register}
                             id={input.label}
                         />
-                    </>
+                    </React.Fragment>
                 ))}
                 <button className={Styles.btnPrimary} type="submit">Submit</button>
             </form>

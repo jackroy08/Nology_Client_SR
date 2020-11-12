@@ -1,9 +1,9 @@
-    import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
 import { DailyReport } from './DailyReport/DailyReport';
-import { getVehicles, createVehicle, subscribeToVehicles } from './../../services/VehiclesService';
+import { getVehicles, subscribeToVehicles } from './../../services/VehiclesService';
 import { getNewsItems, subscribeToNewsItems, createNewsItem } from "../../services/newsItemsService";
 import { getTeams } from "../../services/TeamsService";
 import { getUsers } from "../../services/UsersService";
