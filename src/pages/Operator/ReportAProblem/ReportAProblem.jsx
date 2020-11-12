@@ -54,47 +54,42 @@ const ReportAProblem = () => {
     }
 
     return (
-        <form className={Styles.reportProblemForm} >
-            <h3>Please give details of your issue below:</h3>
-            <fieldset>
-                <label htmlFor="Class of issue">Class of issue</label>
-                <select className={Styles.selectPrimary} id="class-type" name="Class of issue">
-                        <option value="classA">Class A</option>
-                        <option value="classB">Class B</option>
-                        <option value="classC">Class C</option>
-                </select>
-            </fieldset>
-            <fieldset>
-                <label htmlFor="Component affected">Component affected</label>
-                <input className={Styles.inputPrimary} id="issue-type" type="text"/>
-            </fieldset>
-            <fieldset>
-                <label htmlFor="Additional details">Additional details</label>
-                <textarea className={Styles.textareaPrimary} id="additional-details" placeholder="Please enter any additional details"></textarea>
-            </fieldset>
-            <div>
-                <button className={Styles.btnSecondary} data-dismiss="modal" aria-label="Close" onClick={()=> navigate(`/operator`)}>Cancel</button>
-                <button className={Styles.btnPrimary} type="submit" onClick={submitHandler}>Report</button>
-                <button onClick={togglePhoto}>Take a photo</button>
-                
-            </div>
-            {isPhotoOpen ? 
-                <Camera
-                    onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
-                    onTakePhotoAnimationDone = { (dataUri) => { handleTakePhotoAnimationDone(dataUri); } }
-                    onCameraError = { (error) => { handleCameraError(error); } }
-                    idealResolution = {{width: 640, height: 480}}
-                    imageCompression = {0.97}
-                    isMaxResolution = {true}
-                    isImageMirror = {false}
-                    isSilentMode = {false}
-                    isDisplayStartCameraError = {true}
-                    isFullscreen = {false}
-                    sizeFactor = {1}
-                    onCameraStart = { (stream) => { handleCameraStart(stream); } }
-                    onCameraStop = { () => { handleCameraStop(); } }/> : 
-                null}
-        </form>
+        <>
+        <h3 className={Styles.reportProblemTitle}>Please give details of your issue below:</h3>
+            <form className={Styles.reportProblemForm} >
+                    <label htmlFor="Class of issue">Class of issue</label>
+                    <select className={Styles.selectPrimary} id="class-type" name="Class of issue">
+                            <option value="classA">Class A</option>
+                            <option value="classB">Class B</option>
+                            <option value="classC">Class C</option>
+                    </select>
+                    <label htmlFor="Component affected">Component affected</label>
+                    <input className={Styles.inputPrimary} id="issue-type" type="text"/>
+                    <label htmlFor="Additional details">Additional details</label>
+                    <textarea className={Styles.textareaPrimary} id="additional-details" placeholder="Please enter any additional details"></textarea>
+                <div>
+                    <button className={Styles.btnSecondary} data-dismiss="modal" aria-label="Close" onClick={()=> navigate(`/operator`)}>Cancel</button>
+                    <button className={Styles.btnPrimary} onClick={togglePhoto}>Take a photo</button>
+                    <button className={Styles.btnPrimary} type="submit" onClick={submitHandler}>Report</button>
+                </div>
+                {isPhotoOpen ? 
+                    <Camera
+                        onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
+                        onTakePhotoAnimationDone = { (dataUri) => { handleTakePhotoAnimationDone(dataUri); } }
+                        onCameraError = { (error) => { handleCameraError(error); } }
+                        idealResolution = {{width: 640, height: 480}}
+                        imageCompression = {0.97}
+                        isMaxResolution = {true}
+                        isImageMirror = {false}
+                        isSilentMode = {false}
+                        isDisplayStartCameraError = {true}
+                        isFullscreen = {false}
+                        sizeFactor = {1}
+                        onCameraStart = { (stream) => { handleCameraStart(stream); } }
+                        onCameraStop = { () => { handleCameraStop(); } }/> : 
+                    null}
+            </form>
+        </>
     )
 }
 

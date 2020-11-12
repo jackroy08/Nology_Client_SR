@@ -45,6 +45,7 @@ const SignOffMaintenanceForm = (props) => {
         <label htmlFor="">
           Approve
           <input 
+            className={Styles.inputPrimary}
             type="radio"
             ref={register}
             value="true"
@@ -54,7 +55,7 @@ const SignOffMaintenanceForm = (props) => {
 
         <label htmlFor="">
           Reject
-          <input 
+          <input className={Styles.inputPrimary}
             type="radio"
             ref={register}
             value="false"
