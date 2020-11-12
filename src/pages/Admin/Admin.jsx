@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Router } from "@reach/router"
 import Styles from "./Admin.module.scss";
 import { Link } from "@reach/router";
