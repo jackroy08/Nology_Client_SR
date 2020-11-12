@@ -46,7 +46,7 @@ const Confirmation = (props) => {
             let letters = issue.classType.split("")
             letters[0] = letters[0].toUpperCase()
             letters.splice(5, 0, " ")
-            let title = letters.join()
+            let title = letters.join("")
             createNewsItem({                
                 title: `${title} issue raised`,
                 message: `${issue.issue} reported on ${vehicle.vehicleType}-${vehicle.vehicleID}`,

@@ -28,24 +28,29 @@ const MaintenanceReport = () => {
             "otherInfo": otherInfo
         }
         const reportVehicle = vehicleList.filter((vehicle) => vehicle.vehicleID == vehicleID);
-        const reportProblem = reportVehicle[0].checkItems.filter((report) => report.issue == vehicleIssue && report.maintenanceSignoff == false);
-        reportProblem[0].maintenanceSignoff = reportObj;
-        updateVehicleIssue(reportProblem[0]);
-        createNewsItem({                
-            title: "Maintenance Completed",
-            message: `${vehicleIssue} on ${reportVehicle[0].vehicleID} by ${reportProblem[0].assignedMaintenance}`,
-            team: reportVehicle[0].currentTeam,
-            type: "maintenanceComplete",
-            isImportant: false,
-            seenBy: [],
-            info: {
-                vehicle: reportVehicle[0].vehicleID,
-                faultClass: reportProblem[0].classType,
-                faultName: reportProblem[0].issue,
-                completedBy: reportProblem[0].assignedMaintenance
-            },
-            dateCreated: new Date()
-        })
+        if(reportVehicle.length !== 0) {
+            const reportProblem = reportVehicle[0].checkItems.filter((report) => report.issue == vehicleIssue && report.maintenanceSignoff == false);
+            if(reportProblem.length !== 0) {
+                createNewsItem({                
+                    title: "Maintenance Completed",
+                    message: `${vehicleIssue} on ${reportVehicle[0].vehicleID} by ${reportProblem[0].assignedMaintenance}`,
+                    team: reportVehicle[0].currentTeam,
+                    type: "maintenanceComplete",
+                    isImportant: false,
+                    seenBy: [],
+                    info: {
+                        vehicle: reportVehicle[0].vehicleID,
+                        faultClass: reportProblem[0].classType,
+                        faultName: reportProblem[0].issue,
+                        completedBy: reportProblem[0].assignedMaintenance
+                    },
+                    dateCreated: new Date()
+                })
+                reportProblem[0].maintenanceSignoff = reportObj;
+                console.log(reportProblem[0]);
+                updateVehicleIssue(reportProblem[0]);
+            } else alert("Please enter a valid, active issue for the vehicle you have chosen.");
+        } else alert("Please enter in a vehicle ID of a valid vehicle.");
     }
 
     return (
