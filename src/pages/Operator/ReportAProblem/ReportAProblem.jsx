@@ -1,11 +1,9 @@
 import { navigate } from "@reach/router";
 import React, { useContext } from "react";
-import Styles from "../../../components/Modal/Modal.module.scss";
-import "./ReportAProblem.module.scss";
+import Styles from "./ReportAProblem.module.scss";
 import { updateVehicleIssues } from "../../../services/VehiclesService";
 import { UserContext } from "../../../context/userContext";
 import Camera from 'react-html5-camera-photo';
-import 'react-html5-camera-photo/build/css/index.css';
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
@@ -56,11 +54,11 @@ const ReportAProblem = () => {
     }
 
     return (
-        <form>
-            <h1>Please give details of your issue below:</h1>
+        <form className={Styles.reportProblemForm} >
+            <h3>Please give details of your issue below:</h3>
             <fieldset>
                 <label htmlFor="Class of issue">Class of issue</label>
-                <select id="class-type" name="Class of issue">
+                <select className={Styles.selectPrimary} id="class-type" name="Class of issue">
                         <option value="classA">Class A</option>
                         <option value="classB">Class B</option>
                         <option value="classC">Class C</option>
@@ -68,15 +66,15 @@ const ReportAProblem = () => {
             </fieldset>
             <fieldset>
                 <label htmlFor="Component affected">Component affected</label>
-                <input id="issue-type" type="text"/>
+                <input className={Styles.inputPrimary} id="issue-type" type="text"/>
             </fieldset>
             <fieldset>
                 <label htmlFor="Additional details">Additional details</label>
-                <textarea id="additional-details" placeholder="Please enter any additional details"></textarea>
+                <textarea className={Styles.textareaPrimary} id="additional-details" placeholder="Please enter any additional details"></textarea>
             </fieldset>
             <div>
-                <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={()=> navigate(`/operator`)}>Cancel</button>
-                <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit" onClick={submitHandler}>Report</button>
+                <button className={Styles.btnSecondary} data-dismiss="modal" aria-label="Close" onClick={()=> navigate(`/operator`)}>Cancel</button>
+                <button className={Styles.btnPrimary} type="submit" onClick={submitHandler}>Report</button>
                 <button onClick={togglePhoto}>Take a photo</button>
                 
             </div>

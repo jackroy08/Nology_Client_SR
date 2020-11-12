@@ -1,12 +1,12 @@
 import { Link } from '@reach/router';
 import styles from './Checklist.module.scss';
 import React, { useState, useContext } from 'react'
-import ClassAChecks from '../ClassAChecks';
-import ClassBChecks from '../ClassBChecks';
-import ClassCChecks from '../ClassCChecks';
-import Confirmation from '../Confirmation';
+import ClassAChecks from './ClassAChecks';
+import ClassBChecks from './ClassBChecks';
+import ClassCChecks from './ClassCChecks';
+import Confirmation from './Confirmation';
 import { v4 as uuidv4 } from "uuid";
-import { UserContext } from "../../../context/userContext";
+import { UserContext } from "../../context/userContext";
 
 const Checklist = (props) => {
     const { user, vehicle, supervisor, checklistData } = useContext(UserContext);
