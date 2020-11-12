@@ -29,6 +29,7 @@ const EditTeamForm = (props) => {
         <form className={Styles.teamForm} onSubmit={handleSubmit(updateCurrentTeam)}>
             <label htmlFor="site">Select Site :</label>
             <select
+                className={Styles.selectPrimary}
                 defaultValue={site}
                 name="site"
                 id="site"
@@ -40,6 +41,7 @@ const EditTeamForm = (props) => {
 
             <label htmlFor="teamName">Team Name :</label>
             <input
+                className={Styles.inputPrimary}
                 defaultValue={teamName}
                 type="text"
                 id="teamName"
@@ -49,7 +51,8 @@ const EditTeamForm = (props) => {
                 {errors.teamName && <p> Team Name is required.</p>}
             
             <label htmlFor="subTeamName">Sub Team Name:</label>
-            <input
+            <input 
+                className={Styles.inputPrimary}
                 defaultValue={subTeamName}
                 type="text"
                 id="subTeamName"
@@ -58,8 +61,8 @@ const EditTeamForm = (props) => {
                 ref={register({ required: true })} />
                 {errors.subTeamName && <p>Sub Team Name is required.</p>}
             
-            <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Update</button>
+            <button className={`${Styles.btn} ${Styles.btnPrimary}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
+            <button className={`${Styles.btn} ${Styles.btnSecondary}`} type="submit">Update</button>
         </form>
     )
 }

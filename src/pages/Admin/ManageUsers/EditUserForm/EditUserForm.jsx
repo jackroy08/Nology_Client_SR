@@ -45,6 +45,7 @@ const EditUserForm = (props) => {
                         
             <label htmlFor="userType">Select User Type :</label>
             <select
+                className={Styles.selectPrimary}
                 defaultValue={userType}
                 name="userType"
                 id="userType"
@@ -59,6 +60,7 @@ const EditUserForm = (props) => {
 
             <label htmlFor="currentTeam">Select Team :</label>
             <select
+                className={Styles.selectPrimary}
                 defaultValue={currentTeam}
                 name="currentTeam"
                 id="currentTeam" 
@@ -69,6 +71,7 @@ const EditUserForm = (props) => {
             
             <label htmlFor="currentSubTeamName">Select Sub Team :</label>
             <select
+                className={Styles.selectPrimary}
                 defaultValue={currentSubTeamName}
                 name="currentSubTeamName"
                 id="currentSubTeamName" 
@@ -80,6 +83,7 @@ const EditUserForm = (props) => {
 
             <label htmlFor="fullName">Full Name :</label>
             <input
+                className={Styles.inputPrimary}
                 defaultValue={fullNameStr}                
                 type="text"
                 id="fullNameStr"
@@ -90,6 +94,7 @@ const EditUserForm = (props) => {
             
             <label htmlFor="dateOfBirth">Date of Birth :</label>
             <input
+                className={Styles.inputPrimary}
                 defaultValue={dateOfBirth}
                 type="date"
                 id="dateOfBirth"
@@ -98,8 +103,8 @@ const EditUserForm = (props) => {
                 ref={register} />
                 {errors.dateOfBirth && <p>Date of birth is required.</p>}
             
-            <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Update</button>
+            <button className={Styles.btnSecondary} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
+            <button className={Styles.btnPrimary} type="submit">Update</button>
         </form>
     )
 }

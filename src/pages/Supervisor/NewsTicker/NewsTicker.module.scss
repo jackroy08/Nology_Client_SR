@@ -5,47 +5,48 @@ li {
 }
 
 .header {
-    background-color: lightgrey;
-    color: white;
     display: flex;
+    justify-items: flex-end;
     align-items: center;
-    padding: $base-spacing $base-spacing * 2;
+    padding: $base-spacing*2 0;
+    border-bottom: 3px solid $background-color1;
 
-    .newsFeedSummary{
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    justify-content: space-between;
-
-        p {
-        font-weight: 700;
-        }
-    }
-
-    h3 {
-        // flex-grow: 1;
+    h3{
         margin-right: auto;
     }
-}
-
-
-
-
-
-.regularNews{
-    height: 250px;
-    overflow-y: auto;
-}
-
-.importantNews {
-    width: 100%;
-    background-color: $warning-color;
-    margin-top: -$base-spacing;
-    margin-bottom: -$base-spacing;
-    
-    li{
-        background-color: rgba(0, 0, 0, 0);
-        font-weight: bold;
-        padding: 15px 5px;
+    select {
+        margin-left: 10px;
     }
 }
+
+.columnTitles{
+    padding: $base-spacing;
+    display: grid;
+    grid-template-columns: (1fr 1fr 4fr 50px);
+}
+
+//  I've taken the below out, my thoughts are that they don't need to be styled different.
+//  We could explore the fields having a "flag" (like in email), 
+//  that could specifically identify them as important.
+
+// .regularNews{
+//     // height: 250px;
+//     // overflow-y: auto;
+// }
+
+// .importantNews {
+//     width: 100%;
+//     background-color: $warning-color;
+//     margin-top: -$base-spacing;
+//     margin-bottom: -$base-spacing;
+//
+//     li {
+//         background-color: rgba(0, 0, 0, 0);
+//         font-weight: 400;
+//        
+//         p {
+//             color: $dark-text-high;
+//         }
+//         padding: 15px 5px;
+//     }
+// }

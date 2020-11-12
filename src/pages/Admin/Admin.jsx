@@ -1,7 +1,7 @@
 import React from "react"
-import {Router} from "@reach/router"
+import { Router } from "@reach/router"
 import Styles from "./Admin.module.scss";
-import {Link} from "@reach/router";
+import { Link } from "@reach/router";
 import ManageUsers from './ManageUsers'
 import ManageVehicles from "./ManageVehicles";
 import ManageTeams from './ManageTeams'
@@ -60,14 +60,18 @@ const Admin = () => {
                 <Link to="ManageTeams"><button className={Styles.btnNav}> -  Manage Teams</button></Link>
                 <Link to="ManageSites"><button className={Styles.btnNav}> - Manage Sites</button></Link>
                 <Link to="ManageParts"><button className={Styles.btnNav}> - Manage Parts</button></Link>
+                <Link to="ManageChecklists"><button className={Styles.btnNav}> - Manage Checklists</button></Link>
+                <button className={Styles.btnNav} onClick={handleExport}>Export firestore data</button>
+
             </SideNav>
-            <main className={Styles.pageContainer}>
+            <main className={Styles.mainContent}>
                 <Router style={{width: "100%"}}>
                     <ManageUsers default path="ManagerUsers"/>
                     <ManageVehicles path="ManageVehicles" />
                     <ManageTeams path="ManageTeams"/>
                     <ManageSites path="ManageSites"/>
                     <ManageParts path="ManageParts"/>
+                    <ManageChecklists path="ManageChecklists" />
                 </Router>
             </main>
         </div>

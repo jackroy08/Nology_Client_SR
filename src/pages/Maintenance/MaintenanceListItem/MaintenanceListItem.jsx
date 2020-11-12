@@ -1,33 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {Link} from "@reach/router";
 import MaintenanceDropdown from "../MaintenanceDropdown";
 import Styles from "./MaintenanceListItem.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { updateVehicle } from "../../../services/VehiclesService";
+import { getVehicleByID, updateVehicle } from "../../../services/VehiclesService";
+import { UserContext } from "../../../context/userContext";
 
 const MaintenanceListItem = (props) => {
+    const { user } = useContext(UserContext);
     const {
-        additionalDetails,
         classType,
-        dateCreated,
         issue,
         operator,
         supervisor,
-        maintenance,
         vehicleID } = props.job
 
         const [isOpen, setIsOpen] = useState(false);
         const toggleStyles = isOpen ? Styles.confirmOpen : "";
-    
     // const [isFixed, setIsFixed] = useState(false);
     // const checkBox = isFixed ? "Fixed" : "Not fixed";
-
     let colorClass = classType === 'classA' ? Styles.classA 
                     : classType === 'classB' ? Styles.classB
                     : classType === 'classC' ? Styles.classC
                     : Styles.classError;
 
-    const claimJob = () => updateVehicle();
+    const handleClaimJob = () => {
+        getVehicleByID(vehicleID)
+            .then(res => {
+                props.job.assignedMaintenance = user.userID;
+                res.checkItems.map(item => {
+                    if (item.issueID === props.job.issueID) {
+                        item.assignedMaintenance = user.userID
+                    }
+                });
+                updateVehicle(res);
+            })
+    }
+
+    const handleCompleteJob = () => {
+        getVehicleByID(vehicleID)
+            .then(res => {
+                props.job.maintenanceSignoff = true;
+                res.checkItems.map(item => {
+                    if (item.issueID === props.job.issueID) {
+                        item.maintenanceSignoff = true;
+                    }
+                })
+                updateVehicle(res);
+            })
+    }
 
     return (
         <li key={vehicleID} className={Styles.jobItem}>
@@ -36,7 +57,7 @@ const MaintenanceListItem = (props) => {
             <p>{issue}</p>
             <p>{operator}</p>
             <p>{supervisor}</p>
-            <p>{maintenance ? maintenance : <button className={Styles.btnJobClaim} onClick={() => claimJob(vehicleID)}>Claim Job</button>}</p>
+            <p>{props.job.assignedMaintenance ? props.job.assignedMaintenance : <button className={Styles.btnJobClaim} onClick={() => handleClaimJob(vehicleID)}>Claim Job</button>}</p>
             {/* <p>{additionalDetails}</p> */}
              {/* <p>{dateCreated}</p> */}
             <span className={Styles.faIcon} onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon  icon="check-circle"/></span>
@@ -49,7 +70,7 @@ const MaintenanceListItem = (props) => {
                         <button
                             className={Styles.btnDanger}
                             onClick={() => {
-                                // Insert here a function to mark the job as complete
+                                handleCompleteJob()
                                 setIsOpen(!isOpen);
                             }}
                         >Confirm
@@ -60,5 +81,4 @@ const MaintenanceListItem = (props) => {
         </li>
     )
 }
-
 export default MaintenanceListItem;

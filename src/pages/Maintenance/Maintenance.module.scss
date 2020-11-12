@@ -1,5 +1,4 @@
 @import "./../../assets/styles/variables";
-// @import "./../../assets/styles/fonts";
 
 .pageContainer {
     width: 100%;
@@ -9,5 +8,5 @@
 
 .mainContent {
     width: 100%;
-    padding: 10px;
+    padding: $base-spacing*2 $base-spacing*2 0 $base-spacing*2;
 }

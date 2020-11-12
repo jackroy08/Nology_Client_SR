@@ -17,7 +17,7 @@ const ChecklistItem = () => {
             </select>
             <label htmlFor="check">Check:</label>
             <input className="check" type="text"/>
-            <label htmlFor="image">URL image source:</label>
+            <label htmlFor="image">Icon URL address:</label>
             <input className="image" type="text"/>
         </li>
     )

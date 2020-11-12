@@ -1,56 +1,45 @@
 @import '../../assets/styles/buttons';
 @import "../../assets/styles/variables";
 
-.managementMain {
-    width: 95%;
-    margin: 0 auto;
+.pageContainer {
+    width: 100%;
+    justify-items: center;
+    display: flex;
+}
 
-    .headingContainer {
-        display: flex;
-        justify-content: space-between;
+.trafficLightSignal {
+    width: 100%;
+    background-color: $background-color1;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding: 0 $base-spacing*2;
 
-        .managementTitle {
-            font-size: 90px;
-            color: $light-text-mid;
-            font-family: rubik;
-            font-style: normal;
-            font-weight: 700;
-        }
-        button {
-            margin: 40px 20px 0;
-        }
-    }
-    .trafficLightSignal {
-        width: 250px;
-        height: 100px;
+    .defaultSignal {
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+        border: 2px solid black;
+        border-radius: 50%;
         background-color: $background-color1;
-        margin-right: 20px;
-        margin-left: auto;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        border-radius: 20px;
-
-        .defaultSignal {
-            width: 75px;
-            height: 75px;
-            border: 2px solid black;
-            border-radius: 50%;
-            background-color: $background-color1;
-        }
-        .redSignal {
-            background-color: red;
-        }
-        .amberSignal {
-            background-color: orange;
-        }
-        .greenSignal {
-            background-color: green;
-        }
     }
-    .liveFeedContainer {
+    .redSignal {
+        background-color: red;
+    }
+    .amberSignal {
+        background-color: orange;
+    }
+    .greenSignal {
+        background-color: green;
+    }
+}
 
+.mainContent {
+    width: 100%;
+    padding: $base-spacing*2 $base-spacing*2 0 $base-spacing*2;
+
+    .liveFeedContainer {
+        background: white;
         display: flex;
         align-items: center;
         justify-content: space-evenly;

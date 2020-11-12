@@ -125,8 +125,8 @@ const createNewUser = (data) => {
                 ref={register} />
                 {errors.dateOfBirth && <p>Date of birth is required.</p>}
                 
-            <button className={`${Styles.btn} ${Styles.btnDanger}`} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
-            <button className={`${Styles.btn} ${Styles.btnSuccess}`} type="submit">Create</button>
+            <button className={Styles.btnSecondary} data-dismiss="modal" aria-label="Close" onClick={props.hide}>Cancel</button>
+            <button className={Styles.btnPrimary} type="submit">Create</button>
         </form>
     );
 }

@@ -18,7 +18,7 @@ const SignIn = () => {
             <label className={Styles.password}>Password</label>
             <input type="password" id="signInPw" placeholder="******" required />
             <button
-                className={`${Styles.btn} ${Styles.btnPrimary}`}
+                className={`${Styles.btn} ${Styles.btnPrimary} ${Styles.loginBtns} ${Styles.signInButton}`}
                 value="login"
                 onClick={signInHandler}
             >SIGN IN
