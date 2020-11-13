@@ -15,36 +15,18 @@
     padding: $base-spacing*2 0;
     border-bottom: 3px solid $background-color1;
 
-    h3{
-        margin-right: auto;
+        h3{
+            margin-right: auto;
+        }
     }
-}
-.columnTitles{
-padding: $base-spacing;
-}
+    
+    h4 {
+        font-size: 1rem;
+        padding: $base-spacing/2 0;
+    }
 
-.usersList {
-width: 100%;
-}
-
-.userItem, .columnTitles {
-display:grid;
-grid-template-columns: 50px 1fr 1fr 1fr 1fr 1fr 50px;
-justify-items: start;
-align-items: center;
-}
-
-.userItem {
-margin-bottom: $base-spacing;
-padding: 0 $base-spacing;
-
-&:hover {
-    background-color: $background-color2;
-}
-
-button {
-    height: fit-content;
-    width: 100%;
-}
-}
+    p {
+        font-size: 1rem;
+        padding: $base-spacing/2 0;
+    }
 }
