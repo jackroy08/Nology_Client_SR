@@ -16,7 +16,6 @@ import checklistData from "../../data/checklistdata.js";
 
 const Operator = () => {
     const { user } = useContext(UserContext);
-    console.log(user);
     const { isShowing, toggle } = useModal();
     const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
     const [modalContent, setModalContent] = useState(null);
@@ -44,13 +43,19 @@ const Operator = () => {
     }
 
     const reportBarrier = () => {
-        if (user.isOnShift) {
+        if (user.isOnShift && user.assignedVehicle) {
             toggle();
             setModalContent(<ReportAProblem hide={toggle} />);
-        } else {
-            let message = "Please begin your shift to report a problem";
+            
+        } else if (!user.isOnShift) {
+            let message = "Please begin your shift to accept a vehicle";
             setModalContent(<Error message={message} hide={toggle} />);
             toggle()
+        }
+        else {
+            let message = "Please confirm with your supervisor that a vehicle is assigned";
+            toggle()
+            setModalContent(<Error message={message} hide={toggle} />);            
         }
     }
 

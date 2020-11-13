@@ -3,7 +3,6 @@ import { firestore } from '../firebase';
 
 
 const getSites = () => firestore.collection("sites").get().then((response) => {
-    console.log("get sites")
     return response.docs.map((doc) => doc.data())
 });
 

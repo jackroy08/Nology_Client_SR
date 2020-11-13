@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom';
 import Styles from "./SubmitLoad.module.scss";
 import { createLoad } from "../../../services/LoadsService";
 import { UserContext } from "../../../context/userContext";
-import { navigate } from "@reach/router";
+import showToast from "../../../services/toastService";
 
 const SubmitLoad = (props) => {
     const { isShowing, hide } = props;
     const { user, supervisor, teamSiteName } = useContext(UserContext);
     
     const SubmitHandler = () => {
-        console.log(supervisor)
-        console.log(supervisor.length ? "null" : supervisor.userID)
         const load = {
             driver: user.userID,
             driverName: user.fullNameStr,
@@ -24,6 +22,7 @@ const SubmitLoad = (props) => {
         }; 
         createLoad(load);
         hide();
+        showToast("Your load has been recorded and passed for approval.", 2000)
     }
 
     return (
