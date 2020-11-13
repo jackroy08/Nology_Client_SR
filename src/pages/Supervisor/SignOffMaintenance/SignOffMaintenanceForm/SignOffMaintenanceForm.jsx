@@ -20,8 +20,8 @@ const SignOffMaintenanceForm = (props) => {
     
     updateVehicleIssue({
       ...newCheckItem,
-      supervisorSignoff: formData.approved==="true" ? true : false
-      //ToDo What is flow if superviosr rejects a maintenance fix.
+      supervisorSignoff: formData.approved==="true" ? true : false,
+      maintenanceSignoff: formData.approved==="true" ? newCheckItem.maintenanceSignoff : false
     })
 
     //raise a news item
@@ -43,7 +43,7 @@ const SignOffMaintenanceForm = (props) => {
     })
 
 
-    // this function is here to update the parent that the check items have changed dynamically 
+    // this function is here to update the parent that the check items have changed dynamically set to false
     onFormSubmit(checkItem.issueID);
   } 
 
@@ -58,7 +58,7 @@ const SignOffMaintenanceForm = (props) => {
         <label className={Styles.radiolbl} htmlFor="">
           Approve
           <input 
-            className={Styles.inputPrimary, Styles.radio}
+            className={`${Styles.inputPrimary} ${Styles.radio}`}
             type="radio"
             ref={register}
             value="true"
@@ -68,7 +68,7 @@ const SignOffMaintenanceForm = (props) => {
 
         <label className={Styles.radiolbl} htmlFor="">
           Reject
-          <input className={Styles.inputPrimary, Styles.radio}
+          <input className={`${Styles.inputPrimary} ${Styles.radio}`}
             type="radio"
             ref={register}
             value="false"
