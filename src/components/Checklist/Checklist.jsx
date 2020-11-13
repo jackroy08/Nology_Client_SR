@@ -70,7 +70,7 @@ const Checklist = (props) => {
                 case 2: return <ClassAChecks propsMethods={propsMethods} />
                 case 3: return <ClassBChecks propsMethods={propsMethods} />
                 case 4: return <ClassCChecks propsMethods={propsMethods} />
-                case 5: return <Confirmation vehicle={vehicle} backHandler={backHandler} failedElements={failedElements} />
+                case 5: return <Confirmation vehicle={vehicle} backHandler={backHandler} failedElements={failedElements} user={user} />
                 default: return "error page"
             }
         }
