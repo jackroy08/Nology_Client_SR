@@ -10,7 +10,7 @@ const Dashboard = () => {
                 <header>
                     <h3>Shift</h3>
                 </header>
-                <p>Status:</p>
+                <h4>Status:</h4>
                 <p>{user.isOnShift ? "You are currently On Shift" : "You have not yet started your shift"}</p>
             </section>
 
@@ -18,9 +18,9 @@ const Dashboard = () => {
                 <header>
                 <h3>Vehicle</h3>
                 </header>
-                <p>Your currently assigned Vehicle is:</p>
-                <p>{vehicle ? `${vehicle.vehicleID}-${vehicle.vehicleType}` : "You currently have no assigned Vehicle"}</p>
-                <p>Status: </p>
+                <h4>Your currently assigned Vehicle is:</h4>
+                <p>{vehicle && vehicle.vehicleID ? `${vehicle.vehicleID}-${vehicle.vehicleType}` : "You currently have no assigned Vehicle"}</p>
+                <h4>Status: </h4>
                 <p>{vehicle ? vehicle.goStatus : "n/a"}</p>
             </section>
 
@@ -28,17 +28,16 @@ const Dashboard = () => {
                 <header>
                     <h3>Team</h3>
                 </header>
-                <p>Your team:</p>
-                <p>{`${user.currentTeam} - ${user.currentSubTeamName} shift`}</p>
+                <h4>Your team:</h4>
+                <p>{user.currentTeam ? user.currentTeam : "You are not assigned to a team"}</p>
+                <p>{user.currentSubTeamName ? user.currentSubTeamName : "You are not assigned to a sub team"}</p>
             </section>
             
             <section className={styles.supervisorSection}>
                 <header>
                     <h3>Supervisor</h3>
                 </header>
-                <p>Your supervisor is:</p>
-                <p>
-                </p>
+                <h4>Your supervisor is:</h4>
                 <p>{supervisor&&supervisor.userID ? supervisor.userID : "You currently have no assigned Supervisor"}</p>
             </section>
             

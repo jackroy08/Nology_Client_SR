@@ -54,24 +54,24 @@ const Admin = () => {
         <div className={Styles.pageContainer}> 
             <SideNav>
                 <h2>Admin</h2>
-                <Link to="ManageUsers"><button className={Styles.btnNav}>Users</button></Link>
-                <Link to="ManageVehicles"><button className={Styles.btnNav}>Vehicles</button></Link>
-                <Link to="ManageTeams"><button className={Styles.btnNav}>Teams</button></Link>
-                <Link to="ManageSites"><button className={Styles.btnNav}>Sites</button></Link>
-                <Link to="ManageParts"><button className={Styles.btnNav}>Parts</button></Link>
-                <Link to="ManageChecklists"><button className={Styles.btnNav}>Checklists</button></Link>
-                <Link to="Management"><button className={Styles.btnNav}>Management Page</button></Link>
+                <Link to="users"><button className={Styles.btnNav}>Users</button></Link>
+                <Link to="vehicles"><button className={Styles.btnNav}>Vehicles</button></Link>
+                <Link to="teams"><button className={Styles.btnNav}>Teams</button></Link>
+                <Link to="sites"><button className={Styles.btnNav}>Sites</button></Link>
+                <Link to="parts"><button className={Styles.btnNav}>Parts</button></Link>
+                <Link to="checklists"><button className={Styles.btnNav}>Checklists</button></Link>
+                <Link to="../management"><button className={Styles.btnNav}>Management Page</button></Link>
                 <button className={Styles.btnNav} onClick={handleExport}>Export firestore data</button>
 
             </SideNav>
             <main className={Styles.mainContent}>
                 <Router style={{width: "100%"}}>
-                    <ManageUsers default path="ManagerUsers"/>
-                    <ManageVehicles path="ManageVehicles" />
-                    <ManageTeams path="ManageTeams"/>
-                    <ManageSites path="ManageSites"/>
-                    <ManageParts path="ManageParts"/>
-                    <ManageChecklists path="ManageChecklists" />
+                    <ManageUsers default path="users"/>
+                    <ManageVehicles path="vehicles" />
+                    <ManageTeams path="teams"/>
+                    <ManageSites path="sites"/>
+                    <ManageParts path="parts"/>
+                    <ManageChecklists path="checklists" />
                 </Router>
             </main>
         </div>

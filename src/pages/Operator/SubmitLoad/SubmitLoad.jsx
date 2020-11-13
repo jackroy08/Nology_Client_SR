@@ -30,7 +30,7 @@ const SubmitLoad = (props) => {
             <>
                 <h3 className={Styles.submitLoadTitle}>Please confirm you would like to submit a load:</h3>
                 <form className={Styles.submitLoadForm}>
-                    <button className={Styles.btnPrimary} type="submit" onClick={SubmitHandler}>Create</button>
+                    <button className={Styles.btnPrimary} type="submit" onClick={SubmitHandler}>Add Load</button>
                 </form> 
             </>
             ) : (
