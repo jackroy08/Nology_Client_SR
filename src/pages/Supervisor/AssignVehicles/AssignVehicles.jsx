@@ -31,7 +31,7 @@ export const AssignVehicles = (props) => {
         });
         showToast(`${updatedUser.fullNameStr} assigned to ${updatedVehicle.vehicleType}-${updatedVehicle.vehicleID}`,2000);
         createNewsItem({
-            dateCreated: new Date,
+            dateCreated: new Date(),
             title: `Vehicle Assigned`,
             message: `User ${data.driver} assigned to vehicle ${data.vehicle}`,
             team: usersArr[0].currentTeam,

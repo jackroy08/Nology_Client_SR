@@ -1,12 +1,12 @@
-    import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Styles from './Supervisor.module.scss'
 import Load from './Load';
 import AssignVehicles from './AssignVehicles';
 import { DailyReport } from './DailyReport/DailyReport';
-import { getVehicles, createVehicle, subscribeToVehicles } from './../../services/VehiclesService';
-import { getNewsItems, subscribeToNewsItems, createNewsItem } from "../../services/newsItemsService";
+import { getVehicles, subscribeToVehicles } from './../../services/VehiclesService';
+import { getNewsItems, subscribeToNewsItems } from "../../services/newsItemsService";
 import { getTeams } from "../../services/TeamsService";
-import { getUsers } from "../../services/UsersService";
+import { getUsers, subscribeToUsers } from "../../services/UsersService";
 import SideNav from "../../components/SideNav";
 import { UserContext } from "../../context/userContext";
 
@@ -59,7 +59,8 @@ export const Supervisor = () => {
         //set teams that can be selected
         getTeams().then(res => {if(mounted){setTeamsAvailableToView((getUniqueTeams(res)))}});
         //subscribing to all vehicles as this doesnt have a teams filter on the service
-        let unsubscribeVehicles = subscribeToVehicles(setVehiclesArr, teamToView);
+        const unsubscribeVehicles = subscribeToVehicles(setVehiclesArr);
+        const unsubscribeUsers = subscribeToUsers(setUsersArr);
         const unsubscribeVehicleChecks = subscribeToVehicles(setVehicleChecksArray);
         //
         //Need to do same for users
@@ -81,17 +82,8 @@ export const Supervisor = () => {
         return () => {
             unsubscribeNews();
         }
-    },[teamToView])
-
-    useEffect(()=>{
-        setFilteredVehiclesArr(vehiclesArr.filter(teamToView==="All" ? () => true : vehicle => vehicle.currentTeam===teamToView));
-    },[vehiclesArr])
-
-    useEffect(()=>{
-        setFilteredUsersArr(usersArr.filter(teamToView==="All" ? () => true : user => user.currentTeam===teamToView));
-    },[usersArr])
-
-    // toDo refactor useState and useEffect so more tidy (e.g. setting state to vehicles twice)
+    },[teamToView,vehiclesArr,usersArr])
+    
     useEffect(() => {
         setFilteredVehicleChecksArray(vehicleChecksArray.filter(vehicle => vehicle.currentTeam === user.currentTeam));
     }, [vehicleChecksArray])

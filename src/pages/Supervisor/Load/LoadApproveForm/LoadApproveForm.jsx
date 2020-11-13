@@ -17,7 +17,7 @@ const LoadApproveForm = (props) => {
       let newLoad = {
         ...load,
         ...data,
-        isSignedOff: data.isApproved == 1 ? true : false,
+        isSignedOff: data.isApproved === "1" ? true : false,
       }
       delete newLoad.id;
       delete newLoad.isApproved;
@@ -26,8 +26,8 @@ const LoadApproveForm = (props) => {
       //// 
       createNewsItem({
         dateCreated: new Date(),
-        title: data.isApproved == 1 ? "Load Approved" : "Load Rejected",
-        message: `Load ${ data.isApproved == 1 ? "approved" : "rejected" } by ${user.fullNameStr}`,
+        title: data.isApproved === "1" ? "Load Approved" : "Load Rejected",
+        message: `Load ${ data.isApproved === "1" ? "approved" : "rejected" } by ${user.fullNameStr}`,
         team: user.currentTeam,
         type: "loadApproved",
         seenBy: [],
