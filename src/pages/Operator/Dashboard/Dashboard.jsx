@@ -11,7 +11,7 @@ const Dashboard = () => {
                     <h3>Shift</h3>
                 </header>
                 <p>Status:</p>
-                <p>{user.isOnShift ? "You are currently On Shift" : "You have not yet started your shift"}</p>
+                <p>{user && user.isOnShift ? "You are currently On Shift" : "You have not yet started your shift"}</p>
             </section>
 
             <section className={styles.vehicleSection}>
@@ -29,7 +29,7 @@ const Dashboard = () => {
                     <h3>Team</h3>
                 </header>
                 <p>Your team:</p>
-                <p>{`${user.currentTeam} - ${user.currentSubTeamName} shift`}</p>
+                <p>{user ? `${user.currentTeam} - ${user.currentSubTeamName} shift` : null}</p>
             </section>
             
             <section className={styles.supervisorSection}>

@@ -82,6 +82,7 @@ export const UserProvider = (props) => {
             .signOut()
             .then(() => {
                 navigate(`/`);
+                setUser(null);
                 localStorage.removeItem("user")
                 setTimeout(() => setUser(null), 1000);
             })

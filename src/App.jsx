@@ -32,8 +32,8 @@ const App = () => {
         <Header />
         <Router className={styles.fullWidth}>
           <Login path="/" />
-          <Operator path="/operator/*" />
           <PrivateRoute path="/">
+            <Operator path="/operator/*" />
             <Supervisor path="/supervisor" />    
             <Maintenance path="/maintenance" />
             <MaintenanceReport path="/maintenance-report" />
