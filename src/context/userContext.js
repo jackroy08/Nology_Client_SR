@@ -110,7 +110,7 @@ export const UserProvider = (props) => {
     }   
 
     useEffect(() => {
-        if (user){
+        if (user && user.userID){
             firestore
                 .collection("users")
                 .doc(user.userID)
