@@ -14,13 +14,13 @@ const SignUp = (props) => {
 
     return (
         <form className={Styles.loginForm}>
-            <p>You must sign up before you are able to sign in.</p>
+            <h2 className={Styles.loginTitle}>Sign up..</h2>
             <label className={Styles.idnumber}>Username/email</label>
             <input placeholder="i.e 763489" id="signUpID" required/>
             <label className={Styles.password}>Password</label>
             <input type="password" id="signUpPw" placeholder="******" required />
             <button
-                className={`${Styles.btn} ${Styles.btnPrimary}`}
+                className={`${Styles.btn} ${Styles.btnPrimary} ${Styles.loginBtns} ${Styles.signInButton}`}
                 value="login"
                 onClick={signUpHandler}
             >SIGN UP

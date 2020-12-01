@@ -55,17 +55,19 @@ const ManageChecklists = () => {
 
     return (
         <>
-            <h3>Add a new checklist</h3>
-            <form>
+            <form className={Styles.addChecklistForm}>
+                <header>
+                <h3>Add a new checklist</h3>
+                </header>
                 <div>
-                    <label htmlFor="vehicle-name">Vehicle type:</label>
-                    <input type="text" id="vehicleName" />
+                    <label htmlFor="vehicle-name">Vehicle type name:</label>
+                    <input className={Styles.inputPrimary} type="text" id="vehicleName" />
                 </div>
                 {itemsRender()}
-                <div className="addMore">
-                    <button onClick={removeChecklistItem}>-</button>
-                    <button type="submit" onClick={submitChecklist}>Submit</button>
-                    <button onClick={addChecklistItem}>+</button>
+                <div className={Styles.addMore}>
+                    <button className={Styles.btnSecondary} onClick={removeChecklistItem}>-</button>
+                    <button className={Styles.btnSecondary} onClick={addChecklistItem}>+</button>
+                    <button className={Styles.btnPrimary} type="submit" onClick={submitChecklist}>Submit</button>
                 </div>
             </form>
             

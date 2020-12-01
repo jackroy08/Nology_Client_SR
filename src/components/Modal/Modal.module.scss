@@ -19,6 +19,8 @@
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
+  display: flex;
+  align-items: center;
 }
 
 .modal {
@@ -29,6 +31,8 @@
   border-radius: 10px;
   max-width: fit-content;
   padding: 2rem;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modalHeader {
@@ -44,4 +48,5 @@
   opacity: .3;
   cursor: pointer;
   border: none;
+  position: absolute;
 }
