@@ -5,7 +5,7 @@ import { setVehicleIssues } from "../../../services/VehiclesService";
 import { createNewsItem } from "./../../../services/newsItemsService";
 
 const Confirmation = (props) => {
-    const { vehicle, backHandler, failedElements } = props;
+    const { vehicle, backHandler, failedElements, user } = props;
     const [issuesArr, setIssuesArr] = useState([]);
 
     const getFailedElementJsx = (classType) => {
@@ -66,7 +66,7 @@ const Confirmation = (props) => {
         })
 
 
-        navigate("/operator")
+        navigate(`/${user.userType}`)
     }
 
     const setGoStatusHandler = (arr) => {
@@ -108,9 +108,7 @@ const Confirmation = (props) => {
             </ul>
             <div className={Styles.navigation}>
                 <button onClick={backHandler} className={Styles.btnSecondary}>Back</button>
-                <Link to="/operator">
-                    <button onClick={submitHandler} className={Styles.btnPrimary}>Confirm checklist</button>
-                </Link>
+                <button onClick={submitHandler} className={Styles.btnPrimary}>Confirm checklist</button>
             </div>
         </article>
     )

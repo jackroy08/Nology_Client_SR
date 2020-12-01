@@ -10,8 +10,8 @@ const Dashboard = () => {
                 <header>
                     <h3>Shift</h3>
                 </header>
-                <h4>Status:</h4>
-                <p>{user.isOnShift ? "You are currently On Shift" : "You have not yet started your shift"}</p>
+                <p>Status:</p>
+                <p>{user && user.isOnShift ? "You are currently On Shift" : "You have not yet started your shift"}</p>
             </section>
 
             <section className={styles.vehicleSection}>
@@ -28,9 +28,10 @@ const Dashboard = () => {
                 <header>
                     <h3>Team</h3>
                 </header>
+
                 <h4>Your team:</h4>
-                <p>{user.currentTeam ? user.currentTeam : "You are not assigned to a team"}</p>
-                <p>{user.currentSubTeamName ? user.currentSubTeamName : "You are not assigned to a sub team"}</p>
+                <p>{user ? user.currentTeam ? user.currentTeam : "You are not assigned to a team" : null}</p>
+                <p>{user ? user.currentSubTeamName ? user.currentSubTeamName : "You are not assigned to a sub team" : null}</p>
             </section>
             
             <section className={styles.supervisorSection}>

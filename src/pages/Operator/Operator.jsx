@@ -17,9 +17,9 @@ import checklistData from "../../data/checklistdata.js";
 const Operator = () => {
     const { user } = useContext(UserContext);
     const { isShowing, toggle } = useModal();
-    const [isShiftStart, setIsShiftStart] = useState(user.isOnShift);
+    const [isShiftStart, setIsShiftStart] = useState(user ? user.isOnShift : null);
     const [modalContent, setModalContent] = useState(null);
-    const changeStart = user.isOnShift ? "End shift" : "Start shift";
+    const changeStart = isShiftStart ? "End shift" : "Start shift";
 
     const updateShiftProperty = () => {
         user.isOnShift = !user.isOnShift;
